@@ -181,3 +181,154 @@ app.ready(function() {
 
 
 });
+$('.get_slug').change(function (){
+    slug_get($(this).val(),$(this).attr('focus_input'));
+});
+function deleteButton(){
+    //sweart alert konulacak
+
+    $('.deleteButton').click(function (){
+
+        $('.preloader').show();
+
+        var table = $(this).attr('data-table');
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+
+        });
+        $.ajax({
+
+            type: 'DELETE',
+
+            url: $(this).attr('data-action'),
+
+            data : {value:$(this).attr('data-id')},
+            success: function (data) {
+                if(data.type == "success"){
+                    if(data.tableRefresh == 1){
+                        table_write_data(data.listData,table)
+                        deleteButton();
+                    }
+                    $.each(data.success_message_array, function (i, data){
+                        Toastify({
+                            title:"success",
+                            text: data,
+                            style: {
+                                background: "green",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+                    })
+                }else{
+                    $.each(data.error_message_array, function (i, data){
+                        Toastify({
+                            title:"Error",
+                            text: data,
+                            style: {
+                                background: "red",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+                    })
+                }
+                $('.preloader').hide();
+            },
+            error: function(data)
+            {
+                Toastify({
+                    title:"Error",
+                    text: "An Error Occurred, please try again later.",
+                    style: {
+                        background: "red",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+
+                $('.preloader').hide();
+            }
+
+        });
+    });
+}
+deleteButton();
+var slug_get = function(value,focus_input){
+
+    $('.preloader').show();
+    $.ajaxSetup({
+
+        headers: {
+
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+        }
+
+    });
+    $.ajax({
+
+        type: 'POST',
+
+        url: '/Kpanel/name_convert_slug',
+
+        data : {value:value},
+        success: function (data) {
+            if(data.type == "success"){
+                $(focus_input).attr('placeholder',data.slug)
+            }else{
+                Toastify({
+                    title:"Error",
+                    text: "An Error Occurred, please try again later.",
+                    style: {
+                        background: "red",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+            }
+            $('.preloader').hide();
+        },
+        error: function(data)
+        {
+            Toastify({
+                title:"Error",
+                text: "An Error Occurred, please try again later.",
+                style: {
+                    background: "red",
+                },
+                offset: {
+                    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                },
+            }).showToast();
+
+            $('.preloader').hide();
+        }
+
+    });
+}
+var table_write_data = function(listData,table){
+    var html = "";
+    $.each(listData, function (i, data) {
+        html += "<tr>";
+        $.each(data, function (itwo, appendData) {
+            html += "<td>"+ appendData + "</td>";
+        });
+        html += "</tr>";
+    });
+    $(table + " tbody").html(html);
+}

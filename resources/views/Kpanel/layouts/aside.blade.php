@@ -15,32 +15,12 @@
             </a>
         </li>
 
-        <li class="menu-item">
-            <a class="menu-link" href="clients.html">
-                <span class="icon ti-user"></span>
-                <span class="title">Clients</span>
-            </a>
-        </li>
+
 
         <li class="menu-item">
-            <a class="menu-link" href="products.html">
-                <span class="icon ti-briefcase"></span>
-                <span class="title">Products</span>
-            </a>
-        </li>
-
-        <li class="menu-item">
-            <a class="menu-link" href="invoices.html">
-                <span class="icon ti-receipt"></span>
-                <span class="title">Invoices</span>
-                <span class="badge badge-pill badge-info">2</span>
-            </a>
-        </li>
-
-        <li class="menu-item">
-            <a class="menu-link" href="settings.html">
-                <span class="icon ti-settings"></span>
-                <span class="title">Settings</span>
+            <a class="menu-link" href="{{route('language.index')}}">
+                <span class="icon fa fa-language"></span>
+                <span class="title">{{__('global.language')}}</span>
             </a>
         </li>
 

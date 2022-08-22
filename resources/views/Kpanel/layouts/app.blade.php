@@ -14,10 +14,14 @@
     <link href="{{asset('panel/assets/vendor/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet">
     <link href="{{asset('panel/assets/css/app.min.css')}}" rel="stylesheet">
     <link href="{{asset('panel/assets/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset("panel/assets/css/toastify.css")}}" type="text/css" />
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="{{asset('panel/assets/img/apple-touch-icon.png')}}">
     <link rel="icon" href="{{asset('panel/assets/img/favicon.png')}}">
+
+    @yield('CssContent')
+
     <style type="text/css">/* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -41,6 +45,8 @@
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }</style>
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
+
 </head>
 
 <body class="pace-done sidebar-folded">
@@ -53,7 +59,7 @@
 
 
 <!-- Preloader -->
-<div class="preloader" style="display: none;">
+<div class="preloader" style="display: block;">
     <div class="spinner-dots">
         <span class="dot1"></span>
         <span class="dot2"></span>
@@ -120,10 +126,10 @@
     src="{{asset('panel/assets/vendor/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
 <script
     src="{{asset('panel/assets/vendor/moment/moment.min.js')}}"></script>
-<script
-    src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
+<script src="{{asset('panel/assets/js/toastify.js')}}"></script>
+
 <script src="{{asset('panel/assets/js/script.js')}}"></script>
 
-
+@yield('JsContent')
 </body>
 </html>
