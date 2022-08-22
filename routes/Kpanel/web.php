@@ -5,8 +5,6 @@ Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_
 Route::post('/sign-in-post',[AuthenticationController::class, 'sign_in_post'])->name('sign_in_post')->middleware('guest');
 
 
-Route::get('/sign-up',[AuthenticationController::class, 'sign_up'])->name('sign_up')->middleware('guest');
-Route::post('/sign-up-post',[AuthenticationController::class, 'sign_up_post'])->name('sign_up_post')->middleware('guest');
 
 Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içerisine yazdığımız bütün linkler giriş linki isteyecektir.
     Route::get('/logout',[AuthenticationController::class, 'logout'])->name('logout')->middleware('auth');
@@ -16,6 +14,6 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     })->name('mentumpanel');
 
     Route::get('/dashboard', function () {
-        dd("asd");
+        return view("Kpanel.welcome");
     })->name('dashboard');
 });
