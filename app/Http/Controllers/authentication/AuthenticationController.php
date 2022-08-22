@@ -40,33 +40,6 @@ class AuthenticationController extends Controller
         }
     }
 
-    public function sign_up(){
-
-        return view('Kpanel.authentication.signup');
-    }
-    public function sign_up_post(Request $request){
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'term_and_policy' => 'required',
-        ]);
-        if ($validator->passes()) {
-            $user = new User();
-            $user->name = $request->name;
-            $user->status = 1;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->save();
-
-            $user->add_user = $user->id;
-            $user->save();
-
-            return response()->json(['type' => "success", 'route_url' => route('sign_in')]);
-
-        } else {
-            return response()->json(['type'=>'error','error' => $validator->errors()->all()]);
-        }
-    }
 
     public function logout(){
         Auth::logout();
