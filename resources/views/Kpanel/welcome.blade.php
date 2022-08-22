@@ -254,7 +254,8 @@
 @endsection
 
 @section('JsContent')
-    <!-- Bu sayfaya özel js dosyaları çekilecek -->
+    <script
+        src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
 @endsection
 
 
