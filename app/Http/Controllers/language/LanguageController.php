@@ -108,6 +108,24 @@ class LanguageController extends Controller
             }
             return response()->json(['type'=>'error','error_message_array'=>array(Lang::get('global.error_message'))]);
         }
+        elseif($request->id == "main_language"){
+            $language = Language::where('status','!=',3)->find($request->data_id);
+            if(!empty($language)){
+
+                Language::where('main_language','=',1)->update(['main_language' => 2]);
+                $language->main_language = 1;
+                $language->save();
+                $language_model = new Language();
+                $language_all = $language_model->getTableReview();
+
+                return response()->json(['type'=>'success','listData' => $language_all,'success_message_array' => array(Lang::get('global.success_message'))]);
+
+            }else{
+
+                return response()->json(['type'=>'error','error_message_array'=>array(Lang::get('global.error_message'))]);
+            }
+            return response()->json(['type'=>'error','error_message_array'=>array(Lang::get('global.error_message'))]);
+        }
         else{
 
             $language = Language::where('id',$request->id)->where('status','!=',3)->first();
@@ -166,13 +184,13 @@ class LanguageController extends Controller
         $language = Language::where('id',$id)->first();
         $language_count = Language::where('id','!=',$id)->where('status','!=',3)->count();
         if(!empty($language->id)){
-            if($language_count > 2){
+            if($language_count > 0){
                 if($language->main_language == 1){
-                $language->main_language = 2;
-                $language_new_main_language = Language::where('status','!=',3)->where('id','!=',$language->id)->first();
-                $language_new_main_language->main_language = 1;
-                $language_new_main_language->save();
-            }
+                    $language->main_language = 2;
+                    $language_new_main_language = Language::where('status','!=',3)->where('id','!=',$language->id)->first();
+                    $language_new_main_language->main_language = 1;
+                    $language_new_main_language->save();
+                }
                 $language->status = 3;
                 $language->save();
 
