@@ -213,6 +213,8 @@ function deleteButton(){
                     if(data.tableRefresh == 1){
                         table_write_data(data.listData,table)
                         deleteButton();
+
+                        button_main_language();
                     }
                     $.each(data.success_message_array, function (i, data){
                         Toastify({

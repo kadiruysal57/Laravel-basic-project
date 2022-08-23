@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('short_name',20);
             $table->string('slug',50);
             $table->integer('status')->default(1);
+            $table->integer('type')->default(2);
             $table->integer('main_language')->default(2);
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
                 'name' => 'English',
                 'short_name' => "EN",
                 'slug' => 'en',
+                'type'=>'1',
                 'main_language'=>'1',
                 'add_user' => '1',
                 'update_user' => '1',

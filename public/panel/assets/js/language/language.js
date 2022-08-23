@@ -27,6 +27,7 @@ $('#language_add').on('submit',function(e){
                 $('#language-add-modal').modal('hide');
                 $('.preloader').hide();
                 deleteButton();
+                button_main_language();
                 $.each(data.success_message_array, function (i, data){
                     Toastify({
                         title:"success",
@@ -107,6 +108,7 @@ $('#language_update').on('submit',function(e){
                 $('.preloader').hide();
                 update_button_language()
                 deleteButton()
+                button_main_language();
                 $.each(data.success_message_array, function (i, data){
                     Toastify({
                         title:"success",
@@ -157,6 +159,87 @@ $('#language_update').on('submit',function(e){
 
     });
 });
+
+function button_main_language(){
+    $('.button_main_language').click(function (){
+        $('.preloader').show();
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+
+        });
+        $.ajax({
+
+            type: 'POST',
+
+            url: $(this).attr('action'),
+
+            data : {id:"main_language",data_id:$(this).attr('data-id')},
+
+            success: function (data) {
+                if(data.type == "success"){
+                    $('.preloader').hide();
+                    table_write_data(data.listData,'.language_table')
+                    update_button_language()
+                    deleteButton()
+                    button_main_language();
+                    $.each(data.success_message_array, function (i, data){
+                        Toastify({
+                            title:"success",
+                            text: data,
+                            style: {
+                                background: "green",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+                    })
+                }else{
+                    $('.preloader').hide();
+                    $.each(data.error_message_array, function (i, data){
+                        Toastify({
+                            title:"error",
+                            text: data,
+                            style: {
+                                background: "red",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+
+
+                    })
+                }
+            },
+            error: function(data)
+            {
+                Toastify({
+                    title:"Error",
+                    text: "An Error Occurred, please try again later.",
+                    style: {
+                        background: "red",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+
+                $('.loader-body').hide();
+            }
+
+        });
+    });
+}
+button_main_language()
 function update_button_language(){
     $('.updateButtonLanguage').click(function (){
         $('.preloader').show();
