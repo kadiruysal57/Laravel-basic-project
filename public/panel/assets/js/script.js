@@ -325,6 +325,8 @@ var slug_get = function(value,focus_input){
 }
 var table_write_data = function(listData,table){
     var html = "";
+    console.log(listData);
+
     $.each(listData, function (i, data) {
         html += "<tr>";
         $.each(data, function (itwo, appendData) {
