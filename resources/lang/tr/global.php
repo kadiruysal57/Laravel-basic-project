@@ -5,6 +5,7 @@ return [
 
 
     'name' => 'Adı',
+    'title' => 'Başlık',
     'short_name' => 'Kısa Adı',
     'slug' => 'Seo Url',
     'actions' => 'İşlem',
@@ -17,5 +18,6 @@ return [
     'success_message' => "İşlem Başarıyla Gerçekleşti",
     'data_min_one'=>"Veriyi Silemezsiniz. En Az 1 Kayıt Olmalı",
     'language'=>'Dil',
+    'short_desc'=>'Kısa Açıklaması',
 
 ];

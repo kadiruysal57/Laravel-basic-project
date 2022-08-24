@@ -25,11 +25,20 @@
 
 </head>
 
-<body class="  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+<body class="  pace-done">
+<div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
         <div class="pace-progress-inner"></div>
     </div>
     <div class="pace-activity"></div></div>
 
+<!-- Preloader -->
+<div class="preloader" style="display: block;">
+    <div class="spinner-dots spinner-dots min-h-fullscreen center-vh mx-auto">
+        <span class="dot1"></span>
+        <span class="dot2"></span>
+        <span class="dot3"></span>
+    </div>
+</div>
 
 
 <div class="row min-h-fullscreen center-vh p-20 m-0">

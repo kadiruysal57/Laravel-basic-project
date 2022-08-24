@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\authentication\AuthenticationController;
 use App\Http\Controllers\language\LanguageController;
+use App\Http\Controllers\contents\ContentsController;
 use Illuminate\Http\Request;
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
@@ -24,6 +25,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     })->name('name_convert_slug');
 
     Route::resource('language', LanguageController::class);
+    Route::resource('contents', ContentsController::class);
 
 
 });

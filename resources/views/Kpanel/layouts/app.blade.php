@@ -60,7 +60,7 @@
 
 <!-- Preloader -->
 <div class="preloader" style="display: block;">
-    <div class="spinner-dots">
+    <div class="spinner-dots spinner-dots min-h-fullscreen center-vh mx-auto">
         <span class="dot1"></span>
         <span class="dot2"></span>
         <span class="dot3"></span>
