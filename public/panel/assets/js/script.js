@@ -325,7 +325,6 @@ var slug_get = function(value,focus_input){
 }
 var table_write_data = function(listData,table){
     var html = "";
-    console.log(listData);
 
     $.each(listData, function (i, data) {
         html += "<tr>";
@@ -335,4 +334,13 @@ var table_write_data = function(listData,table){
         html += "</tr>";
     });
     $(table + " tbody").html(html);
+}
+
+function Loader_toggle(t){
+    if(t == "show"){
+        $('.preloader').show();
+    }else {
+
+        $('.preloader').hide();
+    }
 }

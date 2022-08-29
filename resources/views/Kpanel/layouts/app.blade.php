@@ -128,6 +128,7 @@
     src="{{asset('panel/assets/vendor/moment/moment.min.js')}}"></script>
 <script src="{{asset('panel/assets/js/toastify.js')}}"></script>
 
+<script src="{{asset('panel/assets/js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('panel/assets/js/script.js')}}"></script>
 
 @yield('JsContent')

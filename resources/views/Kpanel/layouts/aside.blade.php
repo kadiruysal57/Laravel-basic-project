@@ -8,7 +8,7 @@
 <nav class="sidebar-navigation ps-container ps-theme-default" data-ps-id="0664ac42-8a4a-9a44-9c66-9a141163124b">
     <ul class="menu menu-sm menu-bordery">
 
-        <li class="menu-item active">
+        <li class="menu-item @if(Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == "dashboard") active @endif">
             <a class="menu-link" href="{{route('dashboard')}}">
                 <span class="icon ti-home"></span>
                 <span class="title">Dashboard</span>
@@ -17,12 +17,20 @@
 
 
 
-        <li class="menu-item">
+        <li class="menu-item @if(Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == "language.index") active @endif">
             <a class="menu-link" href="{{route('language.index')}}">
                 <span class="icon fa fa-language"></span>
                 <span class="title">{{__('global.language')}}</span>
             </a>
         </li>
+        <li class="menu-item @if(Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == "menu.index") active @endif">
+            <a class="menu-link" href="{{route('menu.index')}}">
+                <span class="icon fa fa-bars"></span>
+                <span class="title">{{__('global.menu')}}</span>
+            </a>
+        </li>
+
+
 
     </ul>
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">

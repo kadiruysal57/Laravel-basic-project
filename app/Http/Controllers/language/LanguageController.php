@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use App\Models\Menu;
 class LanguageController extends Controller
 {
     /**
@@ -59,8 +60,18 @@ class LanguageController extends Controller
                 $language->slug = Str::slug($request->short_name);
                 $language->main_language = $request->main_language;
                 $language->add_user = Auth::id();
-                $language->save();
-
+                $return = $language->save();
+                if(!empty($language->id)){
+                    $Menu = new Menu();
+                    foreach ($Menu->default_menu() as $df){
+                        $menu_new = new Menu();
+                        $menu_new->name = $df;
+                        $menu_new->status = 1;
+                        $menu_new->language_id = $language->id;
+                        $menu_new->add_user = Auth::id();
+                        $menu_new->save();
+                    }
+                }
 
                 $language_model = new Language();
                 $language_all = $language_model->getTableReview();
@@ -189,10 +200,19 @@ class LanguageController extends Controller
                     $language->main_language = 2;
                     $language_new_main_language = Language::where('status','!=',3)->where('id','!=',$language->id)->first();
                     $language_new_main_language->main_language = 1;
+                    $language_new_main_language->update_user = Auth::id();
                     $language_new_main_language->save();
                 }
+                $language->update_user = Auth::id();
                 $language->status = 3;
                 $language->save();
+
+                $Menu = Menu::where('language_id',$id)->get();
+                foreach ($Menu as $m){
+                    $m->status = 3;
+                    $m->update_user = Auth::id();
+                    $m->save();
+                }
 
                 $language_model = new Language();
                 $language_all = $language_model->getTableReview();
