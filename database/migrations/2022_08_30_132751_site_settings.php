@@ -15,17 +15,26 @@ return new class extends Migration
     {
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('site_name')->nullable(); // 1 ise post 99 ise custom
-            $table->string('site_slogan')->nullable(); // custom link ise name tablodan geliyorsa tablodaki idsi
-            $table->text('logo')->nullable(); // eğer custom ise gelen link buraya geliyor
-            $table->integer('top_category')->nullable(); // üst kategorinin bu tablodaki idsi
-            $table->integer('menu_order')->nullable(); // sırası
-            $table->integer('menu_id'); // footer mı top menu mu olduğu
-            $table->integer('target')->default(1); // _blank _self ayarı
-            $table->integer('add_user')->nullable();
-            $table->integer('update_user')->nullable();
+            $table->string('site_name')->nullable();
+            $table->string('site_slogan')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('fav_icon')->nullable();
+            $table->unsignedBigInteger('language_id')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
+            $table->foreign('language_id')->references('id')->on('language');
+
         });
+        DB::table('site_settings')->insert(
+            array(
+                'site_name' => 'Kpanel',
+                'site_slogan' => 'Biz varsak herşeye çözüm var',
+                'logo' => '',
+                'fav_icon'=>'',
+                'language_id'=>'1',
+                'status'=>'1',
+            )
+        );
     }
 
     /**

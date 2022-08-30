@@ -185,8 +185,6 @@ $('.get_slug').change(function (){
     slug_get($(this).val(),$(this).attr('focus_input'));
 });
 function deleteButton(){
-    //sweart alert konulacak
-
     $('.deleteButton').click(function (){
 
         $('.preloader').show();
@@ -211,10 +209,14 @@ function deleteButton(){
             success: function (data) {
                 if(data.type == "success"){
                     if(data.tableRefresh == 1){
-                        table_write_data(data.listData,table)
-                        deleteButton();
-
-                        button_main_language();
+                        console.log(typeof socialmediaaddmodal);
+                        table_write_data(data.listData,table);
+                        if(typeof button_main_language == "function"){
+                            button_main_language();
+                        }
+                        if(typeof socialmediaaddmodal == "function"){
+                            socialmediaaddmodal();
+                        }
                     }
                     $.each(data.success_message_array, function (i, data){
                         Toastify({
@@ -334,6 +336,7 @@ var table_write_data = function(listData,table){
         html += "</tr>";
     });
     $(table + " tbody").html(html);
+    deleteButton();
 }
 
 function Loader_toggle(t){

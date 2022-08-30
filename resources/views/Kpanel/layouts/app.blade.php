@@ -130,6 +130,7 @@
 
 <script src="{{asset('panel/assets/js/sweetalert2.min.js')}}"></script>
 <script src="{{asset('panel/assets/js/script.js')}}"></script>
+<script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
 
 @yield('JsContent')
 </body>
