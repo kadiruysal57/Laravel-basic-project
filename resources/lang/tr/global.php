@@ -23,5 +23,6 @@ return [
     'short_desc'=>'Kısa Açıklaması',
     'action' => 'Aksiyon',
     'menu'=>'Menu Ayarları',
+    'file-manager'=>'Dosya Yöneticisi',
 
 ];
