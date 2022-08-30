@@ -30,6 +30,12 @@
             </a>
         </li>
 
+        <li class="menu-item=">
+            <span onclick="window.open('{{url('laravel-filemanager')}}','', 'width=700,height=700'); " class="menu-link">
+                <span class="icon fa fa-file"></span>
+                <span class="title">{{__('global.file-manager')}}</span>
+            </a>
+        </li>
 
 
     </ul>

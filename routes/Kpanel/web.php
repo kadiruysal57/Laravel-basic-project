@@ -8,9 +8,15 @@ use App\Http\Controllers\menu\MenuController;
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
 Route::post('/sign-in-post',[AuthenticationController::class, 'sign_in_post'])->name('sign_in_post')->middleware('guest');
 
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
 
 Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içerisine yazdığımız bütün linkler giriş linki isteyecektir.
+
+
+
     Route::get('/logout',[AuthenticationController::class, 'logout'])->name('logout')->middleware('auth');
 
     Route::get('/', function () {
