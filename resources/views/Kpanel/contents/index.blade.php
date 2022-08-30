@@ -22,6 +22,34 @@
                     </header>
 
                     <div class="card-body">
+                        <div class="col">
+
+                                <div class="">
+                                    <table class="table table-separated">
+                                        <thead>
+                                        <tr>
+                                            <th>Sayfa İsmi</th>
+                                            <th class="text-center w-100px">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($contents as $c)
+
+
+                                        <tr>
+                                            <td>{{$c->name}}</td>
+
+                                            <td class="text-right table-actions">
+                                                <a class="table-action hover-primary" href="{{route('contents.show',[$c->id])}}"><i class="ti-pencil"></i></a>
+                                                <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                        </div>
 
                     </div>
                 </div>
