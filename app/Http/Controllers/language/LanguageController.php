@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\language;
 
 use App\Http\Controllers\Controller;
+use App\Models\site_settings;
 use Illuminate\Http\Request;
 use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +64,8 @@ class LanguageController extends Controller
                 $return = $language->save();
                 if(!empty($language->id)){
                     $Menu = new Menu();
+                    $sitesettings = new site_settings();
+                    $sitesettings = $sitesettings->default_value();
                     foreach ($Menu->default_menu() as $df){
                         $menu_new = new Menu();
                         $menu_new->name = $df;
@@ -71,6 +74,14 @@ class LanguageController extends Controller
                         $menu_new->add_user = Auth::id();
                         $menu_new->save();
                     }
+                    $sitesettings_new = new site_settings();
+                    $sitesettings_new->site_name = $sitesettings->site_name;
+                    $sitesettings_new->site_slogan = $sitesettings->site_slogan;
+                    $sitesettings_new->logo = $sitesettings->logo;
+                    $sitesettings_new->fav_icon = $sitesettings->fav_icon;
+                    $sitesettings_new->language_id = $language->id;
+                    $sitesettings_new->status = 1;
+                    $sitesettings_new->save();
                 }
 
                 $language_model = new Language();
@@ -212,6 +223,13 @@ class LanguageController extends Controller
                     $m->status = 3;
                     $m->update_user = Auth::id();
                     $m->save();
+                }
+
+                $sitesettings = site_settings::where('language_id',$id)->get();
+                foreach ($sitesettings as $s){
+                    $s->status = 3;
+                    $s->update_user = Auth::id();
+                    $s->save();
                 }
 
                 $language_model = new Language();

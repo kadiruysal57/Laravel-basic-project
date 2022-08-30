@@ -54,4 +54,9 @@ class Language extends Model
         }
         return $language_all;
     }
+
+    public function site_settings(){
+        return $this->hasMany(site_settings::class,'language_id','id');
+        //return site_settings::where('language_id',$language_id)->get();
+    }
 }

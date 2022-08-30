@@ -24,5 +24,9 @@ return [
     'action' => 'Aksiyon',
     'menu'=>'Menu Ayarları',
     'file-manager'=>'Dosya Yöneticisi',
+    'image'=>'Resim',
+    'link'=>'Link',
+    'target'=>'Link Hedef',
+    'socail_add'=>'Sosyal Medya Ekle',
 
 ];
