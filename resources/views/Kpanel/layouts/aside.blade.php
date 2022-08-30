@@ -17,13 +17,13 @@
 
 
 
-        <li class="menu-item @if(Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == "language.index") active @endif">
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"language") !== false) active @endif">
             <a class="menu-link" href="{{route('language.index')}}">
                 <span class="icon fa fa-language"></span>
                 <span class="title">{{__('global.language')}}</span>
             </a>
         </li>
-        <li class="menu-item @if(Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == "menu.index") active @endif">
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'menu') !== false) active @endif">
             <a class="menu-link" href="{{route('menu.index')}}">
                 <span class="icon fa fa-bars"></span>
                 <span class="title">{{__('global.menu')}}</span>
