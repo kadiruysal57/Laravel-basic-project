@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('name',255);
             $table->string('title',255);
             $table->string('short_desc',255);
-            $table->integer('lang');
-            $table->text('description');
-            $table->string('main_photo',255);
-            $table->string('preview_photo',255);
-            $table->text('css_iframe');
-            $table->text('js_iframe');
+            $table->integer('lang')->nullable();
+            $table->text('description')->nullable();
+            $table->string('main_photo',255)->nullable();
+            $table->string('preview_photo',255)->nullable();
+            $table->text('css_iframe')->nullable();
+            $table->text('js_iframe')->nullable();
             $table->string('seo_title',255);
             $table->text('keywords');
             $table->text('seo_description');
