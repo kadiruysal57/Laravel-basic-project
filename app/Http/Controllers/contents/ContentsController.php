@@ -61,6 +61,7 @@ class ContentsController extends Controller
                 $contents->seo_title = $request->seo_title;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
+                $contents->description = $request->description;
                 if(empty($request->seo_url)){
                     $seo_url = Str::slug($request->name);
                     $contents->seo_url = $seo_url;
@@ -94,6 +95,8 @@ class ContentsController extends Controller
                 $contents->seo_title = $request->seo_title;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
+                $contents->description = $request->description;
+
                 if(empty($request->seo_url)){
                     $seo_url = Str::slug($request->name);
                     $contents->seo_url = $seo_url;

@@ -34,7 +34,7 @@
             <span onclick="window.open('{{url('laravel-filemanager')}}','', 'width=700,height=700'); " class="menu-link">
                 <span class="icon fa fa-file"></span>
                 <span class="title">{{__('global.file-manager')}}</span>
-            </a>
+            </span>
         </li>
 
 
@@ -44,12 +44,22 @@
                 <span class="title">{{__('contents.contents_page_title')}}</span>
             </a>
         </li>
+
+
+        <li class="menu-item">
+            <a class="menu-link" href="{{route('slider.index')}}">
+                <span class="icon fa fa-file-image-o"></span>
+                <span class="title">{{__('slider.slider_page_title')}}</span>
+            </a>
+        </li>
+
+
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'site-settings') !== false) active @endif">
             <a class="menu-link" href="{{route('site-settings.index')}}">
                 <span class="icon fa fa-gear"></span>
                 <span class="title">{{__('sitesettings.sitesettings')}}</span>
             </a>
-        </li>
+
     </ul>
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
         <div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
