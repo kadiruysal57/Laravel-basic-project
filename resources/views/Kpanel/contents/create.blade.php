@@ -51,6 +51,11 @@
                                     <label class="require">{{__('global.short_desc')}}</label>
                                     <textarea name="short_desc" class="form-control"></textarea>
                                 </div>
+
+                                <div class="form-group">
+                                    <textarea class="ckeditor form-control" name="description"></textarea>
+                                </div>
+
                                 <div class="text-center">
                                 <button type="submit" class="btn btn-w-md btn-round btn-primary " form="contents_create">{{__('global.save')}}</button>
                                 </div>
@@ -101,6 +106,18 @@
 @section('JsContent')
     <script src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('panel/assets/js/contents/content.js')}}"></script>
+    <script src="{{asset('panel/assets/ckeditor/ckeditor.js')}}"></script>
+    <script type="text/javascript">
+        var options = {
+            filebrowserImageBrowseUrl: '/Kpanel/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/Kpanel/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/Kpanel/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/Kpanel/laravel-filemanager/upload?type=Files&_token='
+        };
+        CKEDITOR.replace('description', options);
+    </script>
+    <script>
+    </script>
 @endsection
 
 

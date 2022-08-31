@@ -4,6 +4,7 @@ use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\contents\ContentsController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\menu\MenuController;
+use App\Http\Controllers\slider\SliderController;
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
 Route::post('/sign-in-post',[AuthenticationController::class, 'sign_in_post'])->name('sign_in_post')->middleware('guest');
@@ -31,10 +32,15 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
         return response()->json(['type'=>'success','slug' => \Illuminate\Support\Str::slug($request->value)]);
     })->name('name_convert_slug');
 
+    Route::group(['prefix' => '/laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+
+    });
+
     Route::resource('language', LanguageController::class);
     Route::resource('contents', ContentsController::class);
-
     Route::resource('menu', MenuController::class);
+    Route::resource('slider', SliderController::class);
 
 
 });

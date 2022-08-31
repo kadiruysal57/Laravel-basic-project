@@ -34,7 +34,7 @@
             <span onclick="window.open('{{url('laravel-filemanager')}}','', 'width=700,height=700'); " class="menu-link">
                 <span class="icon fa fa-file"></span>
                 <span class="title">{{__('global.file-manager')}}</span>
-            </a>
+            </span>
         </li>
 
 
@@ -42,6 +42,13 @@
             <a class="menu-link" href="{{route('contents.index')}}">
                 <span class="icon fa fa-file-o"></span>
                 <span class="title">{{__('contents.contents_page_title')}}</span>
+            </a>
+        </li>
+
+        <li class="menu-item">
+            <a class="menu-link" href="{{route('slider.index')}}">
+                <span class="icon fa fa-file-image-o"></span>
+                <span class="title">{{__('slider.slider_page_title')}}</span>
             </a>
         </li>
 

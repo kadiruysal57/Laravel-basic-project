@@ -24,5 +24,6 @@ return [
     'action' => 'Aksiyon',
     'menu'=>'Menu Ayarları',
     'file-manager'=>'Dosya Yöneticisi',
+    'description'=>'Açıklama',
 
 ];
