@@ -105,6 +105,20 @@ class ContentsController extends Controller
                 } catch (Throwable $e) {
                     report($e);
                     return response()->json(['type'=>'error','error_message_array'=>array(Lang::get('global.error_message'))]);
+                $contents = new Contents();
+                $contents->name = $request->name;
+                $contents->title = $request->title;
+                $contents->short_desc = $request->short_desc;
+                $contents->keywords = $request->keywords;
+                $contents->seo_title = $request->seo_title;
+                $contents->seo_description = $request->seo_description;
+                $contents->focus_keywords = $request->focus_keywords;
+                $contents->description = $request->description;
+                if(empty($request->seo_url)){
+                    $seo_url = Str::slug($request->name);
+                    $contents->seo_url = $seo_url;
+                }else{
+                    $contents->seo_url = $request->seo_url;
                 }
 
                 /*Blok Management Save Code*/
@@ -134,6 +148,8 @@ class ContentsController extends Controller
                 $contents->seo_title = $request->seo_title;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
+                $contents->description = $request->description;
+
                 if(empty($request->seo_url)){
                     $seo_url = Str::slug($request->name);
                     $contents->seo_url = $seo_url;

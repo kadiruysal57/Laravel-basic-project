@@ -24,10 +24,12 @@ return [
     'action' => 'Aksiyon',
     'menu'=>'Menu Ayarları',
     'file-manager'=>'Dosya Yöneticisi',
+    'description'=>'Açıklama',
     'image'=>'Resim',
     'link'=>'Link',
     'target'=>'Link Hedef',
     'socail_add'=>'Sosyal Medya Ekle',
     'please_select'=>'Lütfen Seçim Yapınız',
+
 
 ];
