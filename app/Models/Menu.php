@@ -16,9 +16,6 @@ class Menu extends Model
     ];
     protected $table = 'menu';
 
-    public function test(){
-        return "kadir";
-    }
     public function language(){
         return $this->hasOne(Language::class,'id','language_id');
     }
