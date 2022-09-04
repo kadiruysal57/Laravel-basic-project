@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('seo_url',255);
             $table->integer('lock_page')->default(2);
             $table->integer('status')->default(1);
+            $table->integer('left_blok_active')->default(1);
+            $table->integer('right_blok_active')->default(1);
             $table->integer('add_user');
             $table->integer('update_user')->nullable();
 

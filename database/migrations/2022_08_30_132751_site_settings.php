@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('fav_icon')->nullable();
             $table->unsignedBigInteger('language_id')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('update_user')->nullable();
             $table->timestamps();
             $table->foreign('language_id')->references('id')->on('language');
 

@@ -28,5 +28,6 @@ return [
     'link'=>'Link',
     'target'=>'Link Hedef',
     'socail_add'=>'Sosyal Medya Ekle',
+    'please_select'=>'Lütfen Seçim Yapınız',
 
 ];
