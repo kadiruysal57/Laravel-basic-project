@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $('#contents_create').on('submit',function(e){
     e.preventDefault();
+    editor.updateElement();
     $('.top_blok_data').val(window.JSON.stringify($('#top_blok_nestable').nestable('serialize')));
     $('.left_blok_data').val(window.JSON.stringify($('#left_blok_nestable').nestable('serialize')));
     $('.mid_blok_data').val(window.JSON.stringify($('#mid_blok_fix_nestable').nestable('serialize')));
