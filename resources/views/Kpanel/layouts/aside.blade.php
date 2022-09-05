@@ -29,9 +29,14 @@
                 <span class="title">{{__('global.menu')}}</span>
             </a>
         </li>
-
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'blok-management') !== false) active @endif">
+            <a class="menu-link" href="{{route('blok-management.index')}}">
+                <span class="icon fa fa-th"></span>
+                <span class="title">{{__('blokmanagement.index')}}</span>
+            </a>
+        </li>
         <li class="menu-item=">
-            <span onclick="window.open('{{url('laravel-filemanager')}}','', 'width=700,height=700'); " class="menu-link">
+            <span style="cursor: pointer" onclick="window.open('{{url('laravel-filemanager')}}','', 'width=700,height=700'); " class="menu-link">
                 <span class="icon fa fa-file"></span>
                 <span class="title">{{__('global.file-manager')}}</span>
             </span>
@@ -59,6 +64,9 @@
                 <span class="icon fa fa-gear"></span>
                 <span class="title">{{__('sitesettings.sitesettings')}}</span>
             </a>
+        </li>
+
+
 
     </ul>
     <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;">
