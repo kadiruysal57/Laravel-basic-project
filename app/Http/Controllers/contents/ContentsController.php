@@ -126,6 +126,8 @@ class ContentsController extends Controller
 
                 }
 
+            }else {
+                return response()->json(['type'=>'error','error' => $validator->errors()->all()]);
             }
         }
         if ($request->id == "update") {
@@ -183,7 +185,8 @@ class ContentsController extends Controller
                                 $ContentBlokFilesNewData->update_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }
-                        } else {
+                        }
+                        else {
 
                             $ContentBlokFilesNewData = new ContentBlokFiles();
                             $ContentBlokFilesNewData->main_blok_id = $key;
