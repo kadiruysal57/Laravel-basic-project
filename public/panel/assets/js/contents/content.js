@@ -269,4 +269,13 @@ $(document).ready(function(){
         })
     }
     ddhandetrash();
+
+    $('#default_blok').on('change',function(){
+       var value = $(this).val();
+       if(value == 0){
+           $('.blok_manager_content').show();
+       }else{
+           $('.blok_manager_content').hide();
+       }
+    });
 });

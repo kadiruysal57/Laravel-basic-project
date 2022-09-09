@@ -5,6 +5,7 @@ namespace App\Http\Controllers\contents;
 use App\Http\Controllers\Controller;
 use App\Models\BlokGroups;
 use App\Models\ContentBlokFiles;
+use App\Models\DefaultBlok;
 use App\Models\MainBlok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,8 +23,8 @@ class ContentsController extends Controller
      */
     public function index()
     {
-
-        return view('Kpanel.contents.index')->with('contents', Contents::get());
+        $data['contents'] = Contents::get();
+        return view('Kpanel.contents.index')->with($data);
     }
 
     /**
@@ -35,6 +36,7 @@ class ContentsController extends Controller
     {
 
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
+        $data['default_bloks'] = DefaultBlok::get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -77,30 +79,33 @@ class ContentsController extends Controller
                     }
                     $contents->left_blok_active = checkboxorswitch($request->left_blok);
                     $contents->right_blok_active = checkboxorswitch($request->right_blok);
+                    $contents->default_blok_id = $request->default_blok;
                     $contents->add_user = Auth::id();
                     $contents->save();
+                    if(empty($request->default_blok)){
+                        /*Blok Management Save Code*/
+                        $blok_data = array(); /* Keyler Main Blok Id ile eşit olmalıdır*/
+                        $blok_data['1'] = json_decode($request->top_blok_data);
+                        $blok_data['2'] = json_decode($request->left_blok_data);
+                        $blok_data['3'] = json_decode($request->mid_blok_data);
+                        $blok_data['4'] = json_decode($request->right_blok_data);
+                        $blok_data['5'] = json_decode($request->footer_blok_data);
 
-                    /*Blok Management Save Code*/
-                    $blok_data = array(); /* Keyler Main Blok Id ile eşit olmalıdır*/
-                    $blok_data['1'] = json_decode($request->top_blok_data);
-                    $blok_data['2'] = json_decode($request->left_blok_data);
-                    $blok_data['3'] = json_decode($request->mid_blok_data);
-                    $blok_data['4'] = json_decode($request->right_blok_data);
-                    $blok_data['5'] = json_decode($request->footer_blok_data);
+                        foreach ($blok_data as $key => $bd) {
+                            foreach ($bd as $order => $data) {
 
-                    foreach ($blok_data as $key => $bd) {
-                        foreach ($bd as $order => $data) {
-
-                            $ContentBlokFilesNewData = new ContentBlokFiles();
-                            $ContentBlokFilesNewData->main_blok_id = $key;
-                            $ContentBlokFilesNewData->group_id = $data->groupid;
-                            $ContentBlokFilesNewData->content_id = $contents->id;
-                            $ContentBlokFilesNewData->blok_files_id = $data->id;
-                            $ContentBlokFilesNewData->blok_file_order = ++$order;
-                            $ContentBlokFilesNewData->add_user = Auth::id();
-                            $ContentBlokFilesNewData->save();
+                                $ContentBlokFilesNewData = new ContentBlokFiles();
+                                $ContentBlokFilesNewData->main_blok_id = $key;
+                                $ContentBlokFilesNewData->group_id = $data->groupid;
+                                $ContentBlokFilesNewData->content_id = $contents->id;
+                                $ContentBlokFilesNewData->blok_files_id = $data->id;
+                                $ContentBlokFilesNewData->blok_file_order = ++$order;
+                                $ContentBlokFilesNewData->add_user = Auth::id();
+                                $ContentBlokFilesNewData->save();
+                            }
                         }
                     }
+
                     return response()->json(['type' => "success", 'route_url' => route('contents.index'), 'success_message_array' => array(Lang::get('global.success_message'))]);
                 } catch (Throwable $e) {
                     report($e);
@@ -161,45 +166,51 @@ class ContentsController extends Controller
 
                 $contents->left_blok_active = checkboxorswitch($request->left_blok);
                 $contents->right_blok_active = checkboxorswitch($request->right_blok);
+                $contents->default_blok_id = $request->default_blok;
                 $contents->update_user = Auth::id();
                 $contents->save();
 
-                /*Blok Management Save Code*/
-                $blok_data = array(); /* Keyler Main Blok Id ile eşit olmalıdır*/
-                $blok_data['1'] = json_decode($request->top_blok_data);
-                $blok_data['2'] = json_decode($request->left_blok_data);
-                $blok_data['3'] = json_decode($request->mid_blok_data);
-                $blok_data['4'] = json_decode($request->right_blok_data);
-                $blok_data['5'] = json_decode($request->footer_blok_data);
 
-                foreach ($blok_data as $key => $bd) {
-                    foreach ($bd as $order => $data) {
+                if(empty($request->default_blok)){
+                    /*Blok Management Save Code*/
+                    $blok_data = array(); /* Keyler Main Blok Id ile eşit olmalıdır*/
+                    $blok_data['1'] = json_decode($request->top_blok_data);
+                    $blok_data['2'] = json_decode($request->left_blok_data);
+                    $blok_data['3'] = json_decode($request->mid_blok_data);
+                    $blok_data['4'] = json_decode($request->right_blok_data);
+                    $blok_data['5'] = json_decode($request->footer_blok_data);
 
-                        if (!empty($data->pagefileid)) {
-                            $check = ContentBlokFiles::where('id', $data->pagefileid)->first();
-                            if (!empty($check)) {
-                                $ContentBlokFilesNewData = ContentBlokFiles::where('id', $data->pagefileid)->first();
+                    foreach ($blok_data as $key => $bd) {
+                        foreach ($bd as $order => $data) {
+
+                            if (!empty($data->pagefileid)) {
+                                $check = ContentBlokFiles::where('id', $data->pagefileid)->first();
+                                if (!empty($check)) {
+                                    $ContentBlokFilesNewData = ContentBlokFiles::where('id', $data->pagefileid)->first();
+                                    $ContentBlokFilesNewData->main_blok_id = $key;
+
+                                    $ContentBlokFilesNewData->blok_file_order = ++$order;
+                                    $ContentBlokFilesNewData->update_user = Auth::id();
+                                    $ContentBlokFilesNewData->save();
+                                }
+                            }
+                            else {
+
+                                $ContentBlokFilesNewData = new ContentBlokFiles();
                                 $ContentBlokFilesNewData->main_blok_id = $key;
-
+                                $ContentBlokFilesNewData->group_id = $data->groupid;
+                                $ContentBlokFilesNewData->content_id = $contents->id;
+                                $ContentBlokFilesNewData->blok_files_id = $data->id;
                                 $ContentBlokFilesNewData->blok_file_order = ++$order;
-                                $ContentBlokFilesNewData->update_user = Auth::id();
+                                $ContentBlokFilesNewData->add_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }
-                        }
-                        else {
 
-                            $ContentBlokFilesNewData = new ContentBlokFiles();
-                            $ContentBlokFilesNewData->main_blok_id = $key;
-                            $ContentBlokFilesNewData->group_id = $data->groupid;
-                            $ContentBlokFilesNewData->content_id = $contents->id;
-                            $ContentBlokFilesNewData->blok_files_id = $data->id;
-                            $ContentBlokFilesNewData->blok_file_order = ++$order;
-                            $ContentBlokFilesNewData->add_user = Auth::id();
-                            $ContentBlokFilesNewData->save();
                         }
-
                     }
                 }
+
+
 
                 $blok_group = new BlokGroups();
                 $file_array = $blok_group->content_blok_file($contents->id);
@@ -254,6 +265,7 @@ class ContentsController extends Controller
     {
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['contents'] = Contents::find($id);
+        $data['default_bloks'] = DefaultBlok::get();
         return view('Kpanel.contents.edit')->with($data);
     }
 
