@@ -115,16 +115,16 @@
                                 </div>
                                 <div class="tab-pane fade " id="contents-blok">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <label for="">{{__('contents.default_blok')}}</label>
+                                        <select name="default_blok" class="form-control" id="default_blok">
+                                            <option value="">{{__('global.special')}}</option>
+                                            @foreach($default_bloks as $db)
+                                                <option value="{{$db->id}}">{{$db->default_blok_name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content" id="blok_manager_content">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                                <label for="">{{__('contents.default_blok')}}</label>
-                                                <select name="default_blok" class="form-control" id="default_blok">
-                                                    <option value="0">{{__('global.please_select')}}</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-1 col-md-1 col-sm-1">
-
-                                            </div>
                                             <div class="col-lg-3 col-md-3 col-sm-6 " style="border-radius: 10px;">
                                                 <label for="">{{__('contents.active_bloks')}}</label>
                                                 <div class="form-group">
@@ -146,7 +146,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content">
 
                                         <div
                                             class="col-lg-3 col-md-3 col-sm-12 bg-lighter  border border-cyan float-left"

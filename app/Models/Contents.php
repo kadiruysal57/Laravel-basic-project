@@ -25,6 +25,9 @@ class Contents extends Model
         'seo_url',
         'lock_page',
         'status',
+        'left_blok_active',
+        'right_blok_active',
+        'default_blok_id',
         'add_user',
         'update_user',
     ];
@@ -32,6 +35,9 @@ class Contents extends Model
 
     public function blok_file(){
         return $this->hasMany(ContentBlokFiles::class,'content_id','id')->orderBy('blok_file_order','asc');
+    }
+    public function default_blok_id(){
+        return $this->hasOne(DefaultBlok::class,'id','default_blok_id');
     }
     public function getTableReview(){
         $contents_all = $this->select('id','name','seo_url')->where('status',1)->get();
