@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'status',
         'password',
     ];
 
@@ -41,4 +42,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getTableReview(){
+        $users = $this->select('id','name','email','status')->get();
+        foreach ($users as $u){
+            $u->actions = ' <a class="table-action hover-primary" href="'.route('users.show',[$u->id]).'"><i class="ti-pencil"></i></a>
+                                                <button type="button" class="table-action btn btn-pure deleteButton hover-danger" data-id="'.$u->id.'" data-action = "'.route('users.destroy',[$u->id]).'" data-table="#users_table"><i class="ti-trash"></i></button>';
+            unset($u->id);
+            unset($u->seo_url);
+        }
+        return $users;
+    }
 }

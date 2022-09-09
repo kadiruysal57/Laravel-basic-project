@@ -15,6 +15,12 @@
             </a>
         </li>
 
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"users") !== false) active @endif">
+            <a class="menu-link" href="{{route('users.index')}}">
+                <span class="icon fa fa-users"></span>
+                <span class="title">{{__('global.users')}}</span>
+            </a>
+        </li>
 
 
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"language") !== false) active @endif">
