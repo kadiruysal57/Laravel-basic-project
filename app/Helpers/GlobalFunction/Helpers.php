@@ -6,6 +6,13 @@ function checkboxorswitch($data){
         return "2";
     }
 }
+function statusView($data){
+    if($data == 1){
+        return __('global.active');
+    }else{
+        return __('global.passive');
+    }
+}
 function array_only($array = array(),$onlykey){
     $returndata = Array();
     foreach ($array as $a){

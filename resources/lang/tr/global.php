@@ -31,6 +31,7 @@ return [
     'socail_add'=>'Sosyal Medya Ekle',
     'please_select'=>'Lütfen Seçim Yapınız',
     'special'=>'Özel',
-
-
+    'active'=>'Aktif',
+    'passive'=>'Pasif',
+    'users'=>'Kullanıcılar',
 ];

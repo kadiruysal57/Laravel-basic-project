@@ -121,16 +121,19 @@ $(document).ready(function(){
                 nestableCall()
                 ddhandetrash()
                 if(data.type === "success"){
-                    Toastify({
-                        text: "Update Successfully",
-                        style: {
-                            background: "green",
-                        },
-                        offset: {
-                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                        },
-                    }).showToast();
+                    $.each(data.success_message_array, function (i, data){
+                        Toastify({
+                            title:"success",
+                            text: data,
+                            style: {
+                                background: "green",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+                    })
 
                     $('.preloader').hide();
 
