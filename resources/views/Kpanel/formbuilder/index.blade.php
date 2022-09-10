@@ -25,11 +25,11 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated">
+                                <table class="table table-separated" id="form-builder-form">
                                     <thead>
                                     <tr>
-                                        <th>Form İsmi</th>
-                                        <th class="text-center w-100px">Aksiyon</th>
+                                        <th>{{__('formbuilder.form_name')}}</th>
+                                        <th class="text-center w-100px">{{__('global.actions')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,7 +39,11 @@
 
                                             <td class="text-right table-actions">
                                                 <a class="table-action hover-primary" href="{{route('form-builder.show',[$f->id])}}"><i class="ti-pencil"></i></a>
-                                                <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>
+                                                <a class="table-action hover-danger deleteButton"
+                                                   data-id="{{$f->id}}"
+                                                   data-action="{{route('form-builder.destroy',[$f->id])}}"
+                                                   data-table="#form-builder-form"
+                                                   href="#"><i class="ti-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
