@@ -13,6 +13,7 @@ use App\Models\Contents;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Language;
 
 class ContentsController extends Controller
 {
@@ -37,6 +38,7 @@ class ContentsController extends Controller
 
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['default_bloks'] = DefaultBlok::get();
+        $data['language'] = Language::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -58,6 +60,7 @@ class ContentsController extends Controller
                 'seo_title' => 'required',
                 'keywords' => 'required',
                 'seo_description' => 'required',
+                'language_id'=>'required',
                 'focus_keywords' => 'required',
             ]);
             if ($validator->passes()) {
@@ -70,6 +73,7 @@ class ContentsController extends Controller
                     $contents->keywords = $request->keywords;
                     $contents->seo_title = $request->seo_title;
                     $contents->seo_description = $request->seo_description;
+                    $contents->language_id = $request->language_id;
                     $contents->focus_keywords = $request->focus_keywords;
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
@@ -141,6 +145,7 @@ class ContentsController extends Controller
                 'name' => 'required',
                 'title' => 'required',
                 'short_desc' => 'required',
+                'language_id'=>'required',
                 'seo_title' => 'required',
                 'keywords' => 'required',
                 'seo_description' => 'required',
@@ -153,6 +158,8 @@ class ContentsController extends Controller
                 $contents->short_desc = $request->short_desc;
                 $contents->keywords = $request->keywords;
                 $contents->seo_title = $request->seo_title;
+
+                $contents->language_id = $request->language_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
                 $contents->description = $request->description;
@@ -266,6 +273,7 @@ class ContentsController extends Controller
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['contents'] = Contents::find($id);
         $data['default_bloks'] = DefaultBlok::get();
+        $data['language'] = Language::where('status',1)->get();
         return view('Kpanel.contents.edit')->with($data);
     }
 

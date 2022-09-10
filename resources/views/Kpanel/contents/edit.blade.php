@@ -87,6 +87,15 @@
                                                value="{{$contents->title}}">
                                     </div>
                                     <div class="form-group">
+                                        <label class="require" for="language_id">{{__('global.language')}}</label>
+                                        <select name="language_id" id="language_id" class="form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($language as $l)
+                                                <option @if($l->id == $contents->language_id) selected="" @endif value="{{$l->id}}">{{$l->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="require">{{__('global.short_desc')}}</label>
                                         <textarea name="short_desc"
                                                   class="form-control">{{$contents->short_desc}}</textarea>

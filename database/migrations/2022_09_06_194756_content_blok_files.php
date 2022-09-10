@@ -27,7 +27,6 @@ return new class extends Migration
             $table->foreign('group_id')->references('id')->on('blok_groups');
             $table->foreign('content_id')->references('id')->on('contents');
             $table->foreign('blok_files_id')->references('id')->on('blok_files');
-
         });
     }
 
