@@ -53,6 +53,13 @@
             </a>
         </li>
 
+        <li class="menu-item">
+            <a class="menu-link" href="{{route('form-builder.index')}}">
+                <span class="icon fa fa-wpforms"></span>
+                <span class="title">{{__('formbuilder.formbuilder_page_title')}}</span>
+            </a>
+        </li>
+
 
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'site-settings') !== false) active @endif">
             <a class="menu-link" href="{{route('site-settings.index')}}">

@@ -55,11 +55,13 @@
 
                                 @foreach($slider->slider_image_many as $si)
 
-                                    <div id="sliderimage{{$si->id}}" class="mt-5 bg-light"
+                                    <div id="sliderimage_edit{{$si->id}}" class="mt-5 bg-light"
                                          style="border-radius:30px; padding: 10px;">
 
                                         <button data-src="{{$si->id}}"
-                                                class="btn btn-icon btn-active-color-primary btn-sm me-1 sliderimagedelete">
+                                                data-action="{{route('slider.store')}}"
+                                                id="delete"
+                                                class="btn btn-icon btn-active-color-primary btn-sm me-1 sliderimagedelete_edit">
                                             <a class="fa fa-trash"></a>
                                         </button>
 
@@ -154,7 +156,7 @@
                             </div>
 
 
-                            <div class="text-center">
+                            <div class="text-center mt-2">
                                 <button type="submit" class="btn btn-w-md btn-round btn-primary " form="slider_update">{{__('global.save')}}</button>
                             </div>
 
@@ -163,7 +165,7 @@
                 </div>
             </div>
         </div>
-    </div><!--/.main-content -->
+    </div>
 
 @endsection
 

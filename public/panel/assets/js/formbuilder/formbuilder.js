@@ -1,6 +1,8 @@
 $(document).ready(function(){
-    sliderdeletefunct();
-    $('#slider_create').on('submit',function(e){
+    addvaluebutton();
+    form_inputdeletefunct();
+
+    $('#form_create').on('submit',function(e){
     e.preventDefault();
     $('.preloader').show();
     var form = new FormData(this);
@@ -80,7 +82,7 @@ $(document).ready(function(){
     });
 });
 
-    $('#slider_update').on('submit',function(e){
+    $('#form_edit').on('submit',function(e){
 
         e.preventDefault();
         $('.preloader').show();
@@ -156,19 +158,34 @@ $(document).ready(function(){
         });
     });
 
-    function sliderdeletefunct() {
-        $('.sliderimagedelete_edit').click(function (e) {
+    function addvaluebutton (){
+        $('.addvaluebutton_edit').click(function () {
+            var currentVal = $(this).attr('data-value');
+            var currentVal2 = parseInt($('#countformselectbox').val());
+            currentVal2 = currentVal2 + 1;
+            $('#countformselectbox').val(currentVal2);
+
+            $("#addvalues_edit"+currentVal).append(
+                "<div id='addvalue_extra' class=\"fv-row mb-7 mt-3 fv-plugins-icon-container addvalue_extra\">" +
+                "<input type=\"text\" name=\'addvalue_extra"+currentVal+"_"+currentVal2+"\' id=\"task-textare\" class=\"form-control form-control-solid value_mask"+currentVal+"\">" +
+                "</div>");
+
+        })
+    }
+
+    function form_inputdeletefunct() {
+        $('.formdeleteedit').click(function (e) {
             e.preventDefault();
             Swal.fire({
-                title: 'Sliderı silmek istediğinize emin misiniz?',
+                title: 'İnputu silmek istediğinize emin misiniz?',
                 showDenyButton: false,
                 showCancelButton: true,
-                confirmButtonText: 'Delete',
+                confirmButtonText: 'Sil',
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
-                    $("#sliderimage_edit" + $(this).attr('data-src')).remove();
+                    $("#formbody_edit" + $(this).attr('data-src')).remove();
                     $.ajaxSetup({
 
                         headers: {
@@ -186,52 +203,52 @@ $(document).ready(function(){
 
                         data: {id: $(this).attr('id') , data:$(this).attr('data-src')},
 
-                    success: function (data) {
-                        if (data.error != "") {
-                            $.each(data.error, function (index, value) {
+                        success: function (data) {
+                            if (data.error != "") {
+                                $.each(data.error, function (index, value) {
+                                    Toastify({
+                                        title: "Error",
+                                        text: value,
+                                        style: {
+                                            background: "red",
+                                        },
+                                        offset: {
+                                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                        },
+                                    }).showToast();
+                                    $('.preloader').hide();
+                                });
+
+                            }
+                            if (data.type == "success") {
+
+
                                 Toastify({
-                                    title: "Error",
-                                    text: value,
+                                    text: "Update Successfully",
                                     style: {
-                                        background: "red",
+                                        background: "green",
                                     },
                                     offset: {
                                         x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
                                         y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
                                     },
                                 }).showToast();
+
                                 $('.preloader').hide();
-                            });
 
+
+                            }
+
+                            console.log(data);
                         }
-                        if (data.type == "success") {
-
-
-                            Toastify({
-                                text: "Update Successfully",
-                                style: {
-                                    background: "green",
-                                },
-                                offset: {
-                                    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                                    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                                },
-                            }).showToast();
-
+                        ,
+                        error: function (data) {
+                            console.log(data);
                             $('.preloader').hide();
-
-
                         }
 
-                        console.log(data);
-                    }
-                ,
-                    error: function (data) {
-                        console.log(data);
-                        $('.preloader').hide();
-                    }
-
-                })
+                    })
                     ;
                 } else {
                     $('.preloader').hide();
@@ -239,4 +256,5 @@ $(document).ready(function(){
             })
         });
     }
+
 });
