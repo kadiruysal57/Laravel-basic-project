@@ -254,6 +254,7 @@
 @endsection
 
 @section('JsContent')
+
     <script
         src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
 @endsection

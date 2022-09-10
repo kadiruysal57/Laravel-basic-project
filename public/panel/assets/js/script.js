@@ -186,56 +186,83 @@ $('.get_slug').change(function (){
 });
 function deleteButton(){
     $('.deleteButton').click(function (){
+        Swal.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('.preloader').show();
 
-        $('.preloader').show();
+                var table = $(this).attr('data-table');
+                $.ajaxSetup({
 
-        var table = $(this).attr('data-table');
-        $.ajaxSetup({
+                    headers: {
 
-            headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-
-            }
-
-        });
-        $.ajax({
-
-            type: 'DELETE',
-
-            url: $(this).attr('data-action'),
-
-            data : {value:$(this).attr('data-id')},
-            success: function (data) {
-                if(data.type == "success"){
-                    if(data.tableRefresh == 1){
-                        console.log(typeof socialmediaaddmodal);
-                        table_write_data(data.listData,table);
-                        if(typeof button_main_language == "function"){
-                            button_main_language();
-                        }
-                        if(typeof socialmediaaddmodal == "function"){
-                            socialmediaaddmodal();
-                        }
                     }
-                    $.each(data.success_message_array, function (i, data){
-                        Toastify({
-                            title:"success",
-                            text: data,
-                            style: {
-                                background: "green",
-                            },
-                            offset: {
-                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                            },
-                        }).showToast();
-                    })
-                }else{
-                    $.each(data.error_message_array, function (i, data){
+
+                });
+
+
+                $.ajax({
+
+                    type: 'DELETE',
+
+                    url: $(this).attr('data-action'),
+
+                    data : {value:$(this).attr('data-id')},
+                    success: function (data) {
+                        if(data.type == "success"){
+                            if(data.tableRefresh == 1){
+                                console.log(typeof socialmediaaddmodal);
+                                table_write_data(data.listData,table);
+                                if(typeof button_main_language == "function"){
+                                    button_main_language();
+                                }
+                                if(typeof socialmediaaddmodal == "function"){
+                                    socialmediaaddmodal();
+                                }
+                            }
+                            $.each(data.success_message_array, function (i, data){
+                                Toastify({
+                                    title:"success",
+                                    text: data,
+                                    style: {
+                                        background: "green",
+                                    },
+                                    offset: {
+                                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                    },
+                                }).showToast();
+                            })
+                        }else{
+                            $.each(data.error_message_array, function (i, data){
+                                Toastify({
+                                    title:"Error",
+                                    text: data,
+                                    style: {
+                                        background: "red",
+                                    },
+                                    offset: {
+                                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                    },
+                                }).showToast();
+                            })
+                        }
+                        $('.preloader').hide();
+                    },
+                    error: function(data)
+                    {
                         Toastify({
                             title:"Error",
-                            text: data,
+                            text: "An Error Occurred, please try again later.",
                             style: {
                                 background: "red",
                             },
@@ -244,28 +271,14 @@ function deleteButton(){
                                 y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
                             },
                         }).showToast();
-                    })
-                }
-                $('.preloader').hide();
-            },
-            error: function(data)
-            {
-                Toastify({
-                    title:"Error",
-                    text: "An Error Occurred, please try again later.",
-                    style: {
-                        background: "red",
-                    },
-                    offset: {
-                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                }).showToast();
 
-                $('.preloader').hide();
+                        $('.preloader').hide();
+                    }
+
+                });
             }
-
         });
+
     });
 }
 deleteButton();
@@ -331,7 +344,12 @@ var table_write_data = function(listData,table){
     $.each(listData, function (i, data) {
         html += "<tr>";
         $.each(data, function (itwo, appendData) {
-            html += "<td>"+ appendData + "</td>";
+            console.log(itwo);
+            if(itwo == "actions"){
+                html += "<td class='text-right table-actions'>"+ appendData + "</td>";
+            }else{
+                html += "<td>"+ appendData + "</td>";
+            }
         });
         html += "</tr>";
     });

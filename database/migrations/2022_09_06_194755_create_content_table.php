@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name',255);
             $table->string('title',255);
             $table->string('short_desc',255);
-            $table->integer('lang')->nullable();
+            $table->unsignedBigInteger('language_id')->default(1);
             $table->text('description')->nullable();
             $table->string('main_photo',255)->nullable();
             $table->string('preview_photo',255)->nullable();
@@ -31,11 +31,18 @@ return new class extends Migration
             $table->string('seo_url',255);
             $table->integer('lock_page')->default(2);
             $table->integer('status')->default(1);
+            $table->integer('left_blok_active')->default(1);
+            $table->integer('right_blok_active')->default(1);
+            $table->unsignedBigInteger('default_blok_id')->nullable();
             $table->integer('add_user');
             $table->integer('update_user')->nullable();
 
+            $table->foreign('default_blok_id')->references('id')->on('default_blok');
+            $table->foreign('language_id')->references('id')->on('language');
             $table->timestamps();
         });
+
+
     }
 
     /**

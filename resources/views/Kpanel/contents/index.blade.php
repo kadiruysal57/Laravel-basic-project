@@ -25,7 +25,7 @@
                         <div class="col">
 
                                 <div class="">
-                                    <table class="table table-separated">
+                                    <table class="table table-separated" id="contents_table">
                                         <thead>
                                         <tr>
                                             <th>Sayfa İsmi</th>
@@ -38,10 +38,10 @@
 
                                         <tr>
                                             <td>{{$c->name}}</td>
-
+                                            <td>{{$c->language->name}}</td>
                                             <td class="text-right table-actions">
                                                 <a class="table-action hover-primary" href="{{route('contents.show',[$c->id])}}"><i class="ti-pencil"></i></a>
-                                                <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>
+                                                <button type="button" class="table-action btn btn-pure deleteButton hover-danger" data-id="{{$c->id}}" data-action = "{{route('contents.destroy',[$c->id])}}" data-table="#contents_table"><i class="ti-trash"></i></button>
                                             </td>
                                         </tr>
                                         @endforeach
