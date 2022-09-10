@@ -14,10 +14,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('form-builder.index')}}"><i class="fa fa-file-o"></i>{{__('formbuilder.formbuilder_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i class="fa fa-edit"></i> {{__('formbuilder.formbuilder_create_title')}}</li>
-                        </ol>
+                        <h4 class="card-title">{{__('formbuilder.formbuilder_create_title')}}</strong></h4>
+
                     </header>
 
                     <div class="card-body">
@@ -113,7 +111,7 @@
 
 
 
-                                
+
 
                                 <div class="tab-pane fade " id="form-input">
                                     <input id="form-input-count" name="countform" type="hidden" value="0"/>

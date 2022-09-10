@@ -9,6 +9,7 @@ use App\Models\form_input;
 use App\Models\form_input_value;
 use App\Models\input_type;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 
 class FormBuilderController extends Controller
@@ -455,7 +456,17 @@ class FormBuilderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $form = form::where('id',$id)->first();
+        if(!empty($form)){
+            $form->delete();
+            $forms = new form();
+            $forms_all = $forms->getTableReview();
+            return response()->json(['type' => 'success', 'tableRefresh' => 1, 'listData' => $forms_all, 'success_message_array' => array(Lang::get('global.success_message'))]);
+
+        }else {
+            return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
+
+        }
 
     }
 

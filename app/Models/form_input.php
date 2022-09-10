@@ -38,4 +38,13 @@ class form_input extends Model
     public function form_input_value_one(){
         return $this->hasOne(form_input_value::class,'form_input_id','id');
     }
+    public static function boot() {
+
+        //burasının amacı form verisi silinme kodu çalıştığı zaman yani delete() bağlantılı olan tablolardan da veriler siliniyor.
+        parent::boot();
+
+        static::deleting(function($form) {
+            $form->form_input_value_many()->delete();
+        });
+    }
 }
