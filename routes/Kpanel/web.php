@@ -7,8 +7,10 @@ use App\Http\Controllers\menu\MenuController;
 use App\Http\Controllers\slider\SliderController;
 use App\Http\Controllers\SiteSettings\SiteSettingsController;
 use App\Http\Controllers\socialmedia\SocialMediaController;
+use App\Http\Controllers\formbuilder\FormBuilderController;
 use App\Http\Controllers\BlokManagement\BlokManagementController;
 use App\Http\Controllers\Users\UsersController;
+
 
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
@@ -41,17 +43,20 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
         \UniSharp\LaravelFilemanager\Lfm::routes();
 
     });
+    Route::POST('/formbuilder/input_type_list',[FormBuilderController::class, 'input_type_list'])->name('formbuilder.input_type_list');
+    Route::POST('/formbuilder/selectboxloop',[FormBuilderController::class, 'selectboxloop'])->name('formbuilder.selectboxloop');
+
 
     Route::resource('language', LanguageController::class);
     Route::resource('contents', ContentsController::class);
     Route::resource('menu', MenuController::class);
-
     Route::resource('slider', SliderController::class);
-
     Route::resource('site-settings', SiteSettingsController::class);
     Route::resource('social-media', SocialMediaController::class);
+    Route::resource('form-builder', FormBuilderController::class);
     Route::resource('blok-management', BlokManagementController::class);
     Route::resource('users', UsersController::class);
+
 
 
 

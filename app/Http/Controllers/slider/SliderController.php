@@ -128,7 +128,7 @@ class SliderController extends Controller
                     $button_text_edit = "button_text_edit". $si->id;
                     $button_colour_edit = "button_colour_edit". $si->id;
                     $filepath_edit = "filepath_edit". $si->id;
-                    
+
                     if(!empty($request->$filepath_edit)){
 
                         $slide_image = slider_image::find($si->id);
@@ -151,6 +151,23 @@ class SliderController extends Controller
             }
 
 
+        }
+
+        if($request->id == "delete"){
+            $validator = Validator::make($request->all(), [
+                'id' => 'required',
+            ]);
+
+            if ($validator->passes()) {
+
+                $slider_image = slider_image::find($request->data);
+                $slider_image->status = 2;
+                $slider_image->save();
+
+                return response()->json(['type' => "success", 'route_url' => route('slider.index')]);
+            } else {
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
         }
     }
 
