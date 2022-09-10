@@ -38,7 +38,7 @@
 
                                         <tr>
                                             <td>{{$c->name}}</td>
-
+                                            <td>{{$c->language->name}}</td>
                                             <td class="text-right table-actions">
                                                 <a class="table-action hover-primary" href="{{route('contents.show',[$c->id])}}"><i class="ti-pencil"></i></a>
                                                 <button type="button" class="table-action btn btn-pure deleteButton hover-danger" data-id="{{$c->id}}" data-action = "{{route('contents.destroy',[$c->id])}}" data-table="#contents_table"><i class="ti-trash"></i></button>

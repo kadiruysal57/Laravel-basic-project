@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name',255);
             $table->string('title',255);
             $table->string('short_desc',255);
-            $table->integer('lang')->nullable();
+            $table->unsignedBigInteger('language_id')->default(1);
             $table->text('description')->nullable();
             $table->string('main_photo',255)->nullable();
             $table->string('preview_photo',255)->nullable();
@@ -38,6 +38,7 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
 
             $table->foreign('default_blok_id')->references('id')->on('default_blok');
+            $table->foreign('language_id')->references('id')->on('language');
             $table->timestamps();
         });
 

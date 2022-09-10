@@ -12,7 +12,7 @@ class Contents extends Model
         'name',
         'title',
         'short_desc',
-        'lang',
+        'language_id',
         'description',
         'main_photo',
         'preview_photo',
@@ -35,6 +35,9 @@ class Contents extends Model
 
     public function blok_file(){
         return $this->hasMany(ContentBlokFiles::class,'content_id','id')->orderBy('blok_file_order','asc');
+    }
+    public function language(){
+        return $this->hasOne(Language::class,'id','language_id');
     }
     public function default_blok_id(){
         return $this->hasOne(DefaultBlok::class,'id','default_blok_id');
