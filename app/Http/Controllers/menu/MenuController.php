@@ -19,6 +19,10 @@ class MenuController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['menus'] = Menu::where('status','!=',3)->get();
         return view('Kpanel.menu.index')->with($data);
     }
@@ -31,6 +35,10 @@ class MenuController extends Controller
     public function create()
     {
 
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         return view('Kpanel.menu.create');
     }
 
@@ -42,6 +50,11 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
 
         if($request->id == "update"){
 
@@ -125,6 +138,10 @@ class MenuController extends Controller
      */
     public function show($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['menu_id'] = $id;
 
         $post = Contents::select('contents.id','contents.name','menu_item.menu_id')
@@ -162,6 +179,11 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $menu = menuitem::find($id);
         if(!empty($menu)){
             return response()->json(['type' => 'success','data'=>$menu,'action'=>route('menu.store')]);
@@ -190,6 +212,11 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Silme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $menu_item = menuitem::find($id);
         if(!empty($menu_item)){
             $menu_id = $menu_item->menu_id;

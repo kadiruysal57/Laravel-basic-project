@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'permission_role',
         'email',
         'status',
         'password',
@@ -52,5 +53,8 @@ class User extends Authenticatable
             unset($u->seo_url);
         }
         return $users;
+    }
+    public function permission(){
+        return $this->hasOne(permission::class,'id','permission_role');
     }
 }

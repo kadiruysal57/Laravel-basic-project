@@ -38,6 +38,11 @@ class SocialMediaController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         if(!empty($request->social_media_id)){
             $social_media = social_media::find($request->social_media_id);
         }else{
@@ -92,6 +97,10 @@ class SocialMediaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         if($id == "show_social"){
             $social_media = social_media::find($request->id);
             if(!empty($social_media)){
@@ -113,6 +122,11 @@ class SocialMediaController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Silme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $social = social_media::find($id);
         if(!empty($social)){
             $sitesettings_id  = $social->sitesettings_id;

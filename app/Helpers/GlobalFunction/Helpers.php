@@ -20,3 +20,9 @@ function array_only($array = array(),$onlykey){
     }
     return $returndata;
 }
+
+function getRoleCheck($roleName)
+{
+    $userRoles = new App\Models\userroles;
+    return $userRoles->CheckRole($roleName);
+}

@@ -33,4 +33,5 @@ return [
     'active'=>'Aktif',
     'passive'=>'Pasif',
     'users'=>'Kullanıcılar',
+    'permission'=>'İzin Listesi',
 ];
