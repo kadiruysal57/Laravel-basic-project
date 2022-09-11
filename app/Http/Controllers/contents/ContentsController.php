@@ -50,6 +50,11 @@ class ContentsController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
 
         if ($request->id == "create") {
 

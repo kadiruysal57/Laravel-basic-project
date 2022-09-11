@@ -17,6 +17,10 @@ class SiteSettingsController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
 
         $data['language'] = Language::where('status',1)->get();
         $data['sitesettings'] = site_settings::where('status',1)->get();
@@ -41,6 +45,11 @@ class SiteSettingsController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $site_settings = site_settings::where('status',1)->get();
         foreach($site_settings as $s){
             $site_name = "site_name".$s->id;

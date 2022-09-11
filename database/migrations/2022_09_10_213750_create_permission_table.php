@@ -13,25 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('permission_table', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('status')->default(1);
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->integer('status');
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
-            $table->rememberToken();
             $table->timestamps();
         });
 
-        DB::table('users')->insert(
+        DB::table('permission_table')->insert(
             array(
-                'name' => 'Kadir Uysal',
-                'email' => "admin@admin.com",
+                'name' => 'Admin',
                 'status' => 1,
-                'password' => \Illuminate\Support\Facades\Hash::make("123456789"),
+                'add_user' => 1,
+                'update_user' => 1,
+            )
+        );
+
+        DB::table('permission_table')->insert(
+            array(
+                'name' => 'Editör',
+                'status' => 1,
                 'add_user' => 1,
                 'update_user' => 1,
             )
@@ -45,6 +48,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('permission');
     }
 };

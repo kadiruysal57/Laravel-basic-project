@@ -20,6 +20,10 @@ class LanguageController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
 
         $with['language'] = Language::where('status','!=',3)->get();
        return view('Kpanel.language.index')->with($with);
@@ -43,6 +47,11 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
 
         if($request->id == "create"){
             $validator = Validator::make($request->all(), [
@@ -203,6 +212,11 @@ class LanguageController extends Controller
     public function destroy($id)
     {
 
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Silme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $language = Language::where('id',$id)->first();
         $language_count = Language::where('id','!=',$id)->where('status','!=',3)->count();
         if(!empty($language->id)){

@@ -20,6 +20,10 @@ class BlokManagementController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['default_bloks'] = DefaultBlok::where('status',1)->get();
         return view('Kpanel.blokmanagement.index')->with($data);
     }
@@ -31,7 +35,10 @@ class BlokManagementController extends Controller
      */
     public function create()
     {
+        if(!$this->PermissionCheck()){
 
+            return view('Kpanel.401');
+        }
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         return view('Kpanel.blokmanagement.create')->with($data);
     }
@@ -44,6 +51,12 @@ class BlokManagementController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
+
         if($request->id == "create"){
             $validator = Validator::make($request->all(), [
                 'blok_name' => 'required',
@@ -176,6 +189,10 @@ class BlokManagementController extends Controller
      */
     public function show($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['default_blok'] = DefaultBlok::where('id',$id)->first();
         return view('Kpanel.blokmanagement.edit')->with($data);
@@ -212,6 +229,11 @@ class BlokManagementController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Silme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $default_blok = DefaultBlok::where('id', $id)->first();
         if (!empty($default_blok)) {
             $default_blok->status = 2;

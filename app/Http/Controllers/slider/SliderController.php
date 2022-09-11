@@ -19,6 +19,10 @@ class SliderController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         return view('Kpanel.slider.index')->with('slider',slider::where('status',1)->get());
     }
 
@@ -29,6 +33,10 @@ class SliderController extends Controller
      */
     public function create()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         return view('Kpanel.slider.create');
     }
 
@@ -40,6 +48,11 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         if($request->id == "create"){
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
@@ -179,6 +192,10 @@ class SliderController extends Controller
      */
     public function show($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         return view('Kpanel.slider.edit')->with('slider',slider::find($id));
     }
 

@@ -22,6 +22,13 @@
             </a>
         </li>
 
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"permission") !== false) active @endif">
+            <a class="menu-link" href="{{route('permission.index')}}">
+                <span class=" icon fa fa-user-secret"></span>
+                <span class="title">{{__('global.permission')}}</span>
+            </a>
+        </li>
+
 
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"language") !== false) active @endif">
             <a class="menu-link" href="{{route('language.index')}}">

@@ -19,6 +19,10 @@ class UsersController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['users'] = User::get();
         return view('Kpanel.users.index')->with($data);
     }
@@ -30,6 +34,10 @@ class UsersController extends Controller
      */
     public function create()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
 
         return view('Kpanel.users.create');
     }
@@ -42,6 +50,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         if($request->id == "create"){
             $validator = Validator::make($request->all(), [
                 'user_name' => 'required',
@@ -137,6 +150,10 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['user'] = User::where('id',$id)->first();
         return view('Kpanel.users.edit')->with($data);
     }
@@ -172,6 +189,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->PermissionCheck()){
+
+            return response()->json(['error' => array('Bu Modülü Silme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $user = User::where('id', $id)->first();
         if (!empty($user)) {
             $user->delete();
