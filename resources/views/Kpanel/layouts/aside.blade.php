@@ -70,6 +70,13 @@
                 <span class="title">{{__('slider.slider_page_title')}}</span>
             </a>
         </li>
+
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'gallery') !== false) active @endif">
+            <a class="menu-link "  href="{{route('gallery.index')}}">
+                <span class="icon fa fa-image"></span>
+                <span class="title">{{__('gallery.gallery_page_title')}}</span>
+            </a>
+        </li>
         <li class="menu-item  @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'form-builder') !== false) active @endif">
             <a class="menu-link"  href="{{route('form-builder.index')}}">
                 <span class="icon fa fa-wpforms"></span>

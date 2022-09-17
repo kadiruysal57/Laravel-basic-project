@@ -29,9 +29,15 @@ return [
     'target'=>'Link Hedef',
     'socail_add'=>'Sosyal Medya Ekle',
     'please_select'=>'Lütfen Seçim Yapınız',
+    'please_select_image'=>'Lütfen Resim seçiniz',
     'special'=>'Özel',
     'active'=>'Aktif',
     'passive'=>'Pasif',
     'users'=>'Kullanıcılar',
     'permission'=>'İzin Listesi',
+    'order'=>'Sırası',
+    'are_you_sure'=>'Emin Misin?',
+    'gallery'=>'Galeri',
+    'slider'=>'Slider',
+
 ];
