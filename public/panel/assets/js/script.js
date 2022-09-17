@@ -356,6 +356,23 @@ var table_write_data = function(listData,table){
     $(table + " tbody").html(html);
     deleteButton();
 }
+var table_write_data_append = function(listData,table){
+    var html = "";
+
+    $.each(listData, function (i, data) {
+        html += "<tr>";
+        $.each(data, function (itwo, appendData) {
+            console.log(itwo);
+            if(itwo == "actions"){
+                html += "<td class='text-right table-actions'>"+ appendData + "</td>";
+            }else{
+                html += "<td>"+ appendData + "</td>";
+            }
+        });
+        html += "</tr>";
+    });
+    $(table + " tbody").append(html);
+}
 
 function Loader_toggle(t){
     if(t == "show"){
