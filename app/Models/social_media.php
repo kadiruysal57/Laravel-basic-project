@@ -19,13 +19,10 @@ class social_media extends Model
     ];
     protected $table = 'social_media';
     public function getTableReview($sitesettings_id){
-        $social_all = $this->select('id','image','name','link','link_target')->where('sitesettings_id',$sitesettings_id)->get();
+        $social_all = $this->select('id','icon','name','link','link_target')->where('sitesettings_id',$sitesettings_id)->get();
         foreach($social_all as $sc){
-            $src = "panel/assets/img/no-pictures.png";
-            if(!empty(trim($sc->image))){
-                $src = $sc->image;
-            }
-            $sc->image = "<img src='".asset($src)."' width='32' height = '32'>";
+            $src = $sc->icon;
+            $sc->icon = "<i class='fa $src'></i>";
             $route_destroy = route('social-media.destroy',[$sc->id]);
             $route_update = route('social-media.update',['show_social']);
 

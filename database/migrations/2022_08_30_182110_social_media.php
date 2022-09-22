@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('social_media', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->default('/panel/assets/img/no-pictures.png')->nullable();
+            $table->string('icon')->nullable();
             $table->string('name')->nullable();
             $table->string('link')->nullable();
             $table->integer('link_target')->nullable();
