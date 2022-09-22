@@ -16,6 +16,7 @@
             text-align: center;
         }
     </style>
+    <link href="{{asset('panel/assets/css/select2.min.css')}}" rel="stylesheet" />
 @endsection
 
 
@@ -194,7 +195,7 @@
                                                                 id="social_media_table{{$sitesettings->id}}">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th class="text-center w-100px">{{__('global.image')}}</th>
+                                                                    <th class="text-center w-100px">{{__('global.icon')}}</th>
                                                                     <th class="text-center w-100px">{{__('global.name')}}</th>
                                                                     <th class="text-center w-100px">{{__('global.link')}}</th>
                                                                     <th class="text-center w-100px">{{__('global.target')}}</th>
@@ -205,15 +206,7 @@
                                                                 @foreach($sitesettings->social_media as $sc)
                                                                     <tr>
                                                                         <td>
-                                                                            @if(!empty(trim($sc->image)))
-                                                                                <img src="{{asset($sc->image)}}"
-                                                                                     width="32"
-                                                                                     height="32" alt="">
-                                                                            @else
-                                                                                <img
-                                                                                    src="{{asset('panel/assets/img/no-pictures.png')}}"
-                                                                                    alt="" width="32" height="32">
-                                                                            @endif
+                                                                            <i class='fa {{$sc->icon}}'></i>
 
                                                                         </td>
                                                                         <td>
@@ -290,44 +283,16 @@
                             <input type="hidden" id="site_settings_id" name="site_settings_id" value="">
                             <input type="hidden" id="social_media_id" name="social_media_id" value="">
                             <div class="form-group">
-                                <div class="col-lg-12 text-center">
-                                    <div id="socail_media_holder"
-                                         class="image-content">
-                                        @if(1 != 1)
-
-                                            <img
-                                                src=""
-                                                alt="">
-                                        @else
-                                            <img
-                                                src="{{asset('panel/assets/img/no-pictures.png')}}"
-                                                alt="">
-                                        @endif
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label
-                                        for="socail_media">{{__('global.image')}}</label>
-
-                                    <div class="input-group">
-                                                                                               <span
-                                                                                                   class="input-group-btn">
-                                                                                                 <a id="socail_media"
-                                                                                                    data-input="socail_media_thumbnail"
-                                                                                                    data-preview="socail_media_holder"
-                                                                                                    class="btn btn-primary">
-                                                                                                   <i class="fa fa-picture-o"></i> Choose
-                                                                                                 </a>
-                                                                                               </span>
-                                        <input
-                                            id="socail_media_thumbnail"
-                                            class="form-control"
-                                            type="text"
-                                            name="socail_media_image"
-                                            readonly required
-                                            value="">
-                                    </div>
+                                        for="socail_media">{{__('global.icon')}}</label>
+                                        <select name="icon" class="icon_select" id="icon_select">
+                                            <option  value="">{{Lang::get('global.please_select')}}</option>
+                                            @foreach(getIcon() as $i)
+                                                <option data-icon="fa {{$i}}" value="{{trim($i)}}">{{$i}}</option>
+                                            @endforeach
+                                        </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -369,9 +334,18 @@
 @endsection
 
 @section('JsContent')
-
+    <script src="{{asset('panel/assets/js/select2.min.js')}}"></script>
     <script src="{{asset('panel/assets/js/sitesettings/sitesettings.js')}}"></script>
     <script>
+
+        function formatText(icon) {
+            return $('<span><i class=" ' + $(icon.element).data('icon') + '"></i> ' + icon.text + '</span>');
+        };
+        $('.icon_select').select2({
+            templateSelection: formatText,
+            templateResult: formatText,
+            dropdownParent:$('#socail_media_add')
+        });
         @foreach($language as $l)
         $('#site_logo{{$l->id}}').filemanager('image');
 
