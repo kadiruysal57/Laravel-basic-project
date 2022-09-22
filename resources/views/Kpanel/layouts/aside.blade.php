@@ -64,15 +64,21 @@
         </li>
 
 
-        <li class="menu-item">
-            <a class="menu-link" href="{{route('slider.index')}}">
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'slider') !== false) active @endif">
+            <a class="menu-link "  href="{{route('slider.index')}}">
                 <span class="icon fa fa-file-image-o"></span>
                 <span class="title">{{__('slider.slider_page_title')}}</span>
             </a>
         </li>
 
-        <li class="menu-item">
-            <a class="menu-link" href="{{route('form-builder.index')}}">
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'gallery') !== false) active @endif">
+            <a class="menu-link "  href="{{route('gallery.index')}}">
+                <span class="icon fa fa-image"></span>
+                <span class="title">{{__('gallery.gallery_page_title')}}</span>
+            </a>
+        </li>
+        <li class="menu-item  @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'form-builder') !== false) active @endif">
+            <a class="menu-link"  href="{{route('form-builder.index')}}">
                 <span class="icon fa fa-wpforms"></span>
                 <span class="title">{{__('formbuilder.formbuilder_page_title')}}</span>
             </a>

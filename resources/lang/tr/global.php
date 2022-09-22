@@ -31,6 +31,8 @@ return [
     'target'=>'Link Hedef',
     'socail_add'=>'Sosyal Medya Ekle',
     'please_select'=>'Lütfen Seçim Yapınız',
+    'icon'=>'İkon',
+    'please_select_image'=>'Lütfen Resim seçiniz',
     'special'=>'Özel',
     'active'=>'Aktif',
     'passive'=>'Pasif',
@@ -42,4 +44,9 @@ return [
     'text'=>'Text',
     'goback'=>'Lütfen Geri Dönünüz',
     'errortext'=>'Bu Sayfayı Görüntüleme Yetkiniz Bulunmamaktadır',
+    'order'=>'Sırası',
+    'are_you_sure'=>'Emin Misin?',
+    'gallery'=>'Galeri',
+    'slider'=>'Slider',
+   
 ];

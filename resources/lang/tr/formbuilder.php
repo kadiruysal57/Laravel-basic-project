@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+    'form_name' => 'Form Adı',
     'formbuilder_page_title' => 'Form',
     'formbuilder_create_title' => 'Form Oluştur',
     'formbuilder_edit_title' => 'Form Güncelle',

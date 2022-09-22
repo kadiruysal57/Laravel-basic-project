@@ -48,11 +48,7 @@ class SocialMediaController extends Controller
         }else{
             $social_media = new social_media();
         }
-        $image = null;
-        if(!empty(trim($request->socail_media_image))){
-            $image = str_replace(env('APP_URL').'/','',$request->socail_media_image);
-        }
-        $social_media->image = $image;
+        $social_media->icon = $request->icon;
         $social_media->name = $request->social_media_name;
         $social_media->link = $request->social_media_link;
         $social_media->link_target = $request->social_media_target;
@@ -104,8 +100,6 @@ class SocialMediaController extends Controller
         if($id == "show_social"){
             $social_media = social_media::find($request->id);
             if(!empty($social_media)){
-                $social_media->image_url = $social_media->image;
-                $social_media->image = asset($social_media->image);
                 return response()->json(['type'=>'success','listdata'=>$social_media]);
             }else{
                 return response()->json(['type'=>'error','error_message_array'=>array(Lang::get('global.error_message'))]);

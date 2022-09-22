@@ -14,6 +14,7 @@ use App\Http\Controllers\permission\PermissionController;
 use App\Models\roleslist;
 use App\Models\permission;
 use App\Models\userroles;
+use App\Http\Controllers\gallery\GalleryController;
 
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
@@ -139,6 +140,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('blok-management', BlokManagementController::class);
     Route::resource('users', UsersController::class);
     Route::resource('permission', PermissionController::class);
+    Route::resource('gallery', GalleryController::class);
 
 
 

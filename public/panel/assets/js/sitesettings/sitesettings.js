@@ -79,17 +79,23 @@ $('#sitesettingsform').on('submit',function(e){
 /*function button_main_language(){
 
 }*/
+
+function formatText(icon) {
+    return $('<span><i class=" ' + $(icon.element).data('icon') + '"></i> ' + icon.text + '</span>');
+};
 function socialmediaaddmodal(){
     $('.social_media_add_modal').click(function (){
         Loader_toggle('show');
         var site_settings_id = $(this).attr('data-settingsid')
         var social_media_id = $(this).attr('data_socialmediaid');
+        $('.icon_select').val(null);
+        $('.icon_select').select2({
+            templateSelection: formatText,
+            templateResult: formatText,
+            dropdownParent:$('#socail_media_add')
+        });
         $('#site_settings_id').val(site_settings_id);
         $('#social_media_id').val(social_media_id);
-
-        var image = '<img src="/panel/assets/img/no-pictures.png" alt="">';
-        $('#socail_media_holder').html(image);
-        $('#socail_media_thumbnail').val(null);
         $('#social_media_name').val(null);
         $('#social_media_link').val(null);
         $('#social_media_target').val(1);
@@ -113,9 +119,14 @@ function socialmediaaddmodal(){
                 data : {id:social_media_id},
                 success: function (data) {
                     if(data.type == "success"){
-                        $('#socail_media_holder img').attr('src',data.listdata.image);
 
-                        $('#socail_media_thumbnail').val(data.listdata.image_url);
+                        $('.icon_select').val(data.listdata.icon);
+
+                        $('.icon_select').select2({
+                            templateSelection: formatText,
+                            templateResult: formatText,
+                            dropdownParent:$('#socail_media_add')
+                        });
                         $('#social_media_name').val(data.listdata.name);
                         $('#social_media_link').val(data.listdata.link);
                         $('#social_media_target').val(data.listdata.link_target);

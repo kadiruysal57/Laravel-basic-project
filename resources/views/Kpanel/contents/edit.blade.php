@@ -88,10 +88,28 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="require" for="language_id">{{__('global.language')}}</label>
-                                        <select name="language_id" id="language_id" class="form-control">
+                                        <select name="language_id" id="language_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($language as $l)
                                                 <option @if($l->id == $contents->language_id) selected="" @endif value="{{$l->id}}">{{$l->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="slider_id">{{__('global.slider')}}</label>
+                                        <select name="slider_id" id="slider_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($slider as $s)
+                                                <option @if($s->id == $contents->slider_id) selected="" @endif value="{{$s->id}}">{{$s->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gallery_id">{{__('global.gallery')}}</label>
+                                        <select name="gallery_id" data-live-search="true" id="gallery_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($gallery as $g)
+                                                <option @if($g->id == $contents->gallery_id) selected="" @endif   value="{{$g->id}}">{{$g->name}}({{$g->id}})</option>
                                             @endforeach
                                         </select>
                                     </div>

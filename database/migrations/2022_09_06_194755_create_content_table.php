@@ -34,11 +34,15 @@ return new class extends Migration
             $table->integer('left_blok_active')->default(1);
             $table->integer('right_blok_active')->default(1);
             $table->unsignedBigInteger('default_blok_id')->nullable();
+            $table->integer('slider_id')->nullable();
+            $table->integer('gallery_id')->nullable();
             $table->integer('add_user');
             $table->integer('update_user')->nullable();
 
             $table->foreign('default_blok_id')->references('id')->on('default_blok');
             $table->foreign('language_id')->references('id')->on('language');
+            $table->foreign('gallery_id')->references('id')->on('gallery');
+            $table->foreign('slider_id')->references('id')->on('slider');
             $table->timestamps();
         });
 

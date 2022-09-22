@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\BlokGroups;
 use App\Models\ContentBlokFiles;
 use App\Models\DefaultBlok;
+use App\Models\gallery;
 use App\Models\MainBlok;
+use App\Models\slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Contents;
@@ -39,6 +41,8 @@ class ContentsController extends Controller
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['default_bloks'] = DefaultBlok::get();
         $data['language'] = Language::where('status',1)->get();
+        $data['gallery'] = gallery::where('status',1)->get();
+        $data['slider'] = slider::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -79,6 +83,8 @@ class ContentsController extends Controller
                     $contents->seo_title = $request->seo_title;
                     $contents->seo_description = $request->seo_description;
                     $contents->language_id = $request->language_id;
+                    $contents->gallery_id = $request->gallery_id;
+                    $contents->slider_id = $request->slider_id;
                     $contents->focus_keywords = $request->focus_keywords;
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
@@ -279,6 +285,9 @@ class ContentsController extends Controller
         $data['contents'] = Contents::find($id);
         $data['default_bloks'] = DefaultBlok::get();
         $data['language'] = Language::where('status',1)->get();
+
+        $data['gallery'] = gallery::where('status',1)->get();
+        $data['slider'] = slider::where('status',1)->get();
         return view('Kpanel.contents.edit')->with($data);
     }
 

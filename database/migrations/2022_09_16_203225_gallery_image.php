@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('social_media', function (Blueprint $table) {
+        Schema::create('gallery_image', function (Blueprint $table) {
             $table->id();
-            $table->string('icon')->nullable();
-            $table->string('name')->nullable();
-            $table->string('link')->nullable();
-            $table->integer('link_target')->nullable();
-            $table->unsignedBigInteger('sitesettings_id')->nullable();
+            $table->unsignedBigInteger('gallery_id');
+            $table->string('url')->nullable();
+            $table->integer('image_order')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();
-            $table->foreign('sitesettings_id')->references('id')->on('site_settings');
+            $table->foreign('gallery_id')->references('id')->on('gallery');
 
         });
     }
