@@ -44,31 +44,31 @@
 <div class="row min-h-fullscreen center-vh p-20 m-0">
     <div class="col-12">
         <div class="card card-shadowed px-50 py-30 w-400px mx-auto" style="max-width: 100%">
-            <h5 class="text-uppercase">Sign in</h5>
+            <h5 class="text-uppercase">{{__('auth.signin')}}</h5>
             <br>
 
             <form class="form-type-material" id="sing-in-form" action="{{route('sign_in_post')}}">
                 <div class="form-group">
                     <input type="email" value="admin@admin.com" class="form-control" required="" id="email" name="email">
-                    <label for="email">Username</label>
+                    <label for="email">{{__('auth.username')}}</label>
                 </div>
 
                 <div class="form-group">
                     <input type="password" value="123456789" class="form-control" required=""  id="password" name="password">
-                    <label for="password">Password</label>
+                    <label for="password">{{__('auth.passwords')}}</label>
                 </div>
 
                 <div class="form-group flexbox flex-column flex-md-row">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" name="remember_me" class="custom-control-input" checked="">
-                        <label class="custom-control-label">Remember me</label>
+                        <label class="custom-control-label">{{__('auth.rememberme')}}</label>
                     </div>
 
-                    <a class="text-muted hover-primary fs-13 mt-2 mt-md-0" href="#">Forgot password?</a>
+                    <a class="text-muted hover-primary fs-13 mt-2 mt-md-0" href="#">{{__('auth.forgot')}}</a>
                 </div>
 
                 <div class="form-group">
-                    <button class="btn btn-bold btn-block btn-primary" type="submit">Login</button>
+                    <button class="btn btn-bold btn-block btn-primary" type="submit">{{__('auth.login')}}</button>
                 </div>
             </form>
 

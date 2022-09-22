@@ -28,8 +28,8 @@
                                     <table class="table table-separated" id="contents_table">
                                         <thead>
                                         <tr>
-                                            <th>Sayfa İsmi</th>
-                                            <th class="text-center w-100px">Actions</th>
+                                            <th>{{__('contents.pagesname')}}</th>
+                                            <th class="text-center w-100px">{{__('contents.actions')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>

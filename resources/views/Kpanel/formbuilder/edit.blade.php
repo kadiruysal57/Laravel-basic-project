@@ -25,10 +25,10 @@
 
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#form">Form</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#form">{{__('formbuilder.formbuilder_page_title')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#form-input">İnput</a>
+                                    <a class="nav-link" data-toggle="tab" href="#form-input">{{__('formbuilder.formbuilder_form_input')}}</a>
                                 </li>
                             </ul>
 
@@ -78,9 +78,9 @@
                                     <div class="form-group">
                                         <label class="require">{{__('formbuilder.formbuilder_form_type')}}</label>
                                         <select name="form_type" id="form_type" class="form-control" tabindex="-98">
-                                            <option>Form Türünü Seçiniz</option>
-                                            <option @if($form->form_type == 1) selected @endif value="1">Yeni Sayfa</option>
-                                            <option @if($form->form_type == 2) selected @endif value="2">Bilgilendirme</option>
+                                            <option>{{__('formbuilder.formbuilder_form_type_select')}}</option>
+                                            <option @if($form->form_type == 1) selected @endif value="1">{{__('formbuilder.formbuilder_form_new_page')}}</option>
+                                            <option @if($form->form_type == 2) selected @endif value="2">{{__('formbuilder.formbuilder_form_information')}}</option>
                                         </select>
                                     </div>
 
@@ -132,10 +132,10 @@
                                                     <!--begin::Table head-->
                                                     <thead>
                                                     <tr class="fw-bolder text-muted">
-                                                        <th class="min-w-50px">Aktif/Pasif</th>
-                                                        <th class="min-w-150px">İnput Türü</th>
-                                                        <th class="min-w-150px">Placeholder Alanı</th>
-                                                        <th class="min-w-150px">Ayarlar</th>
+                                                        <th class="min-w-50px">{{__('formbuilder.formbuilder_active_passive')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_input_type')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_placeholder')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_settings')}}</th>
                                                     </tr>
                                                     </thead>
                                                     <!--end::Table head-->
@@ -154,7 +154,7 @@
                                                                         </label>
                                                                 </div>
                                                             </td>
-                                            <td><select name='type_name_edit{{$fi->id}}' id='select_type{{$fi->id}}' class='form-control form-control-solid formbody' data-value='{{$fi->id}}'> <option value=''>Tür Seçiniz</option>
+                                            <td><select name='type_name_edit{{$fi->id}}' id='select_type{{$fi->id}}' class='form-control form-control-solid formbody' data-value='{{$fi->id}}'> <option value=''>{{__('formbuilder.formbuilder_select_type')}}</option>
                                                     @if($fi->input_type->loop == 1)
                                                         @foreach($input_type1 as $it)
                                                             <option @if($fi->input_id == $it->id) selected="" @endif value="{{$it->id}}">{{$it->name}}</option>
@@ -200,12 +200,12 @@
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h4 class="modal-title">İnput Ayarları</h4>
+                                                                        <h4 class="modal-title">{{__('formbuilder.formbuilder_input_type')}}</h4>
                                                                     </div>
                                                                 <div class="modal-body">
                                                                     <div class="form-check form-check-custom form-check-solid">
                                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                                    <span class="required">Zorunluluk</span>
+                                                                    <span class="required">{{__('formbuilder.formbuilder_required')}}</span>
                                                                     </label>
                                                                     <label class="switch m-3">
                                                                     <input name='required_edit{{$fi->id}}' class="form-check-input m-3" type="checkbox" @if($fi->required ==1) checked @endif value="1" id="flexCheckDefault"/>
@@ -214,16 +214,16 @@
                                                                     </div>
                                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                                    <span class="required">İsim</span>
+                                                                    <span class="required">{{__('global.name')}}</span>
                                                                     </label>
                                                                     <input type="text" name='name_input_edit{{$fi->id}}' id="task-textare" value="{{$fi->name}}" class="form-control form-control-solid">
                                                                 </div>
                                                                                     <div id='' class="fv-row mb-7 fv-plugins-icon-container">
                                                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                                                    <span class="required">Varsayılan Değer</span>
+                                                                                    <span class="required">{{__('formbuilder.formbuilder_default')}}</span>
                                                                                     </label>
                                                                                         @if($fi->input_type->loop == 1)
-                                                                                    <input type="button" id='addvalue_edit{{$fi->id}}'  class="btn btn-warning m-lg-2  addvaluebutton_edit" data-value='{{$fi->id}}' value="Değer Ekle" >
+                                                                                    <input type="button" id='addvalue_edit{{$fi->id}}'  class="btn btn-warning m-lg-2  addvaluebutton_edit" data-value='{{$fi->id}}' value="{{__('formbuilder.formbuilder_add_value')}}" >
                                                                                     <div id='addvalues_edit{{$fi->id}}'></div>
                                                                                         @endif
                                                                                         <div class='mt-3'>
@@ -235,7 +235,7 @@
                                                                                     </div>
                                                                                 <div class="form-check form-check-custom form-check-solid">
                                                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                                                        <span class="required">Bu yazı Placeholder alanında kullanılacak mı?</span>
+                                                                                        <span class="required">{{__('formbuilder.placeholder_use')}}</span>
                                                                                     </label>
                                                                                        <label class="switch m-3">
                                                                                        <input name='placeholder_use_edit{{$fi->id}}' @if($fi->placeholder_use == 1) checked @endif  class="form-check-input m-3" type="checkbox" value="1" id="flexCheckDefault"/>
@@ -244,13 +244,13 @@
                                                                                 </div>
                                                                         <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                             <label class="fs-6 fw-bold form-label mt-3">
-                                                                                <span class="required">ID Alanı</span>
+                                                                                <span class="required">{{__('formbuilder.id_area')}}</span>
                                                                             </label>
                                                                             <input type="text" name='id_attr_edit{{$fi->id}}' value="{{$fi->id_attr}}" id="task-textare" class="form-control form-control-solid">
                                                                         </div>
                                                                     <div class="fv-row mb-7 fv-plugins-icon-container">
                                                                         <label class="fs-6 fw-bold form-label mt-3">
-                                                                            <span class="required">Class Alanı</span>
+                                                                            <span class="required">{{__('formbuilder.class_area')}}</span>
                                                                         </label>
                                                                         <input type="text" name='class_attr_edit{{$fi->id}} value="{{$fi->class_attr}}"' id="task-textare" class="form-control form-control-solid">
                                                                     </div>

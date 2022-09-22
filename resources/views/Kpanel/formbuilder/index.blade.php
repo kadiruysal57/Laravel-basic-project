@@ -28,8 +28,8 @@
                                 <table class="table table-separated">
                                     <thead>
                                     <tr>
-                                        <th>Form İsmi</th>
-                                        <th class="text-center w-100px">Aksiyon</th>
+                                        <th>{{__('formbuilder.formbuilder_name')}}</th>
+                                        <th class="text-center w-100px">{{__('formbuilder.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>

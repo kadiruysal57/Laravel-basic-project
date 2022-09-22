@@ -25,10 +25,10 @@
 
                             <ul class="nav nav-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#form">Form</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#form">{{__('formbuilder.formbuilder_page_title')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#form-input">İnput</a>
+                                    <a class="nav-link" data-toggle="tab" href="#form-input">{{__('formbuilder.formbuilder_form_input')}}</a>
                                 </li>
                             </ul>
 
@@ -77,9 +77,9 @@
                             <div class="form-group">
                                 <label class="require">{{__('formbuilder.formbuilder_form_type')}}</label>
                                 <select name="form_type" id="form_type" class="form-control" tabindex="-98">
-                                    <option>Form Türünü Seçiniz</option>
-                                    <option value="1">Yeni Sayfa</option>
-                                    <option value="2">Bilgilendirme</option>
+                                    <option>{{__('formbuilder.formbuilder_form_type_select')}}</option>
+                                    <option value="1">{{__('formbuilder.formbuilder_form_new_page')}}</option>
+                                    <option value="2">{{__('formbuilder.formbuilder_form_information')}}</option>
                                 </select>
                             </div>
 
@@ -113,7 +113,7 @@
 
 
 
-                                
+
 
                                 <div class="tab-pane fade " id="form-input">
                                     <input id="form-input-count" name="countform" type="hidden" value="0"/>
@@ -130,10 +130,10 @@
                                                     <!--begin::Table head-->
                                                     <thead>
                                                     <tr class="fw-bolder text-muted">
-                                                        <th class="min-w-50px">Aktif/Pasif</th>
-                                                        <th class="min-w-150px">İnput Türü</th>
-                                                        <th class="min-w-150px">Placeholder Alanı</th>
-                                                        <th class="min-w-150px">Ayarlar</th>
+                                                        <th class="min-w-50px">{{__('formbuilder.formbuilder_active_passive')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_input_type')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_placeholder')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.formbuilder_settings')}}</th>
                                                     </tr>
                                                     </thead>
                                                     <!--end::Table head-->

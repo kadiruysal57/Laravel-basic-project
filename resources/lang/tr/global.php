@@ -5,6 +5,7 @@ return [
 
 
     'name' => 'Adı',
+    'name_' => 'İsim',
     'title' => 'Başlık',
     'short_name' => 'Kısa Adı',
     'slug' => 'Seo Url',
@@ -14,6 +15,7 @@ return [
     'close' => 'Kapat',
     'save' => 'Kaydet',
     'status' => 'Durum',
+    'select_status' => 'Lütfen Durum Seçiniz',
     'language' => 'Dil',
     'error_title' => "Hata !!",
     'error_message' => "Bir Hata Oluştu Lütfen Sayfayı Yenileyin",
@@ -34,4 +36,10 @@ return [
     'passive'=>'Pasif',
     'users'=>'Kullanıcılar',
     'permission'=>'İzin Listesi',
+    'profile'=>'Profil',
+    'help'=>'Yardım',
+    'logout'=>'Çıkış Yap',
+    'text'=>'Text',
+    'goback'=>'Lütfen Geri Dönünüz',
+    'errortext'=>'Bu Sayfayı Görüntüleme Yetkiniz Bulunmamaktadır',
 ];

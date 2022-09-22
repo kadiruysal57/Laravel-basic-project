@@ -40,9 +40,9 @@
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>
                                 <select name="status" class="form-control" tabindex="-98">
-                                    <option>Lütfen Durum Seçiniz</option>
-                                    <option @if($slider->status == 1) selected="" @endif value="1">Aktif</option>
-                                    <option @if($slider->status == 2) selected="" @endif value="2">Pasif</option>
+                                    <option>{{__('global.status')}}</option>
+                                    <option @if($slider->status == 1) selected="" @endif value="1">{{__('global.active')}}</option>
+                                    <option @if($slider->status == 2) selected="" @endif value="2">{{__('global.passive')}}</option>
                                 </select>
                             </div>
 
@@ -73,7 +73,7 @@
                                                          <span class="input-group-btn">
                                                              <a id="lfm{{$si->id}}" data-input="thumbnail{{$si->id}}" data-preview="holder{{$si->id}}"
                                                                             class="btn btn-warning lfm">
-                                                             <i class="fa fa-picture-o"></i> Select
+                                                             <i class="fa fa-picture-o"></i>{{__('global.please_select')}}
                                                              </a>
                                                          </span>
                                                     </div>
@@ -93,7 +93,7 @@
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
                                                      <label class="fs-6 fw-bold form-label">
-                                                         <span>Başlık</span>
+                                                         <span>{{__('global.title')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->title}}" name="slider_title_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -104,7 +104,7 @@
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container ">
                                                      <label class="fs-6 fw-bold form-label ">
-                                                         <span>Açıklama</span>
+                                                         <span>{{__('global.description')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->description}}" name="slider_desc_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
@@ -115,7 +115,7 @@
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
                                                      <label class="fs-6 fw-bold form-label">
-                                                         <span>Text</span>
+                                                         <span>{{__('global.text')}}</span>
                                                          </label>
                                                      <textarea class="form-control form-control w-75 p-3"  name="slider_text_edit{{$si->id}}">{{$si->text}}</textarea>
 
@@ -131,7 +131,7 @@
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                      <label class="fs-6 fw-bold form-label mt-3">
-                                                         <span>Buton Yazısı</span>
+                                                         <span>{{__('slider.button_text')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_text}}" name="button_text_edit{{$si->id}}">
 
@@ -143,7 +143,7 @@
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
                                                      <label class="fs-6 fw-bold form-label mt-3">
-                                                         <span>Buton Rengi</span>
+                                                         <span>{{__('slider.button_colour')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_colour}}" name="button_colour_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
