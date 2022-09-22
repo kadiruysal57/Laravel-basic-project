@@ -33,4 +33,6 @@ return [
     'default_page1'=>'Varsayılan Sayfa 1',
     'default_page2'=>'Varsayılan Sayfa 2',
     'forms'=>'Formlar',
+    'pagesname'=>'Sayfa İsmi',
+    'actions'=>'Aksiyon',
 ];

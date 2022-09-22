@@ -38,7 +38,7 @@
                             <input type="hidden" name="permission_id" value="{{$permission->id}}">
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="role">
-                                    
+
                                     <div class="form-group">
                                         <label class="require">{{__('global.name')}}</label>
                                         <input class="form-control" value="{{$permission->name}}" name="name" required type="text">
@@ -47,9 +47,9 @@
                                     <div class="form-group">
                                         <label class="require">{{__('global.status')}}</label>
                                         <select name="status" class="form-control" tabindex="-98">
-                                            <option>Lütfen Durum Seçiniz</option>
-                                            <option @if($permission->status == 1) selected @endif value="1">Aktif</option>
-                                            <option @if($permission->status == 2) selected @endif value="2">Pasif</option>
+                                            <option>{{__('global.select_status')}}</option>
+                                            <option @if($permission->status == 1) selected @endif value="1">{{__('global.active')}}</option>
+                                            <option @if($permission->status == 2) selected @endif value="2">{{__('global.passive')}}</option>
                                         </select>
                                     </div>
 

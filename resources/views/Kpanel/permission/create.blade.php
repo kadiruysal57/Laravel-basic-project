@@ -44,9 +44,9 @@
                                     <div class="form-group">
                                         <label class="require">{{__('global.status')}}</label>
                                         <select name="status" class="form-control" tabindex="-98">
-                                            <option>Lütfen Durum Seçiniz</option>
-                                            <option value="1">Aktif</option>
-                                            <option value="2">Pasif</option>
+                                            <option>{{__('global.select_status')}}</option>
+                                            <option value="1">{{__('global.active')}}</option>
+                                            <option value="2">{{__('global.passive')}}</option>
                                         </select>
                                     </div>
 

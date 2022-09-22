@@ -28,9 +28,9 @@
                                 <table class="table table-separated">
                                     <thead>
                                     <tr>
-                                        <th class="min-w-100px">İsim</th>
-                                        <th class="min-w-100px">Durum</th>
-                                        <th class="min-w-100px text-right">Aksiyon</th>
+                                        <th class="min-w-100px">{{__('global.name_')}}</th>
+                                        <th class="min-w-100px">{{__('global.status')}}</th>
+                                        <th class="min-w-100px text-right">{{__('global.action')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,7 +39,7 @@
                                             <td>
                                                 {{$p->name}}
                                             </td>
-                                            <td>@if($p->status == 1) Aktive @else Pasif @endif</td>
+                                            <td>@if($p->status == 1) {{__('global.active')}} @else {{__('global.passive')}} @endif</td>
                                             <td class="text-right table-actions">
                                                 <a class="table-action hover-primary" href="{{route('permission.show',[$p->id])}}"><i class="ti-pencil"></i></a>
                                                 <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>

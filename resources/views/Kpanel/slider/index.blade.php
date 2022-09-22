@@ -28,9 +28,9 @@
                                     <table class="table table-separated">
                                         <thead>
                                         <tr>
-                                            <th>Resim</th>
-                                            <th>Açıklama</th>
-                                            <th class="text-center w-100px">Aksiyon</th>
+                                            <th>{{__('global.image')}}</th>
+                                            <th>{{__('global.description')}}</th>
+                                            <th class="text-center w-100px">{{__('global.action')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
