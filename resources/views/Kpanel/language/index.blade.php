@@ -31,6 +31,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center w-100px">#</th>
+                                <th class="text-center w-100px">{{__('global.icon')}}</th>
                                 <th class="text-center w-100px">{{__('global.name')}}</th>
                                 <th class="text-center w-100px">{{__('global.short_name')}}</th>
                                 <th class="text-center w-100px">{{__('global.slug')}}</th>
@@ -43,6 +44,7 @@
 
                                 <tr>
                                     <th class="text-center w-100px" scope="row">{{$l->id}}</th>
+                                    <td class="text-center w-100px"><img src="{{asset($l->icon)}}" width="32px" height="32px" alt=""></td>
                                     <td class="text-center w-100px">{{$l->name}}</td>
                                     <td class="text-center w-100px">{{$l->short_name}}</td>
                                     <td class="text-center w-100px">{{$l->slug}}</td>
@@ -90,6 +92,35 @@
                     <form class="card" id="language_add" action="{{route('language.store')}}">
                         <div class="card-body">
                             <input type="hidden" name="id" value="create">
+                            <div class="form-group">
+                                <div class="col-lg-12 text-center">
+                                    <div id="language_icon_holder"
+                                         class="image-content">
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        for="language_icon_input">{{__('global.icon')}}</label>
+
+                                    <div class="input-group">
+                                                                                   <span class="input-group-btn">
+                                                                                     <a id="language_icon"
+                                                                                        data-input="language_icon_input"
+                                                                                        data-preview="language_icon_holder"
+                                                                                        class="btn btn-primary">
+                                                                                       <i class="fa fa-picture-o"></i> Choose
+                                                                                     </a>
+                                                                                   </span>
+                                        <input id="language_icon_input"
+                                               class="form-control"
+                                               type="text"
+                                               name="language_icon_input"
+                                               readonly
+                                               value="">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
                                 <input class="form-control" name="name" required type="text">
@@ -141,6 +172,35 @@
                             <input type="hidden" name="id" value="update">
                             <input type="hidden" class="id_input" name="id_input" value="update">
                             <div class="form-group">
+                                <div class="col-lg-12 text-center">
+                                    <div id="language_icon_holder2"
+                                         class="image-content">
+                                        <img src="" class="icon_image" width="32px" height="32px" alt="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label
+                                        for="language_icon_input">{{__('global.icon')}}</label>
+
+                                    <div class="input-group">
+                                                                                   <span class="input-group-btn">
+                                                                                     <a id="language_icon2"
+                                                                                        data-input="language_icon_input2"
+                                                                                        data-preview="language_icon_holder2"
+                                                                                        class="btn btn-primary">
+                                                                                       <i class="fa fa-picture-o"></i> Choose
+                                                                                     </a>
+                                                                                   </span>
+                                        <input id="language_icon_input2"
+                                               class="form-control icon_input"
+                                               type="text"
+                                               name="language_icon_input2"
+                                               readonly
+                                               value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
                                 <input class="form-control name_input" name="name" required type="text">
                             </div>
@@ -179,9 +239,15 @@
 @endsection
 
 @section('JsContent')
-
     <script
         src="{{asset('panel/assets/js/language/language.js')}}"></script>
+
+    <script>
+
+        $('#language_icon').filemanager('image');
+        $('#language_icon2').filemanager('image');
+
+    </script>
 @endsection
 
 

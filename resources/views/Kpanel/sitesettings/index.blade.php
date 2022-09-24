@@ -351,7 +351,6 @@
 
         $('#site_favicon{{$l->id}}').filemanager('image');
         @endforeach
-        $('#socail_media').filemanager('image');
     </script>
 @endsection
 

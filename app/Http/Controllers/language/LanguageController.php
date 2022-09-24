@@ -67,6 +67,9 @@ class LanguageController extends Controller
                 $language = new Language();
                 $language->name = $request->name;
                 $language->short_name = $request->short_name;
+                if(!empty($request->language_icon_input)){
+                    $language->icon = str_replace(env('APP_URL'),'',$request->language_icon_input);
+                }
                 $language->slug = Str::slug($request->short_name);
                 $language->main_language = $request->main_language;
                 $language->add_user = Auth::id();
@@ -114,19 +117,23 @@ class LanguageController extends Controller
                 }
                 $validator = Validator::make($request->all(),$validator_array);
                 if ($validator->passes()) {
-                    if($request->main_language == 1){
+                    if($request->main_language == 1 && $language->main_language != 1){
                         Language::where('main_language','=',1)->update(['main_language' => 2]);
                     }
+
+
+                    $language->icon = str_replace(env('APP_URL'),'',$request->language_icon_input2);
                     $language->name = $request->name;
                     $language->short_name = $request->short_name;
                     if(!empty($request->slug)){
                         $language->slug = $request->slug;
-                    }else{
+                    }
+                    else{
                         $language->slug = Str::slug($request->short_name);
                     }
+
                     $language->main_language = $request->main_language;
                     $language->save();
-
                     $language_model = new Language();
                     $language_all = $language_model->getTableReview();
 
