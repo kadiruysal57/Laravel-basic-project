@@ -265,6 +265,9 @@ function update_button_language(){
                 if(data.type == "success"){
                     $.each(data.inputData, function (i, data){
                         $('.'+i+'_input').val(data);
+                        if(i == "icon"){
+                            $('.'+i+'_image').attr('src',data);
+                        }
                     });
                     $('.preloader').hide();
                     $('#language-edit-modal').modal('show');

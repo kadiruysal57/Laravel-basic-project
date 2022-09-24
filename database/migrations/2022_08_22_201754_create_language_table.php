@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('language', function (Blueprint $table) {
             $table->id();
+            $table->string('icon')->default('/panel/assets/img/no-pictures.png');
             $table->string('name',100);
             $table->string('short_name',20);
             $table->string('slug',50);

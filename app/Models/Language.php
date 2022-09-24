@@ -12,6 +12,7 @@ class Language extends Model
     use HasFactory;
 
     protected $fillable = [
+        'icon',
         'name',
         'short_name',
         'slug',
@@ -22,7 +23,7 @@ class Language extends Model
 
 
     public function getTableReview(){
-        $language_all = $this->select('id','name','short_name','slug','type','main_language')->where('status','!=',3)->get();
+        $language_all = $this->select('id','icon','name','short_name','slug','type','main_language')->where('status','!=',3)->get();
         $current_mother_language = Lang::get("language.current_mother_language");
         $change_mother_language = Lang::get("language.change_mother_language");
         $store_route = route('language.store');
@@ -30,6 +31,8 @@ class Language extends Model
 
 
         foreach($language_all as $lg){
+            $img = asset($lg->icon);
+            $lg->icon = "<img src='$img' width='32px' height='32px'>";
             if($lg->main_language == 1){
                 $lg->main_language = '<button type="button"
                                                     class="btn btn-gray btn-sm">'.$current_mother_language.'</button>';
