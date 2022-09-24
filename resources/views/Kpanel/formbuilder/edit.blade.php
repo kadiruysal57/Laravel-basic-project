@@ -14,7 +14,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <h4 class="card-title">{{__('formbuilder.formbuilder_create_title')}}</strong></h4>
+                        <h4 class="card-title">{{__('formbuilder.formbuilder_edit_title')}}</strong></h4>
 
                     </header>
                     <div class="card-body">

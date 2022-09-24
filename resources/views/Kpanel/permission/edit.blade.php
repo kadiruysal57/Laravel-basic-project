@@ -14,10 +14,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('permission.index')}}"><i class="fa fa-file-o"></i>{{__('permission.permission_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i class="fa fa-edit"></i> {{__('permission.permission_create_title')}}</li>
-                        </ol>
+                        <h4 class="card-title">{{__('permission.permission_update_title')}}</strong></h4>
+
                     </header>
 
                     <div class="card-body">
@@ -64,9 +62,9 @@
                                     <div class="card-body">
                                         <div class="row">
                                             @foreach($permission->users_roles as $rt)
-                                                <div class="d-grid col-3">
+                                                <div class="d-grid col-3 text-center border-roles">
                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                        <span>{{$rt->roles_table->roles_name}}</span>
+                                                        <span>{{RolesName($rt->roles_table->roles_name)}}</span>
                                                     </label>
                                                     <label class="switch">
                                                         <input class="form-check-input " name="edit_permission{{$rt->id}}" @if($rt->status == 1) checked @endif type="checkbox" value="1" id="flexSwitchDefault">

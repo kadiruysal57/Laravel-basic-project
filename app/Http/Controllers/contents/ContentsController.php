@@ -9,6 +9,7 @@ use App\Models\DefaultBlok;
 use App\Models\gallery;
 use App\Models\MainBlok;
 use App\Models\slider;
+use App\Models\form;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Contents;
@@ -44,6 +45,7 @@ class ContentsController extends Controller
         $data['language'] = Language::where('status',1)->get();
         $data['gallery'] = gallery::where('status',1)->get();
         $data['slider'] = slider::where('status',1)->get();
+        $data['form'] = form::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -86,6 +88,7 @@ class ContentsController extends Controller
                     $contents->language_id = $request->language_id;
                     $contents->gallery_id = $request->gallery_id;
                     $contents->slider_id = $request->slider_id;
+                    $contents->form_id = $request->form_id;
                     $contents->focus_keywords = $request->focus_keywords;
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
@@ -185,7 +188,9 @@ class ContentsController extends Controller
                 $contents->short_desc = $request->short_desc;
                 $contents->keywords = $request->keywords;
                 $contents->seo_title = $request->seo_title;
-
+                $contents->gallery_id = $request->gallery_id;
+                $contents->slider_id = $request->slider_id;
+                $contents->form_id = $request->form_id;
                 $contents->language_id = $request->language_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
@@ -329,6 +334,10 @@ class ContentsController extends Controller
 
         $data['gallery'] = gallery::where('status',1)->get();
         $data['slider'] = slider::where('status',1)->get();
+        $data['form'] = form::where('status',1)->get();
+        if(empty(Contents::find($id))){
+            return view('Kpanel.404');
+        }
         return view('Kpanel.contents.edit')->with($data);
     }
 

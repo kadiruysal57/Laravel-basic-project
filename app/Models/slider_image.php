@@ -18,6 +18,7 @@ class slider_image extends Model
         'button_text',
         'button_colour',
         'url',
+        'order_input',
         'status',
         'add_user',
         'update_user'

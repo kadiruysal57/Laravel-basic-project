@@ -231,6 +231,8 @@ class FormBuilderController extends Controller
                 $form->save();
             }
 
+            $order_table = form_input::where('status',1)->orderBy('order_input','DESC')->first();
+            $order_last = $order_table->order_input;
             for ($i = 1; $i <= $request->countform; $i++) {
                 $active = "active". $i;
                 $order = "order". $i;
@@ -245,9 +247,9 @@ class FormBuilderController extends Controller
 
 
                 if(empty($request->$order)){
-                    $order = $i;
+                    $order_last = $order_last + 1;
                 }else{
-                    $order = $request->$order;
+                    $order_last = $request->$order;
                 }
 
                 if (empty($request->$active)){
@@ -337,11 +339,6 @@ class FormBuilderController extends Controller
                 $id_attr = "id_attr_edit". $fi->id;
                 $class_attr = "class_attr_edit". $fi->id;
 
-                if(empty($request->$order)){
-                    $order = $i;
-                }else{
-                    $order = $request->$order;
-                }
 
                 if (empty($request->$active)){
                     $active = 2;
@@ -371,7 +368,7 @@ class FormBuilderController extends Controller
                     $form_input->placeholder = $request->$placeholder;
                     $form_input->status = 1;
                     $form_input->active_passive = $active;
-                    $form_input->order_input = $order;
+                    $form_input->order_input = $request->$order;
                     $form_input->input_id = $request->$type_name;
                     $form_input->form_id = $form->id;
                     $form_input->update_user = Auth::id();
@@ -435,6 +432,9 @@ class FormBuilderController extends Controller
      */
     public function show($id)
     {
+        if(empty(form::find($id))){
+            return view('Kpanel.404');
+        }
         return view('Kpanel.formbuilder.edit')->with('form',form::find($id))->with('input_type1', input_type::where('status',1)->where('loop',1)->get())->with('input_type0', input_type::where('status',1)->where('loop',0)->get());
     }
 

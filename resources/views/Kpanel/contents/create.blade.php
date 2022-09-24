@@ -34,13 +34,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
 
-                            <li class="breadcrumb-item"><a href="{{route('contents.index')}}"><i
-                                        class="fa fa-file-o"></i>{{__('contents.contents_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i
-                                    class="fa fa-edit"></i> {{__('contents.contents_create_title')}}</li>
-                        </ol>
+                            <h4 class="card-title">{{__('contents.contents_create_title')}}</strong></h4>
 
                     </header>
                     <div class="card-body">
@@ -74,15 +69,15 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="contents-genel-info">
                                     <div class="form-group">
-                                        <label class="require">{{__('global.name')}}</label>
-                                        <input class="form-control " name="name" required type="text">
+                                        <label class="">{{__('global.name')}}</label>
+                                        <input class="form-control " name="name" d type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="require">{{__('global.title')}}</label>
-                                        <input class="form-control " name="title" required type="text">
+                                        <label class="">{{__('global.title')}}</label>
+                                        <input class="form-control " name="title" d type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="require" for="language_id">{{__('global.language')}}</label>
+                                        <label class="" for="language_id">{{__('global.language')}}</label>
                                         <select name="language_id" id="language_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($language as $l)
@@ -108,8 +103,19 @@
                                             @endforeach
                                         </select>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="require">{{__('global.short_desc')}}</label>
+                                        <label for="form_id">{{__('global.form')}}</label>
+                                        <select name="form_id" data-live-search="true" id="form_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($form as $f)
+                                                <option value="{{$f->id}}">{{$f->name}}({{$f->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="">{{__('global.short_desc')}}</label>
                                         <textarea name="short_desc" class="form-control"></textarea>
                                     </div>
 
@@ -121,25 +127,25 @@
 
                                 <div class="tab-pane fade " id="contents-seo">
                                     <div class="form-group">
-                                        <label class="require">{{__('contents.seo_title')}}</label>
-                                        <input class="form-control " name="seo_title" required type="text">
+                                        <label class="">{{__('contents.seo_title')}}</label>
+                                        <input class="form-control " name="seo_title" d type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="require">{{__('contents.keywords')}}</label>
-                                        <input class="form-control " name="keywords" required type="text">
+                                        <label class="">{{__('contents.keywords')}}</label>
+                                        <input class="form-control " name="keywords" d type="text">
                                     </div>
                                     <div class="form-group">
-                                        <label class="require">{{__('contents.seo_description')}}</label>
+                                        <label class="">{{__('contents.seo_description')}}</label>
                                         <textarea name="seo_description" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label class="require">{{__('contents.focus_keywords')}}</label>
-                                        <input class="form-control " name="focus_keywords" required type="text">
+                                        <label class="">{{__('contents.focus_keywords')}}</label>
+                                        <input class="form-control " name="focus_keywords" d type="text">
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="require">{{__('global.slug')}}</label>
-                                        <input class="form-control " name="seo_url" required type="text">
+                                        <label class="">{{__('global.slug')}}</label>
+                                        <input class="form-control " name="seo_url" d type="text">
                                     </div>
 
 

@@ -28,7 +28,7 @@ class form extends Model
     ];
     protected $table = 'form';
     public function form_input(){
-        return $this->hasMany(form_input::class,'form_id','id')->where('status',1);
+        return $this->hasMany(form_input::class,'form_id','id')->where('status',1)->orderBy('order_input');
     }
 
     public function getTableReview(){

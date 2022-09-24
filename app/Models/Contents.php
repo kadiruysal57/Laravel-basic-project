@@ -28,6 +28,9 @@ class Contents extends Model
         'left_blok_active',
         'right_blok_active',
         'default_blok_id',
+        'slider_id',
+        'gallery_id',
+        'form_id',
         'add_user',
         'update_user',
     ];

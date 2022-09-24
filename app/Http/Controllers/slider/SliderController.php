@@ -76,6 +76,12 @@ class SliderController extends Controller
                     $button_text = "button_text". $i;
                     $button_colour = "button_colour". $i;
                     $filepath = "filepath". $i;
+                    $order = "order". $i;
+                    if(empty($request->$order)){
+                        $order = $i;
+                    }else{
+                        $order = $request->$order;
+                    }
                     if(!empty($request->$filepath)){
                         $slide_image = new slider_image();
                         $slide_image->title = $request->$title;
@@ -84,6 +90,7 @@ class SliderController extends Controller
                         $slide_image->button_text =  $request->$button_text;
                         $slide_image->button_colour =  $request->$button_colour;
                         $slide_image->url =  $request->$filepath;
+                        $slide_image->order_input = $order;
                         $slide_image->status = 1;
                         $slide_image->slider_id = $slide->id;
                         $slide_image->add_user = Auth::id();
@@ -111,13 +118,25 @@ class SliderController extends Controller
                 $slide->update_user = Auth::id();
                 $slide->save();
 
+                $order_table = slider_image::where('status',1)->where('slider_id', $slide->id)->orderBy('order_input','DESC')->first();
+                $order_last = $order_table->order_input;
                 for ($i = 0; $i <= $request->count; $i++) {
                     $title = "slider_title" . $i;
+                    $order = "order" . $i;
                     $description = "slider_desc". $i;
                     $text = "slider_text". $i;
                     $button_text = "button_text". $i;
                     $button_colour = "button_colour". $i;
                     $filepath = "filepath". $i;
+
+
+                    if(empty($request->$order)){
+                        echo $order_last;
+                        $order_last = $order_last + 1;
+                        echo $order_last;
+                    }else{
+                        $order_last = $request->$order;
+                    }
                     if(!empty($request->$filepath)){
                         $slide_image = new slider_image();
                         $slide_image->title = $request->$title;
@@ -126,6 +145,7 @@ class SliderController extends Controller
                         $slide_image->button_text =  $request->$button_text;
                         $slide_image->button_colour =  $request->$button_colour;
                         $slide_image->url =  $request->$filepath;
+                        $slide_image->order_input =  $order_last;
                         $slide_image->status = 1;
                         $slide_image->slider_id = $slide->id;
                         $slide_image->add_user = Auth::id();
@@ -141,6 +161,7 @@ class SliderController extends Controller
                     $button_text_edit = "button_text_edit". $si->id;
                     $button_colour_edit = "button_colour_edit". $si->id;
                     $filepath_edit = "filepath_edit". $si->id;
+                    $order = "order_edit". $si->id;
 
                     if(!empty($request->$filepath_edit)){
 
@@ -151,6 +172,7 @@ class SliderController extends Controller
                         $slide_image->button_text =  $request->$button_text_edit;
                         $slide_image->button_colour =  $request->$button_colour_edit;
                         $slide_image->url =  $request->$filepath_edit;
+                        $slide_image->order_input =  $request->$order;
                         $slide_image->status = 1;
                         $slide_image->slider_id = $slide->id;
                         $slide_image->update_user = Auth::id();
@@ -195,6 +217,9 @@ class SliderController extends Controller
         if(!$this->PermissionCheck()){
 
             return view('Kpanel.401');
+        }
+        if(empty(slider::find($id))){
+            return view('Kpanel.404');
         }
         return view('Kpanel.slider.edit')->with('slider',slider::find($id));
     }

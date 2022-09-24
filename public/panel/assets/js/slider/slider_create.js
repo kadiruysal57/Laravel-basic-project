@@ -11,7 +11,9 @@ $(document).ready(function () {
             '<button data-src="'+currentVal+'" class="btn btn-icon btn-active-color-primary btn-sm me-1 sliderimagedelete">'+
             '<a  class="fa fa-trash">'+
             '</a>'+
+
             '</button>'+
+
             '<div class="d-flex">'+
             '<div class ="col-4 " >'+
             '<div class="input-group d-grid justify-content-center">'+
@@ -46,6 +48,7 @@ $(document).ready(function () {
             '<span>Açıklama</span>'+
             '</label>'+
             '<input type="text" class="form-control form-control w-75 p-3" name="slider_desc'+currentVal+'">'+
+
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
             '</div>'+
 
@@ -81,6 +84,15 @@ $(document).ready(function () {
             '</div>'+
 
 
+            '<div class="fv-row mb-7 fv-plugins-icon-container">'+
+            '<label class="fs-6 fw-bold form-label mt-3">'+
+            '<span>Sırasını Seçiniz</span>'+
+            '</label>'+
+            '<input id= "order" name="order'+currentVal+'" class="form-control form-control w-75 p-3" type="number" value="" '+
+            '<div class="fv-plugins-message-container invalid-feedback"></div>'+
+            '</div>'+
+
+
             '</div>'+
 
 
@@ -94,7 +106,7 @@ $(document).ready(function () {
             $("#sliderimage" + $(this).attr('data-src')).remove();
         })
 
-        $('#lfm'+currentVal+'').filemanager('image');
+        $('#lfm'+currentVal).filemanager('image');
 
 
 

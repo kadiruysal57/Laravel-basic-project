@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('button_text')->nullable();
             $table->string('button_colour')->nullable();
             $table->string('url')->nullable();
+            $table->integer('order_input');
             $table->integer('status');
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -38,6 +39,7 @@ return new class extends Migration
                 'button_text'=>'button_text',
                 'button_colour'=>'button_colour',
                 'url'=>'url',
+                'order_input'=>1,
                 'status' => 1,
                 'add_user' => 1,
                 'update_user' => 1,

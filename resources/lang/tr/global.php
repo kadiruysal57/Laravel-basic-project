@@ -48,5 +48,8 @@ return [
     'are_you_sure'=>'Emin Misin?',
     'gallery'=>'Galeri',
     'slider'=>'Slider',
+    'form'=>'Form',
+    '404text'=>'Üzgünüz Aradığınız Sayfa Bulunmamaktadır.',
     'email' => 'Email',
+
 ];

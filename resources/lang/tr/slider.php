@@ -7,5 +7,6 @@ return [
     'slider_update_title' => 'Slider Güncelleme',
     'add_slider_image' => 'Slider Resmi Ekle',
     'button_text' => 'Buton Yazısı Ekle',
-    'button_colour' => 'Buton Rengi Seçiniz'
+    'button_colour' => 'Buton Rengi Seçiniz',
+    'order' => 'Sırasını Giriniz'
 ];

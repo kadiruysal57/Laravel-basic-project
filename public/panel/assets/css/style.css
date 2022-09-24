@@ -19,3 +19,10 @@ body .topbar.hidden-md-up + main {
     width: 100% !important;
 }
 
+.border-roles{
+    border: 0.5px solid #cbcbcb;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+
