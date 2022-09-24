@@ -6,7 +6,7 @@ return [
     'contents_create_title' => 'Sayfa Ekle',
     'contents_update_title' => 'Sayfa Güncelleme',
     'short_desc'=>'Sayfa Kısa Açıklaması',
-
+    'order'=>'Sıra',
     'seo_title' => 'Seo Başlığı',
     'keywords' => 'Anahtar Kelimeler',
     'seo_description' => 'Seo Açıklaması',
@@ -35,4 +35,8 @@ return [
     'forms'=>'Formlar',
     'pagesname'=>'Sayfa İsmi',
     'actions'=>'Aksiyon',
+    'content_gallery'=>'Sayfa Resimleri',
+    'gallery_add'=>'Resim Ekle',
+    'gallery_select'=>'Resim Seç',
+    'image' => 'Resim',
 ];
