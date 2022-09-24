@@ -16,7 +16,7 @@
             text-align: center;
         }
     </style>
-    <link href="{{asset('panel/assets/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('panel/assets/css/select2.min.css')}}" rel="stylesheet"/>
 @endsection
 
 
@@ -62,11 +62,15 @@
                                                     <ul class="nav nav-tabs nav-justified nav-tabs-info">
                                                         <li class="nav-item active">
                                                             <a class="nav-link active" data-toggle="tab"
-                                                               href="#general-settings{{$l->id}}">Genel Ayarlar</a>
+                                                               href="#general-settings{{$l->id}}">{{__('sitesettings.general_info')}}</a>
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link " data-toggle="tab"
-                                                               href="#social-media{{$l->id}}">Sosyal Medya Ayarları</a>
+                                                               href="#social-media{{$l->id}}">{{__('sitesettings.social_media_settings')}}</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link " data-toggle="tab"
+                                                               href="#site-settings-address{{$l->id}}">{{__('sitesettings.address_settings')}}</a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -244,6 +248,52 @@
 
 
                                                         </div>
+                                                        <div class="tab-pane fade" id="site-settings-address{{$l->id}}">
+                                                            <button type="button"
+                                                                    class="btn btn-success address_add_button"
+                                                                    data-settingsid="{{$sitesettings->id}}">
+                                                                <i class="fa fa-plus"></i> {{__('sitesettings.address_add_button')}}
+                                                            </button>
+                                                            <table
+                                                                class="table table-separated address{{$l->id}}"
+                                                                id="address_table{{$sitesettings->id}}">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.address_name')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.address')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.gsm')}}</th>
+                                                                    <th class="text-center w-100px">{{__('global.email')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.maps')}}</th>
+                                                                    <th class="text-center w-100px">#</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                @foreach($sitesettings->address as $address)
+                                                                    <tr>
+                                                                        <td>{{$address->name}}</td>
+                                                                        <td>{{$address->address}}</td>
+                                                                        <td>{{$address->gsm}}</td>
+                                                                        <td>{{$address->email}}</td>
+                                                                        <td>{{$address->maps}}</td>
+                                                                        <td>
+                                                                            <button type="button"
+                                                                                    class="table-action hover-primary btn btn-pure address_add_button"
+                                                                                    data_address_id="{{$address->id}}"
+                                                                                    data-settingsid="{{$address->site_settings_id}}"
+                                                                                    data-action="{{route('address.update',['show_address'])}}">
+                                                                                <i class="ti-pencil"></i></button>
+                                                                            <button type="button"
+                                                                                    class="table-action hover-danger btn btn-pure deleteButton"
+                                                                                    data-id="{{$address->id}}"
+                                                                                    data-action="{{route('address.destroy',[$address->id])}}"
+                                                                                    data-table="#address_table{{$address->site_settings_id}}">
+                                                                                <i class="ti-trash"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
 
                                                 </div>
@@ -287,12 +337,12 @@
                                 <div class="form-group">
                                     <label
                                         for="socail_media">{{__('global.icon')}}</label>
-                                        <select name="icon" class="icon_select" id="icon_select">
-                                            <option  value="">{{Lang::get('global.please_select')}}</option>
-                                            @foreach(getIcon() as $i)
-                                                <option data-icon="fa {{$i}}" value="{{trim($i)}}">{{$i}}</option>
-                                            @endforeach
-                                        </select>
+                                    <select name="icon" class="icon_select" id="icon_select">
+                                        <option value="">{{Lang::get('global.please_select')}}</option>
+                                        @foreach(getIcon() as $i)
+                                            <option data-icon="fa {{$i}}" value="{{trim($i)}}">{{$i}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -330,6 +380,64 @@
         </div>
     </div>
 
+    <div class="modal modal-center fade" id="address_add" tabindex="-1" style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('sitesettings.address_add_button')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('address.store')}}" class="card address_add" id="address_ad">
+                        <div class="card-body">
+                            <input type="hidden" id="address_site_settings_id" name="site_settings_id" value="">
+                            <input type="hidden" id="address_id" name="address_id" value="">
+                            <div class="form-group">
+                                <label
+                                    for="address_name">{{__('sitesettings.address_name')}}</label>
+                                <input type="text" name="address_name" id="address_name" class="form-control"></input>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="address">{{__('sitesettings.address')}}</label>
+                                <textarea name="address" id="address" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="gsm">{{__('sitesettings.gsm')}}</label>
+                                <input type="text" required class="form-control" id="gsm"
+                                       name="gsm">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">{{__('global.email')}}</label>
+                                <input type="text" required class="form-control" id="email"
+                                       name="email">
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="form-group">
+                                    <label
+                                        for="maps">{{__('sitesettings.maps')}}</label>
+                                    <textarea name="maps" id="maps" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-bold btn-pure btn-secondary"
+                            data-dismiss="modal">{{__('global.close')}}
+                    </button>
+                    <button type="submit" form="address_ad"
+                            class="btn btn-bold btn-pure btn-primary">{{__('global.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
 
@@ -344,7 +452,7 @@
         $('.icon_select').select2({
             templateSelection: formatText,
             templateResult: formatText,
-            dropdownParent:$('#socail_media_add')
+            dropdownParent: $('#socail_media_add')
         });
         @foreach($language as $l)
         $('#site_logo{{$l->id}}').filemanager('image');

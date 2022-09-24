@@ -10,4 +10,12 @@ return [
     'social_media_name' => 'Social Medya İsmi',
     'social_media_link' => 'Social Medya Link',
     'social_media_target' => 'Social Medya Target',
+    'general_info'=>'Genel Ayarlar',
+    'social_media_settings'=>'Sosyal medya ayarları',
+    'address_settings' => 'Ofisler',
+    'address_add_button'=>'Ofis Ekle',
+    'address'=>'Adres',
+    'gsm'=>'Gsm',
+    'maps'=>'Harita',
+    'address_name'=>'Ofis İsmi',
 ];
