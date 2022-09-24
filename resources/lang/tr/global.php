@@ -48,5 +48,5 @@ return [
     'are_you_sure'=>'Emin Misin?',
     'gallery'=>'Galeri',
     'slider'=>'Slider',
-   
+    'email' => 'Email',
 ];
