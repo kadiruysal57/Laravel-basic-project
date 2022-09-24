@@ -163,6 +163,9 @@ class GalleryController extends Controller
     public function show($id)
     {
         $data['gallery'] = gallery::where('id',$id)->first();
+        if(empty(gallery::where('id',$id)->first())){
+            return view('Kpanel.404');
+        }
         return view('Kpanel.gallery.edit')->with($data);
     }
 

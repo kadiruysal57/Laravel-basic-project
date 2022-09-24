@@ -45,12 +45,8 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('contents.index')}}"><i
-                                        class="fa fa-file-o"></i>{{__('contents.contents_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i
-                                    class="fa fa-edit"></i> {{__('contents.contents_update_title')}}</li>
-                        </ol>
+                        <h4 class="card-title">{{__('contents.contents_update_title')}}</strong></h4>
+
                     </header>
                     <div class="card-body">
                         <div class="d-flex ">
@@ -113,6 +109,17 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="form_id">{{__('global.form')}}</label>
+                                        <select name="form_id" data-live-search="true" id="form_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($form as $f)
+                                                <option @if($f->id == $contents->form_id) selected="" @endif   value="{{$f->id}}">{{$f->name}}({{$f->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="require">{{__('global.short_desc')}}</label>
                                         <textarea name="short_desc"

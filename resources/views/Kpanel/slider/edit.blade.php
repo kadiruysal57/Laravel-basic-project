@@ -14,10 +14,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('slider.index')}}"><i class="fa fa-file-o"></i>{{__('slider.slider_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i class="fa fa-edit"></i> {{__('slider.slider_update_title')}}</li>
-                        </ol>
+                        <h4 class="card-title">{{__('slider.slider_update_title')}}</strong></h4>
                     </header>
                     <div class="card-body">
                         <form id="slider_update" class="form fv-plugins-bootstrap5 fv-plugins-framework"
@@ -63,6 +60,7 @@
                                                 id="delete"
                                                 class="btn btn-icon btn-active-color-primary btn-sm me-1 sliderimagedelete_edit">
                                             <a class="fa fa-trash"></a>
+
                                         </button>
 
 
@@ -148,6 +146,16 @@
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_colour}}" name="button_colour_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
+
+                                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                    <label class="fs-6 fw-bold form-label mt-3">
+                                                        <span>{{__('slider.order')}}</span>
+                                                    </label>
+                                                    <input id='order' name='order_edit{{$si->id}}' class="form-control form-control w-75 p-3" type='number' value='{{$si->order_input}}'>
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -173,9 +181,12 @@
     <script>
         $('.lfm').filemanager('image');
     </script>
-    <script src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
+
     <script src="{{asset('panel/assets/js/slider/slider.js')}}"></script>
     <script src="{{asset('panel/assets/js/slider/slider_create.js')}}"></script>
+
+    <script src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
+
 @endsection
 
 

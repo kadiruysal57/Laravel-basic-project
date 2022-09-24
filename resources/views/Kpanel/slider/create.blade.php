@@ -14,11 +14,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="card">
                     <header class="card-header">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('slider.index')}}"><i class="fa fa-file-o"></i>{{__('slider.slider_page_title')}}</a></li>
-                            <li class="breadcrumb-item active"><i class="fa fa-edit"></i> {{__('slider.slider_create_title')}}</li>
-                        </ol>
-
+                        <h4 class="card-title">{{__('slider.slider_create_title')}}</strong></h4>
                     </header>
                     <div class="card-body">
                         <form id="slider_create" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="{{route('slider.store')}}">
@@ -67,9 +63,24 @@
 @endsection
 
 @section('JsContent')
+
+    <script>
+        $( function() {
+            $( "#slider_feedback" ).sortable({
+                axis: 'y',
+                update : function(event ,ui){
+                    $("#slider_feedback tr").each(function(index){
+                        $(this).find("#order").val(index+1);
+                    })
+                    var data = $(this).sortable('serialize');
+                }
+            });
+        } );
+    </script>
     <script src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('panel/assets/js/slider/slider.js')}}"></script>
     <script src="{{asset('panel/assets/js/slider/slider_create.js')}}"></script>
+   
 @endsection
 
 

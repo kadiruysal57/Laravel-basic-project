@@ -136,6 +136,9 @@ class PermissionController extends Controller
 
             return view('Kpanel.401');
         }
+        if(empty(permission::find($id))){
+            return view('Kpanel.404');
+        }
         return view('Kpanel.permission.edit')->with('permission',permission::find($id))->with('users_roles',userroles::get())->with('roles_table',roleslist::get());
     }
 

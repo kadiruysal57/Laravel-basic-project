@@ -154,6 +154,9 @@ class UsersController extends Controller
 
             return view('Kpanel.401');
         }
+        if(empty(User::where('id',$id)->first())){
+            return view('Kpanel.404');
+        }
         $data['user'] = User::where('id',$id)->first();
         return view('Kpanel.users.edit')->with($data);
     }
