@@ -52,6 +52,10 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link " data-toggle="tab"
+                                       href="#contents-gallery">{{__('contents.content_gallery')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " data-toggle="tab"
                                        href="#contents-blok">{{__('contents.blok_manager')}}</a>
                                 </li>
 
@@ -146,6 +150,31 @@
 
 
                                 </div>
+
+                                <div class="tab-pane fade" id="contents-gallery">
+                                    <input id="count_gallery" name="count_gallery" type="hidden" value="0"/>
+                                    <div class="fv-row mb-7 fv-plugins-icon-container text-right">
+                                        <button type="button" id="gallery_add_button" data-action="{{route('contents.update',['gallery_add'])}}" data-table="#content_gallery_add_table" class="btn btn-success m-lg-2 gallery_add_button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-separated" id="content_gallery_add_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{__('contents.image')}}</th>
+                                                    <th></th>
+                                                    <th>{{__('contents.order')}}</th>
+                                                    <th>{{__('contents.actions')}}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
                                 <div class="tab-pane fade " id="contents-blok">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <label for="">{{__('contents.default_blok')}}</label>

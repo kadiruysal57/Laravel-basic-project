@@ -24,6 +24,7 @@
             padding: 5px;
             margin-right: 5px;
         }
+
         .dd-handetrash {
             position: absolute;
             right: 10px;
@@ -59,6 +60,10 @@
                                     <a class="nav-link" data-toggle="tab" href="#contents-seo">Seo</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link " data-toggle="tab"
+                                       href="#contents-gallery">{{__('contents.content_gallery')}}</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab"
                                        href="#contents-blok">{{__('contents.blok_manager')}}</a>
                                 </li>
@@ -87,7 +92,8 @@
                                         <select name="language_id" id="language_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($language as $l)
-                                                <option @if($l->id == $contents->language_id) selected="" @endif value="{{$l->id}}">{{$l->name}}</option>
+                                                <option @if($l->id == $contents->language_id) selected=""
+                                                        @endif value="{{$l->id}}">{{$l->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -96,16 +102,20 @@
                                         <select name="slider_id" id="slider_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($slider as $s)
-                                                <option @if($s->id == $contents->slider_id) selected="" @endif value="{{$s->id}}">{{$s->name}}</option>
+                                                <option @if($s->id == $contents->slider_id) selected=""
+                                                        @endif value="{{$s->id}}">{{$s->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="gallery_id">{{__('global.gallery')}}</label>
-                                        <select name="gallery_id" data-live-search="true" id="gallery_id" class="auto-search form-control">
+                                        <select name="gallery_id" data-live-search="true" id="gallery_id"
+                                                class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($gallery as $g)
-                                                <option @if($g->id == $contents->gallery_id) selected="" @endif   value="{{$g->id}}">{{$g->name}}({{$g->id}})</option>
+                                                <option @if($g->id == $contents->gallery_id) selected=""
+                                                        @endif   value="{{$g->id}}">{{$g->name}}({{$g->id}})
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -126,7 +136,8 @@
                                                   class="form-control">{{$contents->short_desc}}</textarea>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="ckeditor form-control" name="description">{{$contents->description}}</textarea>
+                                        <textarea class="ckeditor form-control"
+                                                  name="description">{{$contents->description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade " id="contents-seo">
@@ -159,33 +170,106 @@
                                     </div>
 
 
-
                                 </div>
 
+                                <div class="tab-pane fade" id="contents-gallery">
+                                    <input id="count_gallery" name="count_gallery" type="hidden" value="0"/>
+                                    <div class="fv-row mb-7 fv-plugins-icon-container text-right">
+                                        <button type="button" id="gallery_add_button"
+                                                data-action="{{route('contents.update',['gallery_add'])}}"
+                                                data-table="#content_gallery_add_table"
+                                                class="btn btn-success m-lg-2 gallery_add_button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-separated" id="content_gallery_add_table">
+                                            <thead>
+                                            <tr>
+                                                <th>{{__('contents.image')}}</th>
+                                                <th></th>
+                                                <th>{{__('contents.order')}}</th>
+                                                <th>{{__('contents.actions')}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($contents->content_gallery as $gallery)
+                                                <tr>
+                                                    <td>
+                                                        <div class='col-lg-12 text-center gallery_image_deletes{{$gallery->id}}'>
+                                                            <div id='content_gallery_holders{{$gallery->id}}'
+                                                                 class='image-content'>
+                                                                <img
+                                                                    src='{{asset($gallery->image_url)}}' width='32px' height='32px'>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class='form-group'>
+
+                                                            <div class='input-group'>
+                                                               <span class='input-group-btn'>
+                                                                 <a id='gallery_adds{{$gallery->id}}'
+                                                                    data-input='gallery_add_inputs{{$gallery->id}}'
+                                                                    data-preview='content_gallery_holders{{$gallery->id}}'
+                                                                    class='btn btn-primary gallery_adds'>
+                                                                    <i class='fa fa-picture-o'></i> {{__('contents.gallery_select')}}
+                                                                 </a>
+                                                               </span>
+                                                                <input id='gallery_add_inputs{{$gallery->id}}'
+                                                                       class='form-control'
+                                                                       type='text'
+                                                                       name='gallery_add_images{{$gallery->id}}'
+                                                                       readonly
+                                                                       value='{{$gallery->image_url}}'>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class='form-group'>
+                                                            <input class='form-control ' name='image_orders{{$gallery->id}}' value="{{$gallery->image_order}}" placeholder='{{__('contents.order')}}' required type='text'>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type='button' class='btn btn-danger btn-sm deleteButtonGallery' data-id="{{$gallery->id}}" data-action = "{{route('contents.update',['gallery_image_delete'])}}" data-table="#content_gallery_add_table"   style='margin-top: 5px;'><i class='fa fa-trash'></i></button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <div class="tab-pane fade" id="contents-blok">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <label for="">{{__('contents.default_blok')}}</label>
                                         <select name="default_blok" class="form-control" id="default_blok">
                                             <option value="">{{__('global.special')}}</option>
                                             @foreach($default_bloks as $db)
-                                                <option @if($db->id == $contents->default_blok_id) selected="" @endif value="{{$db->id}}">{{$db->default_blok_name}}</option>
+                                                <option @if($db->id == $contents->default_blok_id) selected=""
+                                                        @endif value="{{$db->id}}">{{$db->default_blok_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content" @if($contents->default_blok_id != 0) style="display: none" @endif>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content"
+                                         @if($contents->default_blok_id != 0) style="display: none" @endif>
                                         <div class="row">
                                             <div class="col-lg-3 col-md-3 col-sm-6 " style="border-radius: 10px;">
                                                 <label for="">{{__('contents.active_bloks')}}</label>
                                                 <div class="form-group">
                                                     <label class="switch switch-success col-lg-5">
-                                                        <input type="checkbox" @if($contents->left_blok_active == 1) checked="" @endif class="left_blok"
+                                                        <input type="checkbox"
+                                                               @if($contents->left_blok_active == 1) checked=""
+                                                               @endif class="left_blok"
                                                                name="left_blok">
                                                         <span class="switch-indicator"></span>
                                                         <span
                                                             class="switch-description">{{__('contents.left_blok')}}</span>
                                                     </label>
                                                     <label class="switch switch-success col-lg-5">
-                                                        <input type="checkbox" @if($contents->right_blok_active == 1) checked="" @endif class="right_blok"
+                                                        <input type="checkbox"
+                                                               @if($contents->right_blok_active == 1) checked=""
+                                                               @endif class="right_blok"
                                                                name="right_blok">
                                                         <span class="switch-indicator"></span>
                                                         <span
@@ -195,7 +279,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content" @if($contents->default_blok_id != 0) style="display: none" @endif>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 blok_manager_content"
+                                         @if($contents->default_blok_id != 0) style="display: none" @endif>
 
                                         <div
                                             class="col-lg-3 col-md-3 col-sm-12 bg-lighter  border border-cyan float-left"
@@ -239,7 +324,7 @@
                                                                         @foreach($b->group_file->whereNotIn('id',array_only($contents->blok_file->where('group_id',$b->id)->toArray(),'blok_files_id')) as $bf)
                                                                             <li class="dd-item"
                                                                                 data-groupid="{{$bf->group_id}}"
-                                                                                data-pagefileid ="0"
+                                                                                data-pagefileid="0"
                                                                                 data-id="{{$bf->id}}">
                                                                                 <div
                                                                                     class="dd-handle">{{__('contents.'.$bf->name)}}</div>
@@ -276,21 +361,24 @@
                                                                  style="min-height: 120px;">
                                                                 <div class="dd" id="top_blok_nestable">
                                                                     @if($contents->blok_file->where('main_blok_id',1)->count() > 0)
-                                                                    <ol class="dd-list">
-                                                                        @foreach($contents->blok_file->where('main_blok_id',1) as $tp)
-                                                                            <li class="dd-item"
-                                                                                data-groupid="{{$tp->group_id}}"
-                                                                                data-pagefileid ="{{$tp->id}}"
-                                                                                data-id="{{$tp->blok_files_id}}">
-                                                                                <div
-                                                                                    class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-contentsid="{{$contents->id}}" data-id="{{$tp->id}}" action="{{route('contents.store')}}">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>
-                                                                        @endforeach
-                                                                    </ol>
+                                                                        <ol class="dd-list">
+                                                                            @foreach($contents->blok_file->where('main_blok_id',1) as $tp)
+                                                                                <li class="dd-item"
+                                                                                    data-groupid="{{$tp->group_id}}"
+                                                                                    data-pagefileid="{{$tp->id}}"
+                                                                                    data-id="{{$tp->blok_files_id}}">
+                                                                                    <div
+                                                                                        class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
+                                                                                    </div>
+                                                                                    <div class="dd-handetrash"
+                                                                                         data-contentsid="{{$contents->id}}"
+                                                                                         data-id="{{$tp->id}}"
+                                                                                         action="{{route('contents.store')}}">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ol>
                                                                     @endif
                                                                 </div>
                                                             </div>
@@ -314,12 +402,15 @@
                                                                             @foreach($contents->blok_file->where('main_blok_id',2) as $tp)
                                                                                 <li class="dd-item"
                                                                                     data-groupid="{{$tp->group_id}}"
-                                                                                    data-pagefileid ="{{$tp->id}}"
+                                                                                    data-pagefileid="{{$tp->id}}"
                                                                                     data-id="{{$tp->blok_files_id}}">
                                                                                     <div
                                                                                         class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
                                                                                     </div>
-                                                                                    <div class="dd-handetrash" data-contentsid="{{$contents->id}}" data-id="{{$tp->id}}" action="{{route('contents.store')}}">
+                                                                                    <div class="dd-handetrash"
+                                                                                         data-contentsid="{{$contents->id}}"
+                                                                                         data-id="{{$tp->id}}"
+                                                                                         action="{{route('contents.store')}}">
                                                                                         <i class="fa fa-trash"></i>
                                                                                     </div>
                                                                                 </li>
@@ -342,23 +433,26 @@
                                                                  style="min-height: 215px;">
 
                                                                 <div class="dd" id="mid_blok_fix_nestable">
-                                                                        @if($contents->blok_file->where('main_blok_id',3)->count() > 0)
-                                                                            <ol class="dd-list">
-                                                                                @foreach($contents->blok_file->where('main_blok_id',3) as $tp)
-                                                                                    <li class="dd-item"
-                                                                                        data-groupid="{{$tp->group_id}}"
-                                                                                        data-pagefileid ="{{$tp->id}}"
-                                                                                        data-id="{{$tp->blok_files_id}}">
-                                                                                        <div
-                                                                                            class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
-                                                                                        </div>
-                                                                                        <div class="dd-handetrash" data-contentsid="{{$contents->id}}" data-id="{{$tp->id}}" action="{{route('contents.store')}}">
-                                                                                            <i class="fa fa-trash"></i>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                @endforeach
-                                                                            </ol>
-                                                                        @endif
+                                                                    @if($contents->blok_file->where('main_blok_id',3)->count() > 0)
+                                                                        <ol class="dd-list">
+                                                                            @foreach($contents->blok_file->where('main_blok_id',3) as $tp)
+                                                                                <li class="dd-item"
+                                                                                    data-groupid="{{$tp->group_id}}"
+                                                                                    data-pagefileid="{{$tp->id}}"
+                                                                                    data-id="{{$tp->blok_files_id}}">
+                                                                                    <div
+                                                                                        class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
+                                                                                    </div>
+                                                                                    <div class="dd-handetrash"
+                                                                                         data-contentsid="{{$contents->id}}"
+                                                                                         data-id="{{$tp->id}}"
+                                                                                         action="{{route('contents.store')}}">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ol>
+                                                                    @endif
 
                                                                 </div>
                                                             </div>
@@ -376,24 +470,27 @@
                                                             <div class="col-lg-12 col-md-12 col-sm-12 bg-white"
                                                                  style="min-height: 215px;">
                                                                 <div class="dd" id="right_blok_nestable">
-                                                                        @if($contents->blok_file->where('main_blok_id',4)->count() > 0)
+                                                                    @if($contents->blok_file->where('main_blok_id',4)->count() > 0)
 
-                                                                            <ol class="dd-list">
-                                                                                @foreach($contents->blok_file->where('main_blok_id',4) as $tp)
-                                                                                    <li class="dd-item"
-                                                                                        data-groupid="{{$tp->group_id}}"
-                                                                                        data-pagefileid ="{{$tp->id}}"
-                                                                                        data-id="{{$tp->blok_files_id}}">
-                                                                                        <div
-                                                                                            class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
-                                                                                        </div>
-                                                                                        <div class="dd-handetrash" data-contentsid="{{$contents->id}}" data-id="{{$tp->id}}" action="{{route('contents.store')}}">
-                                                                                            <i class="fa fa-trash"></i>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                @endforeach
-                                                                            </ol>
-                                                                        @endif
+                                                                        <ol class="dd-list">
+                                                                            @foreach($contents->blok_file->where('main_blok_id',4) as $tp)
+                                                                                <li class="dd-item"
+                                                                                    data-groupid="{{$tp->group_id}}"
+                                                                                    data-pagefileid="{{$tp->id}}"
+                                                                                    data-id="{{$tp->blok_files_id}}">
+                                                                                    <div
+                                                                                        class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
+                                                                                    </div>
+                                                                                    <div class="dd-handetrash"
+                                                                                         data-contentsid="{{$contents->id}}"
+                                                                                         data-id="{{$tp->id}}"
+                                                                                         action="{{route('contents.store')}}">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ol>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -410,23 +507,26 @@
                                                             <div class="col-lg-12 col-md-12 col-sm-12 bg-white"
                                                                  style="min-height: 120px;">
                                                                 <div class="dd" id="footer_blok_nestable">
-                                                                        @if($contents->blok_file->where('main_blok_id',5)->count() > 0)
-                                                                            <ol class="dd-list">
-                                                                                @foreach($contents->blok_file->where('main_blok_id',5) as $tp)
-                                                                                    <li class="dd-item"
-                                                                                        data-groupid="{{$tp->group_id}}"
-                                                                                        data-pagefileid ="{{$tp->id}}"
-                                                                                        data-id="{{$tp->blok_files_id}}">
-                                                                                        <div
-                                                                                            class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
-                                                                                        </div>
-                                                                                        <div class="dd-handetrash" data-contentsid="{{$contents->id}}" data-id="{{$tp->id}}" action="{{route('contents.store')}}">
-                                                                                            <i class="fa fa-trash"></i>
-                                                                                        </div>
-                                                                                    </li>
-                                                                                @endforeach
-                                                                            </ol>
-                                                                        @endif
+                                                                    @if($contents->blok_file->where('main_blok_id',5)->count() > 0)
+                                                                        <ol class="dd-list">
+                                                                            @foreach($contents->blok_file->where('main_blok_id',5) as $tp)
+                                                                                <li class="dd-item"
+                                                                                    data-groupid="{{$tp->group_id}}"
+                                                                                    data-pagefileid="{{$tp->id}}"
+                                                                                    data-id="{{$tp->blok_files_id}}">
+                                                                                    <div
+                                                                                        class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
+                                                                                    </div>
+                                                                                    <div class="dd-handetrash"
+                                                                                         data-contentsid="{{$contents->id}}"
+                                                                                         data-id="{{$tp->id}}"
+                                                                                         action="{{route('contents.store')}}">
+                                                                                        <i class="fa fa-trash"></i>
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ol>
+                                                                    @endif
 
                                                                 </div>
                                                             </div>
@@ -481,7 +581,8 @@
             }
         };
         nestableCall();
-        function nestableCall(){
+
+        function nestableCall() {
             @foreach($blok_groups as $key => $b)
             $('#{{$b->name}}_nestable').nestable({
                 group: {{$b->id}},

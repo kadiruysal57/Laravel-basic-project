@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Language;
+use App\Models\ContentGallery;
 
 class ContentsController extends Controller
 {
@@ -100,6 +101,21 @@ class ContentsController extends Controller
                     $contents->default_blok_id = $request->default_blok;
                     $contents->add_user = Auth::id();
                     $contents->save();
+
+                    for ($i = 0; $i <= $request->count_gallery; $i++) {
+                        $gallery_image = "gallery_add_image".$i;
+                        $gallery_order = "image_order".$i;
+                        if(!empty($request->$gallery_image) && $request->$gallery_order){
+                            $gallery_model = new ContentGallery();
+                            $gallery_model->content_id = $contents->id;
+                            $gallery_model->image_url = str_replace(env('APP_URL'),'',$request->$gallery_image);
+                            $gallery_model->image_order = $request->$gallery_order;
+                            $gallery_model->add_user = Auth::id();
+                            $gallery_model->save();
+                        }
+                    }
+
+
                     if(empty($request->default_blok)){
                         /*Blok Management Save Code*/
                         $blok_data = array(); /* Keyler Main Blok Id ile eşit olmalıdır*/
@@ -193,6 +209,29 @@ class ContentsController extends Controller
                 $contents->update_user = Auth::id();
                 $contents->save();
 
+                for ($i = 0; $i <= $request->count_gallery; $i++) {
+                    $gallery_image = "gallery_add_image".$i;
+                    $gallery_order = "image_order".$i;
+                    if(!empty($request->$gallery_image) && $request->$gallery_order){
+                        $gallery_model = new ContentGallery();
+                        $gallery_model->content_id = $contents->id;
+                        $gallery_model->image_url = str_replace(env('APP_URL'),'',$request->$gallery_image);
+                        $gallery_model->image_order = $request->$gallery_order;
+                        $gallery_model->add_user = Auth::id();
+                        $gallery_model->save();
+                    }
+                }
+                foreach($contents->content_gallery as $c){
+                    $gallery_image = "gallery_add_images".$c->id;
+                    $gallery_order = "image_orders".$c->id;
+                    if(!empty($request->$gallery_image) && $request->$gallery_order){
+                        $gallery_model = ContentGallery::find($c->id);
+                        $gallery_model->image_url = str_replace(env('APP_URL'),'',$request->$gallery_image);
+                        $gallery_model->image_order = $request->$gallery_order;
+                        $gallery_model->update_user = Auth::id();
+                        $gallery_model->save();
+                    }
+                }
 
                 if(empty($request->default_blok)){
                     /*Blok Management Save Code*/
@@ -238,7 +277,9 @@ class ContentsController extends Controller
                 $blok_group = new BlokGroups();
                 $file_array = $blok_group->content_blok_file($contents->id);
 
-                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message')), 'file_array' => $file_array]);
+                $content_gallery_model = new ContentGallery();
+                $content_gallery_all = $content_gallery_model->getTableReview($contents->id);
+                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message')), 'file_array' => $file_array,'listData'=>$content_gallery_all]);
             } else {
                 return response()->json(['error' => $validator->errors()->all()]);
             }
@@ -320,7 +361,31 @@ class ContentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!$this->PermissionCheck()){
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+        }
 
+        if($id == "gallery_add"){
+            $content_gallery = new ContentGallery();
+            $gallery_add = $content_gallery->gallery_add($request->count);
+
+            return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message')),'listData'=>$gallery_add]);
+        }
+        if($id == "gallery_image_delete"){
+            $gallery_image = ContentGallery::find($request->value);
+
+            if(!empty($gallery_image)){
+                $content_id = $gallery_image->content_id;
+                $gallery_image->delete();
+
+                $content_gallery_model = new ContentGallery();
+                $content_gallery_all = $content_gallery_model->getTableReview($content_id);
+                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message')), 'listData' => $content_gallery_all]);
+
+            }else{
+                return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
+            }
+        }
     }
 
     /**

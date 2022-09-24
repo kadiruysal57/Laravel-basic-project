@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+    $('.gallery_adds').filemanager('image');
     $('#contents_create').on('submit',function(e){
     e.preventDefault();
     editor.updateElement();
@@ -120,6 +122,8 @@ $(document).ready(function(){
 
                 nestableCall()
                 ddhandetrash()
+                table_write_data(data.listData,'#content_gallery_add_table');
+                deleteButtonGallery();
                 if(data.type === "success"){
                     $.each(data.success_message_array, function (i, data){
                         Toastify({
@@ -281,4 +285,188 @@ $(document).ready(function(){
            $('.blok_manager_content').hide();
        }
     });
+    function gallery_image_delete(){
+        $('.gallery_image_delete').click(function(){
+            var count = $(this).attr('data-count');
+            $('.gallery_image_delete'+count).parent().parent().remove();
+        });
+    }
+    $('.gallery_add_button').click(function (){
+        Loader_toggle('show');
+        var count = parseInt($('#count_gallery').val());
+        count = count +1;
+        var table = $(this).attr('data-table');
+        var id = "gallery_add";
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+
+        });
+        $.ajax({
+
+            type: 'PUT',
+
+            url: $(this).attr('data-action'),
+
+            data : {count:count},
+            success: function (data) {
+                if(data.type === "success"){
+                    $('#count_gallery').val(count);
+                    console.log(data.listData);
+                    table_write_data_append(data.listData,table);
+                    gallery_image_delete();
+                    $.each(data.success_message_array, function (i, data){
+                        Toastify({
+                            title:"success",
+                            text: data,
+                            style: {
+                                background: "green",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+                    })
+
+
+                    Loader_toggle('hide');
+
+                }else{
+                    $.each(data.error, function (i, data){
+                        Toastify({
+                            title:"error",
+                            text: data,
+                            style: {
+                                background: "red",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+
+
+                        Loader_toggle('hide');
+                    })
+                }
+            },
+            error: function(data)
+            {
+                Toastify({
+                    title:"Error",
+                    text: "An Error Occurred, please try again later.",
+                    style: {
+                        background: "red",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+
+                $('.preloader').hide();
+            }
+
+        });
+    });
+
+    function deleteButtonGallery(){
+        $('.deleteButtonGallery').click(function (){
+            var id = $(this).attr('data-id');
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('.preloader').show();
+
+                    var table = $(this).attr('data-table');
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+
+
+                    $.ajax({
+
+                        type: 'PUT',
+
+                        url: $(this).attr('data-action'),
+
+                        data : {value:id},
+                        success: function (data) {
+                            if(data.type == "success"){
+                                if(data.tableRefresh == 1){
+                                    table_write_data(data.listData,table);
+                                    deleteButtonGallery();
+                                }
+                                $('.gallery_image_deletes'+id).parent().parent().remove();
+                                $.each(data.success_message_array, function (i, data){
+                                    Toastify({
+                                        title:"success",
+                                        text: data,
+                                        style: {
+                                            background: "green",
+                                        },
+                                        offset: {
+                                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                        },
+                                    }).showToast();
+                                })
+                            }else{
+                                $.each(data.error_message_array, function (i, data){
+                                    Toastify({
+                                        title:"Error",
+                                        text: data,
+                                        style: {
+                                            background: "red",
+                                        },
+                                        offset: {
+                                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                        },
+                                    }).showToast();
+                                })
+                            }
+                            $('.preloader').hide();
+                        },
+                        error: function(data)
+                        {
+                            Toastify({
+                                title:"Error",
+                                text: "An Error Occurred, please try again later.",
+                                style: {
+                                    background: "red",
+                                },
+                                offset: {
+                                    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                },
+                            }).showToast();
+
+                            $('.preloader').hide();
+                        }
+
+                    });
+                }
+            });
+
+        });
+    }
+    deleteButtonGallery();
 });

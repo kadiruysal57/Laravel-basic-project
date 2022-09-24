@@ -50,5 +50,6 @@ return [
     'slider'=>'Slider',
     'form'=>'Form',
     '404text'=>'Üzgünüz Aradığınız Sayfa Bulunmamaktadır.',
+    'email' => 'Email',
 
 ];
