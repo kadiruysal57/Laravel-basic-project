@@ -344,7 +344,6 @@ var table_write_data = function(listData,table){
     $.each(listData, function (i, data) {
         html += "<tr>";
         $.each(data, function (itwo, appendData) {
-            console.log(itwo);
             if(itwo == "actions"){
                 html += "<td class='text-right table-actions'>"+ appendData + "</td>";
             }else{
@@ -353,6 +352,7 @@ var table_write_data = function(listData,table){
         });
         html += "</tr>";
     });
+    console.log(html);
     $(table + " tbody").html(html);
     deleteButton();
 }
