@@ -39,4 +39,9 @@ return [
     'gallery_add'=>'Resim Ekle',
     'gallery_select'=>'Resim Seç',
     'image' => 'Resim',
+    'name_required' => 'Sayfa İsmi Boş Bırakılamaz',
+    'title_required' => 'Sayfa Başlığı Boş Bırakılamaz',
+    'language_id_required' => 'Sayfa Dili Boş Bırakılamaz',
+    'seo_url_required' => 'Seo Url Boş Bırakılamaz',
+    'seo_url_unique' => 'Seo Url Daha Önce Eklenmiş',
 ];
