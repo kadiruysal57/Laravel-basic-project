@@ -70,11 +70,11 @@
                                 <div class="tab-pane fade active show" id="contents-genel-info">
                                     <div class="form-group">
                                         <label class="">{{__('global.name')}}</label>
-                                        <input class="form-control " name="name" d type="text">
+                                        <input class="form-control content_name" name="name"  type="text">
                                     </div>
                                     <div class="form-group">
                                         <label class="">{{__('global.title')}}</label>
-                                        <input class="form-control " name="title" d type="text">
+                                        <input class="form-control " name="title"  type="text">
                                     </div>
                                     <div class="form-group">
                                         <label class="" for="language_id">{{__('global.language')}}</label>
@@ -128,11 +128,11 @@
                                 <div class="tab-pane fade " id="contents-seo">
                                     <div class="form-group">
                                         <label class="">{{__('contents.seo_title')}}</label>
-                                        <input class="form-control " name="seo_title" d type="text">
+                                        <input class="form-control " name="seo_title" type="text">
                                     </div>
                                     <div class="form-group">
                                         <label class="">{{__('contents.keywords')}}</label>
-                                        <input class="form-control " name="keywords" d type="text">
+                                        <input class="form-control " name="keywords" type="text">
                                     </div>
                                     <div class="form-group">
                                         <label class="">{{__('contents.seo_description')}}</label>
@@ -140,12 +140,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="">{{__('contents.focus_keywords')}}</label>
-                                        <input class="form-control " name="focus_keywords" d type="text">
+                                        <input class="form-control " name="focus_keywords"  type="text">
                                     </div>
 
                                     <div class="form-group">
                                         <label class="">{{__('global.slug')}}</label>
-                                        <input class="form-control " name="seo_url" d type="text">
+                                        <input class="form-control " name="seo_url"  type="text">
                                     </div>
 
 
@@ -387,19 +387,10 @@
 @endsection
 
 @section('JsContent')
+    <script src="{{asset('panel/assets/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('panel/assets/js/contents/content.js')}}"></script>
     <script src="{{asset('panel/assets/js/jquery.nestable.min.js')}}"></script>
 
-    <script src="{{asset('panel/assets/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript">
-        var options = {
-            filebrowserImageBrowseUrl: '/Kpanel/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/Kpanel/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/Kpanel/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/Kpanel/laravel-filemanager/upload?type=Files&_token='
-        };
-        var editor = CKEDITOR.replace('description', options);
-    </script>
     <script>
         var updateOutput = function (e) {
 

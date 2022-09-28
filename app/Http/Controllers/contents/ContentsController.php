@@ -65,19 +65,22 @@ class ContentsController extends Controller
         }
 
         if ($request->id == "create") {
+            $content_slug = Contents::where('seo_url',$request->seo_url)->first();
+            if(!empty($content_slug)){
+                return response()->json(['type' => 'error', 'error' => array(Lang::get('global.site_name_error'))]);
+            }
 
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'title' => 'required',
-                'short_desc' => 'required',
-                'seo_title' => 'required',
-                'keywords' => 'required',
-                'seo_description' => 'required',
                 'language_id'=>'required',
-                'focus_keywords' => 'required',
-
-
-
+                'seo_url' => 'required|unique:contents',
+            ],[
+                'name.required'=>Lang::get('contents.name_required'),
+                'title.required'=>Lang::get('contents.title_required'),
+                'language_id.required'=>Lang::get('contents.language_id_required'),
+                'seo_url.required'=>Lang::get('contents.seo_url_required'),
+                'seo_url.unique'=>Lang::get('contents.seo_url_unique'),
             ]);
             if ($validator->passes()) {
                 try {
@@ -86,6 +89,7 @@ class ContentsController extends Controller
                     $contents->name = $request->name;
                     $contents->title = $request->title;
                     $contents->short_desc = $request->short_desc;
+                    $contents->description = $request->description;
                     $contents->keywords = $request->keywords;
                     $contents->seo_title = $request->seo_title;
                     $contents->seo_description = $request->seo_description;
@@ -153,25 +157,6 @@ class ContentsController extends Controller
                 } catch (Throwable $e) {
                     report($e);
                     return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
-                    $contents = new Contents();
-                    $contents->name = $request->name;
-                    $contents->title = $request->title;
-                    $contents->short_desc = $request->short_desc;
-                    $contents->keywords = $request->keywords;
-                    $contents->seo_title = $request->seo_title;
-                    $contents->seo_description = $request->seo_description;
-                    $contents->focus_keywords = $request->focus_keywords;
-                    $contents->description = $request->description;
-                    if (empty($request->seo_url)) {
-                        $seo_url = Str::slug($request->name);
-                        $contents->seo_url = $seo_url;
-                    } else {
-                        $contents->seo_url = $request->seo_url;
-                    }
-
-                    /*Blok Management Save Code*/
-
-
                 }
 
             }else {
@@ -179,23 +164,42 @@ class ContentsController extends Controller
             }
         }
         if ($request->id == "update") {
-
+            if (empty($request->seo_url)) {
+                $seo_url_2 = Str::slug($request->name);
+                $content_slug = Contents::where('seo_url',$seo_url_2)->first();
+                if(!empty($content_slug)){
+                    return response()->json(['type' => 'error', 'error' => array(Lang::get('global.site_name_error'))]);
+                }
+            }
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'title' => 'required',
-                'short_desc' => 'required',
                 'language_id'=>'required',
-                'seo_title' => 'required',
-                'keywords' => 'required',
-                'seo_description' => 'required',
-                'focus_keywords' => 'required',
 
+            ],[
+                'name.required'=>Lang::get('contents.name_required'),
+                'title.required'=>Lang::get('contents.title_required'),
+                'language_id.required'=>Lang::get('contents.language_id_required'),
             ]);
             if ($validator->passes()) {
                 $contents = Contents::find($request->contents_id);
+
+                if($contents->seo_url != $request->seo_url){
+                    $validator = Validator::make($request->all(), [
+                        'seo_url' => 'required|unique:contents',
+                    ],[
+                        'seo_url.required'=>Lang::get('contents.seo_url_required'),
+                        'seo_url.unique'=>Lang::get('contents.seo_url_unique'),
+                    ]);
+                    if(!$validator->passes()){
+                        return response()->json(['error' => $validator->errors()->all()]);
+                    }
+                }
+
                 $contents->name = $request->name;
                 $contents->title = $request->title;
                 $contents->short_desc = $request->short_desc;
+                $contents->description = $request->description;
                 $contents->keywords = $request->keywords;
                 $contents->seo_title = $request->seo_title;
                 $contents->gallery_id = $request->gallery_id;
@@ -204,7 +208,6 @@ class ContentsController extends Controller
                 $contents->language_id = $request->language_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
-                $contents->description = $request->description;
 
                 if (empty($request->seo_url)) {
                     $seo_url = Str::slug($request->name);
@@ -314,7 +317,6 @@ class ContentsController extends Controller
                 }
             }
         }
-
         if ($request->id == "blok-file-delete") {
 
             $check = ContentBlokFiles::where('id', $request->page_files_id)->first();
@@ -329,6 +331,25 @@ class ContentsController extends Controller
             } else {
                 return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
             }
+        }
+        if($request->id == "seo_url_str"){
+            $str_slug = Str::slug($request->name);
+            $content_slug = Contents::where('seo_url',$str_slug)->first();
+            if(empty($content_slug)){
+                return response()->json(['type' => 'success','seo_url'=>$str_slug]);
+            }else{
+
+                for ($i = 1; $i <= 1000; $i++) {
+                    $str_slug = Str::slug($request->name."-".$i);
+                    $content_slug = Contents::where('seo_url',$str_slug)->first();
+                    if(empty($content_slug)){
+                        break;
+                    }
+                }
+                return response()->json(['type' => 'error','seo_url'=>$str_slug]);
+
+            }
+
         }
     }
 

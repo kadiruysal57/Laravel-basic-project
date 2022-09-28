@@ -51,5 +51,6 @@ return [
     'form'=>'Form',
     '404text'=>'Üzgünüz Aradığınız Sayfa Bulunmamaktadır.',
     'email' => 'Email',
-
+    'site_name_success'=>'Site İsmi Uygundur.',
+    'site_name_error' => 'Site İsmi Daha Önce Kullanılmış o yüzden seo url kendiniz belirlemeniz gerekmektedir.',
 ];
