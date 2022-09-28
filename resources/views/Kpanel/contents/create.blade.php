@@ -376,7 +376,7 @@
                                 <button type="submit" class="btn btn-w-md btn-round btn-primary "
                                         form="contents_create">{{__('global.save')}}</button>
                             </div>
-                    </div>
+
                     </form>
 
                 </div>

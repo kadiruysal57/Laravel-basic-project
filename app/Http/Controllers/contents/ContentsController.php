@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Language;
 use App\Models\ContentGallery;
+use Illuminate\Validation\Rule;
 
 class ContentsController extends Controller
 {
@@ -74,6 +75,9 @@ class ContentsController extends Controller
                 'seo_description' => 'required',
                 'language_id'=>'required',
                 'focus_keywords' => 'required',
+
+
+
             ]);
             if ($validator->passes()) {
                 try {
@@ -90,11 +94,16 @@ class ContentsController extends Controller
                     $contents->slider_id = $request->slider_id;
                     $contents->form_id = $request->form_id;
                     $contents->focus_keywords = $request->focus_keywords;
+
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
                         $contents->seo_url = $seo_url;
-                    } else {
-                        $contents->seo_url = $request->seo_url;
+                    }elseif($request->seo_url == "/"){
+                        $contents->seo_url = "/";
+                    }
+                    else {
+                        $seo_url = Str::slug($request->seo_url);
+                        $contents->seo_url = $seo_url;
                     }
                     $contents->left_blok_active = checkboxorswitch($request->left_blok);
                     $contents->right_blok_active = checkboxorswitch($request->right_blok);
@@ -180,6 +189,7 @@ class ContentsController extends Controller
                 'keywords' => 'required',
                 'seo_description' => 'required',
                 'focus_keywords' => 'required',
+
             ]);
             if ($validator->passes()) {
                 $contents = Contents::find($request->contents_id);
@@ -199,8 +209,12 @@ class ContentsController extends Controller
                 if (empty($request->seo_url)) {
                     $seo_url = Str::slug($request->name);
                     $contents->seo_url = $seo_url;
-                } else {
-                    $contents->seo_url = $request->seo_url;
+                }elseif($request->seo_url == "/"){
+                    $contents->seo_url = "/";
+                }
+                else {
+                    $seo_url = Str::slug($request->seo_url);
+                    $contents->seo_url = $seo_url;
                 }
 
                 $contents->left_blok_active = checkboxorswitch($request->left_blok);
