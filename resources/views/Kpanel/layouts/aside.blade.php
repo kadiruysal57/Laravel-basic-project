@@ -83,14 +83,20 @@
                 <span class="title">{{__('formbuilder.formbuilder_page_title')}}</span>
             </a>
         </li>
-
-
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'themes') !== false) active @endif">
+            <a class="menu-link" href="{{route('themes.index')}}">
+                <span class="icon fa fa-paint-brush"></span>
+                <span class="title">{{__('themes.themes')}}</span>
+            </a>
+        </li>
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'site-settings') !== false) active @endif">
             <a class="menu-link" href="{{route('site-settings.index')}}">
                 <span class="icon fa fa-gear"></span>
                 <span class="title">{{__('sitesettings.sitesettings')}}</span>
             </a>
         </li>
+
+
 
 
 
