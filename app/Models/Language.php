@@ -62,4 +62,7 @@ class Language extends Model
         return $this->hasMany(site_settings::class,'language_id','id');
         //return site_settings::where('language_id',$language_id)->get();
     }
+    public function whatsapp_icon(){
+        return $this->hasMany(Whatsapp::class,'lang_id','id');
+    }
 }

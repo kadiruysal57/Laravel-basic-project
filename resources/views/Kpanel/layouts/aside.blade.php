@@ -29,6 +29,12 @@
             </a>
         </li>
 
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'whatsapp') !== false) active @endif">
+            <a class="menu-link" href="{{route('whatsapp.index')}}">
+                <span class="icon fa icon fa fa-whatsapp"></span>
+                <span class="title">{{__('title.whatsapp')}}</span>
+            </a>
+        </li>
 
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"language") !== false) active @endif">
             <a class="menu-link" href="{{route('language.index')}}">
