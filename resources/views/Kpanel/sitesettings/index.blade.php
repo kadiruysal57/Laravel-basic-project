@@ -55,10 +55,10 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content col-lg-12  float-left">
                                         @foreach($language as $key => $l)
+                                            <div class="tab-pane fade @if($key == 0) active show @endif "
+                                                 id="language-id-{{$l->id}}">
+                                                @foreach($l->site_settings as $sitesettings)
 
-                                            @foreach($l->site_settings as $sitesettings)
-                                                <div class="tab-pane fade @if($key == 0) active show @endif "
-                                                     id="language-id-{{$l->id}}">
                                                     <ul class="nav nav-tabs nav-justified nav-tabs-info">
                                                         <li class="nav-item active">
                                                             <a class="nav-link active" data-toggle="tab"
@@ -295,9 +295,8 @@
                                                             </table>
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         @endforeach
 
                                     </div>

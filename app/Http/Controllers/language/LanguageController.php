@@ -4,6 +4,7 @@ namespace App\Http\Controllers\language;
 
 use App\Http\Controllers\Controller;
 use App\Models\site_settings;
+use App\Models\Whatsapp;
 use Illuminate\Http\Request;
 use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
@@ -94,6 +95,11 @@ class LanguageController extends Controller
                     $sitesettings_new->language_id = $language->id;
                     $sitesettings_new->status = 1;
                     $sitesettings_new->save();
+
+
+                    $whatsapp_icon = new Whatsapp();
+                    $whatsapp_icon->lang_id = $language->id;
+                    $whatsapp_icon->save();
                 }
 
                 $language_model = new Language();

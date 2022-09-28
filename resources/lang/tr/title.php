@@ -5,4 +5,5 @@ return [
     'gallery' => 'Galeri',
     'gallery_add' => 'Galeri Ekle',
     'gallery_edit'=>'Galeri Düzenle',
+    'whatsapp'=>'Whatsapp',
 ];

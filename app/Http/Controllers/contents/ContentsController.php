@@ -29,6 +29,10 @@ class ContentsController extends Controller
      */
     public function index()
     {
+        if(!$this->PermissionCheck()){
+
+            return view('Kpanel.401');
+        }
         $data['contents'] = Contents::get();
         return view('Kpanel.contents.index')->with($data);
     }
