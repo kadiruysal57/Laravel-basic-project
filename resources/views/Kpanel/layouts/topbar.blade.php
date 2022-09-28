@@ -20,8 +20,5 @@
         </li>
     </ul>
 
-    <form class="lookup lookup-circle lookup-right" target="index.html">
-        <input type="text" name="s">
-    </form>
 
 </div>
