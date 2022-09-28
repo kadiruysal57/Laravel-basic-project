@@ -34,8 +34,6 @@
                                         </thead>
                                         <tbody>
                                         @foreach($contents as $c)
-
-
                                         <tr>
                                             <td>{{$c->name}}</td>
                                             <td>{{$c->language->name}}</td>
