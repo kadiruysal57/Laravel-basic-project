@@ -25,7 +25,7 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
 
-            $table->foreign('site_id')->references('id')->on('site_settings');
+            $table->foreign('site_settings_id')->references('id')->on('site_settings');
         });
     }
 

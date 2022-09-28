@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ThemesCustomize extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'themes_id',
+        'themes_color_id',
+        'special_css',
+        'special_jss',
+        'update_user',
+    ];
+    protected $table = 'themes_customize';
+}
