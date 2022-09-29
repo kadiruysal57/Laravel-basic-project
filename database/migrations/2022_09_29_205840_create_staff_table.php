@@ -13,20 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('themes', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('themes_name')->nullable();
-            $table->string('themes_folder_name')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('name');
+            $table->text('description');
+            $table->integer('status');
+            $table->integer('add_user')->nullable();
+            $table->integer('update_user')->nullable();
             $table->timestamps();
         });
-        DB::table('themes')->insert(
-            array(
-                'themes_name' => 'Themes Marketing',
-                'themes_folder_name' => 'marketing',
-                'status' => "1",
-            )
-        );
     }
 
     /**
@@ -36,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('staff');
     }
 };

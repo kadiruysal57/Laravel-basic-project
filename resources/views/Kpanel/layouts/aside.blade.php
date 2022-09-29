@@ -83,6 +83,13 @@
             </a>
         </li>
 
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'staff') !== false) active @endif">
+            <a class="menu-link "  href="{{route('staff.index')}}">
+                <span class="icon fa fa-male"></span>
+                <span class="title">{{__('staff.staff_page_title')}}</span>
+            </a>
+        </li>
+
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),'gallery') !== false) active @endif">
             <a class="menu-link "  href="{{route('gallery.index')}}">
                 <span class="icon fa fa-image"></span>

@@ -19,7 +19,7 @@ $(document).ready(function () {
             '<div class="input-group d-grid justify-content-center">'+
             '<div class="d-flex justify-content-center">'+
             '<span class="input-group-btn">'+
-            '<a id="lfm'+currentVal+'" data-input="thumbnail'+currentVal+'" data-preview="holder'+currentVal+'" class="btn btn-warning ">'+
+            '<a id="lfm'+currentVal+'" data-input="thumbnail'+currentVal+'" data-preview="holder'+currentVal+'" class="btn btn-primary ">'+
             '<i class="fa fa-picture-o"></i> Select'+
             '</a>'+
             '</span>'+
@@ -64,10 +64,10 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="col-4 last" style="text-align: -webkit-center">'+
+            '<div class="col-4 " style="text-align: -webkit-center">'+
 
             '<div class="fv-row mb-7 fv-plugins-icon-container">'+
-            '<label class="fs-6 fw-bold form-label mt-3">'+
+            '<label class="fs-6 fw-bold form-label ">'+
             '<span>Buton Yazısı</span>'+
             '</label>'+
             '<input type="text" class="form-control form-control w-75 p-3" name="button_text'+currentVal+'">'+
