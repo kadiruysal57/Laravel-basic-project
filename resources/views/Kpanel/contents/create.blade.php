@@ -115,6 +115,15 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="faq_id">{{__('global.faq')}}</label>
+                                        <select name="faq_id" data-live-search="true" id="faq_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($faq as $f)
+                                                <option value="{{$f->id}}">{{$f->name}}(Id:{{$f->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="">{{__('global.short_desc')}}</label>
                                         <textarea name="short_desc" class="form-control"></textarea>
                                     </div>

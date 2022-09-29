@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BlokGroups;
 use App\Models\ContentBlokFiles;
 use App\Models\DefaultBlok;
+use App\Models\FaqCategory;
 use App\Models\gallery;
 use App\Models\MainBlok;
 use App\Models\slider;
@@ -51,6 +52,7 @@ class ContentsController extends Controller
         $data['gallery'] = gallery::where('status',1)->get();
         $data['slider'] = slider::where('status',1)->get();
         $data['form'] = form::where('status',1)->get();
+        $data['faq'] = FaqCategory::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -101,6 +103,7 @@ class ContentsController extends Controller
                     $contents->gallery_id = $request->gallery_id;
                     $contents->slider_id = $request->slider_id;
                     $contents->form_id = $request->form_id;
+                    $contents->faq_id = $request->faq_id;
                     $contents->focus_keywords = $request->focus_keywords;
 
                     if (empty($request->seo_url)) {
@@ -209,6 +212,7 @@ class ContentsController extends Controller
                 $contents->gallery_id = $request->gallery_id;
                 $contents->slider_id = $request->slider_id;
                 $contents->form_id = $request->form_id;
+                $contents->faq_id = $request->faq_id;
                 $contents->language_id = $request->language_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
@@ -374,6 +378,7 @@ class ContentsController extends Controller
         $data['gallery'] = gallery::where('status',1)->get();
         $data['slider'] = slider::where('status',1)->get();
         $data['form'] = form::where('status',1)->get();
+        $data['faq'] = FaqCategory::where('status',1)->get();
         if(empty(Contents::find($id))){
             return view('Kpanel.404');
         }

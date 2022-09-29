@@ -31,6 +31,7 @@ class Contents extends Model
         'slider_id',
         'gallery_id',
         'form_id',
+        'faq_id',
         'add_user',
         'update_user',
     ];
