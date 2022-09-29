@@ -24,10 +24,10 @@ return new class extends Migration
             $table->foreign('themes_id')->references('id')->on('themes');
             $table->foreign('themes_color_id')->references('id')->on('themes_color');
         });
-        DB::table('themes_color')->insert(
+        DB::table('themes_customize')->insert(
             array(
-                'themes_id' => '1',
-                'themes_color_id'=>'1',
+                'themes_id' => 1,
+                'themes_color_id'=>1,
             )
         );
     }

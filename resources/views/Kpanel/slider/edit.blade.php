@@ -45,7 +45,7 @@
 
                             <input id="HiddenSlider" name="count" type="hidden" value="0"/>
                             <div class="fv-row mb-7 fv-plugins-icon-container text-center">
-                                <input type="button" id="sliderbutton"  class="btn btn-warning m-lg-2 sliderbutton" value="{{__('slider.add_slider_image')}}">
+                                <input type="button" id="sliderbutton"  class="btn btn-primary m-lg-2 sliderbutton" value="{{__('slider.add_slider_image')}}">
                             </div>
 
                             <div id="slider_feedback">
@@ -70,7 +70,7 @@
                                                     <div class="d-flex justify-content-center">
                                                          <span class="input-group-btn">
                                                              <a id="lfm{{$si->id}}" data-input="thumbnail{{$si->id}}" data-preview="holder{{$si->id}}"
-                                                                            class="btn btn-warning lfm">
+                                                                            class="btn btn-primary lfm">
                                                              <i class="fa fa-picture-o"></i>{{__('global.please_select')}}
                                                              </a>
                                                          </span>
@@ -124,11 +124,11 @@
 
 
 
-                                            <div class="col-4 last" style="text-align: -webkit-center">
+                                            <div class="col-4" style="text-align: -webkit-center">
 
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                     <label class="fs-6 fw-bold form-label mt-3">
+                                                     <label class="fs-6 fw-bold form-label">
                                                          <span>{{__('slider.button_text')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_text}}" name="button_text_edit{{$si->id}}">
@@ -165,7 +165,7 @@
 
 
                             <div class="text-center mt-2">
-                                <button type="submit" class="btn btn-w-md btn-round btn-primary " form="slider_update">{{__('global.save')}}</button>
+                                <button type="submit" class="btn btn-w-md btn-round btn-primary mt-3" form="slider_update">{{__('global.save')}}</button>
                             </div>
 
                         </form>

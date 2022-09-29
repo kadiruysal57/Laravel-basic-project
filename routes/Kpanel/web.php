@@ -19,7 +19,9 @@ use App\Http\Controllers\SiteSettings\AddressController;
 use App\Http\Controllers\SiteSettings\ThemesController;
 use App\Http\Controllers\Whatsapp\WhatsappController;
 use App\Http\Controllers\language\FixedLanguageWordController;
+use App\Http\Controllers\staff\StaffController;
 use App\Http\Controllers\Faq\FaqController;
+
 
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
@@ -178,7 +180,9 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('themes', ThemesController::class);
     Route::resource('whatsapp', WhatsappController::class);
     Route::resource('fixed-word', FixedLanguageWordController::class);
+    Route::resource('staff', StaffController::class);
     Route::resource('faq', FaqController::class);
+
 
 
 
