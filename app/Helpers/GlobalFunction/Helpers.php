@@ -12,6 +12,7 @@ function statusView($data){
     }else{
         return __('global.passive');
     }
+    return "";
 }
 function array_only($array = array(),$onlykey){
     $returndata = Array();
