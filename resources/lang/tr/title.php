@@ -7,5 +7,6 @@ return [
     'gallery_edit'=>'Galeri Düzenle',
     'whatsapp'=>'Whatsapp',
     'fixed_word'=>'Sabit Metinler',
+    'faq'=>'Sıkça Sorulan Sorular',
 
 ];

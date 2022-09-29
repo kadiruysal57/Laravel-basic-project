@@ -37,6 +37,7 @@ return new class extends Migration
             $table->unsignedBigInteger('slider_id')->nullable();
             $table->unsignedBigInteger('gallery_id')->nullable();
             $table->unsignedBigInteger('form_id')->nullable();
+            $table->unsignedBigInteger('faq_id')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->foreign('default_blok_id')->references('id')->on('default_blok');
@@ -44,6 +45,7 @@ return new class extends Migration
             $table->foreign('gallery_id')->references('id')->on('gallery');
             $table->foreign('slider_id')->references('id')->on('slider');
             $table->foreign('form_id')->references('id')->on('form');
+            $table->foreign('faq_id')->references('id')->on('faq_category');
             $table->timestamps();
         });
 
