@@ -18,6 +18,7 @@ use App\Http\Controllers\gallery\GalleryController;
 use App\Http\Controllers\SiteSettings\AddressController;
 use App\Http\Controllers\SiteSettings\ThemesController;
 use App\Http\Controllers\Whatsapp\WhatsappController;
+use App\Http\Controllers\language\FixedLanguageWordController;
 
 
 Route::get('/sign-in',[AuthenticationController::class, 'sign_in'])->name('sign_in')->middleware('guest');
@@ -175,6 +176,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('address', AddressController::class);
     Route::resource('themes', ThemesController::class);
     Route::resource('whatsapp', WhatsappController::class);
+    Route::resource('fixed-word', FixedLanguageWordController::class);
 
 
 

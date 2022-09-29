@@ -435,7 +435,11 @@ class ContentsController extends Controller
      */
     public function destroy($id)
     {
+        if(!$this->PermissionCheck()){
 
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+
+        }
         $content = Contents::where('id', $id)->first();
         if (!empty($content)) {
             $content->delete();

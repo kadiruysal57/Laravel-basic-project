@@ -6,4 +6,6 @@ return [
     'gallery_add' => 'Galeri Ekle',
     'gallery_edit'=>'Galeri Düzenle',
     'whatsapp'=>'Whatsapp',
+    'fixed_word'=>'Sabit Metinler',
+
 ];

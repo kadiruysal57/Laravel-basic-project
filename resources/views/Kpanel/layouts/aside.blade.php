@@ -36,9 +36,15 @@
             </a>
         </li>
 
+        <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"fixed-word") !== false) active @endif">
+            <a class="menu-link" href="{{route('fixed-word.index')}}">
+                <span class="icon fa fa-language"></span>
+                <span class="title">{{__('title.fixed_word')}}</span>
+            </a>
+        </li>
         <li class="menu-item @if(strpos(Illuminate\Support\Facades\Route::getCurrentRoute()->getName(),"language") !== false) active @endif">
             <a class="menu-link" href="{{route('language.index')}}">
-                <span class="icon fa fa-language"></span>
+                <span class="icon fa fa-globe"></span>
                 <span class="title">{{__('global.language')}}</span>
             </a>
         </li>

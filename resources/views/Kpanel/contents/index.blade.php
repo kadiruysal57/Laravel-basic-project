@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <div class="col">
 
-                                <div class="">
+                                <div class="table-responsive">
                                     <table class="table table-separated" id="contents_table">
                                         <thead>
                                         <tr>
