@@ -11,9 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <header class="card-header">
-                    @foreach($data as $d)
-                        {{__('fixed_word.'.$d)}}
-                    @endforeach
+
                     <h4 class="card-title">{{__('fixed_word.fixed_word')}}</strong></h4>
                 </header>
                 <div class="card-body">
