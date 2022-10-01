@@ -25,13 +25,21 @@
                         <div class="col">
 
                                 <div class="table-responsive">
-                                    <table class="table table-separated" id="contents_table">
+                                    <table class="table table-separated dataTables" id="contents_table">
                                         <thead>
                                         <tr>
                                             <th>{{__('contents.pagesname')}}</th>
+                                            <th>{{__('global.language')}}</th>
                                             <th class="text-center w-100px">{{__('contents.actions')}}</th>
                                         </tr>
                                         </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>{{__('contents.pagesname')}}</th>
+                                            <th>{{__('global.language')}}</th>
+                                            <th class="text-center w-100px">{{__('contents.actions')}}</th>
+                                        </tr>
+                                        </tfoot>
                                         <tbody>
                                         @foreach($contents as $c)
                                         <tr>
@@ -58,8 +66,7 @@
 @endsection
 
 @section('JsContent')
-    <script
-        src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
+
 @endsection
 
 

@@ -25,7 +25,7 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated" id="users_table">
+                                <table class="table table-separated dataTables" id="users_table">
                                     <thead>
                                     <tr>
                                         <th>{{__('users.user_name')}}</th>

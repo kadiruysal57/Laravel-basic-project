@@ -18,7 +18,7 @@
                 </header>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-separated" id="portfolio_group_table">
+                        <table class="table table-separated dataTables" id="portfolio_group_table">
                             <thead>
                             <th>#</th>
                             <th>{{__('portfolio.title')}}</th>

@@ -25,7 +25,7 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated">
+                                <table class="table table-separated dataTables">
                                     <thead>
                                     <tr>
                                         <th class="min-w-100px">{{__('global.name_')}}</th>

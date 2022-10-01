@@ -25,7 +25,7 @@
                         <div class="col">
 
                                 <div class="">
-                                    <table class="table table-separated" id="gallery_table">
+                                    <table class="table table-separated dataTables" id="gallery_table">
                                         <thead>
                                         <tr>
                                             <td>#</td>

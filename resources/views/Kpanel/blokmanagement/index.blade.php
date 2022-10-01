@@ -25,7 +25,7 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated" id="default_bloks_table">
+                                <table class="table table-separated dataTables" id="default_bloks_table">
                                     <thead>
                                     <tr>
                                         <th>{{__('blokmanagement.blok_management_name')}}</th>
