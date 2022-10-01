@@ -184,8 +184,15 @@ app.ready(function() {
 $('.get_slug').change(function (){
     slug_get($(this).val(),$(this).attr('focus_input'));
 });
+
+var dataTable = $('.dataTables').DataTable({
+        "language":{
+            "url":"/panel/assets/vendor/datatables/language/tr-TR.json",
+        }
+});
 function deleteButton(){
     $('.deleteButton').click(function (){
+        var button = $(this);
         Swal.fire({
             title: 'Are you sure?',
             icon: 'warning',
@@ -219,7 +226,10 @@ function deleteButton(){
                     success: function (data) {
                         if(data.type == "success"){
                             if(data.tableRefresh == 1){
-                                console.log(typeof socialmediaaddmodal);
+                                dataTable
+                                    .row( button.parents('tr') )
+                                    .remove()
+                                    .draw();
                                 table_write_data(data.listData,table);
                                 if(typeof button_main_language == "function"){
                                     button_main_language();
@@ -382,3 +392,4 @@ function Loader_toggle(t){
         $('.preloader').hide();
     }
 }
+

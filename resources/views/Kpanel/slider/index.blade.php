@@ -25,7 +25,7 @@
                         <div class="col">
 
                                 <div class="">
-                                    <table class="table table-separated">
+                                    <table class="table table-separated dataTables">
                                         <thead>
                                         <tr>
                                             <th>{{__('global.image')}}</th>

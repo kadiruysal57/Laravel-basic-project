@@ -20,6 +20,7 @@
     <link rel="apple-touch-icon" href="{{asset('panel/assets/img/apple-touch-icon.png')}}">
     <link rel="icon" href="{{asset('panel/assets/img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('panel/assets/css/bootstrap-select.min.css')}}">
+    <link rel="stylesheet" href="{{asset('panel/assets/vendor/datatables/css/dataTables.bootstrap4.min.css')}}">
 
 
     @yield('CssContent')
@@ -115,12 +116,16 @@
     src="{{asset('panel/assets/vendor/moment/moment.min.js')}}"></script>
 <script src="{{asset('panel/assets/js/toastify.js')}}"></script>
 <script src="{{asset('panel/assets/js/sweetalert2.min.js')}}"></script>
-<script src="{{asset('panel/assets/js/script.js')}}"></script>
 <script src="{{asset('vendor/laravel-filemanager/js/stand-alone-button.js')}}"></script>
 <script src="{{asset('panel/assets/js/bootstrap-select.min.js')}}"></script>
+
 <script>
     $('.auto-search').selectpicker();
 </script>
+
+<script src="{{asset('panel/assets/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('panel/assets/vendor/datatables/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{asset('panel/assets/js/script.js')}}"></script>
 @yield('JsContent')
 </body>
 </html>

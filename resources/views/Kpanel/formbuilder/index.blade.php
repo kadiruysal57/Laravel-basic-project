@@ -25,13 +25,13 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated" id="form-builder-form">
+                                <table class="table table-separated dataTables" id="form-builder-form">
                                     <thead>
                                     <tr>
 
                                         <th>{{__('formbuilder.formbuilder_name')}}</th>
                                         <th class="text-center w-100px">{{__('formbuilder.action')}}</th>
-       
+
                                     </tr>
                                     </thead>
                                     <tbody>

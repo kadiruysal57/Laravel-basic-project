@@ -19,7 +19,7 @@
                     </header>
 
                     <div class="card-body">
-                        <table class="table table-separated language_table">
+                        <table class="table table-separated language_table dataTables">
                             <thead>
                             <tr>
                                 <th>#</th>

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('preview_photo',255)->nullable();
             $table->text('css_iframe')->nullable();
             $table->text('js_iframe')->nullable();
-            $table->string('seo_title',255);
+            $table->string('seo_title',255)->nullable();
             $table->text('keywords')->nullable();
             $table->text('seo_description')->nullable();
             $table->string('focus_keywords',255)->nullable();
