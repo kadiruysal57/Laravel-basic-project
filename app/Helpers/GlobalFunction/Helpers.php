@@ -89,3 +89,12 @@ function RolesName($data){
 
     return $data;
 }
+function getCurrentUrlName(){
+    $name = Illuminate\Support\Facades\Route::getCurrentRoute()->getName();
+    $name = explode('.',$name);
+    if(!empty($name[0])){
+        return $name[0];
+    }else{
+        return "dashboard";
+    }
+}

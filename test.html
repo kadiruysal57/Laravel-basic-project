@@ -1,1 +1,16 @@
-<button type='button' class='table-action btn btn-pure deleteButtonFaq hover-danger' data-id='{{$f->id}}' data-action = '{{route('faq.store')}}' data-table='#faq_table'><i class='ti-trash'></i></button>
+<div class='input-group'>
+                                                                                   <span class='input-group-btn'>
+                                                                                     <a id='portfolio_image$count'
+                                                                                        data-input='portfolio_image_input$count'
+                                                                                        data-preview='portfolio_image_holder$count'
+                                                                                        class='btn btn-primary'>
+                                                                                       <i class='fa fa-picture-o'></i> Choose
+                                                                                     </a>
+                                                                                   </span>
+    <input id='portfolio_image_input$count'
+           class='form-control portfolio_image'
+           type='text'
+           name='portfolio_image_input$count'
+           readonly
+           value=''>
+</div>

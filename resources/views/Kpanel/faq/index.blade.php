@@ -50,5 +50,4 @@
 @endsection
 
 @section('JsContent')
-    <script src="{{asset('panel/assets/js/themes/themes.js')}}"></script>
 @endsection
