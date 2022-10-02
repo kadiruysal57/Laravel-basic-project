@@ -154,6 +154,7 @@ class ContentsController extends Controller
                                 $ContentBlokFilesNewData->content_id = $contents->id;
                                 $ContentBlokFilesNewData->blok_files_id = $data->id;
                                 $ContentBlokFilesNewData->blok_file_order = ++$order;
+                                $ContentBlokFilesNewData->html = $data->html;
                                 $ContentBlokFilesNewData->add_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }
@@ -277,6 +278,7 @@ class ContentsController extends Controller
                                     $ContentBlokFilesNewData->main_blok_id = $key;
 
                                     $ContentBlokFilesNewData->blok_file_order = ++$order;
+                                    $ContentBlokFilesNewData->html = $data->html;
                                     $ContentBlokFilesNewData->update_user = Auth::id();
                                     $ContentBlokFilesNewData->save();
                                 }
@@ -289,6 +291,7 @@ class ContentsController extends Controller
                                 $ContentBlokFilesNewData->content_id = $contents->id;
                                 $ContentBlokFilesNewData->blok_files_id = $data->id;
                                 $ContentBlokFilesNewData->blok_file_order = ++$order;
+                                $ContentBlokFilesNewData->html = $data->html;
                                 $ContentBlokFilesNewData->add_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }

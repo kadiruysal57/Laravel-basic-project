@@ -88,6 +88,7 @@ class BlokManagementController extends Controller
                         $DefaultBlokFile->default_blok_id  = $defaultblok->id;
                         $DefaultBlokFile->blok_files_id = $data->id;
                         $DefaultBlokFile->blok_file_order = ++$order;
+                        $DefaultBlokFile->html = $data->html;
                         $DefaultBlokFile->add_user = Auth::id();
                         $DefaultBlokFile->save();
                     }
@@ -124,14 +125,13 @@ class BlokManagementController extends Controller
 
                     foreach ($blok_data as $key => $bd) {
                         foreach ($bd as $order => $data) {
-
                             if (!empty($data->pagefileid)) {
                                 $check = DefaultBlokFile::where('id', $data->pagefileid)->first();
                                 if (!empty($check)) {
                                     $DefaultBlokFileData = DefaultBlokFile::where('id', $data->pagefileid)->first();
                                     $DefaultBlokFileData->main_blok_id = $key;
-
                                     $DefaultBlokFileData->blok_file_order = ++$order;
+                                    $DefaultBlokFileData->html = $data->html;
                                     $DefaultBlokFileData->update_user = Auth::id();
                                     $DefaultBlokFileData->save();
                                 }
@@ -144,6 +144,7 @@ class BlokManagementController extends Controller
                                 $DefaultBlokFileNewData->default_blok_id = $defaultblok->id;
                                 $DefaultBlokFileNewData->blok_files_id = $data->id;
                                 $DefaultBlokFileNewData->blok_file_order = ++$order;
+                                $DefaultBlokFileNewData->html = $data->html;
                                 $DefaultBlokFileNewData->add_user = Auth::id();
                                 $DefaultBlokFileNewData->save();
                             }
