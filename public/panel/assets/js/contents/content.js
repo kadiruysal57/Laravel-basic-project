@@ -131,6 +131,7 @@ $(document).ready(function () {
                 ddhandetrash()
                 table_write_data(data.listData, '#content_gallery_add_table');
                 deleteButtonGallery();
+                html_blok_js();
                 if (data.type === "success") {
                     $.each(data.success_message_array, function (i, data) {
                         Toastify({

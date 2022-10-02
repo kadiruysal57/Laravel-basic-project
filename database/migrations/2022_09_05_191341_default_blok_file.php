@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('default_blok_id');
             $table->unsignedBigInteger('blok_files_id');
             $table->integer('blok_file_order')->default(0);
+            $table->text('html')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();

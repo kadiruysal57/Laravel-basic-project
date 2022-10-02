@@ -261,11 +261,18 @@
                                                                 <div class="dd" id="{{$b->name}}_nestable">
                                                                     <ol class="dd-list">
                                                                         @foreach($b->group_file as $bf)
-                                                                            <li class="dd-item"
+                                                                            <li class="dd-item @if($bf->type == 2) html_blok{{$bf->id}} @endif"
                                                                                 data-groupid="{{$bf->group_id}}"
                                                                                 data-id="{{$bf->id}}">
-                                                                                <div
-                                                                                    class="dd-handle">{{__('contents.'.$bf->name)}}</div>
+                                                                                @if($bf->type == 2)
+                                                                                    <button type="button" data-id="{{$bf->id}}" class="btn btn-outline-primary btn-sm html_blok_edit">
+                                                                                        <i class="fa fa-gears"></i>
+                                                                                    </button>
+                                                                                @endif
+                                                                                <div class="dd-handle" style="padding: 3px">
+                                                                                    {{__('contents.'.$bf->name)}}
+                                                                                </div>
+
                                                                             </li>
                                                                         @endforeach
                                                                     </ol>
@@ -393,13 +400,48 @@
         </div>
     </div>
     </div><!--/.main-content -->
+
+    <div class="modal modal-center fade" id="html-blok-modal" tabindex="-1" style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('contents.html_blok')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <textarea name="html_blok_edit" id="html_blok_edit"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-bold btn-pure btn-secondary"
+                            data-dismiss="modal">{{__('global.close')}}
+                    </button>
+                    <button type="button" class="btn btn-bold btn-pure btn-primary html_blok_save">{{__('global.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('JsContent')
     <script src="{{asset('panel/assets/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('panel/assets/js/contents/content.js')}}"></script>
     <script src="{{asset('panel/assets/js/jquery.nestable.min.js')}}"></script>
-
+    <script>
+        var editor_blok_management = CKEDITOR.replace('html_blok_edit', options);
+        CKEDITOR.config.toolbar = [
+            ['Styles','Format','Font','FontSize'],
+            '/',
+            ['Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','Print'],
+            '/',
+            ['NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+            ['Image','Table','-','Link','Flash','Smiley','TextColor','BGColor','Source']
+        ]
+    </script>
     <script>
         var updateOutput = function (e) {
 
@@ -442,6 +484,29 @@
             group: 1,
             maxDepth: '1',
         });
+        $(document).ready(function(){
+            $('.html_blok_edit').click(function(){
+                Loader_toggle('show');
+                $('#html-blok-modal').modal('show');
+                var id = $(this).attr('data-id');
+                var html = $('.html_blok'+id).attr('data-html');
+                console.log(html);
+                CKEDITOR.instances['html_blok_edit'].setData(html)
+                $('.html_blok_save').attr('data-id',id);
+
+                Loader_toggle('hide');
+            });
+
+            $('.html_blok_save').click(function(){
+
+                Loader_toggle('show');
+                var id = $(this).attr('data-id');
+                var textareaValue = CKEDITOR.instances.html_blok_edit.getData();
+                $('.html_blok'+id).attr('data-html',textareaValue);
+                $('#html-blok-modal').modal('hide');
+                Loader_toggle('hide');
+            })
+        })
     </script>
 @endsection
 

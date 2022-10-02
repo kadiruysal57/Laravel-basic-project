@@ -11,6 +11,7 @@ class BlokFiles extends Model
     protected $fillable = [
         'group_id',
         'name',
+        'type',
         'status',
     ];
     protected $table = 'blok_files';

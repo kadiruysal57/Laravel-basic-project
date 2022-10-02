@@ -116,6 +116,7 @@ $('#default_blok_edit').on('submit',function(e){
                 $.each(data.file_array,function(i,data){
                     $('#'+i).html(data);
                 })
+                html_blok_js();
                 ddhandetrash();
                 $.each(data.success_message_array, function (i, data){
                     Toastify({
