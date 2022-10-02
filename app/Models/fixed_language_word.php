@@ -17,7 +17,7 @@ class fixed_language_word extends Model
         'add_user',
         'update_user',
     ];
-    protected $table = 'fixed_language_word';
+    protected $table = 'fixed_word';
 
     public function getWordAdd($count){
         $code_name = __('fixed_word.code_name');

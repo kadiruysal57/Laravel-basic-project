@@ -7,6 +7,7 @@ use App\Models\Menu;
 use App\Models\menuitem;
 use Illuminate\Http\Request;
 use App\Models\Contents;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 
@@ -102,6 +103,7 @@ class MenuController extends Controller
                 $menu_item->menu_order = 0;
                 $menu_item->menu_id = $request->menu_id;
                 $menu_item->target = $request->custom_link_target;
+                $menu_item->add_user = Auth::id();
                 $menu_item->save();
 
                 $MenuModel = new menuitem();

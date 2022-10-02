@@ -55,7 +55,7 @@
                                             <div class="col-6">
 
                                                 <div style="height:210px;" class=" d-flex justify-content-center align-items-center" id="holder{{$st->id}}">
-                                                    <img alt="staff-image" style="max-width:200px;" src="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">
+                                                    <img alt="staff-image" style="max-width:200px;" src="">
                                                 </div>
 
 
@@ -68,7 +68,7 @@
                                                              </a>
                                                          </span>
                                                     </div>
-                                                    <input id="thumbnail{{$st->id}}" class="form-control" type="hidden" name="filepath_edit{{$st->id}}" value="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">
+                                                    <input id="thumbnail{{$st->id}}" class="form-control" type="hidden" name="filepath_edit{{$st->id}}" value="">
                                                 </div>
 
                                             </div>

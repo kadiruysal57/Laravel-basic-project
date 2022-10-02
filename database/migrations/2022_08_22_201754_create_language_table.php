@@ -29,9 +29,9 @@ return new class extends Migration
 
         DB::table('language')->insert(
             array(
-                'name' => 'English',
-                'short_name' => "EN",
-                'slug' => 'en',
+                'name' => 'Türkçe',
+                'short_name' => "TR",
+                'slug' => 'tr',
                 'type'=>'1',
                 'main_language'=>'1',
                 'add_user' => '1',

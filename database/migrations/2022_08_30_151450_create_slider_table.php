@@ -28,9 +28,9 @@ return new class extends Migration
 
         DB::table('slider')->insert(
             array(
-                'name' => 'slider',
-                'title' => 'title',
-                'description' => 'description',
+                'name' => 'Anasayfa Slider',
+                'title' => 'Anasayfa Slider',
+                'description' => 'Anasayfa Slider',
                 'status' => 1,
                 'add_user' => 1,
                 'update_user' => 1,

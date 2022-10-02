@@ -408,6 +408,7 @@ class ContentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         if(!$this->PermissionCheck()){
             return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
         }

@@ -42,8 +42,8 @@ return new class extends Migration
         DB::table('blok_files')->insert(
             array(
                 'group_id' => '1',
-                'type'=>"1",
-                'name' => "footer_default1",
+                'type'=>"2",
+                'name' => "html_blok",
                 'status' => "1",
             )
         );
@@ -51,51 +51,11 @@ return new class extends Migration
             array(
                 'group_id' => '1',
                 'type'=>"1",
-                'name' => "footer_default2",
-                'status' => "1",
-            )
-        );
-        DB::table('blok_files')->insert(
-            array(
-                'group_id' => '2',
-                'type'=>"1",
-                'name' => "filtre",
-                'status' => "1",
-            )
-        );
-        DB::table('blok_files')->insert(
-            array(
-                'group_id' => '2',
-                'type'=>"1",
-                'name' => "sample_page",
-                'status' => "1",
-            )
-        );
-
-        DB::table('blok_files')->insert(
-            array(
-                'group_id' => '3',
-                'type'=>"1",
                 'name' => "default_page1",
                 'status' => "1",
             )
         );
-        DB::table('blok_files')->insert(
-            array(
-                'group_id' => '3',
-                'type'=>"1",
-                'name' => "default_page2",
-                'status' => "1",
-            )
-        );
-        DB::table('blok_files')->insert(
-            array(
-                'group_id' => '3',
-                'type'=>"1",
-                'name' => "forms",
-                'status' => "1",
-            )
-        );
+
     }
 
     /**

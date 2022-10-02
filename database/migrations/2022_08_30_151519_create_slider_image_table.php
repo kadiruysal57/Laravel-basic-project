@@ -33,12 +33,12 @@ return new class extends Migration
         DB::table('slider_image')->insert(
             array(
                 'slider_id' => 1,
-                'title' => 'titledeneme',
-                'description' => 'descripton',
-                'text'=>'text_1',
-                'button_text'=>'button_text',
-                'button_colour'=>'button_colour',
-                'url'=>'url',
+                'title' => 'Enjoy Your Healthy Delicious Food',
+                'description' => 'Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.',
+                'text'=>'',
+                'button_text'=>'',
+                'button_colour'=>'',
+                'url'=>'/storage/photos/shares/hero-img.png',
                 'order_input'=>1,
                 'status' => 1,
                 'add_user' => 1,

@@ -48,7 +48,35 @@ return new class extends Migration
             $table->foreign('faq_id')->references('id')->on('faq_category');
             $table->timestamps();
         });
+        DB::table('contents')->insert(
+            array(
+                'name' => 'Anasayfa',
+                'title' => 'Biz Kimiz?',
+                'short_desc' => "Daha Fazla Bilgi İçin",
+                'language_id' => "1",
+                'description' => '<div class="content ps-0 ps-lg-5">
+                                <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
 
+                                <ul>
+                                    <li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</em></li>
+                                    <li><em>Duis aute irure dolor in reprehenderit in voluptate velit.</em></li>
+                                    <li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</em></li>
+                                </ul>
+
+                                <p><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</em></p>
+
+                                <div class="mt-4 position-relative"><em><img alt="" class="img-fluid" src="assets/img/about-2.jpg" /></em></div>
+                                </div>',
+                'seo_url'=>'/',
+                'lock_page'=>2,
+                'status'=>1,
+                'left_blok_active'=>2,
+                'right_blok_active'=>2,
+                'default_blok_id'=>null,
+                'slider_id'=>1,
+                'add_user'=>1
+            )
+        );
 
     }
 

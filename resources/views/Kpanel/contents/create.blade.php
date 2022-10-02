@@ -433,14 +433,7 @@
     <script src="{{asset('panel/assets/js/jquery.nestable.min.js')}}"></script>
     <script>
         var editor_blok_management = CKEDITOR.replace('html_blok_edit', options);
-        CKEDITOR.config.toolbar = [
-            ['Styles','Format','Font','FontSize'],
-            '/',
-            ['Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','Print'],
-            '/',
-            ['NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-            ['Image','Table','-','Link','Flash','Smiley','TextColor','BGColor','Source']
-        ]
+
     </script>
     <script>
         var updateOutput = function (e) {

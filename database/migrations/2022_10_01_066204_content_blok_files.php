@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('content_id');
             $table->unsignedBigInteger('blok_files_id');
             $table->integer('blok_file_order')->default(0);
+            $table->text('html')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();
@@ -28,6 +29,39 @@ return new class extends Migration
             $table->foreign('content_id')->references('id')->on('contents');
             $table->foreign('blok_files_id')->references('id')->on('blok_files');
         });
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '1',
+                'group_id' => '1',
+                'content_id' => "1",
+                'blok_files_id'=>"1",
+                'blok_file_order' => "1",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '1',
+                'group_id' => '1',
+                'content_id' => "1",
+                'blok_files_id' => "2",
+                'blok_file_order' => "2",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "4",
+                'blok_file_order' => "1",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
     }
 
     /**

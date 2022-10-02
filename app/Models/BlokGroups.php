@@ -58,11 +58,11 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',1) as $tp){
                 $html_button = "";
                 $html_class = "";
-                if($bf->type == 2){
-                    $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
+                if($tp->file_name->type == 2){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                    $html_class="html_bloks".$bf->id;
+                    $html_class="html_bloks".$tp->id;
                 }
                 $file_array['top_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$tp->group_id.'"
@@ -90,11 +90,11 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',2) as $tp){
                 $html_button = "";
                 $html_class = "";
-                if($bf->type == 2){
-                    $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
+                if($tp->file_name->type == 2){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                    $html_class="html_bloks".$bf->id;
+                    $html_class="html_bloks".$tp->id;
                 }
                 $file_array['left_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$tp->group_id.'"
@@ -121,11 +121,11 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',3) as $tp){
                 $html_button = "";
                 $html_class = "";
-                if($bf->type == 2){
-                    $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
+                if($tp->file_name->type == 2){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                    $html_class="html_bloks".$bf->id;
+                    $html_class="html_bloks".$tp->id;
                 }
                 $file_array['mid_blok_fix_nestable'] .= ' <li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$tp->group_id.'"
@@ -153,11 +153,11 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',4) as $tp){
                 $html_button = "";
                 $html_class = "";
-                if($bf->type == 2){
-                    $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
+                if($tp->file_name->type == 2){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                    $html_class="html_bloks".$bf->id;
+                    $html_class="html_bloks".$tp->id;
                 }
                 $file_array['right_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$tp->group_id.'"
@@ -185,11 +185,11 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',5) as $tp){
                 $html_button = "";
                 $html_class = "";
-                if($bf->type == 2){
-                    $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
+                if($tp->file_name->type == 2){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                    $html_class="html_bloks".$bf->id;
+                    $html_class="html_bloks".$tp->id;
                 }
                 $file_array['footer_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$tp->group_id.'"

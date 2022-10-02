@@ -49,6 +49,13 @@ class Contents extends Model
     public function content_gallery(){
         return $this->hasMany(ContentGallery::class,'content_id','id')->orderBy('image_order','asc');
     }
+    public function content_gallery_one(){
+        return $this->hasOne(ContentGallery::class,'content_id','id')->orderBy('image_order','asc');
+    }
+    public function content_slider(){
+
+        return $this->hasOne(slider::class,'id','slider_id');
+    }
     public function getTableReview(){
         $contents_all = $this->select('id','name','language_id','seo_url')->where('status',1)->get();
         foreach ($contents_all as $c){

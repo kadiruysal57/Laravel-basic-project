@@ -22,8 +22,8 @@ return new class extends Migration
         });
         DB::table('themes')->insert(
             array(
-                'themes_name' => 'Themes Marketing',
-                'themes_folder_name' => 'marketing',
+                'themes_name' => 'Themes Food',
+                'themes_folder_name' => 'food',
                 'status' => "1",
             )
         );

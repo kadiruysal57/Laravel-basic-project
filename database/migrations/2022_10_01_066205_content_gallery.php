@@ -24,6 +24,14 @@ return new class extends Migration
 
             $table->foreign('content_id')->references('id')->on('contents');
         });
+        DB::table('content_gallery')->insert(
+            array(
+                'content_id' => '1',
+                'image_url' => '/storage/photos/shares/about.jpg',
+                'image_order' => "1",
+                'add_user' => "1",
+            )
+        );
     }
 
     /**

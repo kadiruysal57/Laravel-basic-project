@@ -75,12 +75,12 @@
                                                              </a>
                                                          </span>
                                                     </div>
-                                                    <input id="thumbnail{{$si->id}}" class="form-control" type="hidden" name="filepath_edit{{$si->id}}" value="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">
+                                                    <input id="thumbnail{{$si->id}}" class="form-control" type="hidden" name="filepath_edit{{$si->id}}" value="{{$si->url}}">
                                                 </div>
 
 
                                                 <div class=" d-flex justify-content-center align-items-center mt-5" id="holder{{$si->id}}">
-                                                    <img style="max-height:130px; max-width:130px;" src="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">
+                                                    <img style="max-height:130px; max-width:130px;" src="{{$si->url}}">
                                                 </div>
                                             </div>
 
