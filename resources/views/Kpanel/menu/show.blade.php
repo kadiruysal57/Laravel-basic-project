@@ -187,7 +187,7 @@
         };
         $('#menu_nestable').nestable({
             group: 1,
-            maxDepth: '4', // controllerdan geliyor alt alta kaç tane menü olduğu belli etiyor
+            maxDepth: '3', // controllerdan geliyor alt alta kaç tane menü olduğu belli etiyor
         }).on('change', updateOutput);
         updateOutput($('#menu_nestable').data('output', $('#nestable-output')));
 

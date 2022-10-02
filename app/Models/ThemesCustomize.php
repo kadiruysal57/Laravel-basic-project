@@ -16,4 +16,8 @@ class ThemesCustomize extends Model
         'update_user',
     ];
     protected $table = 'themes_customize';
+
+    public function themes(){
+        return $this->hasOne(Themes::class,'id','themes_id');
+    }
 }

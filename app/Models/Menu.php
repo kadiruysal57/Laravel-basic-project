@@ -19,6 +19,10 @@ class Menu extends Model
     public function language(){
         return $this->hasOne(Language::class,'id','language_id');
     }
+    public function menu_item_top(){
+        return $this->hasMany(menuitem::class,'menu_id','id')->where('top_category','=',null)->orderBy('menu_order','asc');
+    }
+
 
     public function default_menu(){
         return array('Top Menu','Footer Menu');

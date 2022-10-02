@@ -188,6 +188,7 @@ class menuitem extends Model
         }
         return $returnhtml;
     }
+
     public function getFrontEndHtml($data){
         $liclass = null;
         $aclass = null;
@@ -201,5 +202,42 @@ class menuitem extends Model
 
         $returnhtml = '<li class="'.$liclass.'"><a class="dropdown-item '.$aclass.'" href="'.$slugname.'" '.$atoggle.'>'.getMenuName($data).'</a>'.$this->menuChildFrontEnd($data->id).'</li>';
         return $returnhtml;
+    }
+
+    public function yummyMenu($m){
+        $return_html = "";
+
+        if($m->tableId == 1){
+            $url = $m->menu_name_connection->seo_url;
+            $menu_name = $m->menu_name_connection->name;
+        }elseif($m->tableId == 99){
+            $url = $m->real_link;
+            $menu_name = $m->menu_name;
+        }
+        if(count($this->yummyChildMenu($m->id)) <= 0){
+            $return_html.= "<li >";
+
+            $return_html .= "<a href='$url'>$menu_name</a>";
+
+            $return_html .="</li>";
+        }else{
+            $return_html .="<li class='dropdown'>";
+            $return_html .= "<a href='$url'><span>$menu_name</span> <i class='bi bi-chevron-down dropdown-indicator'></i></a>";
+            $return_html .="<ul>";
+            $child_menu = $this->yummyChildMenu($m->id);
+            foreach ($child_menu as $cm){
+                $return_html .= $this->yummyMenu($cm);
+            }
+            $return_html .= "</ul>";
+
+            $return_html .="</li>";
+        }
+
+
+
+        return $return_html;
+    }
+    public function yummyChildMenu($id){
+        return $this->where('top_category',$id)->orderBy('menu_order','asc')->get();
     }
 }

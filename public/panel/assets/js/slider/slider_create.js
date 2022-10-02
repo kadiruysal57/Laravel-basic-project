@@ -24,10 +24,10 @@ $(document).ready(function () {
             '</a>'+
             '</span>'+
             '</div>'+
-            '<input id="thumbnail'+currentVal+'" class="form-control" type="hidden" name="filepath'+currentVal+'" value="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">'+
+            '<input id="thumbnail'+currentVal+'" class="form-control" type="hidden" name="filepath'+currentVal+'" value="">'+
             '</div>'+
             '<div class=" d-flex justify-content-center align-items-center mt-5" id="holder'+currentVal+'">'+
-            '<img  style="max-height:130px; max-width:130px;" src="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg" >'+
+            '<img  style="max-height:130px; max-width:130px;" src="" >'+
             '</div>'+
 
             '</div>'+

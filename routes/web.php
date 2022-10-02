@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 
 include 'Kpanel/web.php';
+include 'Themes/web.php';

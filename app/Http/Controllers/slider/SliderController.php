@@ -131,9 +131,7 @@ class SliderController extends Controller
 
 
                     if(empty($request->$order)){
-                        echo $order_last;
                         $order_last = $order_last + 1;
-                        echo $order_last;
                     }else{
                         $order_last = $request->$order;
                     }
@@ -144,7 +142,7 @@ class SliderController extends Controller
                         $slide_image->text = $request->$text;
                         $slide_image->button_text =  $request->$button_text;
                         $slide_image->button_colour =  $request->$button_colour;
-                        $slide_image->url =  $request->$filepath;
+                        $slide_image->url =  str_replace(env('APP_URL'),'',$request->$filepath);
                         $slide_image->order_input =  $order_last;
                         $slide_image->status = 1;
                         $slide_image->slider_id = $slide->id;
@@ -171,7 +169,7 @@ class SliderController extends Controller
                         $slide_image->text = $request->$text_edit;
                         $slide_image->button_text =  $request->$button_text_edit;
                         $slide_image->button_colour =  $request->$button_colour_edit;
-                        $slide_image->url =  $request->$filepath_edit;
+                        $slide_image->url = str_replace(env('APP_URL'),'', $request->$filepath_edit);
                         $slide_image->order_input =  $request->$order;
                         $slide_image->status = 1;
                         $slide_image->slider_id = $slide->id;

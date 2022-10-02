@@ -128,8 +128,8 @@ $(document).ready(function () {
                 })
 
                 nestableCall()
-                ddhandetrash()
                 table_write_data(data.listData, '#content_gallery_add_table');
+                ddhandetrash()
                 deleteButtonGallery();
                 html_blok_js();
                 if (data.type === "success") {

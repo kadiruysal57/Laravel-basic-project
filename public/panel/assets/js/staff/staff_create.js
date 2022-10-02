@@ -17,7 +17,7 @@ $(document).ready(function () {
             '<div class="d-flex">'+
             '<div class ="col-6 " >'+
             '<div  style="height:210px;" class=" d-flex justify-content-center align-items-center " id="holder'+currentVal+'">'+
-            '<img  style="max-width:200px;" src="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg" >'+
+            '<img  style="max-width:200px;" src="" >'+
             '</div>'+
             '<div class="input-group d-grid justify-content-center">'+
             '<div class="d-flex justify-content-center">'+
@@ -27,7 +27,7 @@ $(document).ready(function () {
             '</a>'+
             '</span>'+
             '</div>'+
-            '<input id="thumbnail'+currentVal+'" class="form-control" type="hidden" name="filepath'+currentVal+'" value="http://127.0.0.1:8000/storage/photos/shares/deneme.jpg">'+
+            '<input id="thumbnail'+currentVal+'" class="form-control" type="hidden" name="filepath'+currentVal+'" value="">'+
             '</div>'+
 
 

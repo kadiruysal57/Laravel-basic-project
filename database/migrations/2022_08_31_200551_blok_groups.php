@@ -30,7 +30,7 @@ return new class extends Migration
         DB::table('blok_groups')->insert(
             array(
                 'name' => 'right_left_blok',
-                'status' => "1",
+                'status' => "2",
             )
         );
         DB::table('blok_groups')->insert(

@@ -26,6 +26,109 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Anasayfa',
+                'real_link' => '#hero',
+                'menu_order'=>1,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Hakkımızda',
+                'real_link' => '#about',
+                'menu_order'=>2,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Menu',
+                'real_link' => '#menu',
+                'menu_order'=>3,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Events',
+                'real_link' => '#events',
+                'menu_order'=>4,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Şefler',
+                'real_link' => '#chefs',
+                'menu_order'=>5,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Galeri',
+                'real_link' => '#gallery',
+                'menu_order'=>6,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Bize Ulaşın',
+                'real_link' => '#contact',
+                'menu_order'=>8,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Açılır Menu',
+                'real_link' => '#',
+                'menu_order'=>7,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '1',
+                'menu_name' => '1',
+                'real_link' => '/',
+                'top_category'=>8,
+                'menu_order'=>1,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' => '99',
+                'menu_name' => 'Açılır Menu 3',
+                'real_link' => '#',
+                'top_category'=>9,
+                'menu_order'=>1,
+                'menu_id'=>1,
+                'target'=>1,
+            )
+        );
     }
 
     /**
