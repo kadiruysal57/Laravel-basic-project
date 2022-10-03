@@ -89,33 +89,33 @@
                                             <div class="col-4" style="text-align: -webkit-center">
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3">
                                                      <label class="fs-6 fw-bold form-label">
                                                          <span>{{__('global.title')}}</span>
                                                          </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$si->title}}" name="slider_title_edit{{$si->id}}">
+                                                     <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->title}}" name="slider_title_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
 
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container ">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container mt-3">
                                                      <label class="fs-6 fw-bold form-label ">
                                                          <span>{{__('global.description')}}</span>
                                                          </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$si->description}}" name="slider_desc_edit{{$si->id}}">
+                                                     <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->description}}" name="slider_desc_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
 
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3">
                                                      <label class="fs-6 fw-bold form-label">
                                                          <span>{{__('global.text')}}</span>
                                                          </label>
-                                                     <textarea class="form-control form-control w-75 p-3"  name="slider_text_edit{{$si->id}}">{{$si->text}}</textarea>
+                                                     <textarea class="form-control form-control w-75 p-3 "  name="slider_text_edit{{$si->id}}">{{$si->text}}</textarea>
 
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
@@ -144,6 +144,14 @@
                                                          <span>{{__('slider.button_colour')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_colour}}" name="button_colour_edit{{$si->id}}">
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                    <label class="fs-6 fw-bold form-label mt-3">
+                                                        <span>{{__('slider.button_href')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_href}}" name="button_href_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
