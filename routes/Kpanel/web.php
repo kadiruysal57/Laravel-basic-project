@@ -24,6 +24,7 @@ use App\Http\Controllers\services\ServicesController;
 use App\Http\Controllers\Faq\FaqController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\Portfolio\PortfolioGroupController;
+use App\Http\Controllers\Comments\CommentsController;
 
 
 
@@ -157,6 +158,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('portfolio', PortfolioController::class);
     Route::resource('portfolio-group',PortfolioGroupController::class);
     Route::resource('services',ServicesController::class);
+    Route::resource('comments',CommentsController::class);
 
 
 
