@@ -97,6 +97,13 @@
             </a>
         </li>
 
+        <li class="menu-item  @if(getCurrentUrlName() == "comments") active @endif">
+            <a class="menu-link "  href="{{route('comments.index')}}">
+                <span class="icon fa fa-comments"></span>
+                <span class="title">{{__('comments.comments_page_title')}}</span>
+            </a>
+        </li>
+
         <li class="menu-item @if(getCurrentUrlName() == "faq") active @endif">
             <a class="menu-link "  href="{{route('faq.index')}}">
                 <span class="icon fa fa-question-circle"></span>
