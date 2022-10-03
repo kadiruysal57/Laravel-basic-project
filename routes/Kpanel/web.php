@@ -20,6 +20,7 @@ use App\Http\Controllers\SiteSettings\ThemesController;
 use App\Http\Controllers\Whatsapp\WhatsappController;
 use App\Http\Controllers\language\FixedLanguageWordController;
 use App\Http\Controllers\staff\StaffController;
+use App\Http\Controllers\services\ServicesController;
 use App\Http\Controllers\Faq\FaqController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\Portfolio\PortfolioGroupController;
@@ -155,6 +156,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('faq', FaqController::class);
     Route::resource('portfolio', PortfolioController::class);
     Route::resource('portfolio-group',PortfolioGroupController::class);
+    Route::resource('services',ServicesController::class);
 
 
 

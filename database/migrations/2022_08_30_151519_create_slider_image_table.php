@@ -22,6 +22,7 @@ return new class extends Migration
             $table->text('text')->nullable();
             $table->string('button_text')->nullable();
             $table->string('button_colour')->nullable();
+            $table->string('button_href')->nullable();
             $table->string('url')->nullable();
             $table->integer('order_input');
             $table->integer('status');
@@ -38,6 +39,7 @@ return new class extends Migration
                 'text'=>'',
                 'button_text'=>'',
                 'button_colour'=>'',
+                'button_href'=>'',
                 'url'=>'/storage/photos/shares/hero-img.png',
                 'order_input'=>1,
                 'status' => 1,

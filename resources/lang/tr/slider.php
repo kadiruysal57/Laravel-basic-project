@@ -8,5 +8,6 @@ return [
     'add_slider_image' => 'Slider Resmi Ekle',
     'button_text' => 'Buton Yazısı Ekle',
     'button_colour' => 'Buton Rengi Seçiniz',
+    'button_href' => 'Buton Href',
     'order' => 'Sırasını Giriniz'
 ];

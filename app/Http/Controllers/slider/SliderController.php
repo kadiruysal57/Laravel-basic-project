@@ -75,6 +75,7 @@ class SliderController extends Controller
                     $text = "slider_text". $i;
                     $button_text = "button_text". $i;
                     $button_colour = "button_colour". $i;
+                    $button_href = "button_href". $i;
                     $filepath = "filepath". $i;
                     $order = "order". $i;
                     if(empty($request->$order)){
@@ -89,6 +90,7 @@ class SliderController extends Controller
                         $slide_image->text = $request->$text;
                         $slide_image->button_text =  $request->$button_text;
                         $slide_image->button_colour =  $request->$button_colour;
+                        $slide_image->button_href =  $request->$button_href;
                         $slide_image->url =  $request->$filepath;
                         $slide_image->order_input = $order;
                         $slide_image->status = 1;
@@ -127,6 +129,7 @@ class SliderController extends Controller
                     $text = "slider_text". $i;
                     $button_text = "button_text". $i;
                     $button_colour = "button_colour". $i;
+                    $button_href = "button_href". $i;
                     $filepath = "filepath". $i;
 
 
@@ -142,6 +145,7 @@ class SliderController extends Controller
                         $slide_image->text = $request->$text;
                         $slide_image->button_text =  $request->$button_text;
                         $slide_image->button_colour =  $request->$button_colour;
+                        $slide_image->button_href =  $request->$button_href;
                         $slide_image->url =  str_replace(env('APP_URL'),'',$request->$filepath);
                         $slide_image->order_input =  $order_last;
                         $slide_image->status = 1;
@@ -158,6 +162,7 @@ class SliderController extends Controller
                     $text_edit = "slider_text_edit". $si->id;
                     $button_text_edit = "button_text_edit". $si->id;
                     $button_colour_edit = "button_colour_edit". $si->id;
+                    $button_href_edit = "button_href_edit". $si->id;
                     $filepath_edit = "filepath_edit". $si->id;
                     $order = "order_edit". $si->id;
 
@@ -169,6 +174,7 @@ class SliderController extends Controller
                         $slide_image->text = $request->$text_edit;
                         $slide_image->button_text =  $request->$button_text_edit;
                         $slide_image->button_colour =  $request->$button_colour_edit;
+                        $slide_image->button_href =  $request->$button_href_edit;
                         $slide_image->url = str_replace(env('APP_URL'),'', $request->$filepath_edit);
                         $slide_image->order_input =  $request->$order;
                         $slide_image->status = 1;

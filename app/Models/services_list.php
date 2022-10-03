@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class slider_image extends Model
+class services_list extends Model
 {
     use HasFactory;
 
     protected $fillable = [
 
-        'slider_id',
+        'services_id',
+        'url',
         'title',
         'description',
-        'text',
-        'button_text',
-        'button_colour',
-        'button_href',
-        'url',
-        'order_input',
+        'link',
         'status',
         'add_user',
         'update_user'
     ];
 
-    protected $table = 'slider_image';
-
+    protected $table = 'services_list';
 }

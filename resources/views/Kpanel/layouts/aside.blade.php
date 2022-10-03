@@ -90,6 +90,13 @@
             </a>
         </li>
 
+        <li class="menu-item  @if(getCurrentUrlName() == "services") active @endif">
+            <a class="menu-link "  href="{{route('services.index')}}">
+                <span class="icon fa fa-book"></span>
+                <span class="title">{{__('services.services_page_title')}}</span>
+            </a>
+        </li>
+
         <li class="menu-item @if(getCurrentUrlName() == "faq") active @endif">
             <a class="menu-link "  href="{{route('faq.index')}}">
                 <span class="icon fa fa-question-circle"></span>

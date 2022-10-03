@@ -34,7 +34,7 @@ $(document).ready(function () {
 
             '<div class="col-4" style="text-align: -webkit-center">'+
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center" >'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3" >'+
             '<label class="fs-6 fw-bold form-label">'+
             '<span>Başlık</span>'+
             '</label>'+
@@ -43,7 +43,7 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container ">'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container mt-3">'+
             '<label class="fs-6 fw-bold form-label ">'+
             '<span>Açıklama</span>'+
             '</label>'+
@@ -53,7 +53,7 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center" >'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3" >'+
             '<label class="fs-6 fw-bold form-label">'+
             '<span>Text</span>'+
             '</label>'+
@@ -80,6 +80,14 @@ $(document).ready(function () {
             '<span>Buton Rengi</span>'+
             '</label>'+
             '<input type="text" class="form-control form-control w-75 p-3" name="button_colour'+currentVal+'">'+
+            '<div class="fv-plugins-message-container invalid-feedback"></div>'+
+            '</div>'+
+
+            '<div class="fv-row mb-7 fv-plugins-icon-container ">'+
+            '<label class="fs-6 fw-bold form-label mt-3">'+
+            '<span>Buton Href</span>'+
+            '</label>'+
+            '<input type="text" class="form-control form-control w-75 p-3" name="button_href'+currentVal+'">'+
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
             '</div>'+
 
