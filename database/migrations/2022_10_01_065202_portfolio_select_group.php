@@ -25,6 +25,17 @@ return new class extends Migration
             $table->foreign('portfolio_id')->references('id')->on('portfolio');
 
         });
+
+        DB::table('portfolio_select_group')->insert([
+            'portfolio_group_id'=>1,
+            'portfolio_id'=>1,
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_select_group')->insert([
+            'portfolio_group_id'=>2,
+            'portfolio_id'=>1,
+            'add_user'=>1,
+        ]);
     }
 
     /**

@@ -30,6 +30,8 @@ class Contents extends Model
         'default_blok_id',
         'slider_id',
         'gallery_id',
+        'services_id',
+        'portfolio_id',
         'form_id',
         'faq_id',
         'add_user',
@@ -52,9 +54,16 @@ class Contents extends Model
     public function content_gallery_one(){
         return $this->hasOne(ContentGallery::class,'content_id','id')->orderBy('image_order','asc');
     }
+    public function services(){
+        return $this->hasOne(services::class,'id','services_id');
+    }
     public function content_slider(){
 
         return $this->hasOne(slider::class,'id','slider_id');
+    }
+
+    public function portfolio(){
+        return $this->hasOne(portfolio::class,'id','portfolio_id');
     }
     public function getTableReview(){
         $contents_all = $this->select('id','name','language_id','seo_url')->where('status',1)->get();

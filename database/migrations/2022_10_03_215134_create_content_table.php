@@ -36,6 +36,8 @@ return new class extends Migration
             $table->unsignedBigInteger('default_blok_id')->nullable();
             $table->unsignedBigInteger('slider_id')->nullable();
             $table->unsignedBigInteger('gallery_id')->nullable();
+            $table->unsignedBigInteger('services_id')->nullable();
+            $table->unsignedBigInteger('portfolio_id')->nullable();
             $table->unsignedBigInteger('form_id')->nullable();
             $table->unsignedBigInteger('faq_id')->nullable();
             $table->integer('add_user')->nullable();
@@ -43,6 +45,8 @@ return new class extends Migration
             $table->foreign('default_blok_id')->references('id')->on('default_blok');
             $table->foreign('language_id')->references('id')->on('language');
             $table->foreign('gallery_id')->references('id')->on('gallery');
+            $table->foreign('services_id')->references('id')->on('services');
+            $table->foreign('portfolio_id')->references('id')->on('portfolio');
             $table->foreign('slider_id')->references('id')->on('slider');
             $table->foreign('form_id')->references('id')->on('form');
             $table->foreign('faq_id')->references('id')->on('faq_category');
@@ -74,6 +78,8 @@ return new class extends Migration
                 'right_blok_active'=>2,
                 'default_blok_id'=>null,
                 'slider_id'=>1,
+                'services_id'=>1,
+                'portfolio_id'=>1,
                 'add_user'=>1
             )
         );

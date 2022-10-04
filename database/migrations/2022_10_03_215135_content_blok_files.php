@@ -62,6 +62,28 @@ return new class extends Migration
                 'add_user'=>"1"
             )
         );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "5",
+                'blok_file_order' => "2",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "6",
+                'blok_file_order' => "2",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
     }
 
     /**

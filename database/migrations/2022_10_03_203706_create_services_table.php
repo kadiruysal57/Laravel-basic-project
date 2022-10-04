@@ -22,6 +22,12 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+        DB::table('services')->insert([
+            'name'=>"Servislerimiz",
+            'description'=>'test',
+            'status'=>'1',
+            'add_user'=>1,
+        ]);
     }
 
     /**

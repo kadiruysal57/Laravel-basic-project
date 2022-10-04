@@ -15,4 +15,8 @@ class portfolio_select_group extends Model
         'update_user',
     ];
     protected $table = 'portfolio_select_group';
+
+    public function portfolio_group(){
+        return $this->hasMany(portfolio_group::class,'id','portfolio_group_id');
+    }
 }

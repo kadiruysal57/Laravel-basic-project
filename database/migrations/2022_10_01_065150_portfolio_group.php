@@ -21,6 +21,17 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+
+        DB::table('portfolio_group')->insert([
+            'title'=>"Başlangıc",
+            'status'=>'1',
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group')->insert([
+            'title'=>"Ara Sıcaklar",
+            'status'=>'1',
+            'add_user'=>1,
+        ]);
     }
 
     /**

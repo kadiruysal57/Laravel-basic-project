@@ -60,14 +60,15 @@ class PortfolioController extends Controller
                 $portfolio->status = $request->status;
                 $portfolio->add_user = Auth::id();
                 $portfolio->save();
+                if(!empty($request->portfolio_groups)){
+                    foreach ($request->portfolio_groups as $pg){
 
-                foreach ($request->portfolio_groups as $pg){
-
-                    $portfolio_select = new portfolio_select_group();
-                    $portfolio_select->portfolio_group_id = $pg;
-                    $portfolio_select->portfolio_id = $portfolio->id;
-                    $portfolio_select->add_user = Auth::id();
-                    $portfolio_select->save();
+                        $portfolio_select = new portfolio_select_group();
+                        $portfolio_select->portfolio_group_id = $pg;
+                        $portfolio_select->portfolio_id = $portfolio->id;
+                        $portfolio_select->add_user = Auth::id();
+                        $portfolio_select->save();
+                    }
                 }
 
                 $route_url = route('portfolio.index');
@@ -96,22 +97,25 @@ class PortfolioController extends Controller
                 $portfolio->update_user = Auth::id();
                 $portfolio->save();
 
-                foreach($portfolio->portfolio_select_group as $p){
-                    if(!in_array($p->portfolio_group_id,$request->portfolio_groups)){
+                if(!empty($portfolio->portfolio_select_group)){
+                    foreach($portfolio->portfolio_select_group as $p){
+                        if(!in_array($p->portfolio_group_id,$request->portfolio_groups)){
 
-                        $p->delete();
+                            $p->delete();
+                        }
                     }
                 }
+                if(!empty($request->portfolio_groups)){
+                    foreach ($request->portfolio_groups as $pg){
+                        $check = portfolio_select_group::where('portfolio_group_id',$pg)->where('portfolio_id',$portfolio->id)->first();
 
-                foreach ($request->portfolio_groups as $pg){
-                    $check = portfolio_select_group::where('portfolio_group_id',$pg)->where('portfolio_id',$portfolio->id)->first();
-
-                    if(empty($check)){
-                        $portfolio_select = new portfolio_select_group();
-                        $portfolio_select->portfolio_group_id = $pg;
-                        $portfolio_select->portfolio_id = $portfolio->id;
-                        $portfolio_select->update_user = Auth::id();
-                        $portfolio_select->save();
+                        if(empty($check)){
+                            $portfolio_select = new portfolio_select_group();
+                            $portfolio_select->portfolio_group_id = $pg;
+                            $portfolio_select->portfolio_id = $portfolio->id;
+                            $portfolio_select->update_user = Auth::id();
+                            $portfolio_select->save();
+                        }
                     }
                 }
 
