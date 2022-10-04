@@ -19,9 +19,12 @@ class services extends Model
     protected $table = 'services';
 
     public function services_many(){
-        return $this->hasMany(services_list::class,'services_id','id')->where('status',1);
+        return $this->hasMany(services_list::class,'services_id','id')->orderBy('list_order')->where('status',1);
     }
     public function services_one(){
         return $this->hasOne(services_list::class,'services_id','id')->where('status',1);
+    }
+    public function services_one_first(){
+        return $this->hasOne(services_list::class,'services_id','id')->orderBy('list_order','asc')->where('status',1);
     }
 }

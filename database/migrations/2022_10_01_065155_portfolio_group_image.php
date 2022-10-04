@@ -27,6 +27,115 @@ return new class extends Migration
             $table->foreign('portfolio_group_id')->references('id')->on('portfolio_group');
 
         });
+
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-1.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>1,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-2.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>2,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-3.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>3,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-4.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>4,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-5.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>5,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>1,
+            'image_url'=>'/storage/photos/shares/menu-item-6.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>6,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-1.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>1,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-2.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>2,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-3.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>3,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-4.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>4,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-5.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>5,
+
+            'add_user'=>1,
+        ]);
+        DB::table('portfolio_group_image')->insert([
+            'portfolio_group_id'=>2,
+            'image_url'=>'/storage/photos/shares/menu-item-6.png',
+            'title'=>'Magnam Tiste',
+            'description' => 'Lorem, deren, trataro, filede, nerada',
+            'image_order'=>6,
+
+            'add_user'=>1,
+        ]);
     }
 
     /**

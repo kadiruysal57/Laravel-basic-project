@@ -103,6 +103,24 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="services_id">{{__('services.services_page_title')}}</label>
+                                        <select name="services_id" data-live-search="true" id="services_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($services as $s)
+                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="portfolio_id">{{__('title.portfolio')}}</label>
+                                        <select name="portfolio_id" data-live-search="true" id="portfolio_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($portfolio as $p)
+                                                <option value="{{$p->id}}">{{$p->name}}({{$p->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="form_id">{{__('global.form')}}</label>

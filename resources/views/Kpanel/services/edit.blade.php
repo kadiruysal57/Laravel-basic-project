@@ -55,7 +55,7 @@
                                             <div class="col-6">
 
                                                 <div style="height:210px;" class=" d-flex justify-content-center align-items-center" id="holder_edit{{$sm->id}}">
-                                                    <img alt="services-image" style="max-width:200px;" src="">
+                                                    <img alt="services-image" style="max-width:200px;" src="{{$sm->url}}">
                                                 </div>
 
 

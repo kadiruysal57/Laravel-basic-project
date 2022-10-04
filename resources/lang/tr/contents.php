@@ -45,4 +45,6 @@ return [
     'seo_url_required' => 'Seo Url Boş Bırakılamaz',
     'seo_url_unique' => 'Seo Url Daha Önce Eklenmiş',
     'html_blok'=>'Html Blok',
+    'services'=>'Servislerimiz',
+    'portfolio' => 'Portföy',
 ];

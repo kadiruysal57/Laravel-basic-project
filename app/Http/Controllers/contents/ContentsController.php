@@ -9,6 +9,8 @@ use App\Models\DefaultBlok;
 use App\Models\FaqCategory;
 use App\Models\gallery;
 use App\Models\MainBlok;
+use App\Models\portfolio;
+use App\Models\services;
 use App\Models\slider;
 use App\Models\form;
 use Illuminate\Http\Request;
@@ -53,6 +55,8 @@ class ContentsController extends Controller
         $data['slider'] = slider::where('status',1)->get();
         $data['form'] = form::where('status',1)->get();
         $data['faq'] = FaqCategory::where('status',1)->get();
+        $data['services'] = services::get();
+        $data['portfolio'] = portfolio::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -101,6 +105,8 @@ class ContentsController extends Controller
                     $contents->seo_description = $request->seo_description;
                     $contents->language_id = $request->language_id;
                     $contents->gallery_id = $request->gallery_id;
+                    $contents->services_id = $request->services_id;
+                    $contents->portfolio_id = $request->portfolio_id;
                     $contents->slider_id = $request->slider_id;
                     $contents->form_id = $request->form_id;
                     $contents->faq_id = $request->faq_id;
@@ -211,6 +217,8 @@ class ContentsController extends Controller
                 $contents->keywords = $request->keywords;
                 $contents->seo_title = $request->seo_title;
                 $contents->gallery_id = $request->gallery_id;
+                $contents->services_id = $request->services_id;
+                $contents->portfolio_id = $request->portfolio_id;
                 $contents->slider_id = $request->slider_id;
                 $contents->form_id = $request->form_id;
                 $contents->faq_id = $request->faq_id;
@@ -382,6 +390,9 @@ class ContentsController extends Controller
         $data['slider'] = slider::where('status',1)->get();
         $data['form'] = form::where('status',1)->get();
         $data['faq'] = FaqCategory::where('status',1)->get();
+        $data['services'] = services::get();
+
+        $data['portfolio'] = portfolio::where('status',1)->get();
         if(empty(Contents::find($id))){
             return view('Kpanel.404');
         }

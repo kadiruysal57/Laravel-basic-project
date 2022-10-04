@@ -49,9 +49,25 @@ return new class extends Migration
         );
         DB::table('blok_files')->insert(
             array(
-                'group_id' => '1',
+                'group_id' => '3',
                 'type'=>"1",
                 'name' => "default_page1",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "services",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "portfolio",
                 'status' => "1",
             )
         );
