@@ -38,6 +38,8 @@ return new class extends Migration
             $table->unsignedBigInteger('gallery_id')->nullable();
             $table->unsignedBigInteger('services_id')->nullable();
             $table->unsignedBigInteger('portfolio_id')->nullable();
+            $table->unsignedBigInteger('comments_id')->nullable();
+            $table->unsignedBigInteger('staff_id')->nullable();
             $table->unsignedBigInteger('form_id')->nullable();
             $table->unsignedBigInteger('faq_id')->nullable();
             $table->integer('add_user')->nullable();
@@ -50,6 +52,8 @@ return new class extends Migration
             $table->foreign('slider_id')->references('id')->on('slider');
             $table->foreign('form_id')->references('id')->on('form');
             $table->foreign('faq_id')->references('id')->on('faq_category');
+            $table->foreign('comments_id')->references('id')->on('comments');
+            $table->foreign('staff_id')->references('id')->on('staff');
             $table->timestamps();
         });
         DB::table('contents')->insert(
@@ -80,6 +84,8 @@ return new class extends Migration
                 'slider_id'=>1,
                 'services_id'=>1,
                 'portfolio_id'=>1,
+                'comments_id'=>1,
+                'staff_id'=>1,
                 'add_user'=>1
             )
         );

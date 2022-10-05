@@ -123,6 +123,25 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="comments_id">{{__('title.comments')}}</label>
+                                        <select name="comments_id" data-live-search="true" id="comments_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($comments as $c)
+                                                <option value="{{$c->id}}">{{$c->name}}({{$c->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="staff_id">{{__('title.staff')}}</label>
+                                        <select name="staff_id" data-live-search="true" id="staff_id" class="auto-search form-control">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            @foreach($staff as $s)
+                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="form_id">{{__('global.form')}}</label>
                                         <select name="form_id" data-live-search="true" id="form_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>

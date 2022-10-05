@@ -47,4 +47,6 @@ return [
     'html_blok'=>'Html Blok',
     'services'=>'Servislerimiz',
     'portfolio' => 'Portföy',
+    'testimonials'=>'Yorumlar',
+    'staff'=>'Çalışanlarımız',
 ];
