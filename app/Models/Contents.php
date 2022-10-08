@@ -32,6 +32,8 @@ class Contents extends Model
         'gallery_id',
         'services_id',
         'portfolio_id',
+        'comments_id',
+        'staff_id',
         'form_id',
         'faq_id',
         'add_user',
@@ -45,7 +47,7 @@ class Contents extends Model
     public function language(){
         return $this->hasOne(Language::class,'id','language_id');
     }
-    public function default_blok_id(){
+    public function default_blok(){
         return $this->hasOne(DefaultBlok::class,'id','default_blok_id');
     }
     public function content_gallery(){
@@ -61,9 +63,21 @@ class Contents extends Model
 
         return $this->hasOne(slider::class,'id','slider_id');
     }
+    public function comments(){
 
+        return $this->hasOne(comments::class,'id','comments_id');
+    }
     public function portfolio(){
         return $this->hasOne(portfolio::class,'id','portfolio_id');
+    }
+    public function staff(){
+        return $this->hasOne(staff::class,'id','staff_id');
+    }
+    public function gallery(){
+        return $this->hasOne(gallery::class,'id','gallery_id');
+    }
+    public function form(){
+        return $this->hasMany(form::class,'id','form_id');
     }
     public function getTableReview(){
         $contents_all = $this->select('id','name','language_id','seo_url')->where('status',1)->get();

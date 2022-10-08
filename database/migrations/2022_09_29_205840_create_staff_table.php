@@ -22,6 +22,15 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+
+        DB::table('staff')->insert(
+            array(
+                'name' => 'Şeflerimiz',
+                'description' => 'Bizimle Çalışan Profesyonel Şefler',
+                'status' => "1",
+                'add_user' => "1",
+            )
+        );
     }
 
     /**

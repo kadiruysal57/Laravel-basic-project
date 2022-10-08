@@ -26,7 +26,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12  float-left">
                 <div class="card">
                     <header class="card-header">
-                        <h4 class="card-title">{{__('title.sitesettings')}}</strong></h4>
+                        <h4 class="card-title">{{__('title.sitesettings')}} </strong></h4>
                     </header>
 
                     <form action="{{route('site-settings.store')}}" id="sitesettingsform">
@@ -267,14 +267,14 @@
                                                                     <th class="text-center w-100px">#</th>
                                                                 </tr>
                                                                 </thead>
-                                                                <tbody>
+                                                                <tbody class="csshidden">
                                                                 @foreach($sitesettings->address as $address)
                                                                     <tr>
                                                                         <td>{{$address->name}}</td>
                                                                         <td>{{$address->address}}</td>
                                                                         <td>{{$address->gsm}}</td>
                                                                         <td>{{$address->email}}</td>
-                                                                        <td>{{$address->maps}}</td>
+                                                                        <td >{{$address->maps}}</td>
                                                                         <td>
                                                                             <button type="button"
                                                                                     class="table-action hover-primary btn btn-pure address_add_button"

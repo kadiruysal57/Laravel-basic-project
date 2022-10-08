@@ -23,6 +23,17 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+
+
+        DB::table('gallery')->insert(
+            array(
+                'name' => "Anasayfa Galeri",
+                'title' => "Galeri",
+                'description' => "Galerimize bir göz atın",
+                'status'=>1,
+                'add_user'=>1,
+            )
+        );
     }
 
     /**

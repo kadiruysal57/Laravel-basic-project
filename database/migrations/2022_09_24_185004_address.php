@@ -27,6 +27,16 @@ return new class extends Migration
 
             $table->foreign('site_settings_id')->references('id')->on('site_settings');
         });
+        DB::table('address')->insert(
+            array(
+                'site_settings_id'=>1,
+                'name'=>"Anaofis",
+                'address'=>"A108 Adam Street New York, NY 535022",
+                'gsm'=>'+1 5589 55488 55',
+                'email'=>'info@example.com',
+                'maps'=>'https://www.google.com/maps/d/embed?mid=1aMpvkK38vJFhnLpdgavnXIgLQc0&hl=en_US&ehbc=2E312F',
+            )
+        );
     }
 
     /**

@@ -32,7 +32,11 @@ return new class extends Migration
         DB::table('whatsapp_icon')->insert(
             array(
                 'lang_id' => '1',
-                'phone'=>"+905495555555",
+                'image'=>'/storage/photos/shares/whatsapp.png',
+                'phone'=>"905496979174",
+                'wp_text'=>'Hemen Bize Ulaşın',
+                'default_text'=>'test mesaj',
+                'button_position'=>2,
                 'add_user'=>1,
             )
         );

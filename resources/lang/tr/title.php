@@ -13,5 +13,6 @@ return [
     'portfolio_add'=>'Portföy Kategori Ekle',
     'portfolio_group'=>'Portföy Grup',
     'portfolio_group_add'=>'Portföy Grup Ekle',
-
+    'comments'=>'Yorumlar',
+    'staff'=>'Çalışanlarımız',
 ];

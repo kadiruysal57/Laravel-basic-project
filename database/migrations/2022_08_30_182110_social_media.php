@@ -26,6 +26,36 @@ return new class extends Migration
             $table->foreign('sitesettings_id')->references('id')->on('site_settings');
 
         });
+        DB::table('social_media')->insert(
+            array(
+                'sitesettings_id'=>1,
+                'icon'=>"bi-twitter",
+                'name'=>"Twitter",
+                'link'=>'#',
+                'link_target'=>'2',
+                'add_user'=>'1'
+            )
+        );
+        DB::table('social_media')->insert(
+            array(
+                'sitesettings_id'=>1,
+                'icon'=>"bi-facebook",
+                'name'=>"Facebook",
+                'link'=>'#',
+                'link_target'=>'2',
+                'add_user'=>'1'
+            )
+        );
+        DB::table('social_media')->insert(
+            array(
+                'sitesettings_id'=>1,
+                'icon'=>"bi-instagram",
+                'name'=>"Instagram",
+                'link'=>'#',
+                'link_target'=>'2',
+                'add_user'=>'1'
+            )
+        );
     }
 
     /**

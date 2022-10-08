@@ -45,12 +45,10 @@ class GalleryController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'title' => 'required',
-                'description' => 'required',
                 'status'=>'required',
             ],[
                 'name.required'=>Lang::get('gallery.gallery_name_required'),
                 'title.required'=>Lang::get('gallery.gallery_title_required'),
-                'description.required'=>Lang::get('gallery.gallery_description_required'),
                 'status.required'=>Lang::get('gallery.gallery_status_required')
             ]);
             if ($validator->passes()) {
@@ -58,6 +56,7 @@ class GalleryController extends Controller
                 $gallery->name = $request->name;
                 $gallery->title = $request->title;
                 $gallery->description = $request->description;
+                $gallery->status = $request->status;
                 $gallery->add_user = Auth::id();
                 $gallery->save();
                 for ($x = 0; $x <= $request->gallery_count; $x++) {
@@ -83,12 +82,10 @@ class GalleryController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'title' => 'required',
-                'description' => 'required',
                 'status'=>'required',
             ],[
                 'name.required'=>Lang::get('gallery.gallery_name_required'),
                 'title.required'=>Lang::get('gallery.gallery_title_required'),
-                'description.required'=>Lang::get('gallery.gallery_description_required'),
                 'status.required'=>Lang::get('gallery.gallery_status_required')
             ]);
             if ($validator->passes()) {
@@ -97,6 +94,7 @@ class GalleryController extends Controller
                     $gallery->name = $request->name;
                     $gallery->title = $request->title;
                     $gallery->description = $request->description;
+                    $gallery->status = $request->status;
                     $gallery->update_user = Auth::id();
                     $gallery->save();
 

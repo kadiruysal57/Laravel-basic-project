@@ -22,4 +22,11 @@ class Whatsapp extends Model
     ];
     protected $table = 'whatsapp_icon';
 
+    public function getWp($lang = null){
+        if(empty($lang)){
+            $lang = \App\Models\Language::where('main_language',1)->first();
+            $lang = $lang->id;
+        }
+        return $this->where('lang_id',$lang)->where('status',1)->first();
+    }
 }

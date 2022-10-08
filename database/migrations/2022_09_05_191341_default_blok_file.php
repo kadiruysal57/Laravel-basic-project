@@ -30,6 +30,57 @@ return new class extends Migration
             $table->foreign('blok_files_id')->references('id')->on('blok_files');
 
         });
+
+        DB::table('default_blok_file')->insert(
+            array(
+                'main_blok_id' => 1,
+                'group_id' => 1,
+                'default_blok_id' => 1,
+                'blok_files_id'=>1,
+                'blok_file_order'=>1,
+                'add_user'=>1,
+            )
+        );
+        DB::table('default_blok_file')->insert(
+            array(
+                'main_blok_id' => 5,
+                'group_id' => 1,
+                'default_blok_id' => 1,
+                'blok_files_id'=>11,
+                'blok_file_order'=>1,
+                'add_user'=>1,
+            )
+        );
+        DB::table('default_blok_file')->insert(
+            array(
+                'main_blok_id' => 3,
+                'group_id' => 3,
+                'default_blok_id' => 1,
+                'blok_files_id'=>9,
+                'blok_file_order'=>2,
+                'add_user'=>1,
+            )
+        );
+        DB::table('default_blok_file')->insert(
+            array(
+                'main_blok_id' => 3,
+                'group_id' => 3,
+                'default_blok_id' => 1,
+                'blok_files_id'=>15,
+                'blok_file_order'=>1,
+                'add_user'=>1,
+            )
+        );
+        DB::table('default_blok_file')->insert(
+            array(
+                'main_blok_id' => 1,
+                'group_id' => 1,
+                'default_blok_id' => 1,
+                'blok_files_id'=>16,
+                'blok_file_order'=>2,
+                'add_user'=>1,
+            )
+        );
     }
 
     /**

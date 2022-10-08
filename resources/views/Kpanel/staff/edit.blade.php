@@ -55,7 +55,7 @@
                                             <div class="col-6">
 
                                                 <div style="height:210px;" class=" d-flex justify-content-center align-items-center" id="holder{{$st->id}}">
-                                                    <img alt="staff-image" style="max-width:200px;" src="">
+                                                    <img alt="staff-image" style="max-width:200px;" src="{{$st->url}}">
                                                 </div>
 
 

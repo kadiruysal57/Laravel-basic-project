@@ -22,6 +22,15 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+
+        DB::table('comments')->insert(
+            array(
+                'name' => 'Yorumlar',
+                'description' => 'Hakkımızda Ne Diyorlar?',
+                'status' => "1",
+                'add_user' => "1",
+            )
+        );
     }
 
     /**

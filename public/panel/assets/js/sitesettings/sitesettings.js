@@ -377,7 +377,7 @@ $('#address_ad').on('submit',function(e){
             if(data.type == "success"){
                 if(data.tableRefresh == 1){
                     table_write_data(data.listData,'#address_table'+data.site_settings_id);
-                    socialmediaaddmodal();
+                    addressaddmodal();
                 }
                 $.each(data.success_message_array, function (i, data){
                     Toastify({

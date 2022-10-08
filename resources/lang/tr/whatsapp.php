@@ -10,5 +10,6 @@ return [
     'right_bottom'=>'Sağ Asağı',
     'active'=>'Sitede Gözüksün',
     'passive'=>'Sitede Gözükmesin',
-
+    'button_position'=>'Pozisyonu',
+    'status'=>'Durumu',
 ];

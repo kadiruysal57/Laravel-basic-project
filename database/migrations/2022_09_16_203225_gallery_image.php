@@ -24,6 +24,70 @@ return new class extends Migration
             $table->foreign('gallery_id')->references('id')->on('gallery');
 
         });
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-1.jpg",
+                'image_order' => 1,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-2.jpg",
+                'image_order' => 2,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-3.jpg",
+                'image_order' => 3,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-4.jpg",
+                'image_order' => 4,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-5.jpg",
+                'image_order' => 5,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-6.jpg",
+                'image_order' =>6,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-7.jpg",
+                'image_order' =>7,
+                'add_user'=>1,
+            )
+        );
+        DB::table('gallery_image')->insert(
+            array(
+                'gallery_id' => 1,
+                'url' => "/storage/photos/shares/gallery-8.jpg",
+                'image_order' =>8,
+                'add_user'=>1,
+            )
+        );
     }
 
     /**
