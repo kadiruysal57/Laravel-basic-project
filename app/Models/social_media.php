@@ -9,7 +9,7 @@ class social_media extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'image',
+        'icon',
         'name',
         'link',
         'link_target',
@@ -46,4 +46,5 @@ class social_media extends Model
         }
         return $social_all;
     }
+
 }

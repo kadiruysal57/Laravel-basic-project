@@ -53,7 +53,7 @@
                                     <option value="">{{__('global.please_select')}}</option>
                                     <option @if($gallery->status == 1) selected=""
                                             @endif value="1">{{__('global.active')}}</option>
-                                    <option @if($gallery->status == 1) selected=""
+                                    <option @if($gallery->status == 2) selected=""
                                             @endif value="2">{{__('global.passive')}}</option>
                                 </select>
                             </div>

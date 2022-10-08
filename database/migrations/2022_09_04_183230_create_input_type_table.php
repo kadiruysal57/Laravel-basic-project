@@ -87,6 +87,15 @@ return new class extends Migration
                 'update_user' => 1,
             )
         );
+        DB::table('input_type')->insert(
+            array(
+                'name' => 'Time',
+                'status' => 1,
+                'loop' =>0,
+                'add_user' => 1,
+                'update_user' => 1,
+            )
+        );
     }
 
     /**

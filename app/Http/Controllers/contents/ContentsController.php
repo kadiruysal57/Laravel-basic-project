@@ -51,7 +51,7 @@ class ContentsController extends Controller
     {
 
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
-        $data['default_bloks'] = DefaultBlok::get();
+        $data['default_bloks'] = DefaultBlok::where('status',1)->get();
         $data['language'] = Language::where('status', 1)->get();
         $data['gallery'] = gallery::where('status', 1)->get();
         $data['slider'] = slider::where('status', 1)->get();
@@ -387,7 +387,7 @@ class ContentsController extends Controller
     {
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['contents'] = Contents::find($id);
-        $data['default_bloks'] = DefaultBlok::get();
+        $data['default_bloks'] = DefaultBlok::where('status',1)->get();
         $data['language'] = Language::where('status', 1)->get();
         $data['gallery'] = gallery::where('status', 1)->get();
         $data['slider'] = slider::where('status', 1)->get();

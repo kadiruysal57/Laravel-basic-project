@@ -59,18 +59,8 @@ return new class extends Migration
         DB::table('menu_item')->insert(
             array(
                 'tableId' => '99',
-                'menu_name' => 'Events',
-                'real_link' => 'http://127.0.0.1:8000/#events',
-                'menu_order'=>4,
-                'menu_id'=>1,
-                'target'=>1,
-            )
-        );
-        DB::table('menu_item')->insert(
-            array(
-                'tableId' => '99',
                 'menu_name' => 'Şefler',
-                'real_link' => 'http://127.0.0.1:8000/#chefs',
+                'real_link' => 'http://127.0.0.1:8000/#staff',
                 'menu_order'=>5,
                 'menu_id'=>1,
                 'target'=>1,
@@ -89,46 +79,15 @@ return new class extends Migration
         );
         DB::table('menu_item')->insert(
             array(
-                'tableId' => '99',
-                'menu_name' => 'Bize Ulaşın',
-                'real_link' => 'http://127.0.0.1:8000/#contact',
-                'menu_order'=>8,
+                'tableId' =>1,
+                'menu_name' => 2,
+                'real_link' => '',
+                'menu_order'=>6,
                 'menu_id'=>1,
                 'target'=>1,
             )
         );
-        DB::table('menu_item')->insert(
-            array(
-                'tableId' => '99',
-                'menu_name' => 'Açılır Menu',
-                'real_link' => 'http://127.0.0.1:8000/#',
-                'menu_order'=>7,
-                'menu_id'=>1,
-                'target'=>1,
-            )
-        );
-        DB::table('menu_item')->insert(
-            array(
-                'tableId' => '1',
-                'menu_name' => '1',
-                'real_link' => '/',
-                'top_category'=>8,
-                'menu_order'=>1,
-                'menu_id'=>1,
-                'target'=>1,
-            )
-        );
-        DB::table('menu_item')->insert(
-            array(
-                'tableId' => '99',
-                'menu_name' => 'Açılır Menu 3',
-                'real_link' => 'http://127.0.0.1:8000/#',
-                'top_category'=>9,
-                'menu_order'=>1,
-                'menu_id'=>1,
-                'target'=>1,
-            )
-        );
+
     }
 
     /**

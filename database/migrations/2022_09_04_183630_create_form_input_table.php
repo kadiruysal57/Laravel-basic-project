@@ -37,15 +37,102 @@ return new class extends Migration
             array(
                 'input_id' => 1,
                 'form_id' => 1,
-                'name' => 'deneme1',
+                'name' => 'name_surname',
                 'required' => 1,
-                'placeholder_use' => 1,
-                'id_attr' => 'deneme1',
-                'class_attr' => 'deneme1',
-                'placeholder'=>'deneme123',
+                'placeholder_use' => 2,
+                'id_attr' => 'name_surname',
+                'class_attr' => '',
+                'placeholder'=>'Adınız',
                 'status' => 1,
                 'active_passive' => 1,
                 'order_input' => 1,
+                'add_user' => 1,
+                'update_user' => 1
+            )
+        );
+
+        DB::table('form_input')->insert(
+            array(
+                'input_id' => 4,
+                'form_id' => 1,
+                'name' => 'email',
+                'required' => 1,
+                'placeholder_use' => 2,
+                'id_attr' => 'email',
+                'class_attr' => '',
+                'placeholder'=>'Email',
+                'status' => 1,
+                'active_passive' => 1,
+                'order_input' => 2,
+                'add_user' => 1,
+                'update_user' => 1
+            )
+        );
+
+        DB::table('form_input')->insert(
+            array(
+                'input_id' => 2,
+                'form_id' => 1,
+                'name' => 'phone',
+                'required' => 1,
+                'placeholder_use' => 2,
+                'id_attr' => 'number',
+                'class_attr' => '',
+                'placeholder'=>'Telefonunuz',
+                'status' => 1,
+                'active_passive' => 1,
+                'order_input' => 3,
+                'add_user' => 1,
+                'update_user' => 1
+            )
+        );
+        DB::table('form_input')->insert(
+            array(
+                'input_id' => 7,
+                'form_id' => 1,
+                'name' => 'date',
+                'required' => 1,
+                'placeholder_use' => 2,
+                'id_attr' => 'date',
+                'class_attr' => 'col-lg-6',
+                'placeholder'=>'Tarih',
+                'status' => 1,
+                'active_passive' => 1,
+                'order_input' => 4,
+                'add_user' => 1,
+                'update_user' => 1
+            )
+        );
+        DB::table('form_input')->insert(
+            array(
+                'input_id' => 5,
+                'form_id' => 1,
+                'name' => 'message',
+                'required' => 1,
+                'placeholder_use' => 2,
+                'id_attr' => 'message',
+                'class_attr' => 'col-lg-12',
+                'placeholder'=>'Mesajınız',
+                'status' => 1,
+                'active_passive' => 1,
+                'order_input' => 6,
+                'add_user' => 1,
+                'update_user' => 1
+            )
+        );
+        DB::table('form_input')->insert(
+            array(
+                'input_id' => 8,
+                'form_id' => 1,
+                'name' => 'time',
+                'required' => 1,
+                'placeholder_use' => 2,
+                'id_attr' => 'time',
+                'class_attr' => 'col-lg-6',
+                'placeholder'=>'Saat',
+                'status' => 1,
+                'active_passive' => 1,
+                'order_input' => 5,
                 'add_user' => 1,
                 'update_user' => 1
             )

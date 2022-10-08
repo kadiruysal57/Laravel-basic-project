@@ -47,4 +47,154 @@ class form_input extends Model
             $form->form_input_value_many()->delete();
         });
     }
+
+    public function createForm($input){
+        $return_input = "";
+        if($input->input_id == 1 || $input->input_id == 4 || $input->input_id == 2 || $input->input_id == 7 || $input->input_id == 8){
+            $return_input .= $this->createText($input);
+        }elseif($input->input_id == 5){
+            $return_input .= $this->createTextarea($input);
+        }elseif($input->input_id == 3){
+            $return_input .= $this->createSelect($input);
+        }elseif($input->input_id == 6){
+            $return_input .= $this->createCheckBox($input);
+        }
+        return $return_input;
+    }
+    public function createText($fi){
+        $return_text = "";
+        $class = "col-lg-4";
+        $name = "";
+        $id="";
+        $placeholder = "";
+        $required="";
+        $type = "text";
+        if($fi->input_id == 4){
+            $type = "email";
+        }elseif($fi->input_id == 2){
+            $type = "number";
+        }elseif($fi->input_id == 7){
+            $type = "date";
+        }elseif($fi->input_id == 8){
+            $type = "time";
+        }
+        if(!empty($fi->class_attr)){
+            $class = $fi->class_attr;
+        }
+        if(!empty($fi->name)){
+            $name = $fi->name;
+        }
+        if(!empty($fi->id_attr)){
+            $id = $fi->id_attr;
+        }
+        if(!empty($fi->placeholder)){
+            $placeholder = $fi->placeholder;
+        }
+        if(!empty($fi->required)){
+            $required ="required=''";
+        }
+        $return_text .="<div class='$class col-md-6'>
+                            <input type='$type' name='$name' class='form-control' $required id='$id' placeholder='$placeholder'>
+                            <div class='validate'></div>
+                        </div>";
+        return $return_text;
+    }
+    public function createTextarea($fi){
+        $class = "col-lg-4";
+        $name = "";
+        $id="";
+        $placeholder = "";
+        $required="";
+
+        if(!empty($fi->class_attr)){
+            $class = $fi->class_attr;
+        }
+        if(!empty($fi->name)){
+            $name = $fi->name;
+        }
+        if(!empty($fi->id_attr)){
+            $id = $fi->id_attr;
+        }
+        if(!empty($fi->placeholder)){
+            $placeholder = $fi->placeholder;
+        }
+        if(!empty($fi->required)){
+            $required ="required=''";
+        }
+        $return_text = "<div class='$class col-md-6'><textarea class='form-control $class' name='$name' rows='5' $required id='$id' placeholder='$placeholder'></textarea><div class='validate'></div></div>";
+
+        return $return_text;
+    }
+    public function createSelect($fi){
+        $class = "col-lg-4";
+        $name = "";
+        $id="";
+        $placeholder = "";
+        $required="";
+
+        if(!empty($fi->class_attr)){
+            $class = $fi->class_attr;
+        }
+        if(!empty($fi->name)){
+            $name = $fi->name;
+        }
+        if(!empty($fi->id_attr)){
+            $id = $fi->id_attr;
+        }
+        if(!empty($fi->placeholder)){
+            $placeholder = $fi->placeholder;
+        }
+        if(!empty($fi->required)){
+            $required ="required=''";
+        }
+        $option = "";
+        foreach($fi->form_input_value_many as $input_value){
+            $option .= "<option>$input_value->default_value</option>";
+        }
+        $return_text = "<div class='$class col-md-6'>
+                            <select name='$name' $required id='$id' class='form-control $class'>
+                            <option value=''>$placeholder</option>
+                            $option
+                            </select>
+                            <div class='validate'></div>
+                        </div>";
+
+        return $return_text;
+    }
+    public function createCheckBox($fi){
+        $class = "col-lg-4";
+        $name = "";
+        $id="";
+        $placeholder = "";
+        $required="";
+
+        if(!empty($fi->class_attr)){
+            $class = $fi->class_attr;
+        }
+        if(!empty($fi->name)){
+            $name = $fi->name."[]";
+        }
+        if(!empty($fi->id_attr)){
+            $id = $fi->id_attr;
+        }
+        if(!empty($fi->placeholder)){
+            $placeholder = $fi->placeholder;
+        }
+        if(!empty($fi->required)){
+            $required ="required=''";
+        }
+        $option = "";
+        foreach($fi->form_input_value_many as $key=>$input_value){
+            $option .= "<div class='col-lg-12 col-sm-12'><input type='checkbox' value='$input_value->default_value' name='$name' id='$id.$key'><label for='$id.$key'>$input_value->default_value</label></div>";
+        }
+        $return_text = "<div class='$class col-md-6'>
+                            <label for=''>$fi->placeholder</label>
+                            <div class='col-lg-12 col-md-12'>
+                            $option
+                            <div class='validate'></div>
+                            </div>
+                        </div>";
+
+        return $return_text;
+    }
 }

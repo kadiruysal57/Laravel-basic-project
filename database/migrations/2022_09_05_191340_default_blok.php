@@ -26,6 +26,15 @@ return new class extends Migration
 
 
         });
+        DB::table('default_blok')->insert(
+            array(
+                'default_blok_name' => "Standart Sayfa",
+                'left_blok_active' => "2",
+                'right_blok_active' => "2",
+                'status'=>1,
+                'add_user'=>1,
+            )
+        );
     }
 
     /**

@@ -87,7 +87,73 @@ return new class extends Migration
                 'status' => "1",
             )
         );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "form",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "gallery",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '1',
+                'type'=>"1",
+                'name' => "footer",
+                'status' => "1",
+            )
+        );
 
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '2',
+                'type'=>"2",
+                'name' => "html_blok",
+                'status' => "1",
+            )
+        );
+
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"2",
+                'name' => "html_blok",
+                'status' => "1",
+            )
+        );
+
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "default_page2",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '3',
+                'type'=>"1",
+                'name' => "contact_us",
+                'status' => "1",
+            )
+        );
+        DB::table('blok_files')->insert(
+            array(
+                'group_id' => '1',
+                'type'=>"1",
+                'name' => "breadcrumbs",
+                'status' => "1",
+            )
+        );
     }
 
     /**

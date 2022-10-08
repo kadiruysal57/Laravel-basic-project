@@ -232,15 +232,17 @@ class BlokGroups extends Model
                             </button>";
                         $html_class="html_bloks".$bf->id;
                     }
-                    $file_array[$b->name."_nestable"] .= '<li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$bf->group_id.'"
-                                                                                data-pagefileid ="0"
-                                                                                data-id="'.$bf->id.'"
-                                                                                data-html="'.$bf->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$bf->name).'</div>
-                                                                            </li>';
+                    $blok_name = __('contents.'.$bf->name);
+                    $file_array[$b->name."_nestable"] .= "<li class='dd-item $html_class'
+                                                            data-groupid='$bf->group_id'
+                                                            data-pagefileid ='0'
+                                                            data-id='$bf->id'
+                                                            data-html='$bf->html'>
+                                                            $html_button
+                                                            <div
+                                                                class='dd-handle'>$blok_name</div>
+
+                                                        </li>";
                 }
                 $file_array[$b->name."_nestable"] .= "</ol>";
             }
@@ -259,19 +261,21 @@ class BlokGroups extends Model
                             </button>";
                     $html_class="html_bloks".$tp->id;
                 }
-                $file_array['top_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-defaultblokid="'.$default_blok->id.'" data-id="'.$tp->id.'" action="'.route('blok-management.store').'">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>';
+                $blok_name = __('contents.'.$tp->file_name->name);
+                $route_delete = route('blok-management.store');
+                $file_array['top_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                        data-groupid='$tp->group_id'
+                                                        data-pagefileid ='$tp->id'
+                                                        data-id='$tp->blok_files_id'
+                                                        data-html='$tp->html'>
+                                                        $html_button
+                                                        <div
+                                                            class='dd-handle'>$blok_name
+                                                        </div>
+                                                        <div class='dd-handetrash' data-defaultblokid='$default_blok->id' data-id='$tp->id' action='$route_delete'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </div>
+                                                    </li>";
             }
             $file_array['top_blok_nestable'] .= '</ol>';
         }
@@ -291,19 +295,22 @@ class BlokGroups extends Model
                             </button>";
                     $html_class="html_bloks".$tp->id;
                 }
-                $file_array['left_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-defaultblokid="'.$default_blok->id.'" data-id="'.$tp->id.'" action="'.route('blok-management.store').'">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>';
+
+                $blok_name = __('contents.'.$tp->file_name->name);
+                $route_delete = route('blok-management.store');
+                $file_array['left_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                        data-groupid='$tp->group_id'
+                                                        data-pagefileid ='$tp->id'
+                                                        data-id='$tp->blok_files_id'
+                                                        data-html='$tp->html'>
+                                                        $html_button
+                                                        <div
+                                                            class='dd-handle'>$blok_name
+                                                        </div>
+                                                        <div class='dd-handetrash' data-defaultblokid='$default_blok->id' data-id='$tp->id' action='$route_delete'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </div>
+                                                    </li>";
             }
             $file_array['left_blok_nestable'] .= '</ol>';
         }else{
@@ -322,19 +329,22 @@ class BlokGroups extends Model
                             </button>";
                     $html_class="html_bloks".$tp->id;
                 }
-                $file_array['mid_blok_fix_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-defaultblokid="'.$default_blok->id.'" data-id="'.$tp->id.'" action="'.route('blok-management.store').'">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>';
+
+                $blok_name = __('contents.'.$tp->file_name->name);
+                $route_delete = route('blok-management.store');
+                $file_array['mid_blok_fix_nestable'] .= "<li class='dd-item $html_class'
+                                                        data-groupid='$tp->group_id'
+                                                        data-pagefileid ='$tp->id'
+                                                        data-id='$tp->blok_files_id'
+                                                        data-html='$tp->html'>
+                                                        $html_button
+                                                        <div
+                                                            class='dd-handle'>$blok_name
+                                                        </div>
+                                                        <div class='dd-handetrash' data-defaultblokid='$default_blok->id' data-id='$tp->id' action='$route_delete'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </div>
+                                                    </li>";
             }
             $file_array['mid_blok_fix_nestable'] .= '</ol>';
         }
@@ -354,19 +364,22 @@ class BlokGroups extends Model
                             </button>";
                     $html_class="html_bloks".$tp->id;
                 }
-                $file_array['right_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-defaultblokid="'.$default_blok->id.'" data-id="'.$tp->id.'" action="'.route('blok-management.store').'">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>';
+
+                $blok_name = __('contents.'.$tp->file_name->name);
+                $route_delete = route('blok-management.store');
+                $file_array['right_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                        data-groupid='$tp->group_id'
+                                                        data-pagefileid ='$tp->id'
+                                                        data-id='$tp->blok_files_id'
+                                                        data-html='$tp->html'>
+                                                        $html_button
+                                                        <div
+                                                            class='dd-handle'>$blok_name
+                                                        </div>
+                                                        <div class='dd-handetrash' data-defaultblokid='$default_blok->id' data-id='$tp->id' action='$route_delete'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </div>
+                                                    </li>";
             }
             $file_array['right_blok_nestable'] .= '</ol>';
         }
@@ -386,19 +399,22 @@ class BlokGroups extends Model
                             </button>";
                     $html_class="html_bloks".$tp->id;
                 }
-                $file_array['footer_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
-                                                                                <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
-                                                                                </div>
-                                                                                <div class="dd-handetrash" data-defaultblokid="'.$default_blok->id.'" data-id="'.$tp->id.'" action="'.route('blok-management.store').'">
-                                                                                     <i class="fa fa-trash"></i>
-                                                                                </div>
-                                                                            </li>';
+
+                $blok_name = __('contents.'.$tp->file_name->name);
+                $route_delete = route('blok-management.store');
+                $file_array['footer_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                        data-groupid='$tp->group_id'
+                                                        data-pagefileid ='$tp->id'
+                                                        data-id='$tp->blok_files_id'
+                                                        data-html='$tp->html'>
+                                                        $html_button
+                                                        <div
+                                                            class='dd-handle'>$blok_name
+                                                        </div>
+                                                        <div class='dd-handetrash' data-defaultblokid='$default_blok->id' data-id='$tp->id' action='$route_delete'>
+                                                            <i class='fa fa-trash'></i>
+                                                        </div>
+                                                    </li>";
             }
             $file_array['footer_blok_nestable'] .= '</ol>';
         }

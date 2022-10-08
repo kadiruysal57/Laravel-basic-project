@@ -1,5 +1,5 @@
 @if(!empty($content->staff))
-    <section id="chefs" class="chefs">
+    <section id="staff" class="staff">
         <div class="container" data-aos="fade-up">
 
             <div class="section-header">

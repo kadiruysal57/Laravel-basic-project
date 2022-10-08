@@ -79,17 +79,6 @@ return new class extends Migration
                 'group_id' => '3',
                 'content_id' => "1",
                 'blok_files_id' => "6",
-                'blok_file_order' => "2",
-                'html'=>"",
-                'add_user'=>"1"
-            )
-        );
-        DB::table('content_blok_files')->insert(
-            array(
-                'main_blok_id' => '3',
-                'group_id' => '3',
-                'content_id' => "1",
-                'blok_files_id' => "7",
                 'blok_file_order' => "3",
                 'html'=>"",
                 'add_user'=>"1"
@@ -100,8 +89,52 @@ return new class extends Migration
                 'main_blok_id' => '3',
                 'group_id' => '3',
                 'content_id' => "1",
-                'blok_files_id' => "8",
+                'blok_files_id' => "7",
                 'blok_file_order' => "4",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "8",
+                'blok_file_order' => "5",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "9",
+                'blok_file_order' => "6",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '3',
+                'group_id' => '3',
+                'content_id' => "1",
+                'blok_files_id' => "10",
+                'blok_file_order' => "7",
+                'html'=>"",
+                'add_user'=>"1"
+            )
+        );
+        DB::table('content_blok_files')->insert(
+            array(
+                'main_blok_id' => '5',
+                'group_id' => '1',
+                'content_id' => "1",
+                'blok_files_id' => "11",
+                'blok_file_order' => "1",
                 'html'=>"",
                 'add_user'=>"1"
             )

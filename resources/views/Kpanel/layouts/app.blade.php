@@ -21,7 +21,7 @@
     <link rel="icon" href="{{asset('panel/assets/img/favicon.png')}}">
     <link rel="stylesheet" href="{{asset('panel/assets/css/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('panel/assets/vendor/datatables/css/dataTables.bootstrap4.min.css')}}">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     @yield('CssContent')
 

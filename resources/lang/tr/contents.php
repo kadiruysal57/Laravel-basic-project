@@ -30,7 +30,7 @@ return [
     'footer_default2'=>'Varsayılan Alt 2',
     'filtre'=>'Filtreleme',
     'sample_page'=>'Benzer Sayfalar',
-    'default_page1'=>'Varsayılan Sayfa 1',
+    'default_page1'=>'Varsayılan Sayfa',
     'default_page2'=>'Varsayılan Sayfa 2',
     'forms'=>'Formlar',
     'pagesname'=>'Sayfa İsmi',
@@ -49,4 +49,9 @@ return [
     'portfolio' => 'Portföy',
     'testimonials'=>'Yorumlar',
     'staff'=>'Çalışanlarımız',
+    'form'=>'Form',
+    'gallery'=>'Galeri',
+    'footer'=>'Alt',
+    'contact_us'=>'İletişim Bilgileri',
+    'breadcrumbs'=>'Navigasyon',
 ];

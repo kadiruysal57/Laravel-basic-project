@@ -119,7 +119,8 @@
                                                                 @foreach($b->group_file as $bf)
                                                                     <li class="dd-item @if($bf->type == 2) html_blok{{$bf->id}} @endif"
                                                                         data-groupid="{{$bf->group_id}}"
-                                                                        data-id="{{$bf->id}}">
+                                                                        data-id="{{$bf->id}}"
+                                                                        data-html="">
                                                                         @if($bf->type == 2)
                                                                             <button type="button" data-id="{{$bf->id}}" class="btn btn-outline-primary btn-sm html_blok_edit">
                                                                                 <i class="fa fa-gears"></i>

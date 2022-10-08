@@ -63,18 +63,18 @@ return new class extends Migration
                 'short_desc' => "Daha Fazla Bilgi İçin",
                 'language_id' => "1",
                 'description' => '<div class="content ps-0 ps-lg-5">
-                                <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
+<p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
 
-                                <ul>
-                                    <li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</em></li>
-                                    <li><em>Duis aute irure dolor in reprehenderit in voluptate velit.</em></li>
-                                    <li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</em></li>
-                                </ul>
+<ul>
+	<li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</em></li>
+	<li><em>Duis aute irure dolor in reprehenderit in voluptate velit.</em></li>
+	<li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</em></li>
+</ul>
 
-                                <p><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</em></p>
+<p><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</em></p>
 
-                                <div class="mt-4 position-relative"><em><img alt="" class="img-fluid" src="assets/img/about-2.jpg" /></em></div>
-                                </div>',
+<div class="mt-4 position-relative"><img alt="" src="http://127.0.0.1:8000/storage/photos/shares/about-2.jpg" style="height:768px; width:1024px" /></div>
+</div>',
                 'seo_url'=>'/',
                 'lock_page'=>2,
                 'status'=>1,
@@ -86,6 +86,41 @@ return new class extends Migration
                 'portfolio_id'=>1,
                 'comments_id'=>1,
                 'staff_id'=>1,
+                'form_id'=>1,
+                'gallery_id'=>1,
+                'add_user'=>1
+            )
+        );
+
+        DB::table('contents')->insert(
+            array(
+                'name' => 'Bize Ulaşın',
+                'title' => 'Bize Ulaşın',
+                'short_desc' => "",
+                'language_id' => "1",
+                'description' => '<div class="btgrid">
+<div class="row row-1">
+<div class="col col-md-6">
+<div class="content">
+<p>Sadece Test Yapıyorum burada</p>
+</div>
+</div>
+
+<div class="col col-md-6">
+<div class="content">
+<p><img alt="" src="http://127.0.0.1:8000/storage/photos/shares/about.jpg" style="height:768px; width:1024px" /></p>
+</div>
+</div>
+</div>
+</div>
+<p>&nbsp;</p>',
+                'seo_url'=>'bize-ulasin',
+                'lock_page'=>2,
+                'status'=>1,
+                'left_blok_active'=>2,
+                'right_blok_active'=>2,
+                'default_blok_id'=>1,
+                'form_id'=>1,
                 'add_user'=>1
             )
         );
