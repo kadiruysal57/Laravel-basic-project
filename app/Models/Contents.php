@@ -101,4 +101,32 @@ class Contents extends Model
             $contents->blok_file()->delete();
         });
     }
+
+    public function getBreadcrumbs($main_page = null){
+        $breadcrumbs = null;
+        if(!empty($main_page)){
+            $pages = $this->where('id',$main_page)->first();
+            $main_page_controll = $pages->main_page;
+        }else{
+            $pages = $this;
+            $main_page_controll = $this->main_page;
+        }
+
+        if($main_page_controll != 0){
+            $this->getBreadcrumbs($pages->main_page);
+            if($pages->id != $this->id){
+                $breadcrumbs .= "<li><a href='$pages->seo_url'>$pages->name</a></li>";
+            }else{
+                $breadcrumbs .= "<li>$pages->name</li>";
+            }
+
+        }else{
+            if($pages->id != $this->id){
+                $breadcrumbs .= "<li><a href='$pages->seo_url'>$pages->name</a></li>";
+            }else{
+                $breadcrumbs .= "<li>$pages->name</li>";
+            }
+        }
+        echo $breadcrumbs;
+    }
 }

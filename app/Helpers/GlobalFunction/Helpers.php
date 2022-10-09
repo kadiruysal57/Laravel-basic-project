@@ -97,7 +97,10 @@ function getCurrentUrlName(){
 }
 function getFixedWord($colum){
      $word = \App\Models\fixed_language_word::where('code_name',$colum)->first();
-    return $word->word;
+     if(!empty($word->word)){
+         return $word->word;
+     }
+
 }
 function getSiteSetting($colum,$lang = null){
     $lang = \App\Models\Language::where('main_language',1)->first();
