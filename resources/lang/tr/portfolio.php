@@ -9,5 +9,5 @@ return [
     'status_required'=>'Durum Alanı Gereklidir',
     'title_required'=>'Başlık Alanı Gereklidir',
     'description_required'=>'Açıklama Kısmı Gereklidir',
-
+    'alt_title'=>'Alt Başlık',
 ];

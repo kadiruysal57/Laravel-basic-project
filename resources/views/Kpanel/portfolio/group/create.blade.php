@@ -44,6 +44,7 @@
                                 <th>{{__('portfolio.image')}}</th>
                                 <th>{{__('portfolio.title')}}</th>
                                 <th>{{__('portfolio.description')}}</th>
+                                <th>{{__('portfolio.alt_title')}}</th>
                                 <th>{{__('portfolio.order')}}</th>
                                 <th class="text-right table-actions">{{__('global.action')}}</th>
                                 </thead>

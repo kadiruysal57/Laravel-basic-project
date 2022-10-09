@@ -64,6 +64,7 @@ class PortfolioGroupController extends Controller
                 for ($x = 1; $x <= $request->count; $x++) {
                     $image = "portfolio_image_input".$x;
                     $title = "image_title".$x;
+                    $alt_title = "alt_title".$x;
                     $description = "image_description".$x;
                     $order = "image_order".$x;
                     if(!empty($request->$image)){
@@ -73,6 +74,7 @@ class PortfolioGroupController extends Controller
                         $portfolio_group_image->description = $request->$description;
                         $portfolio_group_image->image_order = $request->$order;
                         $portfolio_group_image->portfolio_group_id  = $portfolio_group->id;
+                        $portfolio_group_image->alt_title  = $request->$alt_title;
                         $portfolio_group_image->add_user = Auth::id();
                         $portfolio_group_image->save();
                     }
@@ -104,6 +106,7 @@ class PortfolioGroupController extends Controller
                 foreach($portfolio_group->image as $x){
                     $image = "portfolio_image_inputs".$x->id;
                     $title = "image_titles".$x->id;
+                    $alt_title = "alt_titles".$x->id;
                     $description = "image_descriptions".$x->id;
                     $order = "image_orders".$x->id;
                     if(!empty($request->$image)){
@@ -111,6 +114,7 @@ class PortfolioGroupController extends Controller
                         $x->title = $request->$title;
                         $x->description = $request->$description;
                         $x->image_order = $request->$order;
+                        $x->alt_title = $request->$alt_title;
                         $x->update_user = Auth::id();
                         $x->save();
                     }
@@ -119,6 +123,7 @@ class PortfolioGroupController extends Controller
                 for ($x = 1; $x <= $request->count; $x++) {
                     $image = "portfolio_image_input".$x;
                     $title = "image_title".$x;
+                    $alt_title = "alt_title".$x;
                     $description = "image_description".$x;
                     $order = "image_order".$x;
                     if(!empty($request->$image)){
@@ -128,6 +133,7 @@ class PortfolioGroupController extends Controller
                         $portfolio_group_image->description = $request->$description;
                         $portfolio_group_image->image_order = $request->$order;
                         $portfolio_group_image->portfolio_group_id  = $portfolio_group->id;
+                        $portfolio_group_image->alt_title = $request->$alt_title;
                         $portfolio_group_image->add_user = Auth::id();
                         $portfolio_group_image->save();
                     }
