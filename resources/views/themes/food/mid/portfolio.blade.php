@@ -48,9 +48,11 @@
                                                     <p class="ingredients">
                                                         {{$pgi->description}}
                                                     </p>
-                                                    <!--<p class="price">
-                                                        $5.95
-                                                    </p> bu alan gelecek-->
+                                                    @if(!empty($pgi->alt_title))
+                                                        <p class="price">
+                                                            {{$pgi->alt_title}}
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             @endforeach
                                         @endif

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
+            $table->string('alt_title')->nullable();
             $table->integer('image_order')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -34,7 +35,7 @@ return new class extends Migration
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
             'image_order'=>1,
-
+            'alt_title'=>"90₺",
             'add_user'=>1,
         ]);
         DB::table('portfolio_group_image')->insert([
@@ -42,6 +43,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-2.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>2,
 
             'add_user'=>1,
@@ -51,6 +53,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-3.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>3,
 
             'add_user'=>1,
@@ -60,6 +63,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-4.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>4,
 
             'add_user'=>1,
@@ -69,6 +73,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-5.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>5,
 
             'add_user'=>1,
@@ -78,6 +83,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-6.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>6,
 
             'add_user'=>1,
@@ -87,6 +93,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-1.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>1,
 
             'add_user'=>1,
@@ -96,6 +103,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-2.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>2,
 
             'add_user'=>1,
@@ -105,6 +113,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-3.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>3,
 
             'add_user'=>1,
@@ -114,6 +123,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-4.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>4,
 
             'add_user'=>1,
@@ -123,6 +133,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-5.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>5,
 
             'add_user'=>1,
@@ -132,6 +143,7 @@ return new class extends Migration
             'image_url'=>'/storage/photos/shares/menu-item-6.png',
             'title'=>'Magnam Tiste',
             'description' => 'Lorem, deren, trataro, filede, nerada',
+            'alt_title'=>"90₺",
             'image_order'=>6,
 
             'add_user'=>1,

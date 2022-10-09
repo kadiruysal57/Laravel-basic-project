@@ -15,6 +15,7 @@ class portfolio_group_image extends Model
         'title',
         'image_order',
         'description',
+        'alt_title',
         'add_user',
         'update_user',
     ];
@@ -24,6 +25,7 @@ class portfolio_group_image extends Model
     {
         $image = __('portfolio.image');
         $title = __('portfolio.title');
+        $alt_title = __('portfolio.alt_title');
         $description = __('portfolio.description');
         $order = __('portfolio.order');
         $please_select_image = __('global.please_select_image');
@@ -52,19 +54,21 @@ class portfolio_group_image extends Model
 </div><script >$('.lfm').filemanager('image');</script>";
         $return_data[1]['title'] = "<input type='text' class='form-control' name='image_title$count' placeholder='$title'>";
         $return_data[1]['description'] = "<textarea class='form-control' name='image_description$count' placeholder='$description'></textarea>";
+        $return_data[1]['alt_title'] = "<input type='text' class='form-control' name='alt_title$count' placeholder='$alt_title'>";
         $return_data[1]['order'] = "<input type='number' class='form-control' name='image_order$count' placeholder='$order'>";
         $return_data[1]['actions'] = "<button type='button' class='btn btn-danger btn-sm delete_portfolio_image mt-2' data-count='$count'><i class='fa fa-trash'></i></button>";
         return $return_data;
     }
 
     public function getTableReview($portfolio_group_id){
-        $portfolio_all = $this->select('id','image_url','title','description','image_order')->where('portfolio_group_id',$portfolio_group_id)->orderBy('image_order','ASC')->get();
+        $portfolio_all = $this->select('id','image_url','title','alt_title','description','image_order')->where('portfolio_group_id',$portfolio_group_id)->orderBy('image_order','ASC')->get();
 
         $please_select_image = __('global.please_select_image');
         foreach($portfolio_all as $all){
             $image_url = $all->image_url;
             $image = asset($all->image_url);
             $title = __('portfolio.title');
+            $alt_title = __('portfolio.alt_title');
             $description = __('portfolio.description');
             $order = __('portfolio.order');
             $please_select_image = __('global.please_select_image');
@@ -96,16 +100,19 @@ class portfolio_group_image extends Model
 
             $title_colum = "<input type='text' class='form-control' name='image_titles$all->id' placeholder='$title' value='$all->title'>";
             $description_colum = "<textarea class='form-control' name='image_descriptions$all->id' placeholder='$description'>$all->description</textarea>";
+            $alt_title_colum = "<input type='text' class='form-control' name='alt_titles$all->id' placeholder='$alt_title' value='$all->alt_title'>";
             $image_order_colum = "<input type='number' class='form-control' name='image_orders$all->id' placeholder='$order' value='$all->image_order'>";
             $actions_colum = "<button type='button' class='btn btn-danger btn-sm deleteButtonImage mt-2' data-table='#portfolio_image_table' data-id='$all->id' data-action='$destroy_url'><i class='fa fa-trash'></i></button>";
             unset($all->id);
             unset($all->image_url);
             unset($all->title);
+            unset($all->alt_title);
             unset($all->description);
             unset($all->image_order);
             $all->image_url = $image_url_colum;
             $all->title = $title_colum;
             $all->description = $description_colum;
+            $all->alt_title = $alt_title_colum;
             $all->image_order = $image_order_colum;
             $all->actions = $actions_colum;
         }

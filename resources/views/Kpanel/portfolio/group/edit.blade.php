@@ -48,6 +48,7 @@
                                 <th>{{__('portfolio.image')}}</th>
                                 <th>{{__('portfolio.title')}}</th>
                                 <th>{{__('portfolio.description')}}</th>
+                                <th>{{__('portfolio.alt_title')}}</th>
                                 <th>{{__('portfolio.order')}}</th>
                                 <th class="text-right table-actions">{{__('global.action')}}</th>
                                 </thead>
@@ -80,6 +81,10 @@
                                         </td>
                                         <td>
                                             <textarea class='form-control' name='image_descriptions{{$im->id}}' placeholder='{{__('portfolio.description')}}'>{{$im->description}}</textarea>
+                                        </td>
+                                        <td>
+                                            <input type='text' class='form-control' name='alt_titles{{$im->id}}' value="{{$im->alt_title}}" placeholder='{{__('portfolio.alt_title')}}'>
+
                                         </td>
                                         <td>
                                             <input type='number' class='form-control' name='image_orders{{$im->id}}' placeholder='{{__('portfolio.order')}}' value="{{$im->image_order}}">
