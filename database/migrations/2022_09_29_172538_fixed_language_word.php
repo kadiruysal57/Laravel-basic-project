@@ -103,6 +103,15 @@ return new class extends Migration
                 'add_user' => "1",
             )
         );
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"home",
+                'word' => "Anasayfa",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
 
     }
 
