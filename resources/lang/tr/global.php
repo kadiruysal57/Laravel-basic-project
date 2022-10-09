@@ -54,4 +54,5 @@ return [
     'site_name_success'=>'Site İsmi Uygundur.',
     'site_name_error' => 'Site İsmi Daha Önce Kullanılmış o yüzden seo url kendiniz belirlemeniz gerekmektedir.',
     'faq'=>'Sıkca Sorulan Sorular',
+    'main_page'=>'Ana Kategori',
 ];

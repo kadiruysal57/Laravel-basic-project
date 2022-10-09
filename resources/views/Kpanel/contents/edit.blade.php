@@ -100,6 +100,15 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <label for="main_page">{{__('contents.main_page')}}</label>
+                                        <select name="main_page" id="main_page" class="auto-search form-control">
+                                            <option value="0">{{__('global.main_page')}}</option>
+                                            @foreach($main_pages as $m)
+                                                <option @if($m->id == $contents->main_page) selected="" @endif value="{{$m->id}}">@if($m->main_page != 0) -- @endif {{$m->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="slider_id">{{__('global.slider')}}</label>
                                         <select name="slider_id" id="slider_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>

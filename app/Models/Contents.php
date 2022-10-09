@@ -23,6 +23,7 @@ class Contents extends Model
         'seo_description',
         'focus_keywords',
         'seo_url',
+        'main_page',
         'lock_page',
         'status',
         'left_blok_active',

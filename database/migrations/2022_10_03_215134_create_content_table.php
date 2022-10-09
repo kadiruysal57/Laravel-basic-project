@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('focus_keywords',255)->nullable();
             $table->string('seo_url',255)->nullable();
             $table->integer('lock_page')->default(2);
+            $table->integer('main_page')->default(0);
             $table->integer('status')->default(1);
             $table->integer('left_blok_active')->default(1);
             $table->integer('right_blok_active')->default(1);
