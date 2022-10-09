@@ -54,4 +54,5 @@ return [
     'footer'=>'Alt',
     'contact_us'=>'İletişim Bilgileri',
     'breadcrumbs'=>'Navigasyon',
+    'main_page'=>'Ana Kategori',
 ];

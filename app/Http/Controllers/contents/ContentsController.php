@@ -61,6 +61,7 @@ class ContentsController extends Controller
         $data['portfolio'] = portfolio::where('status', 1)->get();
         $data['comments'] = comments::where('status', 1)->get();
         $data['staff'] = staff::where('status', 1)->get();
+        $data['main_pages'] = Contents::where('status',1)->get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -117,6 +118,7 @@ class ContentsController extends Controller
                     $contents->form_id = $request->form_id;
                     $contents->faq_id = $request->faq_id;
                     $contents->focus_keywords = $request->focus_keywords;
+                    $contents->main_page = $request->main_page;
 
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
@@ -232,6 +234,7 @@ class ContentsController extends Controller
                 $contents->language_id = $request->language_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
+                $contents->main_page = $request->main_page;
 
                 if (empty($request->seo_url)) {
                     $seo_url = Str::slug($request->name);
@@ -396,6 +399,7 @@ class ContentsController extends Controller
         $data['services'] = services::get();
         $data['portfolio'] = portfolio::where('status', 1)->get();
         $data['comments'] = comments::where('status', 1)->get();
+        $data['main_pages'] = Contents::where('status',1)->where('id','!=',$id)->get();
         $data['staff'] = staff::where('status', 1)->get();
         if (empty(Contents::find($id))) {
             return view('Kpanel.404');
