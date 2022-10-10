@@ -307,11 +307,20 @@
                                                                 <div class="dd" id="{{$b->name}}_nestable">
                                                                     <ol class="dd-list">
                                                                         @foreach($b->group_file as $bf)
-                                                                            <li class="dd-item @if($bf->type == 2) html_blok{{$bf->id}} @endif"
+                                                                            <li class="dd-item html_blok{{$bf->id}}"
                                                                                 data-groupid="{{$bf->group_id}}"
-                                                                                data-id="{{$bf->id}}">
+                                                                                data-id="{{$bf->id}}"
+                                                                                data-idattr=""
+                                                                                data-classattr=""
+                                                                                data-html=""
+                                                                                data-colorattr="">
                                                                                 @if($bf->type == 2)
-                                                                                    <button type="button" data-id="{{$bf->id}}" class="btn btn-outline-primary btn-sm html_blok_edit">
+                                                                                    <button type="button" data-id="{{$bf->id}}"
+                                                                                            class="btn btn-outline-primary btn-sm html_blok_edit">
+                                                                                        <i class="fa fa-gears"></i>
+                                                                                    </button>
+                                                                                @elseif($bf->type == 1)
+                                                                                    <button type="button" data-id="{{$bf->id}}" class="btn btn-outline-primary btn-sm blok_edit">
                                                                                         <i class="fa fa-gears"></i>
                                                                                     </button>
                                                                                 @endif
@@ -459,6 +468,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
+                        <div class="form-group">
+                            <input type="text" class="idattr form-control" name="idattr" placeholder="{{__('blokmanagement.blok_idattr')}}">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="classattr form-control" name="classattr" placeholder="{{__('blokmanagement.blok_classattr')}}">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="colorattr form-control" data-control="wheel" data-provide="colorpicker" name="colorattr" placeholder="{{__('blokmanagement.colorattr')}}">
+                        </div>
                         <textarea name="html_blok_edit" id="html_blok_edit"></textarea>
                     </div>
                 </div>
@@ -467,6 +485,37 @@
                             data-dismiss="modal">{{__('global.close')}}
                     </button>
                     <button type="button" class="btn btn-bold btn-pure btn-primary html_blok_save">{{__('global.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal modal-center fade" id="blok-modal" tabindex="-1" style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('blokmanagement.blok_settings')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="idattr2 form-control" name="idattr" placeholder="{{__('blokmanagement.blok_idattr')}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="classattr2 form-control" name="classattr" placeholder="{{__('blokmanagement.blok_classattr')}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="colorattr2 form-control" data-control="wheel" data-provide="colorpicker" name="colorattr" placeholder="{{__('blokmanagement.colorattr')}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-bold btn-pure btn-secondary"
+                            data-dismiss="modal">{{__('global.close')}}
+                    </button>
+                    <button type="button"
+                            class="btn btn-bold btn-pure btn-primary blok_edit_save">{{__('global.save')}}</button>
                 </div>
             </div>
         </div>
@@ -524,25 +573,66 @@
             maxDepth: '1',
         });
         $(document).ready(function(){
-            $('.html_blok_edit').click(function(){
+            $('.html_blok_edit').click(function () {
                 Loader_toggle('show');
                 $('#html-blok-modal').modal('show');
                 var id = $(this).attr('data-id');
-                var html = $('.html_blok'+id).attr('data-html');
-                console.log(html);
+
+                var idattr = $('.html_blok' + id).attr('data-idattr');
+                var classattr = $('.html_blok' + id).attr('data-classattr');
+                var colorattr = $('.html_blok' + id).attr('data-colorattr');
+                $('.idattr').val(idattr);
+                $('.classattr').val(classattr);
+                $('.colorattr').val(colorattr);
+                var html = $('.html_blok' + id).attr('data-html');
                 CKEDITOR.instances['html_blok_edit'].setData(html)
-                $('.html_blok_save').attr('data-id',id);
+                $('.html_blok_save').attr('data-id', id);
 
                 Loader_toggle('hide');
             });
 
-            $('.html_blok_save').click(function(){
+            $('.html_blok_save').click(function () {
 
                 Loader_toggle('show');
                 var id = $(this).attr('data-id');
+                var idattr = $('.idattr').val();
+                var classattr = $('.classattr').val();
+                var colorattr = $('.colorattr').val();
+                $('.html_blok'+id).attr('data-idattr',idattr);
+                $('.html_blok'+id).attr('data-classattr',classattr);
+                $('.html_blok'+id).attr('data-colorattr',colorattr);
                 var textareaValue = CKEDITOR.instances.html_blok_edit.getData();
-                $('.html_blok'+id).attr('data-html',textareaValue);
+                $('.html_blok' + id).attr('data-html', textareaValue);
                 $('#html-blok-modal').modal('hide');
+                Loader_toggle('hide');
+            })
+
+
+            $('.blok_edit').click(function () {
+                Loader_toggle('show');
+                $('#blok-modal').modal('show');
+                var id = $(this).attr('data-id');
+                var idattr = $('.html_blok' + id).attr('data-idattr');
+                var classattr = $('.html_blok' + id).attr('data-classattr');
+                var colorattr = $('.html_blok' + id).attr('data-colorattr');
+                $('.idattr2').val(idattr);
+                $('.classattr2').val(classattr);
+                $('.colorattr2').val(colorattr);
+                $('.blok_edit_save').attr('data-id', id);
+                Loader_toggle('hide');
+            });
+
+            $('.blok_edit_save').click(function () {
+
+                Loader_toggle('show');
+                var id = $(this).attr('data-id');
+                var idattr = $('.idattr2').val();
+                var classattr = $('.classattr2').val();
+                var colorattr = $('.colorattr2').val();
+                $('.html_blok'+id).attr('data-idattr',idattr);
+                $('.html_blok'+id).attr('data-classattr',classattr);
+                $('.html_blok'+id).attr('data-colorattr',colorattr);
+                $('#blok-modal').modal('hide');
                 Loader_toggle('hide');
             })
         })

@@ -1,5 +1,8 @@
 <!-- ======= About Section ======= -->
-<section id="about" class="about">
+
+<section @if(!empty($blok->id_attr) && $blok->id_attr != "") id="{{$blok->id_attr}}"
+         @endif class="about {{$blok->class_attr}}"
+         @if(!empty($blok->color_attr) && $blok->color_attr != "") style="background-color: {{$blok->color_attr}}" @endif>
     <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -17,10 +20,10 @@
                     {!! $content->description !!}
                 </div>
             @else
-            <div class="col-lg-12 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
-                {!! $content->description !!}
+                <div class="col-lg-12 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
+                    {!! $content->description !!}
 
-            </div>
+                </div>
             @endif
 
         </div>

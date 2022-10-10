@@ -89,6 +89,9 @@ class BlokManagementController extends Controller
                         $DefaultBlokFile->blok_files_id = $data->id;
                         $DefaultBlokFile->blok_file_order = ++$order;
                         $DefaultBlokFile->html = $data->html;
+                        $DefaultBlokFile->id_attr = $data->idattr;
+                        $DefaultBlokFile->class_attr = $data->classattr;
+                        $DefaultBlokFile->color_attr = $data->colorattr;
                         $DefaultBlokFile->add_user = Auth::id();
                         $DefaultBlokFile->save();
                     }
@@ -132,6 +135,10 @@ class BlokManagementController extends Controller
                                     $DefaultBlokFileData->main_blok_id = $key;
                                     $DefaultBlokFileData->blok_file_order = ++$order;
                                     $DefaultBlokFileData->html = $data->html;
+                                    $DefaultBlokFileData->id_attr = $data->idattr;
+                                    $DefaultBlokFileData->class_attr = $data->classattr;
+                                    $DefaultBlokFileData->color_attr = $data->colorattr;
+
                                     $DefaultBlokFileData->update_user = Auth::id();
                                     $DefaultBlokFileData->save();
                                 }
@@ -145,6 +152,9 @@ class BlokManagementController extends Controller
                                 $DefaultBlokFileNewData->blok_files_id = $data->id;
                                 $DefaultBlokFileNewData->blok_file_order = ++$order;
                                 $DefaultBlokFileNewData->html = $data->html;
+                                $DefaultBlokFileNewData->id_attr = $data->idattr;
+                                $DefaultBlokFileNewData->class_attr = $data->classattr;
+                                $DefaultBlokFileNewData->color_attr = $data->colorattr;
                                 $DefaultBlokFileNewData->add_user = Auth::id();
                                 $DefaultBlokFileNewData->save();
                             }
