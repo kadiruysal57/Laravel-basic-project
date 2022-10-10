@@ -21,6 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('blok_files_id');
             $table->integer('blok_file_order')->default(0);
             $table->text('html')->nullable();
+            $table->string('id_attr')->nullable();
+            $table->string('class_attr')->nullable();
+            $table->string('color_attr')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();

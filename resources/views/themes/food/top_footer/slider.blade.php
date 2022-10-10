@@ -1,5 +1,7 @@
 @if(!empty($content->content_slider))
-    <section id="hero" class="hero d-flex align-items-center section-bg">
+    <section @if(!empty($blok->id_attr) && $blok->id_attr != "") id="{{$blok->id_attr}}"
+         @endif class="hero {{$blok->class_attr}}"
+         @if(!empty($blok->color_attr) && $blok->color_attr != "") style="background-color: {{$blok->color_attr}}" @endif>
         <div class="container">
             <div class="row justify-content-between gy-5">
                 @if(!empty($content->content_slider->slider_image_many))

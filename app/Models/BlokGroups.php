@@ -35,12 +35,20 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                         $html_class="html_blok".$bf->id;
+                    }elseif($bf->type == 1){
+                        $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm blok_edit'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                        $html_class="html_blok".$bf->id;
                     }
                     $file_array[$b->name."_nestable"] .= '<li class="dd-item '.$html_class.'"
                                                                                 data-groupid="'.$bf->group_id.'"
                                                                                 data-pagefileid ="0"
                                                                                 data-id="'.$bf->id.'"
-                                                                                data-html="">
+                                                                                data-html=""
+                                                                                data-idattr=""
+                                                                                data-classattr=""
+                                                                                data-colorattr="">
                                                                                 '.$html_button.'
                                                                                 <div
                                                                                     class="dd-handle">'.__('contents.'.$bf->name).'</div>
@@ -63,20 +71,30 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
-                $file_array['top_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
+                $file_name = __('contents.'.$tp->file_name->name);
+                $route = route('contents.store');
+                $file_array['top_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                                                data-groupid='$tp->group_id'
+                                                                                data-pagefileid ='$tp->id'
+                                                                                data-id='$tp->blok_files_id'
+                                                                                data-html='$tp->html'
+                                                                                data-idattr='$tp->id_attr'
+                                                                                data-classattr='$tp->class_attr'
+                                                                                data-colorattr='$tp->color_attr'>
+                                                                                $html_button
                                                                                 <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
+                                                                                    class='dd-handle'>$file_name
                                                                                 </div>
-                                                                                <div class="dd-handetrash" data-contentsid="'.$contents->id.'" data-id="'.$tp->id.'" action="'.route('contents.store').'">
-                                                                                     <i class="fa fa-trash"></i>
+                                                                                <div class='dd-handetrash' data-contentsid='$contents->id' data-id='$tp->id' action='$route'>
+                                                                                     <i class='fa fa-trash'></i>
                                                                                 </div>
-                                                                            </li>';
+                                                                            </li>";
             }
             $file_array['top_blok_nestable'] .= '</ol>';
         }
@@ -95,20 +113,30 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
-                $file_array['left_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
+                $file_name = __('contents.'.$tp->file_name->name);
+                $route = route('contents.store');
+                $file_array['left_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                                                data-groupid='$tp->group_id'
+                                                                                data-pagefileid ='$tp->id'
+                                                                                data-id='$tp->blok_files_id'
+                                                                                data-html='$tp->html'
+                                                                                data-idattr='$tp->id_attr'
+                                                                                data-classattr='$tp->class_attr'
+                                                                                data-colorattr='$tp->color_attr'>
+                                                                                $html_button
                                                                                 <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
+                                                                                    class='dd-handle'>$file_name
                                                                                 </div>
-                                                                                <div class="dd-handetrash" data-contentsid="'.$contents->id.'" data-id="'.$tp->id.'" action="'.route('contents.store').'">
-                                                                                     <i class="fa fa-trash"></i>
+                                                                                <div class='dd-handetrash' data-contentsid='$contents->id' data-id='$tp->id' action='$route'>
+                                                                                     <i class='fa fa-trash'></i>
                                                                                 </div>
-                                                                            </li>';
+                                                                            </li>";
             }
             $file_array['left_blok_nestable'] .= '</ol>';
         }else{
@@ -121,25 +149,36 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',3) as $tp){
                 $html_button = "";
                 $html_class = "";
+
                 if($tp->file_name->type == 2){
                     $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
-                $file_array['mid_blok_fix_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
+                $file_name = __('contents.'.$tp->file_name->name);
+                $route = route('contents.store');
+                $file_array['mid_blok_fix_nestable'] .= "<li class='dd-item $html_class'
+                                                                                data-groupid='$tp->group_id'
+                                                                                data-pagefileid ='$tp->id'
+                                                                                data-id='$tp->blok_files_id'
+                                                                                data-html='$tp->html'
+                                                                                data-idattr='$tp->id_attr'
+                                                                                data-classattr='$tp->class_attr'
+                                                                                data-colorattr='$tp->color_attr'>
+                                                                                $html_button
                                                                                 <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
+                                                                                    class='dd-handle'>$file_name
                                                                                 </div>
-                                                                                <div class="dd-handetrash" data-contentsid="'.$contents->id.'" data-id="'.$tp->id.'" action="'.route('contents.store').'">
-                                                                                     <i class="fa fa-trash"></i>
+                                                                                <div class='dd-handetrash' data-contentsid='$contents->id' data-id='$tp->id' action='$route'>
+                                                                                     <i class='fa fa-trash'></i>
                                                                                 </div>
-                                                                            </li>';
+                                                                            </li>";
             }
             $file_array['mid_blok_fix_nestable'] .= '</ol>';
         }
@@ -153,25 +192,36 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',4) as $tp){
                 $html_button = "";
                 $html_class = "";
+
                 if($tp->file_name->type == 2){
                     $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
-                $file_array['right_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'">
-                                                                                '.$html_button.'
+                $file_name = __('contents.'.$tp->file_name->name);
+                $route = route('contents.store');
+                $file_array['right_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                                                data-groupid='$tp->group_id'
+                                                                                data-pagefileid ='$tp->id'
+                                                                                data-id='$tp->blok_files_id'
+                                                                                data-html='$tp->html'
+                                                                                data-idattr='$tp->id_attr'
+                                                                                data-classattr='$tp->class_attr'
+                                                                                data-colorattr='$tp->color_attr'>
+                                                                                $html_button
                                                                                 <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
+                                                                                    class='dd-handle'>$file_name
                                                                                 </div>
-                                                                                <div class="dd-handetrash" data-contentsid="'.$contents->id.'" data-id="'.$tp->id.'" action="'.route('contents.store').'">
-                                                                                     <i class="fa fa-trash"></i>
+                                                                                <div class='dd-handetrash' data-contentsid='$contents->id' data-id='$tp->id' action='$route'>
+                                                                                     <i class='fa fa-trash'></i>
                                                                                 </div>
-                                                                            </li>';
+                                                                            </li>";
             }
             $file_array['right_blok_nestable'] .= '</ol>';
         }
@@ -185,26 +235,36 @@ class BlokGroups extends Model
             foreach($contents->blok_file->where('main_blok_id',5) as $tp){
                 $html_button = "";
                 $html_class = "";
+
                 if($tp->file_name->type == 2){
                     $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm html_blok_edits'>
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
-                $file_array['footer_blok_nestable'] .= ' <li class="dd-item '.$html_class.'"
-                                                                                data-groupid="'.$tp->group_id.'"
-                                                                                data-pagefileid ="'.$tp->id.'"
-                                                                                data-id="'.$tp->blok_files_id.'"
-                                                                                data-html="'.$tp->html.'"
-                                                                                >
-                                                                                '.$html_button.'
+                $file_name = __('contents.'.$tp->file_name->name);
+                $route = route('contents.store');
+                $file_array['footer_blok_nestable'] .= "<li class='dd-item $html_class'
+                                                                                data-groupid='$tp->group_id'
+                                                                                data-pagefileid ='$tp->id'
+                                                                                data-id='$tp->blok_files_id'
+                                                                                data-html='$tp->html'
+                                                                                data-idattr='$tp->id_attr'
+                                                                                data-classattr='$tp->class_attr'
+                                                                                data-colorattr='$tp->color_attr'>
+                                                                                    $html_button
                                                                                 <div
-                                                                                    class="dd-handle">'.__('contents.'.$tp->file_name->name).'
+                                                                                    class='dd-handle'>$file_name
                                                                                 </div>
-                                                                                <div class="dd-handetrash" data-contentsid="'.$contents->id.'" data-id="'.$tp->id.'" action="'.route('contents.store').'">
-                                                                                     <i class="fa fa-trash"></i>
+                                                                                <div class='dd-handetrash' data-contentsid='$contents->id' data-id='$tp->id' action='$route'>
+                                                                                     <i class='fa fa-trash'></i>
                                                                                 </div>
-                                                                            </li>';
+                                                                            </li>";
             }
             $file_array['footer_blok_nestable'] .= '</ol>';
         }
@@ -230,14 +290,22 @@ class BlokGroups extends Model
                         $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm html_blok_edit'>
                                 <i class='fa fa-gears'></i>
                             </button>";
-                        $html_class="html_bloks".$bf->id;
+                        $html_class="html_blok".$bf->id;
+                    }elseif($bf->type == 1){
+                        $html_button = "<button type='button' data-id='$bf->id' class='btn btn-outline-primary btn-sm blok_edit'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                        $html_class="html_blok".$bf->id;
                     }
                     $blok_name = __('contents.'.$bf->name);
                     $file_array[$b->name."_nestable"] .= "<li class='dd-item $html_class'
                                                             data-groupid='$bf->group_id'
                                                             data-pagefileid ='0'
                                                             data-id='$bf->id'
-                                                            data-html='$bf->html'>
+                                                            data-html='$bf->html'
+                                                            data-idattr='$bf->id_attr'
+                                                            data-classattr='$bf->class_attr'
+                                                            data-colorattr='$bf->color_attr'>
                                                             $html_button
                                                             <div
                                                                 class='dd-handle'>$blok_name</div>
@@ -260,6 +328,11 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
                 $blok_name = __('contents.'.$tp->file_name->name);
                 $route_delete = route('blok-management.store');
@@ -267,7 +340,10 @@ class BlokGroups extends Model
                                                         data-groupid='$tp->group_id'
                                                         data-pagefileid ='$tp->id'
                                                         data-id='$tp->blok_files_id'
-                                                        data-html='$tp->html'>
+                                                        data-html='$tp->html'
+                                                        data-idattr='$tp->id_attr'
+                                                        data-classattr='$tp->class_attr'
+                                                        data-colorattr='$tp->color_attr'>
                                                         $html_button
                                                         <div
                                                             class='dd-handle'>$blok_name
@@ -294,6 +370,11 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
 
                 $blok_name = __('contents.'.$tp->file_name->name);
@@ -302,7 +383,10 @@ class BlokGroups extends Model
                                                         data-groupid='$tp->group_id'
                                                         data-pagefileid ='$tp->id'
                                                         data-id='$tp->blok_files_id'
-                                                        data-html='$tp->html'>
+                                                        data-html='$tp->html'
+                                                        data-idattr='$tp->id_attr'
+                                                        data-classattr='$tp->class_attr'
+                                                        data-colorattr='$tp->color_attr'>
                                                         $html_button
                                                         <div
                                                             class='dd-handle'>$blok_name
@@ -328,6 +412,11 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
 
                 $blok_name = __('contents.'.$tp->file_name->name);
@@ -336,7 +425,10 @@ class BlokGroups extends Model
                                                         data-groupid='$tp->group_id'
                                                         data-pagefileid ='$tp->id'
                                                         data-id='$tp->blok_files_id'
-                                                        data-html='$tp->html'>
+                                                        data-html='$tp->html'
+                                                        data-idattr='$tp->id_attr'
+                                                        data-classattr='$tp->class_attr'
+                                                        data-colorattr='$tp->color_attr'>
                                                         $html_button
                                                         <div
                                                             class='dd-handle'>$blok_name
@@ -363,6 +455,11 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
 
                 $blok_name = __('contents.'.$tp->file_name->name);
@@ -371,7 +468,10 @@ class BlokGroups extends Model
                                                         data-groupid='$tp->group_id'
                                                         data-pagefileid ='$tp->id'
                                                         data-id='$tp->blok_files_id'
-                                                        data-html='$tp->html'>
+                                                        data-html='$tp->html'
+                                                        data-idattr='$tp->id_attr'
+                                                        data-classattr='$tp->class_attr'
+                                                        data-colorattr='$tp->color_attr'>
                                                         $html_button
                                                         <div
                                                             class='dd-handle'>$blok_name
@@ -398,6 +498,11 @@ class BlokGroups extends Model
                                 <i class='fa fa-gears'></i>
                             </button>";
                     $html_class="html_bloks".$tp->id;
+                }elseif($tp->file_name->type == 1){
+                    $html_button = "<button type='button' data-id='$tp->id' class='btn btn-outline-primary btn-sm blok_edits'>
+                                <i class='fa fa-gears'></i>
+                            </button>";
+                    $html_class="html_bloks".$tp->id;
                 }
 
                 $blok_name = __('contents.'.$tp->file_name->name);
@@ -406,7 +511,10 @@ class BlokGroups extends Model
                                                         data-groupid='$tp->group_id'
                                                         data-pagefileid ='$tp->id'
                                                         data-id='$tp->blok_files_id'
-                                                        data-html='$tp->html'>
+                                                        data-html='$tp->html'
+                                                        data-idattr='$tp->id_attr'
+                                                        data-classattr='$tp->class_attr'
+                                                        data-colorattr='$tp->color_attr'>
                                                         $html_button
                                                         <div
                                                             class='dd-handle'>$blok_name

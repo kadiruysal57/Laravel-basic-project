@@ -16,6 +16,9 @@ class ContentBlokFiles extends Model
         'blok_files_id',
         'blok_file_order',
         'html',
+        'id_attr',
+        'class_attr',
+        'color_attr',
         'add_user',
         'update_user',
     ];

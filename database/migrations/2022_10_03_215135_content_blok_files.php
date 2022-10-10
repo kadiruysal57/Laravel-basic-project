@@ -21,6 +21,9 @@ return new class extends Migration
             $table->unsignedBigInteger('blok_files_id');
             $table->integer('blok_file_order')->default(0);
             $table->text('html')->nullable();
+            $table->string('class_attr')->nullable();
+            $table->string('id_attr')->nullable();
+            $table->string('color_attr')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();
@@ -48,6 +51,7 @@ return new class extends Migration
                 'blok_files_id' => "2",
                 'blok_file_order' => "2",
                 'html'=>"",
+                'id_attr'=>'home-page',
                 'add_user'=>"1"
             )
         );
@@ -59,6 +63,7 @@ return new class extends Migration
                 'blok_files_id' => "4",
                 'blok_file_order' => "1",
                 'html'=>"",
+                'id_attr'=>'about-us',
                 'add_user'=>"1"
             )
         );
@@ -70,6 +75,8 @@ return new class extends Migration
                 'blok_files_id' => "5",
                 'blok_file_order' => "2",
                 'html'=>"",
+                'id_attr'=>'my-services',
+                'color_attr'=>'#eeeeee',
                 'add_user'=>"1"
             )
         );
@@ -81,6 +88,7 @@ return new class extends Migration
                 'blok_files_id' => "6",
                 'blok_file_order' => "3",
                 'html'=>"",
+                'id_attr'=>'portfolio',
                 'add_user'=>"1"
             )
         );
@@ -92,6 +100,8 @@ return new class extends Migration
                 'blok_files_id' => "7",
                 'blok_file_order' => "4",
                 'html'=>"",
+                'id_attr'=>'comments',
+                'color_attr'=>'#eeeeee',
                 'add_user'=>"1"
             )
         );
@@ -103,6 +113,7 @@ return new class extends Migration
                 'blok_files_id' => "8",
                 'blok_file_order' => "5",
                 'html'=>"",
+                'id_attr'=>'staff',
                 'add_user'=>"1"
             )
         );
@@ -114,6 +125,8 @@ return new class extends Migration
                 'blok_files_id' => "9",
                 'blok_file_order' => "6",
                 'html'=>"",
+                'id_attr'=>'contact-us',
+                'color_attr'=>'#eeeeee',
                 'add_user'=>"1"
             )
         );
@@ -125,6 +138,8 @@ return new class extends Migration
                 'blok_files_id' => "10",
                 'blok_file_order' => "7",
                 'html'=>"",
+                'id_attr'=>'gallery',
+                'color_attr'=>'#eeeeee',
                 'add_user'=>"1"
             )
         );

@@ -30,7 +30,7 @@ return new class extends Migration
             array(
                 'tableId' => '99',
                 'menu_name' => 'Anasayfa',
-                'real_link' => 'http://127.0.0.1:8000/#hero',
+                'real_link' => 'http://127.0.0.1:8000/#home-page',
                 'menu_order'=>1,
                 'menu_id'=>1,
                 'target'=>1,
@@ -40,7 +40,7 @@ return new class extends Migration
             array(
                 'tableId' => '99',
                 'menu_name' => 'Hakkımızda',
-                'real_link' => 'http://127.0.0.1:8000/#about',
+                'real_link' => 'http://127.0.0.1:8000/#about-us',
                 'menu_order'=>2,
                 'menu_id'=>1,
                 'target'=>1,
@@ -50,7 +50,7 @@ return new class extends Migration
             array(
                 'tableId' => '99',
                 'menu_name' => 'Menu',
-                'real_link' => 'http://127.0.0.1:8000/#menu',
+                'real_link' => 'http://127.0.0.1:8000/#portfolio',
                 'menu_order'=>3,
                 'menu_id'=>1,
                 'target'=>1,

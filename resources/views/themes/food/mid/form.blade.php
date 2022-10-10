@@ -1,7 +1,9 @@
 
 @if(count($content->form) > 0)
     @foreach($content->form as $form)
-        <section id="book-a-table" class="book-a-table">
+        <section @if(!empty($blok->id_attr) && $blok->id_attr != "") id="{{$blok->id_attr}}"
+                 @endif class="book-a-table {{$blok->class_attr}}"
+                 @if(!empty($blok->color_attr) && $blok->color_attr != "") style="background-color: {{$blok->color_attr}}" @endif>
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">

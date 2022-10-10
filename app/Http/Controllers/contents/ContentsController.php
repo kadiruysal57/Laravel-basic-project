@@ -168,6 +168,9 @@ class ContentsController extends Controller
                                 $ContentBlokFilesNewData->blok_files_id = $data->id;
                                 $ContentBlokFilesNewData->blok_file_order = ++$order;
                                 $ContentBlokFilesNewData->html = $data->html;
+                                $ContentBlokFilesNewData->id_attr = $data->idattr;
+                                $ContentBlokFilesNewData->class_attr = $data->classattr;
+                                $ContentBlokFilesNewData->color_attr = $data->colorattr;
                                 $ContentBlokFilesNewData->add_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }
@@ -296,6 +299,9 @@ class ContentsController extends Controller
 
                                     $ContentBlokFilesNewData->blok_file_order = ++$order;
                                     $ContentBlokFilesNewData->html = $data->html;
+                                    $ContentBlokFilesNewData->id_attr = $data->idattr;
+                                    $ContentBlokFilesNewData->class_attr = $data->classattr;
+                                    $ContentBlokFilesNewData->color_attr = $data->colorattr;
                                     $ContentBlokFilesNewData->update_user = Auth::id();
                                     $ContentBlokFilesNewData->save();
                                 }
@@ -308,6 +314,9 @@ class ContentsController extends Controller
                                 $ContentBlokFilesNewData->blok_files_id = $data->id;
                                 $ContentBlokFilesNewData->blok_file_order = ++$order;
                                 $ContentBlokFilesNewData->html = $data->html;
+                                $ContentBlokFilesNewData->id_attr = $data->idattr;
+                                $ContentBlokFilesNewData->class_attr = $data->classattr;
+                                $ContentBlokFilesNewData->color_attr = $data->colorattr;
                                 $ContentBlokFilesNewData->add_user = Auth::id();
                                 $ContentBlokFilesNewData->save();
                             }
