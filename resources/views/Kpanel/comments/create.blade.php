@@ -21,16 +21,16 @@
                             <input type="hidden" name="id" value="create">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" required type="text">
+                                <input class="form-control " name="name"  type="text">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('global.description')}}</label>
-                                <input class="form-control " name="description" required type="text">
+                                <label class="">{{__('global.description')}}</label>
+                                <input class="form-control " name="description"  type="text">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>
                                 <select name="status" class="form-control" tabindex="-98">
-                                    <option>{{__('global.select_status')}}</option>
+                                    <option value="">{{__('global.select_status')}}</option>
                                     <option value="1">{{__('global.active')}}</option>
                                     <option value="2">{{__('global.passive')}}</option>
                                 </select>

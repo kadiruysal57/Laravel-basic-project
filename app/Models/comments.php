@@ -19,9 +19,9 @@ class comments extends Model
     protected $table = 'comments';
 
     public function comments_many(){
-        return $this->hasMany(comments_list::class,'comments_id','id')->where('status',1);
+        return $this->hasMany(comments_list::class,'comments_id','id')->where('status',1)->orderBy('comment_order','asc');
     }
     public function comments_one(){
-        return $this->hasOne(comments_list::class,'comments_id','id')->where('status',1);
+        return $this->hasOne(comments_list::class,'comments_id','id')->where('status',1)->orderBy('comment_order','asc');
     }
 }
