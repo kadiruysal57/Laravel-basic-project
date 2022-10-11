@@ -30,4 +30,7 @@ return [
     'id_area' => 'ID Alanı',
     'class_area' => 'Class Alanı',
     'formbuilder_name' => 'Form İsmi',
+    'name_required'=>'Ad alanı boş bırakılamaz',
+    'input_order'=>'Sıra',
+    'form_type_required'=>'Form Türü Seçiniz',
 ];

@@ -37,45 +37,45 @@
                                 <div class="tab-pane fade active show" id="form">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" required type="text">
+                                <input class="form-control " name="name"  type="text">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('global.title')}}</label>
-                                <input class="form-control " name="title" required type="text">
+                                <label class="">{{__('global.title')}}</label>
+                                <input class="form-control " name="title"  type="text">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_to')}}</label>
-                                <input class="form-control " name="to" required type="text">
+                                <label class="">{{__('formbuilder.formbuilder_to')}}</label>
+                                <input class="form-control " name="to"  type="text">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_from')}}</label>
-                                <input class="form-control " name="from" required type="text">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_subject')}}</label>
-                                <input class="form-control " name="subject" required type="text">
+                                <label class="">{{__('formbuilder.formbuilder_from')}}</label>
+                                <input class="form-control " name="from"  type="text">
                             </div>
 
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_file_attachment')}}</label>
+                                <label class="">{{__('formbuilder.formbuilder_subject')}}</label>
+                                <input class="form-control " name="subject"  type="text">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="">{{__('formbuilder.formbuilder_file_attachment')}}</label>
                                 <textarea class="form-control" name="file_attachment"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_additional_headers')}}</label>
+                                <label class="">{{__('formbuilder.formbuilder_additional_headers')}}</label>
                                 <textarea class="form-control" name="additional_headers"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_message_body')}}</label>
+                                <label class="">{{__('formbuilder.formbuilder_message_body')}}</label>
                                 <textarea class="form-control" name="message_body"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label class="require">{{__('formbuilder.formbuilder_form_type')}}</label>
+                                <label class="">{{__('formbuilder.formbuilder_form_type')}}</label>
                                 <select name="form_type" id="form_type" class="form-control" tabindex="-98">
-                                    <option>{{__('formbuilder.formbuilder_form_type_select')}}</option>
+                                    <option value="">{{__('formbuilder.formbuilder_form_type_select')}}</option>
                                     <option value="1">{{__('formbuilder.formbuilder_form_new_page')}}</option>
                                     <option value="2">{{__('formbuilder.formbuilder_form_information')}}</option>
                                 </select>
@@ -131,6 +131,7 @@
                                                         <th class="min-w-50px">{{__('formbuilder.formbuilder_active_passive')}}</th>
                                                         <th class="min-w-150px">{{__('formbuilder.formbuilder_input_type')}}</th>
                                                         <th class="min-w-150px">{{__('formbuilder.formbuilder_placeholder')}}</th>
+                                                        <th class="min-w-150px">{{__('formbuilder.input_order')}}</th>
                                                         <th class="min-w-150px">{{__('formbuilder.formbuilder_settings')}}</th>
                                                     </tr>
                                                     </thead>
@@ -172,17 +173,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        $( function() {
-            $( "#form_feedback" ).sortable({
-                axis: 'y',
-                update : function(event ,ui){
-                    $("#form_feedback tr").each(function(index){
-                        $(this).find("#order").val(index+1);
-                    })
-                    var data = $(this).sortable('serialize');
-                }
-            });
-        } );
+
     </script>
     <script src="{{asset('panel/assets/vendor/chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('panel/assets/js/formbuilder/formbuilder.js')}}"></script>

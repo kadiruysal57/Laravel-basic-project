@@ -70,8 +70,6 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
                 'unisharp.lfm.getDelete',
                 'unisharp.lfm.',
                 'login_post',
-                'formbuilder.input_type_list',
-                'formbuilder.selectboxloop',
                 'sanctum.csrf-cookie',
                 'sign_in',
                 'sign_in_post',

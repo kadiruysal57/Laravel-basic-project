@@ -27,7 +27,6 @@ $(document).ready(function(){
         success: function (data) {
             if(data.type == "success"){
                 $('.preloader').hide();
-                console.log(data.route_url);
                 window.location.href = data.route_url;
                 $.each(data.success_message_array, function (i, data){
                     Toastify({
@@ -57,24 +56,26 @@ $(document).ready(function(){
                             y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
                         },
                     }).showToast();
-
-                    $('.preloader').hide();
                 })
+
+                $('.preloader').hide();
             }
         },
         error: function(data)
         {
-            Toastify({
-                title:"Error",
-                text: "An Error Occurred, please try again later.",
-                style: {
-                    background: "red",
-                },
-                offset: {
-                    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                },
-            }).showToast();
+            $.each(data.error, function (i, data){
+                Toastify({
+                    title:"error",
+                    text: data,
+                    style: {
+                        background: "red",
+                    },
+                    offset: {
+                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                    },
+                }).showToast();
+            })
 
             $('.preloader').hide();
         }
@@ -107,16 +108,20 @@ $(document).ready(function(){
             processData: false,
             success: function (data) {
                 if(data.type === "success"){
-                    Toastify({
-                        text: "Update Successfully",
-                        style: {
-                            background: "green",
-                        },
-                        offset: {
-                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                        },
-                    }).showToast();
+                    $.each(data.success_message_array, function (i, data){
+                        Toastify({
+                            title:"success",
+                            text: data,
+                            style: {
+                                background: "green",
+                            },
+                            offset: {
+                                x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                            },
+                        }).showToast();
+
+                    })
 
                     $('.preloader').hide();
 
@@ -133,24 +138,26 @@ $(document).ready(function(){
                                 y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
                             },
                         }).showToast();
-
-                        $('.preloader').hide();
                     })
+
+                    $('.preloader').hide();
                 }
             },
             error: function(data)
             {
-                Toastify({
-                    title:"Error",
-                    text: "An Error Occurred, please try again later.",
-                    style: {
-                        background: "red",
-                    },
-                    offset: {
-                        x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
-                        y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
-                    },
-                }).showToast();
+                $.each(data.error, function (i, data){
+                    Toastify({
+                        title:"error",
+                        text: data,
+                        style: {
+                            background: "red",
+                        },
+                        offset: {
+                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                        },
+                    }).showToast();
+                })
 
                 $('.preloader').hide();
             }
