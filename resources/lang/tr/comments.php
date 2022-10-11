@@ -10,5 +10,7 @@ return [
     'comments' => 'Yorum',
     'rate' => 'Puan',
     'comments_rate_select' => 'Lütfen Puan Seçiniz',
-
+    'comments_order'=>'Yorum Sırası',
+    'name_required'=>'Yorum ismi boş bırakılamaz',
+    'status_required'=>'Durum alanı boş bırakılamaz',
 ];

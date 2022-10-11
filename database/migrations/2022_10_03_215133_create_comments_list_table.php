@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('comments')->nullable();
             $table->string('url');
             $table->string('rate');
+            $table->integer('comment_order')->nullable();
             $table->integer('status')->default(1);
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();

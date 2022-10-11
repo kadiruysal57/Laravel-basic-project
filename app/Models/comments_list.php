@@ -17,6 +17,7 @@ class comments_list extends Model
         'comments',
         'url',
         'rate',
+        'comment_order',
         'status',
         'add_user',
         'update_user'

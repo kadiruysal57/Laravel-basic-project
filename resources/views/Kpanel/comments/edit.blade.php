@@ -24,16 +24,16 @@
                             <input type="hidden" name="comments_id" value="{{$comments->id}}">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" required type="text" value="{{$comments->name}}">
+                                <input class="form-control " name="name"  type="text" value="{{$comments->name}}">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.description')}}</label>
-                                <input class="form-control " name="description" required type="text" value="{{$comments->description}}">
+                                <input class="form-control " name="description"  type="text" value="{{$comments->description}}">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>
                                 <select name="status" class="form-control" tabindex="-98">
-                                    <option>{{__('global.status')}}</option>
+                                    <option value="">{{__('global.status')}}</option>
                                     <option @if($comments->status == 1) selected="" @endif value="1">{{__('global.active')}}</option>
                                     <option @if($comments->status == 2) selected="" @endif value="2">{{__('global.passive')}}</option>
                                 </select>
@@ -50,7 +50,11 @@
 
                                     <div id="commentsimage_edit{{$sm->id}}" class="mt-5 bg-light"
                                          style="border-radius:30px; padding: 10px;">
-
+                                        <button type="button" data-id="{{$sm->id}}"
+                                                class="btn btn-danger btn-icon btn-active-color-primary btn-sm me-1 commentslistdeleteEdit"
+                                                data-action="{{route('comments.store')}}"
+                                        ><a class="fa fa-trash"></a>
+                                        </button>
                                         <div class="d-flex">
                                             <div class="col-6">
 
@@ -68,7 +72,7 @@
                                                              </a>
                                                          </span>
                                                     </div>
-                                                    <input id="thumbnail_edit{{$sm->id}}" class="form-control" type="hidden" name="filepath_edit{{$sm->id}}" value="">
+                                                    <input id="thumbnail_edit{{$sm->id}}" class="form-control" type="hidden" name="filepath_edit{{$sm->id}}" value="{{$sm->url}}">
                                                 </div>
 
                                             </div>
@@ -119,6 +123,14 @@
 
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                     </div>
+
+                                                <div class="fv-row mb-7 fv-plugins-icon-container ">
+                                                    <label class="fs-6 fw-bold form-label ">
+                                                        <span>{{__('comments.comments_order')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->comment_order}}" name="comment_order_edit{{$sm->id}}">
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
 
                                             </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Comments;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
 use App\Models\comments;
 use App\Models\comments_list;
@@ -57,6 +58,9 @@ class CommentsController extends Controller
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
                 'status'=>'required',
+            ],[
+                'name.required'=>__('comments.name_required'),
+                'status.required'=>__('comments.status_required')
             ]);
             if ($validator->passes()) {
                 $comments = new comments();
@@ -72,6 +76,7 @@ class CommentsController extends Controller
                     $comments_com = "comments". $i;
                     $rate = "rate". $i;
                     $filepath = "filepath". $i;
+                    $order = "comments_order". $i;
 
                     if(!empty($request->$filepath)){
                         $comments_list = new comments_list();
@@ -79,15 +84,19 @@ class CommentsController extends Controller
                         $comments_list->job_title =  $request->$job_title;
                         $comments_list->comments = $request->$comments_com;
                         $comments_list->rate = $request->$rate;
-                        $comments_list->url =  $request->$filepath;
+                        $comments_list->url =  str_replace(env('APP_URL'),'', $request->$filepath);
+                        $comments_list->comment_order = $request->$order;
                         $comments_list->status = 1;
                         $comments_list->comments_id = $comments->id;
                         $comments_list->add_user = Auth::id();
                         $comments_list->save();
                     }
                 }
-                return response()->json(['type' => "success",'route_url'=>route('comments.index')]);
 
+                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message')), 'route_url' => route('comments.index')]);
+
+            }else{
+                return response()->json(['error' => $validator->errors()->all()]);
             }
         }
 
@@ -95,6 +104,9 @@ class CommentsController extends Controller
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
                 'status'=>'required',
+            ],[
+                'name.required'=>__('comments.name_required'),
+                'status.required'=>__('comments.status_required')
             ]);
             if ($validator->passes()) {
                 $comments = comments::find($request->comments_id);
@@ -110,6 +122,7 @@ class CommentsController extends Controller
                     $comments_com = "comments". $i;
                     $rate = "rate". $i;
                     $filepath = "filepath". $i;
+                    $comment_order = "comments_order". $i;
 
                     if(!empty($request->$filepath)){
                         $comments_list = new comments_list();
@@ -117,7 +130,8 @@ class CommentsController extends Controller
                         $comments_list->job_title =  $request->$job_title;
                         $comments_list->comments = $request->$comments_com;
                         $comments_list->rate = $request->$rate;
-                        $comments_list->url =  $request->$filepath;
+                        $comments_list->url =  str_replace(env('APP_URL'),'',$request->$filepath);
+                        $comments_list->comment_order = $request->$comment_order;
                         $comments_list->status = 1;
                         $comments_list->comments_id = $comments->id;
                         $comments_list->add_user = Auth::id();
@@ -126,20 +140,23 @@ class CommentsController extends Controller
                 }
 
                 $comments_list = comments_list::where('comments_id',$comments->id)->where('status',1)->get();
+
                 foreach ($comments_list as $cl){
                     $name_edit = "comments_name_edit" . $cl->id;
                     $job_title = "comments_job_title_edit". $cl->id;
                     $comments_com = "comments_edit". $cl->id;
                     $rate = "rate_edit". $cl->id;
                     $filepath_edit = "filepath_edit". $cl->id;
+                    $comment_order = "comment_order_edit". $cl->id;
 
                     if(!empty($request->$filepath_edit)){
                         $comments_list = comments_list::find($cl->id);
                         $comments_list->name = $request->$name_edit;
                         $comments_list->job_title =  $request->$job_title;
                         $comments_list->comments = $request->$comments_com;
-                        $comments_list->url =  $request->$filepath_edit;
+                        $comments_list->url = str_replace(env('APP_URL'),'',$request->$filepath_edit);
                         $comments_list->rate =  $request->$rate;
+                        $comments_list->comment_order =  $request->$comment_order;
                         $comments_list->status = 1;
                         $comments_list->comments_id = $comments->id;
                         $comments_list->update_user = Auth::id();
@@ -152,6 +169,16 @@ class CommentsController extends Controller
                 return response()->json(['error' => $validator->errors()->all()]);
             }
 
+
+        }
+
+        if($request->id == "comment_delete"){
+            $comment = comments_list::find($request->value);
+            if(!empty($comment)){
+                $comment->delete();
+                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message'))]);
+            }
+            return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
 
         }
     }
