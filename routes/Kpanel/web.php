@@ -25,6 +25,7 @@ use App\Http\Controllers\Faq\FaqController;
 use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\Portfolio\PortfolioGroupController;
 use App\Http\Controllers\Comments\CommentsController;
+use App\Http\Controllers\SiteSettings\OpenHourseController;
 
 
 
@@ -148,6 +149,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('permission', PermissionController::class);
     Route::resource('gallery', GalleryController::class);
     Route::resource('address', AddressController::class);
+    Route::resource('open-hourse', OpenHourseController::class);
     Route::resource('themes', ThemesController::class);
     Route::resource('whatsapp', WhatsappController::class);
     Route::resource('fixed-word', FixedLanguageWordController::class);

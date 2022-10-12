@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\SiteSettings;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\days;
 use Illuminate\Http\Request;
 use App\Models\site_settings;
 use App\Models\Language;
@@ -24,6 +26,7 @@ class SiteSettingsController extends Controller
 
         $data['language'] = Language::where('status',1)->get();
         $data['sitesettings'] = site_settings::where('status',1)->get();
+        $data['days']=days::get();
         return view('Kpanel.sitesettings.index')->with($data);
     }
 
