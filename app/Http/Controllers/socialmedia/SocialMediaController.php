@@ -7,6 +7,7 @@ use App\Models\social_media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Validator;
 
 class SocialMediaController extends Controller
 {
@@ -43,22 +44,36 @@ class SocialMediaController extends Controller
             return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
 
         }
-        if(!empty($request->social_media_id)){
-            $social_media = social_media::find($request->social_media_id);
+        $validator = Validator::make($request->all(), [
+            'social_media_name'=>'required',
+            'icon'=>'required',
+            'social_media_link'=>'required',
+        ],[
+            'social_media_name.required'=>__('sitesettings.social_media_name_required'),
+            'social_media_link.required'=>__('sitesettings.social_media_link_required'),
+        ]);
+        if ($validator->passes()) {
+
+            if(!empty($request->social_media_id)){
+                $social_media = social_media::find($request->social_media_id);
+            }else{
+                $social_media = new social_media();
+            }
+            $social_media->icon = $request->icon;
+            $social_media->name = $request->social_media_name;
+            $social_media->link = $request->social_media_link;
+            $social_media->link_target = $request->social_media_target;
+            $social_media->sitesettings_id = $request->site_settings_id;
+            $social_media->add_user = Auth::id();
+            $social_media->save();
+
+            $listData= $social_media->getTableReview($request->site_settings_id);
+            return response()->json(['type'=>'success','site_settings_id'=>$request->site_settings_id,'listData'=>$listData,'tableRefresh'=>1,'success_message_array' => array(Lang::get('global.success_message'))]);
+
         }else{
-            $social_media = new social_media();
+            return response()->json(['error' => $validator->errors()->all()]);
+
         }
-        $social_media->icon = $request->icon;
-        $social_media->name = $request->social_media_name;
-        $social_media->link = $request->social_media_link;
-        $social_media->link_target = $request->social_media_target;
-        $social_media->sitesettings_id = $request->site_settings_id;
-        $social_media->add_user = Auth::id();
-        $social_media->save();
-
-        $listData= $social_media->getTableReview($request->site_settings_id);
-        return response()->json(['type'=>'success','site_settings_id'=>$request->site_settings_id,'listData'=>$listData,'tableRefresh'=>1,'success_message_array' => array(Lang::get('global.success_message'))]);
-
     }
 
     /**

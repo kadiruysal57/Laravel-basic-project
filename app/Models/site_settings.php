@@ -23,6 +23,9 @@ class site_settings extends Model
     public function address(){
         return $this->hasMany(Address::class,'site_settings_id','id');
     }
+    public function open_hourse(){
+        return $this->hasMany(open_hourse::class,'site_setting_id','id');
+    }
     public function social_media(){
         return $this->hasMany(social_media::class,'sitesettings_id','id');
     }

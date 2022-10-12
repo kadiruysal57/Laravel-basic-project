@@ -55,4 +55,12 @@ return [
     'site_name_error' => 'Site İsmi Daha Önce Kullanılmış o yüzden seo url kendiniz belirlemeniz gerekmektedir.',
     'faq'=>'Sıkca Sorulan Sorular',
     'main_page'=>'Ana Kategori',
+
+    'mon'=>'Pazartesi',
+    'tue'=>'Salı',
+    'wed'=>'Çarsamba',
+    'thu'=>'Perşembe',
+    'fri'=>'Cuma',
+    'sat'=>'Cumartesi',
+    'sun'=>'Pazar',
 ];

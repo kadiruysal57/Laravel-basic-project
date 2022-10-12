@@ -237,6 +237,12 @@ function deleteButton(){
                                 if(typeof socialmediaaddmodal == "function"){
                                     socialmediaaddmodal();
                                 }
+                                if(typeof addressaddmodal == "function"){
+                                    addressaddmodal()
+                                }
+                                if(typeof openhourseaddbutton == "function"){
+                                    openhourseaddbutton()
+                                }
                             }
                             $.each(data.success_message_array, function (i, data){
                                 Toastify({

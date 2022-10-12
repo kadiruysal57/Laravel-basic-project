@@ -72,6 +72,10 @@
                                                             <a class="nav-link " data-toggle="tab"
                                                                href="#site-settings-address{{$l->id}}">{{__('sitesettings.address_settings')}}</a>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link " data-toggle="tab"
+                                                               href="#open-hourse{{$l->id}}">{{__('sitesettings.open_hourse')}}</a>
+                                                        </li>
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade active show"
@@ -274,7 +278,7 @@
                                                                         <td>{{$address->address}}</td>
                                                                         <td>{{$address->gsm}}</td>
                                                                         <td>{{$address->email}}</td>
-                                                                        <td >{{$address->maps}}</td>
+                                                                        <td>{{$address->maps}}</td>
                                                                         <td>
                                                                             <button type="button"
                                                                                     class="table-action hover-primary btn btn-pure address_add_button"
@@ -288,6 +292,54 @@
                                                                                     data-action="{{route('address.destroy',[$address->id])}}"
                                                                                     data-table="#address_table{{$address->site_settings_id}}">
                                                                                 <i class="ti-trash"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="open-hourse{{$l->id}}">
+                                                            <button type="button"
+                                                                    class="btn btn-success open_hourse_add"
+                                                                    data-settingsid="{{$sitesettings->id}}"
+                                                                    data-openhouseid="">
+                                                                <i class="fa fa-plus"></i> {{__('sitesettings.open_hourse_add')}}
+                                                            </button>
+
+                                                            <table
+                                                                class="table table-separated open_hourse_table{{$l->id}}"
+                                                                id="open_hourse_table{{$sitesettings->id}}">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.start_day')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.finish_day')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.address_name')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.start_time')}}</th>
+                                                                    <th class="text-center w-100px">{{__('sitesettings.finish_time')}}</th>
+                                                                    <th class="text-center w-100px">#</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody class="csshidden">
+                                                                @foreach($sitesettings->open_hourse as $open_hourse)
+                                                                    <tr>
+                                                                        <td>
+                                                                            {{__('global.'.$open_hourse->start_day_name->name)}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{__('global.'.$open_hourse->finish_day_name->name)}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{$open_hourse->office_name->name}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{$open_hourse->start_time}}
+                                                                        </td>
+                                                                        <td>
+                                                                            {{$open_hourse->finish_time}}
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="table-action hover-primary btn btn-pure open_hourse_add" data_openhouseid="{{$open_hourse->id}}" data-settingsid="{{$sitesettings->id}}" data-action="{{route('open-hourse.update',['show_open_hourse'])}}" ><i class="ti-pencil"></i></button>
+                                                                            <button type="button" class="table-action hover-danger btn btn-pure deleteButton" data-id="{{$open_hourse->id}}" data-action = "{{route('open-hourse.destroy',[$sc->id])}}" data-table="#open_hourse_table{{$sitesettings->id}}" ><i class="ti-trash"></i></button>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -346,17 +398,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="social_media_name">{{__('sitesettings.social_media_name')}}</label>
-                                <input type="text" required class="form-control" id="social_media_name"
+                                <input type="text"  class="form-control" id="social_media_name"
                                        name="social_media_name">
                             </div>
                             <div class="form-group">
                                 <label for="social_media_link">{{__('sitesettings.social_media_link')}}</label>
-                                <input type="text" required class="form-control" id="social_media_link"
+                                <input type="text"  class="form-control" id="social_media_link"
                                        name="social_media_link">
                             </div>
                             <div class="form-group">
                                 <label for="social_media_target">{{__('sitesettings.social_media_target')}}</label>
-                                <select required name="social_media_target" id="social_media_target"
+                                <select  name="social_media_target" id="social_media_target"
                                         class="form-control">
                                     <option value="1">_SELF</option>
                                     <option value="2">_BLANK</option>
@@ -397,7 +449,7 @@
                             <div class="form-group">
                                 <label
                                     for="address_name">{{__('sitesettings.address_name')}}</label>
-                                <input type="text" name="address_name" id="address_name" class="form-control"></input>
+                                <input type="text" name="address_name" id="address_name" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label
@@ -406,12 +458,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="gsm">{{__('sitesettings.gsm')}}</label>
-                                <input type="text" required class="form-control" id="gsm"
+                                <input type="text"  class="form-control" id="gsm"
                                        name="gsm">
                             </div>
                             <div class="form-group">
                                 <label for="email">{{__('global.email')}}</label>
-                                <input type="text" required class="form-control" id="email"
+                                <input type="text"  class="form-control" id="email"
                                        name="email">
                             </div>
 
@@ -431,6 +483,80 @@
                             data-dismiss="modal">{{__('global.close')}}
                     </button>
                     <button type="submit" form="address_ad"
+                            class="btn btn-bold btn-pure btn-primary">{{__('global.save')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal modal-center fade" id="open_hourse_modal" tabindex="-1" style="display: none;"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{__('sitesettings.open_hourse_add')}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{route('open-hourse.store')}}" class="card open_hourse_form" id="open_hourse_form">
+                        <div class="card-body">
+                            <input type="hidden" id="open_hourse_site_settings_id" name="open_hourse_site_settings_id"
+                                   value="">
+                            <input type="hidden" id="open_hourse_id" name="open_hourse_id" value="">
+                            <div class="form-group">
+                                <label
+                                    for="start_day">{{__('sitesettings.start_day')}}</label>
+                                <select name="start_day" class="form-control start_day" id="start_day">
+                                    <option value="">{{__('global.please_select')}}</option>
+                                    @foreach($days as $d)
+                                        <option value="{{$d->id}}">{{__('global.'.$d->name)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="finish_day">{{__('sitesettings.finish_day')}}</label>
+                                <select name="finish_day" class="form-control finish_day" id="finish_day">
+                                    <option value="">{{__('global.please_select')}}</option>
+                                    @foreach($days as $d)
+                                        <option value="{{$d->id}}">{{__('global.'.$d->name)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label
+                                    for="office_id">{{__('sitesettings.address_settings')}}</label>
+                                <select name="office_id" class="form-control office_id" id="office_id">
+                                    <option value="">{{__('global.please_select')}}</option>
+                                    @foreach($sitesettings->address as $o)
+                                        <option value="{{$o->id}}">{{$o->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="start_time">{{__('sitesettings.start_time')}}</label>
+                                <input type="text" autocomplete="off" data-show-meridian="false"
+                                       data-provide="timepicker" data-autoclose="true" name="start_time" id="start_time"
+                                       class="form-control">
+                                ,
+                            </div>
+                            <div class="form-group">
+                                <label for="finish_time">{{__('sitesettings.finish_time')}}</label>
+                                <input type="text" autocomplete="off" data-show-meridian="false"
+                                       data-provide="timepicker" data-autoclose="true" name="finish_time"
+                                       id="finish_time" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-bold btn-pure btn-secondary"
+                            data-dismiss="modal">{{__('global.close')}}
+                    </button>
+                    <button type="submit" form="open_hourse_form"
                             class="btn btn-bold btn-pure btn-primary">{{__('global.save')}}</button>
                 </div>
             </div>

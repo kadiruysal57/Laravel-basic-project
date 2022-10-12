@@ -8,6 +8,7 @@ use App\Models\social_media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Validator;
 
 class AddressController extends Controller
 {
@@ -44,24 +45,35 @@ class AddressController extends Controller
             return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
 
         }
-        if(!empty($request->address_id)){
-            $address = Address::find($request->address_id);
-            $address->update_user = Auth::id();
-        }else{
-            $address = new Address();
-            $address->add_user = Auth::id();
-        }
-        $address->name = $request->address_name;
-        $address->address = $request->address;
-        $address->gsm = $request->gsm;
-        $address->email = $request->email;
-        $address->maps = $request->maps;
-        $address->site_settings_id = $request->site_settings_id;
+        $validator = Validator::make($request->all(), [
+            'address_name'=>'required',
+        ],[
+            'address_name.required'=>__('sitesettings.address_name_required'),
+        ]);
+        if ($validator->passes()) {
+            if(!empty($request->address_id)){
+                $address = Address::find($request->address_id);
+                $address->update_user = Auth::id();
+            }else{
+                $address = new Address();
+                $address->add_user = Auth::id();
+            }
+            $address->name = $request->address_name;
+            $address->address = $request->address;
+            $address->gsm = $request->gsm;
+            $address->email = $request->email;
+            $address->maps = $request->maps;
+            $address->site_settings_id = $request->site_settings_id;
 
-        $address->save();
-        $address_modal = new Address();
-        $listData= $address_modal->getTableReview($request->site_settings_id);
-        return response()->json(['type'=>'success','site_settings_id'=>$request->site_settings_id,'listData'=>$listData,'tableRefresh'=>1,'success_message_array' => array(Lang::get('global.success_message'))]);
+            $address->save();
+            $address_modal = new Address();
+            $listData= $address_modal->getTableReview($request->site_settings_id);
+            return response()->json(['type'=>'success','site_settings_id'=>$request->site_settings_id,'listData'=>$listData,'tableRefresh'=>1,'success_message_array' => array(Lang::get('global.success_message'))]);
+
+        }else{
+            return response()->json(['error' => $validator->errors()->all()]);
+
+        }
 
     }
 
