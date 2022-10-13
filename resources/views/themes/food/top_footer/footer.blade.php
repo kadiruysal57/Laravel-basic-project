@@ -2,9 +2,9 @@
 
     <div class="container">
         <div class="row gy-3">
-            <div class="col-lg-9 col-md-9 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="row gy-3">
-                    <div class="col-lg-4 col-md-6 d-flex">
+                    <div class="col-lg-6 col-md-6 d-flex">
                         <i class="bi bi-geo-alt icon"></i>
                         <div>
                             <h4>{{getFixedWord('address')}}</h4>
@@ -17,7 +17,7 @@
 
                     </div>
 
-                    <div class="col-lg-4 col-md-6 footer-links d-flex">
+                    <div class="col-lg-6 col-md-6 footer-links d-flex">
                         <i class="bi bi-telephone icon"></i>
                         <div>
                             <h4>{{getFixedWord('reservations')}}</h4>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 footer-links d-flex">
+                    <div class="col-lg-6 col-md-6 footer-links d-flex">
                         <i class="bi bi-clock icon"></i>
                         <div>
                             <h4>{{getFixedWord('opening_hours')}}</h4>
@@ -58,6 +58,16 @@
                 </div>
             </div>
 
+            <div class="col-lg-3 col-md-6 footer-links">
+                <h4>{{getFixedWord('quick_page')}}</h4>
+                <div class="quick-links d-flex">
+                    <ul>
+                        @foreach($menu_footer->menu_item_top as $m)
+                            {!! $menu_item_model->yummyFooter($m) !!}
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
             <div class="col-lg-3 col-md-6 footer-links">
                 <h4>{{getFixedWord('follow_us')}}</h4>
                 <div class="social-links d-flex">

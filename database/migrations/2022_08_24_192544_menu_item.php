@@ -88,6 +88,29 @@ return new class extends Migration
             )
         );
 
+
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' =>1,
+                'menu_name' => 1,
+                'real_link' => '',
+                'menu_order'=>1,
+                'menu_id'=>2,
+                'target'=>1,
+            )
+        );
+
+        DB::table('menu_item')->insert(
+            array(
+                'tableId' =>1,
+                'menu_name' => 2,
+                'real_link' => '',
+                'menu_order'=>2,
+                'menu_id'=>2,
+                'target'=>1,
+            )
+        );
+
     }
 
     /**

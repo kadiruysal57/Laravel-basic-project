@@ -204,6 +204,16 @@ return new class extends Migration
             )
         );
 
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"quick_page",
+                'word' => "Sayfalarımız",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
     }
 
     /**

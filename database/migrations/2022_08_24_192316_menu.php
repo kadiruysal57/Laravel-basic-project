@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('status')->default(1);
+            $table->string('type')->default(1);
             $table->unsignedBigInteger('language_id');
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -27,6 +28,7 @@ return new class extends Migration
             array(
                 'name' => 'Top menu',
                 'status' => '1',
+                'type' => '1',
                 'language_id' => '1',
             )
         );
@@ -34,6 +36,7 @@ return new class extends Migration
             array(
                 'name' => 'Footer menu',
                 'status' => '1',
+                'type' => '2',
                 'language_id' => '1',
             )
         );

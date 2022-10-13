@@ -217,12 +217,12 @@ class menuitem extends Model
         if(count($this->yummyChildMenu($m->id)) <= 0){
             $return_html.= "<li >";
 
-            $return_html .= "<a href='$url'>$menu_name</a>";
+            $return_html .= "<a title='$menu_name' href='$url'>$menu_name</a>";
 
             $return_html .="</li>";
         }else{
             $return_html .="<li class='dropdown'>";
-            $return_html .= "<a href='$url'><span>$menu_name</span> <i class='bi bi-chevron-down dropdown-indicator'></i></a>";
+            $return_html .= "<a title='$menu_name' href='$url'><span>$menu_name</span> <i class='bi bi-chevron-down dropdown-indicator'></i></a>";
             $return_html .="<ul>";
             $child_menu = $this->yummyChildMenu($m->id);
             foreach ($child_menu as $cm){
@@ -239,5 +239,26 @@ class menuitem extends Model
     }
     public function yummyChildMenu($id){
         return $this->where('top_category',$id)->orderBy('menu_order','asc')->get();
+    }
+
+    public function yummyFooter($m){
+        $return_html = "";
+
+        if($m->tableId == 1){
+            $url = $m->menu_name_connection->seo_url;
+            $menu_name = $m->menu_name_connection->name;
+        }elseif($m->tableId == 99){
+            $url = $m->real_link;
+            $menu_name = $m->menu_name;
+        }
+        $return_html.= "<li >";
+
+        $return_html .= "<a title='$menu_name' href='$url'>$menu_name</a>";
+
+        $return_html .="</li>";
+
+
+
+        return $return_html;
     }
 }
