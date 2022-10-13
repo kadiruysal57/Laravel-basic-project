@@ -36,11 +36,23 @@
                     <div class="col-lg-4 col-md-6 footer-links d-flex">
                         <i class="bi bi-clock icon"></i>
                         <div>
-                            <h4>Opening Hours</h4>
-                            <p>
-                                <strong>Mon-Sat: 11AM</strong> - 23PM<br>
-                                Sunday: Closed
-                            </p>
+                            <h4>{{getFixedWord('opening_hours')}}</h4>
+                            @if(!empty(getAllOffice()))
+
+                                @foreach(getAllOffice() as $address)
+                                    @if(!empty($address->open_hourse))
+                                        <p>
+                                        @foreach($address->open_hourse as $open_hourse)
+                                                @if($open_hourse->start_time != $open_hourse->finish_time)
+                                                <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : {{date('H:i',strtotime($open_hourse->start_time))}}</strong> - {{date('H:i',strtotime($open_hourse->finish_time))}}<br>
+                                                @else
+                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : </strong> {{getFixedWord('closed')}}<br>
+                                                @endif
+                                        @endforeach
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
