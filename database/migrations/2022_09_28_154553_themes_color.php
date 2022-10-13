@@ -37,6 +37,14 @@ return new class extends Migration
                 'status' => "1",
             )
         );
+        DB::table('themes_color')->insert(
+            array(
+                'color_name' => 'Yeşil',
+                'color_folder_name'=>'green',
+                'color_hex'=>'green',
+                'status' => "1",
+            )
+        );
     }
 
     /**

@@ -20,4 +20,9 @@ class ThemesCustomize extends Model
     public function themes(){
         return $this->hasOne(Themes::class,'id','themes_id');
     }
+
+    public function color(){
+        return $this->hasOne(ThemesColor::class,'id','themes_color_id');
+    }
+
 }
