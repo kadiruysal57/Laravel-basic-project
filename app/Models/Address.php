@@ -19,6 +19,9 @@ class Address extends Model
     protected $table = 'address';
 
 
+    public function open_hourse(){
+        return $this->hasMany(open_hourse::class,'office_id','id');
+    }
     public function getTableReview($sitesettings_id){
         $address_all = $this->select('id','name','address','gsm','email','maps')->where('site_settings_id',$sitesettings_id)->get();
         foreach($address_all as $sc){

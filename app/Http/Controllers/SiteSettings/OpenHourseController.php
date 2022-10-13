@@ -138,7 +138,9 @@ class OpenHourseController extends Controller
     {
         if (!empty($id)) {
             $open_hourse = open_hourse::find($id);
+
             if (!empty($open_hourse)) {
+
                 $sitesettings_id = $open_hourse->site_setting_id;
                 $open_hourse->delete();
 
