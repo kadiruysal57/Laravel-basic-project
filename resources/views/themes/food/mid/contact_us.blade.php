@@ -6,7 +6,7 @@
         <div class="mb-3">
             @if(!empty(getAllOffice()))
                 @foreach(getAllOffice() as $map)
-                    @if(!empty($map))
+                    @if(!empty($map->maps) && $map->maps != "")
                         <iframe style="border:0; width: 100%; height: 350px;"
                                 src="{{$map->maps}}"
                                 frameborder="0" allowfullscreen=""></iframe>
@@ -71,9 +71,24 @@
                 <div class="info-item  d-flex align-items-center">
                     <i class="icon bi bi-share flex-shrink-0"></i>
                     <div>
-                        <h3>Opening Hours</h3>
-                        <div><strong>Mon-Sat:</strong> 11AM - 23PM;
-                            <strong>Sunday:</strong> Closed
+                        <h3>{{getFixedWord('opening_hours')}}</h3>
+                        <div>
+                            @if(!empty(getAllOffice()))
+
+                                @foreach(getAllOffice() as $address)
+                                    @if(!empty($address->open_hourse))
+                                        <p>
+                                            @foreach($address->open_hourse as $open_hourse)
+                                                @if($open_hourse->start_time != $open_hourse->finish_time)
+                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : {{date('H:i',strtotime($open_hourse->start_time))}}</strong> - {{date('H:i',strtotime($open_hourse->finish_time))}}<br>
+                                                @else
+                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : </strong> {{getFixedWord('closed')}}<br>
+                                                @endif
+                                            @endforeach
+                                        </p>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>

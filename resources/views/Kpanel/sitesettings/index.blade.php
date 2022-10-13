@@ -339,7 +339,7 @@
                                                                         </td>
                                                                         <td>
                                                                             <button type="button" class="table-action hover-primary btn btn-pure open_hourse_add" data_openhouseid="{{$open_hourse->id}}" data-settingsid="{{$sitesettings->id}}" data-action="{{route('open-hourse.update',['show_open_hourse'])}}" ><i class="ti-pencil"></i></button>
-                                                                            <button type="button" class="table-action hover-danger btn btn-pure deleteButton" data-id="{{$open_hourse->id}}" data-action = "{{route('open-hourse.destroy',[$sc->id])}}" data-table="#open_hourse_table{{$sitesettings->id}}" ><i class="ti-trash"></i></button>
+                                                                            <button type="button" class="table-action hover-danger btn btn-pure deleteButton" data-id="{{$open_hourse->id}}" data-action = "{{route('open-hourse.destroy',[$open_hourse->id])}}" data-table="#open_hourse_table{{$sitesettings->id}}" ><i class="ti-trash"></i></button>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach

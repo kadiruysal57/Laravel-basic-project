@@ -113,6 +113,97 @@ return new class extends Migration
             )
         );
 
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"opening_hours",
+                'word' => "Çalışma Saatlerimiz",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"closed",
+                'word' => "Kapalıyız",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"mon",
+                'word' => "Pazartesi",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"tue",
+                'word' => "Salı",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"wed",
+                'word' => "Çarşamba",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"thu",
+                'word' => "Perşembe",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"fri",
+                'word' => "Cuma",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"sat",
+                'word' => "Cumartesi",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"sun",
+                'word' => "Pazar",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
     }
 
     /**
