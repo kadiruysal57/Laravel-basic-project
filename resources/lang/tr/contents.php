@@ -55,4 +55,5 @@ return [
     'contact_us'=>'İletişim Bilgileri',
     'breadcrumbs'=>'Navigasyon',
     'main_page'=>'Ana Kategori',
+    'faq'=>'Sıkca Sorulan Sorular',
 ];

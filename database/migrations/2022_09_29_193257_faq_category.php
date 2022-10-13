@@ -22,6 +22,14 @@ return new class extends Migration
             $table->integer('update_user')->nullable();
             $table->timestamps();
         });
+
+        DB::table('faq_category')->insert(
+            array(
+                'title' => 'Sıkca Sorulan Sorular',
+                'description' => 'Müşterilerimizin Merak Ettikerli',
+                'status' => 1,
+            )
+        );
     }
 
     /**

@@ -23,6 +23,14 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('faq_category_id')->references('id')->on('faq_category');
         });
+
+        DB::table('faq')->insert(
+            array(
+                'question' => 'Hijyen Kurallarına Dikkat Ediyor Muyuz?',
+                'answer' => 'Kullandığımız ürünler sağlık bakanlığı tarafından onaylanmış ürünlerdir.',
+                'faq_category_id' => 1,
+            )
+        );
     }
 
     /**
