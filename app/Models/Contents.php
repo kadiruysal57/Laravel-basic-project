@@ -80,6 +80,9 @@ class Contents extends Model
     public function form(){
         return $this->hasMany(form::class,'id','form_id');
     }
+    public function faq_category(){
+        return $this->hasOne(FaqCategory::class,'id','faq_id');
+    }
     public function getTableReview(){
         $contents_all = $this->select('id','name','language_id','seo_url')->where('status',1)->get();
         foreach ($contents_all as $c){

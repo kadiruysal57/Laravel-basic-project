@@ -1791,3 +1791,23 @@ section {
     max-width: 100% !important;
     height: auto !important;
 }
+
+.accordion-item {
+    border-color: var(--color-primary);
+    margin-bottom: 25px;
+    border-top: 1px solid var(--color-primary)  !important;
+}
+
+.accordion-item h2 .collapsed {
+    color:#000 !important;
+    background-color: var(--color-primary) !important;
+}
+.accordion-item h2 button {
+    background-color: var(--color-primary) !important;
+    color: #fff !important;
+}
+.accordion-item .accordion-button.collapsed {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+

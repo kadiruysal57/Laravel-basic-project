@@ -118,6 +118,7 @@ return new class extends Migration
                 'seo_url'=>'bize-ulasin',
                 'lock_page'=>2,
                 'status'=>1,
+                'faq_id'=>1,
                 'left_blok_active'=>2,
                 'right_blok_active'=>2,
                 'default_blok_id'=>1,
