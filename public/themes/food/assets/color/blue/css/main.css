@@ -436,7 +436,7 @@ section {
     }
 
     .navbar .dropdown ul li {
-        min-width: 200px;
+       /* min-width: 200px;*/
     }
 
     .navbar .dropdown ul a {
@@ -1811,3 +1811,23 @@ section {
     color: #000 !important;
 }
 
+.language-dropdown ul {
+    left: 15px !important;
+    width: 100%;
+}
+
+.language-dropdown ul li {
+    width: 100%;
+    float: left;
+}
+
+.language-dropdown ul li a {
+    padding: 0px !important;
+    text-align: center;
+    width: 100% !important;
+    display: block;
+}
+
+.language-dropdown > ul > li > a:focus {
+    display: block !important;
+}

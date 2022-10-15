@@ -4,25 +4,14 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\FrontEndController;
 
-Route::get('/', function () {
-    $select_themes = \App\Models\ThemesCustomize::find(1);
-    $main_language = Language::where('main_language',1)->first();
-    if(!empty($main_language)){
-        $content = \App\Models\Contents::where('seo_url','/')->where('language_id',$main_language->id)->first();
-        if(!empty($content)){
-            $wp_model = new \App\Models\Whatsapp();
-            $data['content'] =$content;
-            $data['select_themes'] = $select_themes;
-            $data['wp'] = $wp_model->getWp();
-            return view('themes.'.$select_themes->themes->themes_folder_name.'.app')->with($data);
-        }else{
-            dd("404");
-        }
-    }else{
-       dd("404");
-    }
-});
+
+
+
+Route::get('/',[FrontEndController::class,'index']);
+Route::get('{lang}',[FrontEndController::class,'index']);
+Route::get('{lang}/{slug}',[FrontEndController::class,'index']);
 
 Route::post('form-send',function(Request $request){
     $request_validator = array();
@@ -80,9 +69,15 @@ Route::post('form-send',function(Request $request){
     }
 })->name('form_send');
 
-Route::get('{slug}', function ($slug) {
+
+/*Route::get('{lang}/{slug}', function ($lang = null,$slug = null) {
+    dd(langUrlControl($lang,$slug));
     $select_themes = \App\Models\ThemesCustomize::find(1);
-    $main_language = Language::where('main_language',1)->first();
+    if(!empty($lang)){
+        $main_language = Language::where('seo_url',$lang)->first();
+    }else{
+        $main_language = Language::where('main_language',1)->first();
+    }
     if(!empty($main_language)){
         $content = \App\Models\Contents::where('seo_url',$slug)->where('language_id',$main_language->id)->first();
         if(!empty($content)){
@@ -98,4 +93,4 @@ Route::get('{slug}', function ($slug) {
     }else{
         dd("404");
     }
-});
+});*/

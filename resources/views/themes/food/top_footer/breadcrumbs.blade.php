@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h1>{{$content->title}}</h1>
             <ol>
-                <li><a href="/">{{getFixedWord('home')}}</a></li>
+                <li><a href="/">{{getFixedWord('home',$active_lang)}}</a></li>
                 {!! $content->getBreadcrumbs() !!}
             </ol>
         </div>

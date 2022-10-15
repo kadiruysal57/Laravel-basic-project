@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Language;
+
 function checkboxorswitch($data){
     if($data == "on" || $data == 1){
         return "1";
@@ -95,8 +98,8 @@ function getCurrentUrlName(){
         return "dashboard";
     }
 }
-function getFixedWord($colum){
-     $word = \App\Models\fixed_language_word::where('code_name',$colum)->first();
+function getFixedWord($colum,$lang){
+     $word = \App\Models\fixed_language_word::where('lang_id',getLangId($lang))->where('code_name',$colum)->first();
      if(!empty($word->word)){
          return $word->word;
      }
@@ -166,4 +169,55 @@ function getAllOffice(){
     $address = \App\Models\Address::where('site_settings_id',$site_setting->id)->get();
 
     return $address;
+}
+
+function langUrlControl($lang = null,$seo_url = null){
+    $params = array(
+        'lang'=>'',
+        'seo_url'=>'',
+    );
+
+    if(empty($seo_url) && !empty($lang)){
+        $language = Language::where('slug',$lang)->first();
+        if(!empty($language)){
+            $params['lang']=$lang;
+            $params['seo_url'] = '/';
+        }else{
+            $main_language = Language::where('main_language',1)->first();
+            $params['lang']=$main_language->slug;
+            $params['seo_url'] = $lang;
+        }
+
+    }
+    if(empty($seo_url) && empty($lang)){
+
+        $main_language = Language::where('main_language',1)->first();
+        $params['lang']=$main_language->slug;
+        $params['seo_url'] = "/";
+
+    }
+    if(!empty($lang) && !empty($seo_url)){
+
+        $params = array(
+            'lang'=>$lang,
+            'seo_url'=>$seo_url,
+        );
+    }
+
+    return $params;
+}
+function getLangId($slug){
+    $language = Language::where('slug',$slug)->where('status',1)->first();
+    if(!empty($language->id)){
+        return $language->id;
+    }else{
+        $main_language = Language::where('main_language',1)->first();
+        return $main_language->id;
+    }
+}
+function getLangName($id){
+    $language = Language::where('id',$id)->where('status',1)->first();
+    if(!empty($language->short_name)){
+        return $language->short_name;
+    }
 }

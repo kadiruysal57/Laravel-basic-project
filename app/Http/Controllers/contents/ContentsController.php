@@ -80,7 +80,8 @@ class ContentsController extends Controller
         }
 
         if ($request->id == "create") {
-            $content_slug = Contents::where('seo_url', $request->seo_url)->first();
+            $content_slug = Contents::where('language_id',$request->language_id)->where('seo_url', $request->seo_url)->first();
+
             if (!empty($content_slug)) {
                 return response()->json(['type' => 'error', 'error' => array(Lang::get('global.site_name_error'))]);
             }
@@ -89,13 +90,12 @@ class ContentsController extends Controller
                 'name' => 'required',
                 'title' => 'required',
                 'language_id' => 'required',
-                'seo_url' => 'required|unique:contents',
+                'seo_url' => 'required',
             ], [
                 'name.required' => Lang::get('contents.name_required'),
                 'title.required' => Lang::get('contents.title_required'),
                 'language_id.required' => Lang::get('contents.language_id_required'),
                 'seo_url.required' => Lang::get('contents.seo_url_required'),
-                'seo_url.unique' => Lang::get('contents.seo_url_unique'),
             ]);
             if ($validator->passes()) {
                 try {
@@ -207,18 +207,23 @@ class ContentsController extends Controller
             ]);
             if ($validator->passes()) {
                 $contents = Contents::find($request->contents_id);
+                $content_new_slug = Contents::where('language_id',$contents->id)->where('seo_url',$request->seo_url)->first();
+                if(empty($content_new_slug)){
 
-                if ($contents->seo_url != $request->seo_url) {
-                    $validator = Validator::make($request->all(), [
-                        'seo_url' => 'required|unique:contents',
-                    ], [
-                        'seo_url.required' => Lang::get('contents.seo_url_required'),
-                        'seo_url.unique' => Lang::get('contents.seo_url_unique'),
-                    ]);
-                    if (!$validator->passes()) {
-                        return response()->json(['error' => $validator->errors()->all()]);
+                }else{
+                    if ($contents->seo_url != $request->seo_url) {
+                        $validator = Validator::make($request->all(), [
+                            'seo_url' => 'required|unique:contents',
+                        ], [
+                            'seo_url.required' => Lang::get('contents.seo_url_required'),
+                            'seo_url.unique' => Lang::get('contents.seo_url_unique'),
+                        ]);
+                        if (!$validator->passes()) {
+                            return response()->json(['error' => $validator->errors()->all()]);
+                        }
                     }
                 }
+
 
                 $contents->name = $request->name;
                 $contents->title = $request->title;

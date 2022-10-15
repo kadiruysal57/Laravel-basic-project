@@ -23,7 +23,7 @@
                                 @endforeach
                             </div>
                             <div class="text-center mt-3">
-                                <button class="send-button" type="submit">{{getFixedWord('send_button')}}</button>
+                                <button class="send-button" type="submit">{{getFixedWord('send_button',$active_lang)}}</button>
                             </div>
                         </form>
                     </div>

@@ -66,10 +66,13 @@ class MenuController extends Controller
                     $test = $Menu_item->create_Menu($d,++$key);
                 }
 
+                $main_menu = Menu::find($request->menu_id);
+
                 $menu_id = $request->menu_id;
                 $post = Contents::select('contents.id','contents.name','menu_item.menu_id')
                     ->where('menu_item.menu_id',null) // menu_id'si boş olanlar gelsin dedim böylelikle menu_item tablosuna eklenmemiş veriler gelicek sadece
                     ->where('contents.status',1)// her alan gelmesin diye select attım
+                    ->where('contents.language_id',$main_menu->language_id)
                     ->leftJoin('menu_item', function($join) use ($menu_id) // laravel de join içerisinde koşul belirtilebiliyor buda onlardan biri.
                     {
                         $join->on('contents.id', '=', 'menu_item.menu_name')
@@ -144,10 +147,12 @@ class MenuController extends Controller
 
             return view('Kpanel.401');
         }
+        $menu = Menu::find($id);
         $data['menu_id'] = $id;
 
         $post = Contents::select('contents.id','contents.name','menu_item.menu_id')
             ->where('menu_item.menu_id',null) // menu_id'si boş olanlar gelsin dedim böylelikle menu_item tablosuna eklenmemiş veriler gelicek sadece
+            ->where('contents.language_id',$menu->language_id)
             ->where('contents.status',1)// her alan gelmesin diye select attım
             ->leftJoin('menu_item', function($join) use ($id) // laravel de join içerisinde koşul belirtilebiliyor buda onlardan biri.
             {
@@ -229,10 +234,11 @@ class MenuController extends Controller
 
             }
             $menu_item = new menuitem();
-
+            $main_menu = Menu::find($menu_id);
             $post = contents::select('contents.id','contents.name','menu_item.menu_id')
                 ->where('menu_item.menu_id',null) // menu_id'si boş olanlar gelsin dedim böylelikle menu_item tablosuna eklenmemiş veriler gelicek sadece
                 ->where('contents.status',1)// her alan gelmesin diye select attım
+                ->where('contents.language_id',$main_menu->language_id)
                 ->leftJoin('menu_item', function($join) use ($menu_id) // laravel de join içerisinde koşul belirtilebiliyor buda onlardan biri.
                 {
                     $join->on('contents.id', '=', 'menu_item.menu_name')

@@ -29,19 +29,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        view()->composer('themes/food/top_footer/top_menu', function ($view) {
-            $main_language = Language::where('main_language',1)->first();
-            $data['site_setting'] = site_settings::where('language_id',$main_language->id)->first();
-            $data['menu_top'] = Menu::where('language_id',$main_language->id)->where('type',1)->first();
-            $data['menu_item_model'] = new menuitem();
-            $view->with($data);
-        });
-        view()->composer('themes/food/top_footer/footer', function ($view) {
-            $main_language = Language::where('main_language',1)->first();
-            $data['site_setting'] = site_settings::where('language_id',$main_language->id)->first();
-            $data['menu_footer'] = Menu::where('language_id',$main_language->id)->where('type',2)->first();
-            $data['menu_item_model'] = new menuitem();
-            $view->with($data);
-        });
     }
 }

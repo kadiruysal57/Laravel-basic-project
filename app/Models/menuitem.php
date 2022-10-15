@@ -28,6 +28,10 @@ class menuitem extends Model
         return $this->hasOne(Contents::class,'id','menu_name');
     }
 
+    function menu(){
+        return $this->hasOne(Menu::class,'id','menu_id');
+    }
+
     function menu_id_connection(){
         return $this->hasOne(menu::class,'id','menu_id');
     }
@@ -208,12 +212,32 @@ class menuitem extends Model
         $return_html = "";
 
         if($m->tableId == 1){
-            $url = $m->menu_name_connection->seo_url;
+            if($m->menu->language->main_language == 1){
+                $url = $m->menu_name_connection->seo_url;
+            }else{
+                if(!empty($m->menu_name_connection->seo_url) && $m->menu_name_connection->seo_url != "/"){
+                    $url = $m->menu->language->slug."/".$m->menu_name_connection->seo_url;
+                }else{
+                    $url = $m->menu->language->slug."".$m->menu_name_connection->seo_url;
+                }
+
+            }
+
             $menu_name = $m->menu_name_connection->name;
         }elseif($m->tableId == 99){
-            $url = $m->real_link;
+            if($m->menu->language->main_language == 1){
+                $url = $m->real_link;
+            }else{
+                if(!empty($m->real_link) && $m->real_link != "/"){
+                    $url = $m->menu->language->slug."/".$m->real_link;
+                }else{
+                    $url = $m->menu->language->slug."".$m->real_link;
+                }
+            }
+
             $menu_name = $m->menu_name;
         }
+        $url = rtrim($url,'/');
         if(count($this->yummyChildMenu($m->id)) <= 0){
             $return_html.= "<li >";
 
@@ -245,12 +269,32 @@ class menuitem extends Model
         $return_html = "";
 
         if($m->tableId == 1){
-            $url = $m->menu_name_connection->seo_url;
+            if($m->menu->language->main_language == 1){
+                $url = $m->menu_name_connection->seo_url;
+            }else{
+                if(!empty($m->menu_name_connection->seo_url) && $m->menu_name_connection->seo_url != "/"){
+                    $url = $m->menu->language->slug."/".$m->menu_name_connection->seo_url;
+                }else{
+                    $url = $m->menu->language->slug."".$m->menu_name_connection->seo_url;
+                }
+
+            }
+
             $menu_name = $m->menu_name_connection->name;
         }elseif($m->tableId == 99){
-            $url = $m->real_link;
+            if($m->menu->language->main_language == 1){
+                $url = $m->real_link;
+            }else{
+                if(!empty($m->real_link) && $m->real_link != "/"){
+                    $url = $m->menu->language->slug."/".$m->real_link;
+                }else{
+                    $url = $m->menu->language->slug."".$m->real_link;
+                }
+            }
+
             $menu_name = $m->menu_name;
         }
+        $url = rtrim($url,'/');
         $return_html.= "<li >";
 
         $return_html .= "<a title='$menu_name' href='$url'>$menu_name</a>";
