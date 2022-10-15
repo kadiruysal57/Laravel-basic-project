@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\language;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\fixed_language_word;
+use App\Models\open_hourse;
 use App\Models\site_settings;
+use App\Models\social_media;
 use App\Models\Whatsapp;
 use Illuminate\Http\Request;
 use App\Models\Language;
@@ -79,14 +83,16 @@ class LanguageController extends Controller
                     $Menu = new Menu();
                     $sitesettings = new site_settings();
                     $sitesettings = $sitesettings->default_value();
-                    foreach ($Menu->default_menu() as $df){
+                    foreach ($Menu->default_menu() as $key => $df){
                         $menu_new = new Menu();
                         $menu_new->name = $df;
                         $menu_new->status = 1;
+                        $menu_new->type = $key;
                         $menu_new->language_id = $language->id;
                         $menu_new->add_user = Auth::id();
                         $menu_new->save();
                     }
+
                     $sitesettings_new = new site_settings();
                     $sitesettings_new->site_name = $sitesettings->site_name;
                     $sitesettings_new->site_slogan = $sitesettings->site_slogan;
@@ -95,6 +101,48 @@ class LanguageController extends Controller
                     $sitesettings_new->language_id = $language->id;
                     $sitesettings_new->status = 1;
                     $sitesettings_new->save();
+
+
+
+                    foreach($sitesettings->address as $address){
+
+                        $address_new = new Address();
+                        foreach(json_decode($address) as $key => $a){
+                            $address_new->$key = $a;
+                        }
+                        $address_new->id = null;
+                        $address_new->site_settings_id = $sitesettings_new->id;
+                        $address_new->save();
+                    }
+                    foreach($sitesettings->open_hourse as $open_hourse){
+                        $open_hourse_new = new open_hourse();
+                        foreach(json_decode($open_hourse) as $key => $a){
+                            $open_hourse_new->$key = $a;
+                        }
+                        $open_hourse_new->id = null;
+                        $open_hourse_new->site_setting_id = $sitesettings_new->id;
+                        $open_hourse_new->save();
+                    }
+                    foreach($sitesettings->social_media as $social_media){
+                        $social_media_new = new social_media();
+                        foreach(json_decode($social_media) as $key => $a){
+                            $social_media_new->$key = $a;
+                        }
+                        $social_media_new->id = null;
+                        $social_media_new->sitesettings_id = $sitesettings_new->id;
+                        $social_media_new->save();
+                    }
+                    $main_language_id = Language::where('main_language',1)->where('status',1)->first();
+                    $fixed_language_model = fixed_language_word::where('lang_id',$main_language_id->id)->get();
+                    foreach($fixed_language_model as $fixed){
+                        $new_fixed_language_model = new fixed_language_word();
+                        foreach(json_decode($fixed) as $key => $a){
+                            $new_fixed_language_model->$key = $a;
+                        }
+                        $new_fixed_language_model->lang_id = $language->id;
+                        $new_fixed_language_model->id = null;
+                        $new_fixed_language_model->save();
+                    }
 
 
                     $whatsapp_icon = new Whatsapp();

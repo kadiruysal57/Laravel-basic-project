@@ -25,6 +25,6 @@ class Menu extends Model
 
 
     public function default_menu(){
-        return array('Top Menu','Footer Menu');
+        return array('1'=>'Top Menu','2'=>'Footer Menu');
     }
 }

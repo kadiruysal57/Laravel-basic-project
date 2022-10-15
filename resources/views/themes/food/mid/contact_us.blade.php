@@ -22,7 +22,7 @@
                 <div class="info-item  d-flex align-items-center">
                     <i class="icon bi bi-map flex-shrink-0"></i>
                     <div>
-                        <h3>{{getFixedWord('address')}}</h3>
+                        <h3>{{getFixedWord('address',$active_lang)}}</h3>
                         @if(!empty(getAllOffice()))
                             @foreach(getAllOffice() as $address)
                                 @if(!empty($address->address))
@@ -39,7 +39,7 @@
                 <div class="info-item d-flex align-items-center">
                     <i class="icon bi bi-envelope flex-shrink-0"></i>
                     <div>
-                        <h3>{{getFixedWord('email')}}</h3>
+                        <h3>{{getFixedWord('email',$active_lang)}}</h3>
                         @if(!empty(getAllOffice()))
                             @foreach(getAllOffice() as $email)
                                 @if(!empty($email->email))
@@ -55,7 +55,7 @@
                 <div class="info-item  d-flex align-items-center">
                     <i class="icon bi bi-telephone flex-shrink-0"></i>
                     <div>
-                        <h3>{{getFixedWord('call_us')}}</h3>
+                        <h3>{{getFixedWord('call_us',$active_lang)}}</h3>
                         @if(!empty(getAllOffice()))
                             @foreach(getAllOffice() as $gsm)
                                 @if(!empty($gsm->gsm))
@@ -71,7 +71,7 @@
                 <div class="info-item  d-flex align-items-center">
                     <i class="icon bi bi-share flex-shrink-0"></i>
                     <div>
-                        <h3>{{getFixedWord('opening_hours')}}</h3>
+                        <h3>{{getFixedWord('opening_hours',$active_lang)}}</h3>
                         <div>
                             @if(!empty(getAllOffice()))
 
@@ -80,9 +80,9 @@
                                         <p>
                                             @foreach($address->open_hourse as $open_hourse)
                                                 @if($open_hourse->start_time != $open_hourse->finish_time)
-                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : {{date('H:i',strtotime($open_hourse->start_time))}}</strong> - {{date('H:i',strtotime($open_hourse->finish_time))}}<br>
+                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name,$active_lang)}} - {{getFixedWord($open_hourse->finish_day_name->name,$active_lang)}} : {{date('H:i',strtotime($open_hourse->start_time))}}</strong> - {{date('H:i',strtotime($open_hourse->finish_time))}}<br>
                                                 @else
-                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name)}} - {{getFixedWord($open_hourse->finish_day_name->name)}} : </strong> {{getFixedWord('closed')}}<br>
+                                                    <strong>{{getFixedWord($open_hourse->start_day_name->name,$active_lang)}} - {{getFixedWord($open_hourse->finish_day_name->name,$active_lang)}} : </strong> {{getFixedWord('closed',$active_lang)}}<br>
                                                 @endif
                                             @endforeach
                                         </p>
