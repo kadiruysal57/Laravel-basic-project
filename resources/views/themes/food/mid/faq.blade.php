@@ -13,16 +13,40 @@
                     @foreach($content->faq_category->faq as $key => $faqs)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading{{$faqs->id}}">
-                                <button class="accordion-button @if($key != 0) collapsed @endif" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$faqs->id}}" aria-expanded="true" aria-controls="collapse{{$faqs->id}}">
+                                <button class="accordion-button @if($key != 0) collapsed @endif" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse{{$faqs->id}}"
+                                        aria-expanded="true" aria-controls="collapse{{$faqs->id}}">
                                     {{$faqs->question}}
                                 </button>
                             </h2>
-                            <div id="collapse{{$faqs->id}}" class="accordion-collapse collapse @if($key == 0) show @endif" aria-labelledby="heading{{$faqs->id}}" data-bs-parent="#accordionFaq">
+                            <div id="collapse{{$faqs->id}}"
+                                 class="accordion-collapse collapse @if($key == 0) show @endif"
+                                 aria-labelledby="heading{{$faqs->id}}" data-bs-parent="#accordionFaq">
                                 <div class="accordion-body">
                                     {{$faqs->answer}}
                                 </div>
                             </div>
                         </div>
+                    @section('Faqjs')
+                            <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+
+            {
+                "@type": "Question",
+                "name": "{{$faqs->question}}",
+                "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{$faqs->answer}}"
+                }
+            },
+      ]
+    }
+
+                        </script>
+                    @endsection
                     @endforeach
                 </div>
             @endif
