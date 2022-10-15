@@ -139,6 +139,7 @@
 <script src="{{asset('themes/food/assets/js/toastify.js')}}"></script>
 <script src="{{asset('themes/food/assets/js/main.js')}}"></script>
 @yield('JsContent')
+@yield('Faqjs')
 </body>
 
 </html>
