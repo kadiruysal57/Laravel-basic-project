@@ -90,7 +90,7 @@
 
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3">
-                                                     <label class="fs-6 fw-bold form-label">
+                                                     <label class="fs-6 fw-bold form-label require">
                                                          <span>{{__('global.title')}}</span>
                                                          </label>
                                                      <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->title}}" name="slider_title_edit{{$si->id}}">

@@ -83,7 +83,7 @@ class SliderController extends Controller
                     }else{
                         $order = $request->$order;
                     }
-                    if(!empty($request->$filepath)){
+                    if(!empty($request->$title)){
                         $slide_image = new slider_image();
                         $slide_image->title = $request->$title;
                         $slide_image->description =  $request->$description;
@@ -138,7 +138,7 @@ class SliderController extends Controller
                     }else{
                         $order_last = $request->$order;
                     }
-                    if(!empty($request->$filepath)){
+                    if(!empty($request->$title)){
                         $slide_image = new slider_image();
                         $slide_image->title = $request->$title;
                         $slide_image->description =  $request->$description;
@@ -166,7 +166,7 @@ class SliderController extends Controller
                     $filepath_edit = "filepath_edit". $si->id;
                     $order = "order_edit". $si->id;
 
-                    if(!empty($request->$filepath_edit)){
+                    if(!empty($request->$title_edit)){
 
                         $slide_image = slider_image::find($si->id);
                         $slide_image->title = $request->$title_edit;

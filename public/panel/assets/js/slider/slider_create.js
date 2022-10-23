@@ -35,8 +35,8 @@ $(document).ready(function () {
             '<div class="col-4" style="text-align: -webkit-center">'+
 
             '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3" >'+
-            '<label class="fs-6 fw-bold form-label">'+
-            '<span>Başlık</span>'+
+            '<label class="fs-6 fw-bold form-label require">'+
+            '<span >Başlık</span>'+
             '</label>'+
             '<input type="text" class="form-control form-control w-75 p-3" name="slider_title'+currentVal+'">'+
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
