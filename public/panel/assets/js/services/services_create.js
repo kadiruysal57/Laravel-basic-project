@@ -23,7 +23,7 @@ $(document).ready(function () {
             '<div class="d-flex justify-content-center">'+
             '<span class="input-group-btn">'+
             '<a id="lfm'+currentVal+'" data-input="thumbnail'+currentVal+'" data-preview="holder'+currentVal+'" class="btn btn-primary">'+
-            '<i class="fa fa-picture-o"></i> Select'+
+            '<i class="fa fa-picture-o"></i> Lütfen Seçim Yapınız'+
             '</a>'+
             '</span>'+
             '</div>'+
@@ -36,22 +36,19 @@ $(document).ready(function () {
             '<div class="col-6" style="text-align: -webkit-center">'+
 
             '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center" >'+
-            '<label class="fs-6 fw-bold form-label">'+
-            '<span>Link</span>'+
+            '<label class="fs-6 fw-bold form-label require">'+
+            '<span>Başlık</span>'+
             '</label>'+
-            '<input type="text" class="form-control form-control w-75 p-3" name="services_link'+currentVal+'">'+
+            '<input class="form-control form-control w-75 p-3" name="services_title'+currentVal+'">'+
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
             '</div>'+
 
 
-
-
-
             '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center" >'+
             '<label class="fs-6 fw-bold form-label">'+
-            '<span>Başlık</span>'+
+            '<span>Link</span>'+
             '</label>'+
-            '<input class="form-control form-control w-75 p-3" name="services_title'+currentVal+'">'+
+            '<input type="text" class="form-control form-control w-75 p-3" name="services_link'+currentVal+'">'+
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
             '</div>'+
 
@@ -62,6 +59,15 @@ $(document).ready(function () {
             '<input type="text" class="form-control form-control w-75 p-3" name="services_desc'+currentVal+'">'+
 
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
+            '</div>'+
+
+            '<div class="fv-row mb-7 fv-plugins-icon-container">'+
+                '<label class="fs-6 fw-bold form-label mt-3">'+
+                    '<span>Sıra Numarası</span>'+
+                '</label>'+
+               '<input id="order" name="order" class="form-control form-control w-75 p-3" type="number">'+
+                    '<div className="fv-plugins-message-container invalid-feedback"></div>'+
+
             '</div>'+
 
             '</div>'+

@@ -24,11 +24,11 @@
                             <input type="hidden" name="services_id" value="{{$services->id}}">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" required type="text" value="{{$services->name}}">
+                                <input class="form-control " name="name"  type="text" value="{{$services->name}}">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('global.description')}}</label>
-                                <input class="form-control " name="description" required type="text" value="{{$services->description}}">
+                                <label class="">{{__('global.description')}}</label>
+                                <input class="form-control " name="description"  type="text" value="{{$services->description}}">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>
@@ -50,6 +50,7 @@
 
                                     <div id="servicesimage_edit{{$sm->id}}" class="mt-5 bg-light"
                                          style="border-radius:30px; padding: 10px;">
+                                        <button type="button" class="btn btn-danger mt-2 btn-sm deleteButtonServices " data-id="{{$sm->id}}" data-action = "{{route('services.store')}}" data-table="#services_table"><i class="ti-trash"></i></button>
 
                                         <div class="d-flex">
                                             <div class="col-6">
@@ -64,11 +65,11 @@
                                                          <span class="input-group-btn">
                                                              <a  data-input="thumbnail_edit{{$sm->id}}" data-preview="holder_edit{{$sm->id}}"
                                                                             class="btn btn-primary lfm">
-                                                             <i class="fa fa-picture-o"></i>{{__('global.please_select')}}
+                                                             <i class="fa fa-picture-o"></i> {{__('global.please_select')}}
                                                              </a>
                                                          </span>
                                                     </div>
-                                                    <input id="thumbnail_edit{{$sm->id}}" class="form-control" type="hidden" name="filepath_edit{{$sm->id}}" value="">
+                                                    <input id="thumbnail_edit{{$sm->id}}" class="form-control" type="hidden" name="filepath_edit{{$sm->id}}" value="{{$sm->url}}">
                                                 </div>
 
                                             </div>
@@ -79,20 +80,19 @@
 
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
-                                                     <label class="fs-6 fw-bold form-label">
-                                                         <span>{{__('services.link')}}</span>
-                                                         </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->link}}" name="services_link_edit{{$sm->id}}">
-                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                                </div>
-
-
-                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
-                                                     <label class="fs-6 fw-bold form-label">
+                                                     <label class="fs-6 fw-bold form-label require">
                                                          <span>{{__('services.services_title')}}</span>
                                                          </label>
                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->title}}" name="services_title_edit{{$sm->id}}">
 
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+
+                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
+                                                    <label class="fs-6 fw-bold form-label">
+                                                        <span>{{__('services.link')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->link}}" name="services_link_edit{{$sm->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
@@ -102,6 +102,14 @@
                                                     </label>
                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->description}}" name="services_desc_edit{{$sm->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                    <label class="fs-6 fw-bold form-label mt-3">
+                                                        <span>{{__('services.order')}}</span>
+                                                    </label>
+                                                    <input id='order' name='order_edit{{$sm->id}}' class="form-control form-control w-75 p-3" type='number' value='{{$sm->list_order}}'>
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+
                                                 </div>
 
                                             </div>
@@ -117,7 +125,7 @@
                             </div>
 
 
-                            <div class="text-center mt-2">
+                            <div class="text-center mt-3">
                                 <button type="submit" class="btn btn-w-md btn-round btn-primary " form="services_update">{{__('global.save')}}</button>
                             </div>
 

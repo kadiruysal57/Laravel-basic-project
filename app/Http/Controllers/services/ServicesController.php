@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\services;
 use App\Models\services_list;
+use Illuminate\Support\Facades\Lang;
 
 class ServicesController extends Controller
 {
@@ -57,6 +58,9 @@ class ServicesController extends Controller
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
                 'status'=>'required',
+            ],[
+                'name.required'=>Lang::get('services.name_required'),
+                'status.required'=>Lang::get('services.status_required'),
             ]);
             if ($validator->passes()) {
                 $services = new services();
@@ -71,13 +75,21 @@ class ServicesController extends Controller
                     $description = "services_desc". $i;
                     $services_title = "services_title". $i;
                     $filepath = "filepath". $i;
+                    $order = "order". $i;
+                    if(empty($request->$order)){
+                        $order = $i;
+                    }else{
+                        $order = $request->$order;
+                    }
 
-                    if(!empty($request->$filepath)){
+
+                    if(!empty($request->$services_title)){
                         $services_list = new services_list();
                         $services_list->link = $request->$link;
                         $services_list->description =  $request->$description;
                         $services_list->title = $request->$services_title;
-                        $services_list->url =  $request->$filepath;
+                        $services_list->url =  str_replace(env('APP_URL'),'', $request->$filepath);
+                        $services_list->list_order = $order;
                         $services_list->status = 1;
                         $services_list->services_id = $services->id;
                         $services_list->add_user = Auth::id();
@@ -87,12 +99,19 @@ class ServicesController extends Controller
                 return response()->json(['type' => "success",'route_url'=>route('services.index')]);
 
             }
+            else{
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+            return response()->json(['error' => $validator->errors()->all()]);
         }
 
         if($request->id == "update"){
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
                 'status'=>'required',
+            ],[
+                'name.required'=>Lang::get('services.name_required'),
+                'status.required'=>Lang::get('services.status_required'),
             ]);
             if ($validator->passes()) {
                 $services = services::find($request->services_id);
@@ -102,18 +121,29 @@ class ServicesController extends Controller
                 $services->update_user = Auth::id();
                 $services->save();
 
-                for ($i = 0; $i <= $request->count; $i++) {
+                $order_table = services_list::where('status',1)->where('services_id', $services->id)->orderBy('list_order','DESC')->first();
+                $order_last = $order_table->list_order;
+
+                for ($i = 1; $i <= $request->count; $i++) {
                     $link = "services_link" . $i;
                     $description = "services_desc". $i;
                     $services_title = "services_title". $i;
                     $filepath = "filepath". $i;
+                    $order = "order". $i;
+                    if(empty($request->$order)){
+                        $order_last = $order_last + 1;
+                    }else{
+                        $order_last = $request->$order;
+                    }
+                    echo $order;
 
-                    if(!empty($request->$filepath)){
+                    if(!empty($request->$services_title)){
                         $services_list = new services_list();
                         $services_list->link = $request->$link;
                         $services_list->description =  $request->$description;
                         $services_list->title = $request->$services_title;
-                        $services_list->url =  $request->$filepath;
+                        $services_list->url =  str_replace(env('APP_URL'),'', $request->$filepath);
+                        $services_list->list_order =  $order_last;
                         $services_list->status = 1;
                         $services_list->services_id = $services->id;
                         $services_list->add_user = Auth::id();
@@ -127,28 +157,44 @@ class ServicesController extends Controller
                     $description_edit = "services_desc_edit". $st->id;
                     $services_title_edit = "services_title_edit". $st->id;
                     $filepath_edit = "filepath_edit". $st->id;
-                    echo $request->$filepath_edit;
+                    $order = "order_edit". $st->id;
 
-                    if(!empty($request->$filepath_edit)){
+
+                    if(!empty($request->$services_title_edit)){
 
                         $services_list = services_list::find($st->id);
                         $services_list->link = $request->$link_edit;
                         $services_list->description =  $request->$description_edit;
                         $services_list->title = $request->$services_title_edit;
-                        $services_list->url =  $request->$filepath_edit;
+                        $services_list->url = str_replace(env('APP_URL'),'', $request->$filepath_edit);
+                        $services_list->list_order =  $request->$order;
                         $services_list->status = 1;
                         $services_list->services_id = $services->id;
                         $services_list->update_user = Auth::id();
                         $services_list->save();
                     }
                 }
-                return response()->json(['type' => "success"]);
+
+
+
             }
             else{
                 return response()->json(['error' => $validator->errors()->all()]);
             }
+            return response()->json(['error' => $validator->errors()->all()]);
 
 
+        }
+        if($request->id == "services_delete"){
+            $services_list_del = services_list::find($request->services_id);
+
+            if(!empty($services_list_del)){
+                $services_list_del->delete();
+                return response()->json(['type' => 'success', 'success_message_array' => array(Lang::get('global.success_message'))]);
+
+            }else{
+                return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
+            }
         }
     }
 
