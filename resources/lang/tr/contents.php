@@ -56,4 +56,8 @@ return [
     'breadcrumbs'=>'Navigasyon',
     'main_page'=>'Ana Kategori',
     'faq'=>'Sıkca Sorulan Sorular',
+    'category_list'=>'Kategori Listeleme',
+    'page_details'=>'Sayfa Detay',
+    'staff_blok' => 'Alt Sayfa Listeleme',
+    'images_category_list' => 'Arka plan resimli kategori listeleme',
 ];

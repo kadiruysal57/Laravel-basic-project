@@ -20,7 +20,7 @@ class userroles extends Model
     protected $table = 'user_roles';
 
     public function roles_table(){
-        return $this->hasOne(roleslist::class,'id','roles_list_id');
+        return $this->hasOne(roleslist::class,'id','roles_list_id')->where('status',1);
     }
     public function CheckRole($roleName){
         return $this

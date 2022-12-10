@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lang_id');
             $table->string('code_name')->nullable();
-            $table->string('word')->nullable();
+            $table->text('word')->nullable();
             $table->integer('lock')->default(2);
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -98,7 +98,7 @@ return new class extends Migration
             array(
                 'lang_id' => '1',
                 'code_name'=>"call_us",
-                'word' => "Bizi Arayın",
+                'word' => "Bize Ulaşın",
                 'lock' => "1",
                 'add_user' => "1",
             )
@@ -208,12 +208,59 @@ return new class extends Migration
             array(
                 'lang_id' => '1',
                 'code_name'=>"quick_page",
-                'word' => "Sayfalarımız",
+                'word' => "Faydalı Linkler",
                 'lock' => "1",
                 'add_user' => "1",
             )
         );
 
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"legal_warning",
+                'word' => "Yasal Uyarı",
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"legal_warning_word",
+                'word' => '1136 sayılı Avukatlık Kanunu, Türkiye Barolar Birliği Reklam Yasağı Yönetmeliği ve Türkiye Barolar Birliği Meslek kuralları gereğince sitemiz herhangi bir reklam unsuru taşımamakta, sadece bilgi vermeyi amaçlamaktadır. Bu sebeple sitemizde “avukatlar, teknolojinin ve bilimin olanak tanıdığı her tür ortamda avukatlık mesleğinin onur ve kurallarına, avukatlık unvanının gerektirdiği saygı ve güvene, Türkiye Barolar Birliği tarafından belirlenen "Avukatlık Meslek Kuralları"na aykırı olmayacak şekilde kendisini ifade etme hakkına sahiptir ilkesi” egemendir. Bu itibarla, sitemizde yer alan yazılar  Avukatlık Meslek İlkeleri çerçevesinde bilgilendirme amaçlı olup herhangi bir sorumluluk doğurmaz.',
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"show_more",
+                'word' => 'Devamı',
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"our_staff",
+                'word' => 'Kadromuz',
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
+
+        DB::table('fixed_word')->insert(
+            array(
+                'lang_id' => '1',
+                'code_name'=>"online_pay",
+                'word' => 'Ödeme',
+                'lock' => "1",
+                'add_user' => "1",
+            )
+        );
     }
 
     /**

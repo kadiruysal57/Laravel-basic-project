@@ -106,8 +106,10 @@ function getFixedWord($colum,$lang){
 
 }
 function getSiteSetting($colum,$lang = null){
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+    if(empty($lang)){
+        $lang = \App\Models\Language::where('main_language',1)->first();
+        $lang = $lang->id;
+    }
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     if(!empty($site_setting)){
@@ -115,18 +117,23 @@ function getSiteSetting($colum,$lang = null){
     }
 }
 function getAllSocial($lang=null){
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+    if(empty($lang)) {
+        $lang = \App\Models\Language::where('main_language', 1)->first();
+        $lang = $lang->id;
+    }
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     $social_media = \App\Models\social_media::where('sitesettings_id',$site_setting->id)->get();
 
     return $social_media;
 }
-function getAllAddress(){
+function getAllAddress($lang=null){
+    if(empty($lang)) {
+        $lang = \App\Models\Language::where('main_language',1)->first();
+        $lang = $lang->id;
+    }
     $getAllAddress = array();
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     $address = \App\Models\Address::where('site_settings_id',$site_setting->id)->get();
@@ -136,10 +143,13 @@ function getAllAddress(){
     return $getAllAddress;
 }
 
-function getAllPhone(){
+function getAllPhone($lang=null){
     $getAllPhone = array();
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+    if(empty($lang)) {
+        $lang = \App\Models\Language::where('main_language',1)->first();
+        $lang = $lang->id;
+    }
+
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     $address = \App\Models\Address::where('site_settings_id',$site_setting->id)->get();
@@ -148,10 +158,13 @@ function getAllPhone(){
     }
     return $getAllPhone;
 }
-function getAllEmail(){
+function getAllEmail($lang=null){
     $getAllEmail = array();
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+
+    if(empty($lang)) {
+        $lang = \App\Models\Language::where('main_language',1)->first();
+        $lang = $lang->id;
+    }
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     $address = \App\Models\Address::where('site_settings_id',$site_setting->id)->get();
@@ -161,9 +174,11 @@ function getAllEmail(){
     return $getAllEmail;
 }
 
-function getAllOffice(){
-    $lang = \App\Models\Language::where('main_language',1)->first();
-    $lang = $lang->id;
+function getAllOffice($lang=null){
+    if(empty($lang)) {
+        $lang = \App\Models\Language::where('main_language', 1)->first();
+        $lang = $lang->id;
+    }
 
     $site_setting = \App\Models\site_settings::where('language_id',$lang)->where('status',1)->first();
     $address = \App\Models\Address::where('site_settings_id',$site_setting->id)->get();

@@ -25,7 +25,7 @@
                         <div class="col">
 
                                 <div class="">
-                                    <table class="table table-separated dataTables">
+                                    <table class="table table-separated dataTables" id="slider">
                                         <thead>
                                         <tr>
                                             <th>{{__('global.image')}}</th>
@@ -67,7 +67,11 @@
                                                     <td>{{$s->title}}</td>
                                                     <td class="text-right table-actions">
                                                         <a class="table-action hover-primary" href="{{route('slider.show',[$s->id])}}"><i class="ti-pencil"></i></a>
-                                                        <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>
+                                                        <a class="table-action hover-danger deleteButton"
+                                                           data-id="{{$s->id}}"
+                                                           data-action="{{route('slider.destroy',[$s->id])}}"
+                                                           data-table="#slider"
+                                                           href="#"><i class="ti-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

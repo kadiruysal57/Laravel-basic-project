@@ -5,12 +5,14 @@ var options = {
     filebrowserUploadUrl: '/Kpanel/laravel-filemanager/upload?type=Files&_token='
 };
 var editor = CKEDITOR.replace('description', options);
+var editor2 = CKEDITOR.replace('short_desc', options);
 $(document).ready(function () {
 
     $('.gallery_adds').filemanager('image');
     $('#contents_create').on('submit', function (e) {
         e.preventDefault();
         editor.updateElement();
+        editor2.updateElement();
         $('.top_blok_data').val(window.JSON.stringify($('#top_blok_nestable').nestable('serialize')));
         $('.left_blok_data').val(window.JSON.stringify($('#left_blok_nestable').nestable('serialize')));
         $('.mid_blok_data').val(window.JSON.stringify($('#mid_blok_fix_nestable').nestable('serialize')));
@@ -97,6 +99,7 @@ $(document).ready(function () {
 
         e.preventDefault();
         editor.updateElement();
+        editor2.updateElement();
         $('.top_blok_data').val(window.JSON.stringify($('#top_blok_nestable').nestable('serialize')));
         $('.left_blok_data').val(window.JSON.stringify($('#left_blok_nestable').nestable('serialize')));
         $('.mid_blok_data').val(window.JSON.stringify($('#mid_blok_fix_nestable').nestable('serialize')));
@@ -224,7 +227,7 @@ $(document).ready(function () {
                                 $.each(data.file_array, function (i, data) {
                                     $('#' + i).html(data);
                                 })
-
+                                ddhandetrash()
                                 nestableCall()
                                 $.each(data.success_message_array, function (i, data) {
                                     Toastify({
@@ -383,6 +386,100 @@ $(document).ready(function () {
         });
     });
 
+    function deleteButtonFeature() {
+        $('.deleteButtonFeature').click(function () {
+            var id = $(this).attr('data-id');
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $('.preloader').show();
+
+                    $.ajaxSetup({
+
+                        headers: {
+
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+                        }
+
+                    });
+
+
+                    $.ajax({
+
+                        type: 'PUT',
+
+                        url: $(this).attr('data-action'),
+
+                        data: {value: id},
+                        success: function (data) {
+                            if (data.type == "success") {
+                                $('#content_feature_holders').empty();
+                                $('#feature_add_inputs').val('');
+                                    Toastify({
+                                        title: "success",
+                                        text: "Başarılı",
+                                        style: {
+                                            background: "green",
+                                        },
+                                        offset: {
+                                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                        },
+                                    }).showToast();
+                            } else {
+                                    Toastify({
+                                        title: "Error",
+                                        text: "Error",
+                                        style: {
+                                            background: "red",
+                                        },
+                                        offset: {
+                                            x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                            y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                        },
+                                    }).showToast();
+                            }
+                            $('.preloader').hide();
+                        },
+                        error: function (data) {
+                            Toastify({
+                                title: "Error",
+                                text: "An Error Occurred, please try again later.",
+                                style: {
+                                    background: "red",
+                                },
+                                offset: {
+                                    x: 50, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+                                    y: 10 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+                                },
+                            }).showToast();
+
+                            $('.preloader').hide();
+                        }
+
+                    });
+                }
+            });
+
+        });
+    }
+
+    deleteButtonFeature();
+
+    function deleteCreateFeature(){
+        $('.deleteCreateFeature').click(function () {
+            $('#content_feature_holders').empty();
+            $('#feature_add_inputs').val('');
+        })
+    }
+    deleteCreateFeature();
     function deleteButtonGallery() {
         $('.deleteButtonGallery').click(function () {
             var id = $(this).attr('data-id');
