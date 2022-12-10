@@ -81,100 +81,142 @@
                                         <select name="language_id" id="language_id" class="auto-search form-control">
                                             <option value="">{{__('global.please_select')}}</option>
                                             @foreach($language as $l)
-                                                <option value="{{$l->id}}">{{$l->name}}</option>
+                                                <option @if($l->main_language == 1) selected @endif value="{{$l->id}}">{{$l->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="main_page">{{__('contents.main_page')}}</label>
-                                        <select name="main_page" id="main_page" class="auto-search form-control">
-                                            <option value="0">{{__('global.main_page')}}</option>
-                                            @foreach($main_pages as $m)
-                                                <option value="{{$m->id}}">{{$m->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="slider_id">{{__('global.slider')}}</label>
-                                            <select name="slider_id" id="slider_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($slider as $s)
-                                                <option value="{{$s->id}}">{{$s->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gallery_id">{{__('global.gallery')}}</label>
-                                        <select name="gallery_id" data-live-search="true" id="gallery_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($gallery as $g)
-                                                <option value="{{$g->id}}">{{$g->name}}({{$g->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="services_id">{{__('services.services_page_title')}}</label>
-                                        <select name="services_id" data-live-search="true" id="services_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($services as $s)
-                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="portfolio_id">{{__('title.portfolio')}}</label>
-                                        <select name="portfolio_id" data-live-search="true" id="portfolio_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($portfolio as $p)
-                                                <option value="{{$p->id}}">{{$p->name}}({{$p->id}})</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="justify-content-center text-center">
+                                    <button type='button' id='modal'
+                                            data-toggle='modal'
+                                            data-target='#selected-modal'
+                                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <span class="svg-icon svg-icon-3"> {{__('global.contents_modal_text')}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
+                                                    fill="currentColor"></path>
+                                                <path opacity="0.3"
+                                                      d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                      fill="currentColor"></path>
+                                                </svg>
+                                                </span>
+                                    </button>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="comments_id">{{__('title.comments')}}</label>
-                                        <select name="comments_id" data-live-search="true" id="comments_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($comments as $c)
-                                                <option value="{{$c->id}}">{{$c->name}}({{$c->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="staff_id">{{__('title.staff')}}</label>
-                                        <select name="staff_id" data-live-search="true" id="staff_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($staff as $s)
-                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
-                                            @endforeach
-                                        </select>
+                                    <div id='selected-modal' class="modal fade"
+                                         tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">{{__('global.modal_title')}}</h4>
+                                                </div>
+                                                <div class="modal-body row">
+
+                                                    <div class="form-group col-6">
+                                                        <label for="main_page">{{__('contents.main_page')}}</label>
+                                                        <select name="main_page" id="main_page"  data-live-search="true" title="{{__('global.please_select')}}" style="height: 46px !important; background-color: #fcfcfc !important; overflow-y: auto"
+                                                                class="form-control">
+                                                            <option selected="" value="0">{{__('global.main_page')}}</option>
+                                                            @foreach($main_pages as $m)
+                                                                <option value="{{$m->id}}">{{$m->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="slider_id">{{__('global.slider')}}</label>
+                                                        <select name="slider_id" data-provide="selectpicker" data-live-search="true" title="{{__('global.please_select')}}" id="slider_id" class="auto-search form-control">
+                                                            @foreach($slider as $s)
+                                                                <option value="{{$s->id}}">{{$s->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div><div class="form-group col-6">
+                                                        <label for="gallery_id">{{__('global.gallery')}}</label>
+                                                        <select name="gallery_id" data-live-search="true" id="gallery_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($gallery as $g)
+                                                                <option value="{{$g->id}}">{{$g->name}}({{$g->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="services_id">{{__('services.services_page_title')}}</label>
+                                                        <select name="services_id" data-live-search="true" id="services_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($services as $s)
+                                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="portfolio_id">{{__('title.portfolio')}}</label>
+                                                        <select name="portfolio_id" data-live-search="true" id="portfolio_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($portfolio as $p)
+                                                                <option value="{{$p->id}}">{{$p->name}}({{$p->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="comments_id">{{__('title.comments')}}</label>
+                                                        <select name="comments_id" data-live-search="true" id="comments_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($comments as $c)
+                                                                <option value="{{$c->id}}">{{$c->name}}({{$c->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="staff_id">{{__('title.staff')}}</label>
+                                                        <select name="staff_id" data-live-search="true" id="staff_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($staff as $s)
+                                                                <option value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="form_id">{{__('global.form')}}</label>
+                                                        <select name="form_id" data-provide="selectpicker" data-live-search="true" title="{{__('global.please_select')}}" id="form_id" class="auto-search form-control">
+                                                            @foreach($form as $f)
+                                                                <option value="{{$f->id}}">{{$f->name}}({{$f->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="faq_id">{{__('global.faq')}}</label>
+                                                        <select name="faq_id" data-live-search="true" id="faq_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($faq as $f)
+                                                                <option value="{{$f->id}}">{{$f->name}}(Id:{{$f->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="category_id">{{__('global.category')}}</label>
+                                                        <select name="category_id" data-provide="selectpicker" data-live-search="true" title="{{__('global.please_select')}}" id="category_id" class="auto-search form-control">
+                                                            @foreach($category as $c)
+                                                                <option value="{{$c->id}}">{{$c->name}}(Id:{{$c->id}})</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="form_id">{{__('global.form')}}</label>
-                                        <select name="form_id" data-live-search="true" id="form_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($form as $f)
-                                                <option value="{{$f->id}}">{{$f->name}}({{$f->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="faq_id">{{__('global.faq')}}</label>
-                                        <select name="faq_id" data-live-search="true" id="faq_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($faq as $f)
-                                                <option value="{{$f->id}}">{{$f->name}}(Id:{{$f->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+
+
                                     <div class="form-group">
                                         <label class="">{{__('global.short_desc')}}</label>
-                                        <textarea name="short_desc" class="form-control"></textarea>
+                                        <textarea name="short_desc" class="ckeditor form-control" id="short_desc"></textarea>
                                     </div>
 
                                     <div class="form-group">
+                                                    <label class="">{{__('global.content_page')}}</label>
                                                     <textarea class="ckeditor form-control" name="description"
                                                               id="description"></textarea>
                                     </div>
@@ -197,10 +239,51 @@
                                         <label class="">{{__('contents.focus_keywords')}}</label>
                                         <input class="form-control " name="focus_keywords"  type="text">
                                     </div>
+                                    <div class="form-group">
+                                        <label class="require">{{__('global.link_q')}}</label>
+                                        <select name="seo_q1" class="form-control" tabindex="-98">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            <option value="1">{{__('global.yes')}}</option>
+                                            <option value="2">{{__('global.no')}}</option>
+                                        </select>
+                                    </div>
 
                                     <div class="form-group">
                                         <label class="">{{__('global.slug')}}</label>
                                         <input class="form-control " name="seo_url"  type="text">
+                                    </div>
+
+                                    <label class="">{{__('global.feature')}}</label>
+                                    <div
+                                        class='col-lg-12 text-center feature_image_deletes'>
+                                        <div id='content_feature_holders'
+                                             class='image-content'>
+
+                                        </div>
+                                    </div>
+
+                                    <div class='input-group mt-3'>
+
+                                        <span class='input-group-btn'>
+                                            <a id='feature_adds'
+                                               data-input='feature_add_inputs'
+                                               data-preview='content_feature_holders'
+                                               class='btn btn-primary gallery_adds'>
+                                                <i class='fa fa-picture-o'></i> {{__('contents.gallery_select')}}
+                                            </a>
+                                        </span>
+                                        <input id='feature_add_inputs'
+                                               class='form-control'
+                                               type='text'
+                                               name='feature_url'
+                                               readonly
+                                               value=''>
+                                        <button type='button'
+                                                class='btn btn-danger btn-sm deleteCreateFeature'
+                                                data-id=""
+                                                data-action=""
+                                                style=''><i class='fa fa-trash'></i>
+                                        </button>
                                     </div>
 
 

@@ -31,6 +31,10 @@ class form extends Model
         return $this->hasMany(form_input::class,'form_id','id')->where('status',1)->orderBy('order_input');
     }
 
+    public function form_send(){
+        return $this->hasMany(form_send::class,'form_id','id');
+    }
+
     public function getTableReview(){
         $form_all = $this->select('id','name')->where('status',1)->get();
         foreach ($form_all as $f){

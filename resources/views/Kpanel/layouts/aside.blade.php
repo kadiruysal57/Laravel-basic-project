@@ -1,6 +1,9 @@
+@php
+    $sitesettings = \App\Models\site_settings::where('status',1)->first();
+@endphp
 <header class="sidebar-header bg-info">
         <span class="logo">
-          <a href="{{route('dashboard')}}"><img src="{{asset('panel/assets/img/logo-light.png')}}" alt="logo"></a>
+          <a href="{{route('dashboard')}}" style="font-size: 15px">Kuark Bilişim</a>
         </span>
     <span class="sidebar-toggle-fold"></span>
 </header>
@@ -8,6 +11,13 @@
 <nav class="sidebar-navigation ps-container ps-theme-default" data-ps-id="0664ac42-8a4a-9a44-9c66-9a141163124b">
     <ul class="menu menu-sm menu-bordery">
 
+
+        <li class="menu-item">
+            <a class="menu-link" href="{{env('APP_URL')}}">
+                <span class="icon fa fa-laptop"></span>
+                <span class="title">@if(!empty($sitesettings)){{$sitesettings->site_name}}@endif</span>
+            </a>
+        </li>
         <li class="menu-item @if(getCurrentUrlName() == "dashboard") active @endif">
             <a class="menu-link" href="{{route('dashboard')}}">
                 <span class="icon ti-home"></span>
@@ -74,6 +84,12 @@
                 <span class="title">{{__('contents.contents_page_title')}}</span>
             </a>
         </li>
+        <li class="menu-item @if(getCurrentUrlName() == "category") active @endif">
+            <a class="menu-link" href="{{route('category.index')}}">
+                <span class="icon fa fa-list"></span>
+                <span class="title">{{__('category.index')}}</span>
+            </a>
+        </li>
 
 
         <li class="menu-item  @if(getCurrentUrlName() == "slider") active @endif">
@@ -90,7 +106,7 @@
             </a>
         </li>
 
-        <li class="menu-item  @if(getCurrentUrlName() == "services") active @endif">
+      <li class="menu-item  @if(getCurrentUrlName() == "services") active @endif">
             <a class="menu-link "  href="{{route('services.index')}}">
                 <span class="icon fa fa-book"></span>
                 <span class="title">{{__('services.services_page_title')}}</span>

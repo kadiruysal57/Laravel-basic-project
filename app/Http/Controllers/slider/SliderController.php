@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\slider;
 
 use App\Http\Controllers\Controller;
+use App\Models\permission;
 use App\Models\slider;
 use App\Models\slider_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,9 +58,10 @@ class SliderController extends Controller
         if($request->id == "create"){
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
-                'title'=>'required',
-                'description'=>'required',
-                'status'=>'required',
+                'status' => 'required',
+            ],[
+                'name.required'=>Lang::get('slider.name_required'),
+                'status.required'=>Lang::get('slider.status_required'),
             ]);
             if ($validator->passes()) {
                 $slide = new slider();
@@ -102,14 +105,19 @@ class SliderController extends Controller
                 return response()->json(['type' => "success",'route_url'=>route('slider.index')]);
 
             }
+            else{
+                return response()->json(['error' => $validator->errors()->all()]);
+            }
+            return response()->json(['error' => $validator->errors()->all()]);
         }
 
         if($request->id == "update"){
             $validator = Validator::make($request->all(), [
                 'name'=>'required',
-                'title'=>'required',
-                'description'=>'required',
-                'status'=>'required',
+                'status' => 'required',
+            ],[
+                'name.required'=>Lang::get('slider.name_required'),
+                'status.required'=>Lang::get('slider.status_required'),
             ]);
             if ($validator->passes()) {
                 $slide = slider::find($request->slider_id);
@@ -121,7 +129,14 @@ class SliderController extends Controller
                 $slide->save();
 
                 $order_table = slider_image::where('status',1)->where('slider_id', $slide->id)->orderBy('order_input','DESC')->first();
-                $order_last = $order_table->order_input;
+                if(empty($order_table)){
+                    $order_last = 0;
+                }
+                if(!empty($order_table)){
+                    $order_last = $order_table->order_input;
+                }
+
+
                 for ($i = 0; $i <= $request->count; $i++) {
                     $title = "slider_title" . $i;
                     $order = "order" . $i;
@@ -188,6 +203,7 @@ class SliderController extends Controller
             else{
                 return response()->json(['error' => $validator->errors()->all()]);
             }
+            return response()->json(['error' => $validator->errors()->all()]);
 
 
         }
@@ -259,6 +275,17 @@ class SliderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $slider = slider::where('id', $id)->first();
+        if (!empty($slider)) {
+            $slider->delete();
+            $sliderr = new slider();
+            $slider_all = $sliderr->getTableReview();
+            return response()->json(['type' => 'success', 'tableRefresh' => 1, 'listData' => $slider_all, 'success_message_array' => array(Lang::get('global.success_message'))]);
+
+        } else {
+            return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
+
+        }
+
     }
 }

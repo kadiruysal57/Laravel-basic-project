@@ -16,7 +16,7 @@ class BlokGroups extends Model
     protected $table = 'blok_groups';
 
     public function group_file(){
-        return $this->hasMany(BlokFiles::class,'group_id','id');
+        return $this->hasMany(BlokFiles::class,'group_id','id')->where('status',1);
     }
 
     public function content_blok_file($id){

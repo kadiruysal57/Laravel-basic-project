@@ -61,6 +61,7 @@ class AddressController extends Controller
             $address->name = $request->address_name;
             $address->address = $request->address;
             $address->gsm = $request->gsm;
+            $address->gsm2 = $request->gsm2;
             $address->email = $request->email;
             $address->maps = $request->maps;
             $address->site_settings_id = $request->site_settings_id;
