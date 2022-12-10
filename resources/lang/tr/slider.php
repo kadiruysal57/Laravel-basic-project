@@ -9,7 +9,5 @@ return [
     'button_text' => 'Buton Yazısı Ekle',
     'button_colour' => 'Buton Rengi Seçiniz',
     'button_href' => 'Buton Href',
-    'order' => 'Sırasını Giriniz',
-    'status_required'=>'Durum Alanını Seçmeniz Gerekiyor',
-    'name_required'=>'Adı Alanını Doldurmanız Gerekiyor',
+    'order' => 'Sırasını Giriniz'
 ];

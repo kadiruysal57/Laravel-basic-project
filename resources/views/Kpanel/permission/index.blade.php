@@ -25,7 +25,7 @@
                         <div class="col">
 
                             <div class="">
-                                <table class="table table-separated dataTables" id="permission">
+                                <table class="table table-separated dataTables">
                                     <thead>
                                     <tr>
                                         <th class="min-w-100px">{{__('global.name_')}}</th>
@@ -42,11 +42,7 @@
                                             <td>@if($p->status == 1) {{__('global.active')}} @else {{__('global.passive')}} @endif</td>
                                             <td class="text-right table-actions">
                                                 <a class="table-action hover-primary" href="{{route('permission.show',[$p->id])}}"><i class="ti-pencil"></i></a>
-                                                <a class="table-action hover-danger deleteButton"
-                                                   data-id="{{$p->id}}"
-                                                   data-action="{{route('permission.destroy',[$p->id])}}"
-                                                   data-table="#permission"
-                                                   href="#"><i class="ti-trash"></i></a>
+                                                <a class="table-action hover-danger" href="#"><i class="ti-trash"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach

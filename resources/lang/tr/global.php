@@ -31,7 +31,6 @@ return [
     'target'=>'Link Hedef',
     'socail_add'=>'Sosyal Medya Ekle',
     'please_select'=>'Lütfen Seçim Yapınız',
-    'link_q'=>'Sayfa Linklenecek mi?',
     'icon'=>'İkon',
     'please_select_image'=>'Lütfen Resim seçiniz',
     'special'=>'Özel',
@@ -49,7 +48,6 @@ return [
     'are_you_sure'=>'Emin Misin?',
     'gallery'=>'Galeri',
     'slider'=>'Slider',
-    'feature'=>'Feature Resmi',
     'form'=>'Form',
     '404text'=>'Üzgünüz Aradığınız Sayfa Bulunmamaktadır.',
     'email' => 'Email',
@@ -57,9 +55,6 @@ return [
     'site_name_error' => 'Site İsmi Daha Önce Kullanılmış o yüzden seo url kendiniz belirlemeniz gerekmektedir.',
     'faq'=>'Sıkca Sorulan Sorular',
     'main_page'=>'Ana Kategori',
-    'content_page' => 'Sayfa İçeriği',
-    'contents_modal_text' => 'Sayfaya Eklenebilir İçerikler',
-    'modal_title' => 'Sayfaya Eklenebilir İçerikler',
 
     'mon'=>'Pazartesi',
     'tue'=>'Salı',
@@ -68,5 +63,4 @@ return [
     'fri'=>'Cuma',
     'sat'=>'Cumartesi',
     'sun'=>'Pazar',
-    'category'=>'Kategori',
 ];

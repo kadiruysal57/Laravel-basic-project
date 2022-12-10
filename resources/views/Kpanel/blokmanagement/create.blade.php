@@ -110,6 +110,7 @@
                                              style="min-height: 450px;">
                                             <div class="tab-content mt-3">
                                                 @foreach($blok_groups as $key => $b)
+
                                                     <div
                                                         class="tab-pane fade @if($key == 0) active show @endif"
                                                         id="{{$b->name}}">

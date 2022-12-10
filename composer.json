@@ -10,7 +10,6 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "simplesoftwareio/simple-qrcode": "~4",
         "unisharp/laravel-filemanager": "^2.5"
     },
     "require-dev": {

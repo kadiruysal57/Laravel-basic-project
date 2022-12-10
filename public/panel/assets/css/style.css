@@ -28,7 +28,7 @@ select[readonly]
 {
     pointer-events: none;
 }
-.csshidden td:nth-child(6){
+.csshidden td:nth-child(5){
     max-width: 60px !important;
     overflow: hidden;
     white-space: nowrap;
