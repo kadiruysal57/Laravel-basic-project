@@ -62,11 +62,11 @@ $(document).ready(function () {
             '</div>'+
 
             '<div class="fv-row mb-7 fv-plugins-icon-container">'+
-                '<label class="fs-6 fw-bold form-label mt-3">'+
-                    '<span>Sıra Numarası</span>'+
-                '</label>'+
-               '<input id="order" name="order" class="form-control form-control w-75 p-3" type="number">'+
-                    '<div className="fv-plugins-message-container invalid-feedback"></div>'+
+            '<label class="fs-6 fw-bold form-label mt-3">'+
+            '<span>Sıra Numarası</span>'+
+            '</label>'+
+            '<input id="order" name="order" class="form-control form-control w-75 p-3" type="number">'+
+            '<div className="fv-plugins-message-container invalid-feedback"></div>'+
 
             '</div>'+
 

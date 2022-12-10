@@ -24,15 +24,15 @@
                             <input type="hidden" name="slider_id" value="{{$slider->id}}">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" required type="text" value="{{$slider->name}}">
+                                <input class="form-control " name="name"  type="text" value="{{$slider->name}}">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('global.title')}}</label>
-                                <input class="form-control " name="title" required type="text" value="{{$slider->title}}">
+                                <label class="">{{__('global.title')}}</label>
+                                <input class="form-control " name="title"  type="text" value="{{$slider->title}}">
                             </div>
                             <div class="form-group">
-                                <label class="require">{{__('global.description')}}</label>
-                                <input class="form-control " name="description" required type="text" value="{{$slider->description}}">
+                                <label class="">{{__('global.description')}}</label>
+                                <input class="form-control " name="description"  type="text" value="{{$slider->description}}">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>
@@ -53,7 +53,7 @@
                                 @foreach($slider->slider_image_many as $si)
 
                                     <div id="sliderimage_edit{{$si->id}}" class="mt-5 bg-light"
-                                         style="border-radius:30px; padding: 10px;">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           style="border-radius:30px; padding: 10px;">
 
                                         <button data-src="{{$si->id}}"
                                                 data-action="{{route('slider.store')}}"
@@ -70,7 +70,7 @@
                                                     <div class="d-flex justify-content-center">
                                                          <span class="input-group-btn">
                                                              <a id="lfm{{$si->id}}" data-input="thumbnail{{$si->id}}" data-preview="holder{{$si->id}}"
-                                                                            class="btn btn-primary lfm">
+                                                                class="btn btn-primary lfm">
                                                              <i class="fa fa-picture-o"></i>{{__('global.please_select')}}
                                                              </a>
                                                          </span>
@@ -90,32 +90,32 @@
 
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3">
-                                                     <label class="fs-6 fw-bold form-label require">
-                                                         <span>{{__('global.title')}}</span>
-                                                         </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->title}}" name="slider_title_edit{{$si->id}}">
+                                                    <label class="fs-6 fw-bold form-label require">
+                                                        <span>{{__('global.title')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->title}}" name="slider_title_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
 
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container mt-3">
-                                                     <label class="fs-6 fw-bold form-label ">
-                                                         <span>{{__('global.description')}}</span>
-                                                         </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->description}}" name="slider_desc_edit{{$si->id}}">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container mt-3 d-none">
+                                                    <label class="fs-6 fw-bold form-label ">
+                                                        <span>{{__('global.description')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3 " value="{{$si->description}}" name="slider_desc_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
 
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3">
-                                                     <label class="fs-6 fw-bold form-label">
-                                                         <span>{{__('global.text')}}</span>
-                                                         </label>
-                                                     <textarea class="form-control form-control w-75 p-3 "  name="slider_text_edit{{$si->id}}">{{$si->text}}</textarea>
+                                                <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3 d-none">
+                                                    <label class="fs-6 fw-bold form-label">
+                                                        <span>{{__('global.text')}}</span>
+                                                    </label>
+                                                    <textarea class="form-control form-control w-75 p-3 "  name="slider_text_edit{{$si->id}}">{{$si->text}}</textarea>
 
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
@@ -127,11 +127,11 @@
                                             <div class="col-4" style="text-align: -webkit-center">
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                     <label class="fs-6 fw-bold form-label">
-                                                         <span>{{__('slider.button_text')}}</span>
-                                                         </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_text}}" name="button_text_edit{{$si->id}}">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container d-none" >
+                                                    <label class="fs-6 fw-bold form-label">
+                                                        <span>{{__('slider.button_text')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_text}}" name="button_text_edit{{$si->id}}">
 
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
@@ -139,15 +139,15 @@
 
 
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                     <label class="fs-6 fw-bold form-label mt-3">
-                                                         <span>{{__('slider.button_colour')}}</span>
-                                                         </label>
-                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_colour}}" name="button_colour_edit{{$si->id}}">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container d-none">
+                                                    <label class="fs-6 fw-bold form-label mt-3">
+                                                        <span>{{__('slider.button_colour')}}</span>
+                                                    </label>
+                                                    <input type="text" class="form-control form-control w-75 p-3" value="{{$si->button_colour}}" name="button_colour_edit{{$si->id}}">
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>
                                                 </div>
 
-                                                <div class="fv-row mb-7 fv-plugins-icon-container">
+                                                <div class="fv-row mb-7 fv-plugins-icon-container d-none">
                                                     <label class="fs-6 fw-bold form-label mt-3">
                                                         <span>{{__('slider.button_href')}}</span>
                                                     </label>

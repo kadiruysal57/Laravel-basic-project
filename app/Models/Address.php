@@ -13,6 +13,7 @@ class Address extends Model
         'name',
         'address',
         'gsm',
+        'gsm2',
         'email',
         'maps',
     ];
@@ -22,8 +23,17 @@ class Address extends Model
     public function open_hourse(){
         return $this->hasMany(open_hourse::class,'office_id','id');
     }
+    public static function boot() {
+
+        //burasının amacı content verisi silinme kodu çalıştığı zaman yani delete() bağlantılı olan tablolardan da veriler siliniyor.
+        parent::boot();
+
+        static::deleting(function($contents) {
+            $contents->open_hourse()->delete();
+        });
+    }
     public function getTableReview($sitesettings_id){
-        $address_all = $this->select('id','name','address','gsm','email','maps')->where('site_settings_id',$sitesettings_id)->get();
+        $address_all = $this->select('id','name','address','gsm','gsm2','email','maps')->where('site_settings_id',$sitesettings_id)->get();
         foreach($address_all as $sc){
 
             $route_destroy = route('address.destroy',[$sc->id]);

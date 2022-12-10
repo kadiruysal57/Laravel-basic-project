@@ -239,14 +239,14 @@ class menuitem extends Model
         }
         $url = rtrim($url,'/');
         if(count($this->yummyChildMenu($m->id)) <= 0){
-            $return_html.= "<li >";
+            $return_html.= "<li>";
 
-            $return_html .= "<a title='$menu_name' href='$url'>$menu_name</a>";
+            $return_html .= "<a title='$menu_name' class='menu-f-item-li' href='$url'>$menu_name</a>";
 
             $return_html .="</li>";
         }else{
             $return_html .="<li class='dropdown'>";
-            $return_html .= "<a title='$menu_name' href='$url'><span>$menu_name</span> <i class='bi bi-chevron-down dropdown-indicator'></i></a>";
+            $return_html .= "<a title='$menu_name' class='menu-f-item-li'  href='$url'><span>$menu_name</span> <i class='fa fa-angle-down' aria-hidden='true'></i></a>";
             $return_html .="<ul>";
             $child_menu = $this->yummyChildMenu($m->id);
             foreach ($child_menu as $cm){
@@ -297,7 +297,47 @@ class menuitem extends Model
         $url = rtrim($url,'/');
         $return_html.= "<li >";
 
-        $return_html .= "<a title='$menu_name' href='$url'>$menu_name</a>";
+        $return_html .= "<a title='$menu_name'  href='$url'>$menu_name</a>";
+
+        $return_html .="</li>";
+
+
+
+        return $return_html;
+    }
+    public function menteseFooter($m){
+        $return_html = "";
+
+        if($m->tableId == 1){
+            if($m->menu->language->main_language == 1){
+                $url = $m->menu_name_connection->seo_url;
+            }else{
+                if(!empty($m->menu_name_connection->seo_url) && $m->menu_name_connection->seo_url != "/"){
+                    $url = $m->menu->language->slug."/".$m->menu_name_connection->seo_url;
+                }else{
+                    $url = $m->menu->language->slug."".$m->menu_name_connection->seo_url;
+                }
+
+            }
+
+            $menu_name = $m->menu_name_connection->name;
+        }elseif($m->tableId == 99){
+            if($m->menu->language->main_language == 1){
+                $url = $m->real_link;
+            }else{
+                if(!empty($m->real_link) && $m->real_link != "/"){
+                    $url = $m->menu->language->slug."/".$m->real_link;
+                }else{
+                    $url = $m->menu->language->slug."".$m->real_link;
+                }
+            }
+
+            $menu_name = $m->menu_name;
+        }
+        $url = rtrim($url,'/');
+        $return_html.= "<li >";
+
+        $return_html .= "<a title='$menu_name' href='$url'><font color='ffffff'>$menu_name</font></a>";
 
         $return_html .="</li>";
 
