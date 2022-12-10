@@ -93,7 +93,6 @@ function addressaddmodal(){
         $('#address_id').val(address_id);
         $('#address').val(null);
         $('#gsm').val(null);
-        $('#gsm2').val(null);
         $('#email').val(null);
         $('#maps').val(null);
 
@@ -121,7 +120,6 @@ function addressaddmodal(){
                         $('#address_name').val(data.listdata.name);
                         $('#address').val(data.listdata.address);
                         $('#gsm').val(data.listdata.gsm);
-                        $('#gsm2').val(data.listdata.gsm2);
                         $('#email').val(data.listdata.email);
                         $('#maps').val(data.listdata.maps);
 

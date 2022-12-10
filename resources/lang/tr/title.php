@@ -15,6 +15,4 @@ return [
     'portfolio_group_add'=>'Portföy Grup Ekle',
     'comments'=>'Yorumlar',
     'staff'=>'Çalışanlarımız',
-    'category'=>'Kategoriler',
-    'category_add'=>'Kategori Ekle',
 ];

@@ -20,7 +20,7 @@ $(document).ready(function () {
             '<div class="d-flex justify-content-center">'+
             '<span class="input-group-btn">'+
             '<a id="lfm'+currentVal+'" data-input="thumbnail'+currentVal+'" data-preview="holder'+currentVal+'" class="btn btn-primary ">'+
-            '<i class="fa fa-picture-o"></i> Lütfen Resim Seçiniz'+
+            '<i class="fa fa-picture-o"></i> Select'+
             '</a>'+
             '</span>'+
             '</div>'+
@@ -43,7 +43,7 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container mt-3 d-none">'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container mt-3">'+
             '<label class="fs-6 fw-bold form-label ">'+
             '<span>Açıklama</span>'+
             '</label>'+
@@ -53,7 +53,7 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3 d-none" >'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container justify-content-center mt-3" >'+
             '<label class="fs-6 fw-bold form-label">'+
             '<span>Text</span>'+
             '</label>'+
@@ -64,9 +64,9 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="col-4 " style="text-align: -webkit-center ">'+
+            '<div class="col-4 " style="text-align: -webkit-center">'+
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container d-none">'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container">'+
             '<label class="fs-6 fw-bold form-label ">'+
             '<span>Buton Yazısı</span>'+
             '</label>'+
@@ -75,7 +75,7 @@ $(document).ready(function () {
             '</div>'+
 
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container d-none">'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container">'+
             '<label class="fs-6 fw-bold form-label mt-3">'+
             '<span>Buton Rengi</span>'+
             '</label>'+
@@ -83,7 +83,7 @@ $(document).ready(function () {
             '<div class="fv-plugins-message-container invalid-feedback"></div>'+
             '</div>'+
 
-            '<div class="fv-row mb-7 fv-plugins-icon-container d-none">'+
+            '<div class="fv-row mb-7 fv-plugins-icon-container ">'+
             '<label class="fs-6 fw-bold form-label mt-3">'+
             '<span>Buton Href</span>'+
             '</label>'+

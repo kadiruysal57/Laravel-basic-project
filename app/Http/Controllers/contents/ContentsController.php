@@ -4,14 +4,12 @@ namespace App\Http\Controllers\contents;
 
 use App\Http\Controllers\Controller;
 use App\Models\BlokGroups;
-use App\Models\Category;
 use App\Models\comments;
 use App\Models\ContentBlokFiles;
 use App\Models\DefaultBlok;
 use App\Models\FaqCategory;
 use App\Models\gallery;
 use App\Models\MainBlok;
-use App\Models\menuitem;
 use App\Models\portfolio;
 use App\Models\services;
 use App\Models\slider;
@@ -51,10 +49,7 @@ class ContentsController extends Controller
      */
     public function create()
     {
-        if (!$this->PermissionCheck()) {
 
-            return view('Kpanel.401');
-        }
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['default_bloks'] = DefaultBlok::where('status',1)->get();
         $data['language'] = Language::where('status', 1)->get();
@@ -67,7 +62,6 @@ class ContentsController extends Controller
         $data['comments'] = comments::where('status', 1)->get();
         $data['staff'] = staff::where('status', 1)->get();
         $data['main_pages'] = Contents::where('status',1)->get();
-        $data['category'] = Category::get();
         return view('Kpanel.contents.create')->with($data);
     }
 
@@ -123,14 +117,8 @@ class ContentsController extends Controller
                     $contents->slider_id = $request->slider_id;
                     $contents->form_id = $request->form_id;
                     $contents->faq_id = $request->faq_id;
-                    $contents->category_id = $request->category_id;
                     $contents->focus_keywords = $request->focus_keywords;
                     $contents->main_page = $request->main_page;
-                    $contents->seo_q1 = $request->seo_q1;
-                    if(!empty($request->feature_url)) {
-                        $contents->feature_url = str_replace(env('APP_URL'), '', $request->feature_url);
-                    }
-
 
                     if (empty($request->seo_url)) {
                         $seo_url = Str::slug($request->name);
@@ -252,14 +240,9 @@ class ContentsController extends Controller
                 $contents->form_id = $request->form_id;
                 $contents->faq_id = $request->faq_id;
                 $contents->language_id = $request->language_id;
-                $contents->category_id = $request->category_id;
                 $contents->seo_description = $request->seo_description;
                 $contents->focus_keywords = $request->focus_keywords;
                 $contents->main_page = $request->main_page;
-                $contents->seo_q1 = $request->seo_q1;
-                if(!empty($request->feature_url)) {
-                    $contents->feature_url = str_replace(env('APP_URL'), '', $request->feature_url);
-                }
 
                 if (empty($request->seo_url)) {
                     $seo_url = Str::slug($request->name);
@@ -419,10 +402,6 @@ class ContentsController extends Controller
 
     public function show($id)
     {
-        if (!$this->PermissionCheck()) {
-
-            return view('Kpanel.401');
-        }
         $data['blok_groups'] = BlokGroups::where('status', 1)->get();
         $data['contents'] = Contents::find($id);
         $data['default_bloks'] = DefaultBlok::where('status',1)->get();
@@ -436,7 +415,6 @@ class ContentsController extends Controller
         $data['comments'] = comments::where('status', 1)->get();
         $data['main_pages'] = Contents::where('status',1)->where('id','!=',$id)->get();
         $data['staff'] = staff::where('status', 1)->get();
-        $data['category'] = Category::get();
         if (empty(Contents::find($id))) {
             return view('Kpanel.404');
         }
@@ -464,6 +442,9 @@ class ContentsController extends Controller
     public function update(Request $request, $id)
     {
 
+        if (!$this->PermissionCheck()) {
+            return response()->json(['error' => array('Bu Modülü Güncelleme Yetkiniz Bulunmamaktadır.')]);
+        }
 
         if ($id == "gallery_add") {
             $content_gallery = new ContentGallery();
@@ -486,20 +467,6 @@ class ContentsController extends Controller
                 return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
             }
         }
-        if ($id == "feature_delete") {
-            $feature_delete = Contents::find($request->value);
-
-
-            if (!empty($feature_delete)) {
-                $feature_delete->feature_url = null;
-                $feature_delete->save();
-
-                return response()->json(['type' => 'success']);
-
-            } else {
-                return response()->json(['type' => 'error']);
-            }
-        }
     }
 
     /**
@@ -517,26 +484,7 @@ class ContentsController extends Controller
         }
         $content = Contents::where('id', $id)->first();
         if (!empty($content)) {
-            foreach($content->content_gallery as $cg){
-                $cg->delete();
-            }
-
-            foreach($content->blok_file as $cg){
-                $cg->delete();
-            }
-
-            $child_page = Contents::where('main_page',$id)->get();
-            foreach($child_page as $cp){
-                $cp->main_page = "0";
-                $cp->update_user = Auth::id();
-                $cp->save();
-            }
-
-            $menus = menuitem::where('tableId',1)->where('menu_name',$id)->delete();
-
-            if(!$content->delete()){
-                return response()->json(['type' => 'error', 'error_message_array' => array(Lang::get('global.error_message'))]);
-            }
+            $content->delete();
             $content_model = new Contents();
             $content_all = $content_model->getTableReview();
             return response()->json(['type' => 'success', 'tableRefresh' => 1, 'listData' => $content_all, 'success_message_array' => array(Lang::get('global.success_message'))]);

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class form_input extends Model
 {
@@ -59,14 +58,12 @@ class form_input extends Model
             $return_input .= $this->createSelect($input);
         }elseif($input->input_id == 6){
             $return_input .= $this->createCheckBox($input);
-        }elseif($input->input_id == 9){
-            $return_input .= $this->createFile($input);
         }
         return $return_input;
     }
     public function createText($fi){
         $return_text = "";
-        $class = "col-12";
+        $class = "col-lg-4";
         $name = "";
         $id="";
         $placeholder = "";
@@ -85,7 +82,7 @@ class form_input extends Model
             $class = $fi->class_attr;
         }
         if(!empty($fi->name)){
-            $name = Str::slug($fi->name)."".$fi->id;
+            $name = $fi->name;
         }
         if(!empty($fi->id_attr)){
             $id = $fi->id_attr;
@@ -93,17 +90,17 @@ class form_input extends Model
         if(!empty($fi->placeholder)){
             $placeholder = $fi->placeholder;
         }
-        if(!empty($fi->required) && $fi->required == 1){
+        if(!empty($fi->required)){
             $required ="required=''";
         }
-        $return_text .="<div class='$class col-md-12 mb-10'>
+        $return_text .="<div class='$class col-md-6'>
                             <input type='$type' name='$name' class='form-control' $required id='$id' placeholder='$placeholder'>
                             <div class='validate'></div>
                         </div>";
         return $return_text;
     }
     public function createTextarea($fi){
-        $class = "col-lg-12";
+        $class = "col-lg-4";
         $name = "";
         $id="";
         $placeholder = "";
@@ -113,7 +110,7 @@ class form_input extends Model
             $class = $fi->class_attr;
         }
         if(!empty($fi->name)){
-            $name = Str::slug($fi->name)."".$fi->id;
+            $name = $fi->name;
         }
         if(!empty($fi->id_attr)){
             $id = $fi->id_attr;
@@ -121,15 +118,15 @@ class form_input extends Model
         if(!empty($fi->placeholder)){
             $placeholder = $fi->placeholder;
         }
-        if(!empty($fi->required) && $fi->required == 1){
+        if(!empty($fi->required)){
             $required ="required=''";
         }
-        $return_text = "<div class='$class col-md-12 mb-10'><textarea class='form-control $class' name='$name' rows='5' $required id='$id' placeholder='$placeholder'></textarea><div class='validate'></div></div>";
+        $return_text = "<div class='$class col-md-6'><textarea class='form-control $class' name='$name' rows='5' $required id='$id' placeholder='$placeholder'></textarea><div class='validate'></div></div>";
 
         return $return_text;
     }
     public function createSelect($fi){
-        $class = "col-lg-12";
+        $class = "col-lg-4";
         $name = "";
         $id="";
         $placeholder = "";
@@ -139,7 +136,7 @@ class form_input extends Model
             $class = $fi->class_attr;
         }
         if(!empty($fi->name)){
-            $name = Str::slug($fi->name)."".$fi->id;
+            $name = $fi->name;
         }
         if(!empty($fi->id_attr)){
             $id = $fi->id_attr;
@@ -147,14 +144,14 @@ class form_input extends Model
         if(!empty($fi->placeholder)){
             $placeholder = $fi->placeholder;
         }
-        if(!empty($fi->required) && $fi->required == 1){
+        if(!empty($fi->required)){
             $required ="required=''";
         }
         $option = "";
         foreach($fi->form_input_value_many as $input_value){
             $option .= "<option>$input_value->default_value</option>";
         }
-        $return_text = "<div class='$class col-md-12 mb-10'>
+        $return_text = "<div class='$class col-md-6'>
                             <select name='$name' $required id='$id' class='form-control $class'>
                             <option value=''>$placeholder</option>
                             $option
@@ -165,7 +162,7 @@ class form_input extends Model
         return $return_text;
     }
     public function createCheckBox($fi){
-        $class = "col-lg-12";
+        $class = "col-lg-4";
         $name = "";
         $id="";
         $placeholder = "";
@@ -175,7 +172,7 @@ class form_input extends Model
             $class = $fi->class_attr;
         }
         if(!empty($fi->name)){
-            $name = Str::slug($fi->name)."".$fi->id."[]";
+            $name = $fi->name."[]";
         }
         if(!empty($fi->id_attr)){
             $id = $fi->id_attr;
@@ -183,14 +180,14 @@ class form_input extends Model
         if(!empty($fi->placeholder)){
             $placeholder = $fi->placeholder;
         }
-        if(!empty($fi->required) && $fi->required == 1){
+        if(!empty($fi->required)){
             $required ="required=''";
         }
         $option = "";
         foreach($fi->form_input_value_many as $key=>$input_value){
             $option .= "<div class='col-lg-12 col-sm-12'><input type='checkbox' value='$input_value->default_value' name='$name' id='$id.$key'><label for='$id.$key'>$input_value->default_value</label></div>";
         }
-        $return_text = "<div class='$class col-md-12 mb-10'>
+        $return_text = "<div class='$class col-md-6'>
                             <label for=''>$fi->placeholder</label>
                             <div class='col-lg-12 col-md-12'>
                             $option
@@ -198,35 +195,6 @@ class form_input extends Model
                             </div>
                         </div>";
 
-        return $return_text;
-    }
-    public function createFile($fi){
-        $return_text = "";
-        $class = "col-12";
-        $name = "";
-        $id="";
-        $placeholder = "";
-        $required="";
-        $type = "file";
-        if(!empty($fi->class_attr)){
-            $class = $fi->class_attr;
-        }
-        if(!empty($fi->name)){
-            $name = Str::slug($fi->name)."".$fi->id;
-        }
-        if(!empty($fi->id_attr)){
-            $id = $fi->id_attr;
-        }
-        if(!empty($fi->placeholder)){
-            $placeholder = $fi->placeholder;
-        }
-        if(!empty($fi->required) && $fi->required == 1){
-            $required ="required=''";
-        }
-        $return_text .="<div class='$class col-md-12 mb-10'>
-                            <input type='$type' name='$name' class='form-control' $required id='$id' placeholder='$placeholder'>
-                            <div class='validate'></div>
-                        </div>";
         return $return_text;
     }
 }

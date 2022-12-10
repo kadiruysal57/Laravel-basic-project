@@ -23,7 +23,7 @@ return [
     'formbuilder_placeholder' => 'Placeholder Alanı',
     'formbuilder_settings' => 'Ayarlar',
     'formbuilder_select_type' => 'Tür Seçiniz',
-    'formbuilder_required' => 'Zorunlu Alan',
+    'formbuilder_required' => 'Tür Seçiniz',
     'formbuilder_default' => 'Varsayılan Değer',
     'formbuilder_add_value' => 'Değer Ekle',
     'placeholder_use' => 'Bu Yazı Placeholder Alanında Kullanılacak mı?',

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',255);
             $table->string('title',255)->nullable();
-            $table->text('short_desc'   )->nullable();
+            $table->string('short_desc',255)->nullable();
             $table->unsignedBigInteger('language_id')->default(1);
             $table->text('description')->nullable();
             $table->string('main_photo',255)->nullable();
@@ -29,7 +29,6 @@ return new class extends Migration
             $table->text('seo_description')->nullable();
             $table->string('focus_keywords',255)->nullable();
             $table->string('seo_url',255)->nullable();
-            $table->integer('seo_q1')->nullable();
             $table->integer('lock_page')->default(2);
             $table->integer('main_page')->default(0);
             $table->integer('status')->default(1);
@@ -44,7 +43,6 @@ return new class extends Migration
             $table->unsignedBigInteger('staff_id')->nullable();
             $table->unsignedBigInteger('form_id')->nullable();
             $table->unsignedBigInteger('faq_id')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable();
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->foreign('default_blok_id')->references('id')->on('default_blok');
@@ -57,7 +55,6 @@ return new class extends Migration
             $table->foreign('faq_id')->references('id')->on('faq_category');
             $table->foreign('comments_id')->references('id')->on('comments');
             $table->foreign('staff_id')->references('id')->on('staff');
-            $table->foreign('category_id')->references('id')->on('category');
             $table->timestamps();
         });
         DB::table('contents')->insert(
@@ -68,12 +65,15 @@ return new class extends Migration
                 'language_id' => "1",
                 'description' => '<div class="content ps-0 ps-lg-5">
 <p><em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</em></p>
+
 <ul>
 	<li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</em></li>
 	<li><em>Duis aute irure dolor in reprehenderit in voluptate velit.</em></li>
 	<li><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</em></li>
 </ul>
+
 <p><em>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</em></p>
+
 <div class="mt-4 position-relative"><img alt="" src="http://127.0.0.1:8000/storage/photos/shares/about-2.jpg" style="height:768px; width:1024px" /></div>
 </div>',
                 'seo_url'=>'/',
@@ -106,6 +106,7 @@ return new class extends Migration
 <p>Sadece Test Yapıyorum burada</p>
 </div>
 </div>
+
 <div class="col col-md-6">
 <div class="content">
 <p><img alt="" src="http://127.0.0.1:8000/storage/photos/shares/about.jpg" style="height:768px; width:1024px" /></p>

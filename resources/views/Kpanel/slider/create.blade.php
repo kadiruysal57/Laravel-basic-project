@@ -21,15 +21,15 @@
                             <input type="hidden" name="id" value="create">
                             <div class="form-group">
                                 <label class="require">{{__('global.name')}}</label>
-                                <input class="form-control " name="name" type="text">
+                                <input class="form-control " name="name" required type="text">
                             </div>
                             <div class="form-group">
-                                <label class="">{{__('global.title')}}</label>
-                                <input class="form-control " name="title" type="text">
+                                <label class="require">{{__('global.title')}}</label>
+                                <input class="form-control " name="title" required type="text">
                             </div>
                             <div class="form-group">
-                                <label class="">{{__('global.description')}}</label>
-                                <input class="form-control " name="description" type="text">
+                                <label class="require">{{__('global.description')}}</label>
+                                <input class="form-control " name="description" required type="text">
                             </div>
                             <div class="form-group">
                                 <label class="require">{{__('global.status')}}</label>

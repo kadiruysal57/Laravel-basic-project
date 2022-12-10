@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->text('address')->nullable();
             $table->text('gsm')->nullable();
-            $table->text('gsm2')->nullable();
             $table->string('email')->nullable();
             $table->text('maps')->nullable();
             $table->integer('add_user')->nullable();

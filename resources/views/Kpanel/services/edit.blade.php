@@ -64,7 +64,7 @@
                                                     <div class="d-flex justify-content-center">
                                                          <span class="input-group-btn">
                                                              <a  data-input="thumbnail_edit{{$sm->id}}" data-preview="holder_edit{{$sm->id}}"
-                                                                 class="btn btn-primary lfm">
+                                                                            class="btn btn-primary lfm">
                                                              <i class="fa fa-picture-o"></i> {{__('global.please_select')}}
                                                              </a>
                                                          </span>
@@ -80,9 +80,9 @@
 
 
                                                 <div class="fv-row mb-7 fv-plugins-icon-container justify-content-center">
-                                                    <label class="fs-6 fw-bold form-label require">
-                                                        <span>{{__('services.services_title')}}</span>
-                                                    </label>
+                                                     <label class="fs-6 fw-bold form-label require">
+                                                         <span>{{__('services.services_title')}}</span>
+                                                         </label>
                                                     <input type="text" class="form-control form-control w-75 p-3" value="{{$sm->title}}" name="services_title_edit{{$sm->id}}">
 
                                                     <div class="fv-plugins-message-container invalid-feedback"></div>

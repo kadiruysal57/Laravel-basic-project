@@ -24,9 +24,6 @@ class slider_image extends Model
         'add_user',
         'update_user'
     ];
-    public function slider(){
-        return $this->hasMany(slider::class,'id','slider_id');
-    }
 
     protected $table = 'slider_image';
 

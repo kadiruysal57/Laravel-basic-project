@@ -55,10 +55,8 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content col-lg-12  float-left">
                                         @foreach($language as $key => $l)
-
                                             <div class="tab-pane fade @if($key == 0) active show @endif "
                                                  id="language-id-{{$l->id}}">
-
                                                 @foreach($l->site_settings as $sitesettings)
 
                                                     <ul class="nav nav-tabs nav-justified nav-tabs-info">
@@ -268,7 +266,6 @@
                                                                     <th class="text-center w-100px">{{__('sitesettings.address_name')}}</th>
                                                                     <th class="text-center w-100px">{{__('sitesettings.address')}}</th>
                                                                     <th class="text-center w-100px">{{__('sitesettings.gsm')}}</th>
-                                                                    <th class="text-center w-100px">{{__('sitesettings.gsm')}} 2</th>
                                                                     <th class="text-center w-100px">{{__('global.email')}}</th>
                                                                     <th class="text-center w-100px">{{__('sitesettings.maps')}}</th>
                                                                     <th class="text-center w-100px">#</th>
@@ -280,7 +277,6 @@
                                                                         <td>{{$address->name}}</td>
                                                                         <td>{{$address->address}}</td>
                                                                         <td>{{$address->gsm}}</td>
-                                                                        <td>{{$address->gsm2}}</td>
                                                                         <td>{{$address->email}}</td>
                                                                         <td>{{$address->maps}}</td>
                                                                         <td>
@@ -466,11 +462,6 @@
                                        name="gsm">
                             </div>
                             <div class="form-group">
-                                <label for="gsm2">{{__('sitesettings.gsm')}} 2</label>
-                                <input type="text"  class="form-control" id="gsm2"
-                                       name="gsm2">
-                            </div>
-                            <div class="form-group">
                                 <label for="email">{{__('global.email')}}</label>
                                 <input type="text"  class="form-control" id="email"
                                        name="email">
@@ -540,8 +531,7 @@
                                     for="office_id">{{__('sitesettings.address_settings')}}</label>
                                 <select name="office_id" class="form-control office_id" id="office_id">
                                     <option value="">{{__('global.please_select')}}</option>
-
-                                    @foreach($offices as $o)
+                                    @foreach($sitesettings->address as $o)
                                         <option value="{{$o->id}}">{{$o->name}}</option>
                                     @endforeach
                                 </select>
