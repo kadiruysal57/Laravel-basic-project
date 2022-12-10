@@ -23,6 +23,7 @@ class Contents extends Model
         'seo_description',
         'focus_keywords',
         'seo_url',
+        'feature_url',
         'main_page',
         'lock_page',
         'status',
@@ -35,6 +36,7 @@ class Contents extends Model
         'portfolio_id',
         'comments_id',
         'staff_id',
+        'category_id',
         'form_id',
         'faq_id',
         'add_user',
@@ -56,6 +58,9 @@ class Contents extends Model
     }
     public function content_gallery_one(){
         return $this->hasOne(ContentGallery::class,'content_id','id')->orderBy('image_order','asc');
+    }
+    public function content_gallery_one_order_two(){
+        return $this->hasOne(ContentGallery::class,'content_id','id')->where('image_order',2)->orderBy('image_order','asc');
     }
     public function services(){
         return $this->hasOne(services::class,'id','services_id');
@@ -83,6 +88,19 @@ class Contents extends Model
     public function faq_category(){
         return $this->hasOne(FaqCategory::class,'id','faq_id');
     }
+    public function child_page(){
+        return $this->hasOne(Contents::class,'main_page','id');
+    }
+    public function main_page_all(){
+        return $this->hasMany(Contents::class,'main_page','id');
+    }
+
+    public function main_page_top(){
+        return $this->hasOne(Contents::class,'id','main_page');
+    }
+    public function categories(){
+        return $this->hasOne(Category::class,'id','category_id');
+    }
     public function getTableReview(){
         $contents_all = $this->select('id','name','language_id','seo_url')->where('status',1)->get();
         foreach ($contents_all as $c){
@@ -94,15 +112,6 @@ class Contents extends Model
             unset($c->language);
         }
         return $contents_all;
-    }
-    public static function boot() {
-
-        //burasının amacı content verisi silinme kodu çalıştığı zaman yani delete() bağlantılı olan tablolardan da veriler siliniyor.
-        parent::boot();
-
-        static::deleting(function($contents) {
-            $contents->blok_file()->delete();
-        });
     }
 
     public function getBreadcrumbs($main_page = null){

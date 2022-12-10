@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('lang_id');
             $table->string('code_name')->nullable();
-            $table->string('word')->nullable();
+            $table->text('word')->nullable();
             $table->integer('lock')->default(2);
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
@@ -213,7 +213,6 @@ return new class extends Migration
                 'add_user' => "1",
             )
         );
-
     }
 
     /**

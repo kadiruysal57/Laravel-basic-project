@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\formbuilder;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contents;
 use Illuminate\Http\Request;
 use App\Models\form;
 use App\Models\form_input;
@@ -409,6 +410,30 @@ class FormBuilderController extends Controller
     {
         $form = form::where('id', $id)->first();
         if (!empty($form)) {
+            $content = Contents::where('form_id',$id)->get();
+            foreach($content as $c){
+                $c->form_id = null;
+                $c->save();
+            }
+
+            $form_input = $form->form_input;
+            $form_send = $form->form_send;
+
+            foreach($form_input as $f){
+                $form_input_value_many = $f->form_input_value_many();
+                foreach($form_input_value_many as $many){
+                    $many->delete();
+                }
+                $f->delete();
+            }
+            if(!empty($form_send)){
+                foreach($form_send as $s){
+                    $s->form_id = null;
+                    $s->form_input_id = null;
+                    $s->save();
+                }
+            }
+
             $form->delete();
             $forms = new form();
             $forms_all = $forms->getTableReview();

@@ -25,6 +25,7 @@ class SiteSettingsController extends Controller
         }
 
         $data['language'] = Language::where('status',1)->get();
+        $data['offices'] = Address::get();
         $data['sitesettings'] = site_settings::where('status',1)->get();
         $data['days']=days::get();
         return view('Kpanel.sitesettings.index')->with($data);

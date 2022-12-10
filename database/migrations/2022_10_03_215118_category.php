@@ -13,29 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('slider', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->integer('add_user')->nullable();
             $table->integer('update_user')->nullable();
             $table->timestamps();
-
-
         });
 
-        DB::table('slider')->insert(
-            array(
-                'name' => 'Anasayfa Slider',
-                'title' => 'Anasayfa Slider',
-                'description' => 'Anasayfa Slider',
-                'status' => 1,
-                'add_user' => 1,
-                'update_user' => 1,
-            )
-        );
     }
 
     /**
@@ -45,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('slider');
+        //
     }
 };

@@ -26,6 +26,7 @@ use App\Http\Controllers\Portfolio\PortfolioController;
 use App\Http\Controllers\Portfolio\PortfolioGroupController;
 use App\Http\Controllers\Comments\CommentsController;
 use App\Http\Controllers\SiteSettings\OpenHourseController;
+use App\Http\Controllers\Category\CategoryController;
 
 
 
@@ -75,6 +76,73 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
                 'sign_in',
                 'sign_in_post',
                 'kpanel',
+                'name_convert_slug',
+                'language.create',
+                'language.show',
+                'language.edit',
+                'language.update',
+                'contents.edit',
+                'contents.update',
+                'menu.update',
+                'slider.edit',
+                'slider.update',
+                'site-settings.create',
+                'site-settings.show',
+                'site-settings.edit',
+                'site-settings.update',
+                'site-settings.destroy',
+                'social-media.index',
+                'social-media.create',
+                'social-media.show',
+                'social-media.edit',
+                'form-builder.update',
+                'form-builder.edit',
+                'blok-management.update',
+                'blok-management.edit',
+                'gallery.edit',
+                'gallery.update',
+                'permission.edit',
+                'permission.update',
+                'permission.destroy',
+                'users.update',
+                'users.edit',
+                'open-hourse.edit',
+                'open-hourse.update',
+                'open-hourse.destroy',
+                'themes.edit',
+                'themes.update',
+                'themes.destroy',
+                'whatsapp.edit',
+                'whatsapp.update',
+                'whatsapp.destroy',
+                'fixed-word.edit',
+                'fixed-word.update',
+                'fixed-word.destroy',
+                'staff.edit',
+                'staff.update',
+                'staff.destroy',
+                'faq.edit',
+                'faq.update',
+                'faq.destroy',
+                'portfolio.edit',
+                'portfolio.update',
+                'portfolio.destroy',
+                'portfolio-group.edit',
+                'portfolio-group.update',
+                'portfolio-group.destroy',
+                'services.edit',
+                'services.update',
+                'services.destroy',
+                'comments.edit',
+                'comments.update',
+                'comments.destroy',
+                'category.edit',
+                'category.update',
+                'category.destroy',
+                'form_send',
+                'formbuilder.input_type_list',
+                'formbuilder.selectboxloop',
+
             );
             $routeCollection = Route::getRoutes();
             foreach ($routeCollection as $route) {
@@ -159,6 +227,7 @@ Route::middleware(['auth'])->prefix('Kpanel')->group(function () { // bunun içe
     Route::resource('portfolio-group',PortfolioGroupController::class);
     Route::resource('services',ServicesController::class);
     Route::resource('comments',CommentsController::class);
+    Route::resource('category',CategoryController::class);
 
 
 

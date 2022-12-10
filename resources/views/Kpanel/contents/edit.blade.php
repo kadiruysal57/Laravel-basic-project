@@ -1,7 +1,9 @@
 @extends('Kpanel.layouts.app')
 
 
-@section('page-title') Contents @endsection <!-- Sayfa title'ı ayarlanıyor -->
+@section('page-title')
+    Contents
+@endsection <!-- Sayfa title'ı ayarlanıyor -->
 
 @section('CssContent')
     <link href="{{asset('panel/assets/css/jquery.nestable.min.css')}}" rel="stylesheet">
@@ -36,6 +38,8 @@
         li.dd-item {
             position: relative;
         }
+
+
     </style>
 @endsection
 
@@ -81,12 +85,12 @@
                                 <div class="tab-pane fade active show" id="contents-genel-info">
                                     <div class="form-group">
                                         <label class="require">{{__('global.name')}}</label>
-                                        <input class="form-control content_name" name="name"  type="text"
+                                        <input class="form-control content_name" name="name" type="text"
                                                value="{{$contents->name}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="require">{{__('global.title')}}</label>
-                                        <input class="form-control " name="title"  type="text"
+                                        <input class="form-control " name="title" type="text"
                                                value="{{$contents->title}}">
                                     </div>
                                     <div class="form-group">
@@ -99,112 +103,193 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="main_page">{{__('contents.main_page')}}</label>
-                                        <select name="main_page" id="main_page" class="auto-search form-control">
-                                            <option value="0">{{__('global.main_page')}}</option>
-                                            @foreach($main_pages as $m)
-                                                <option @if($m->id == $contents->main_page) selected="" @endif value="{{$m->id}}">@if($m->main_page != 0) -- @endif {{$m->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="slider_id">{{__('global.slider')}}</label>
-                                        <select name="slider_id" id="slider_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($slider as $s)
-                                                <option @if($s->id == $contents->slider_id) selected=""
-                                                        @endif value="{{$s->id}}">{{$s->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gallery_id">{{__('global.gallery')}}</label>
-                                        <select name="gallery_id" data-live-search="true" id="gallery_id"
-                                                class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($gallery as $g)
-                                                <option @if($g->id == $contents->gallery_id) selected=""
-                                                        @endif   value="{{$g->id}}">{{$g->name}}({{$g->id}})
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="services_id">{{__('services.services_page_title')}}</label>
-                                        <select name="services_id" data-live-search="true" id="services_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($services as $s)
-                                                <option @if($s->id == $contents->services_id) selected="" @endif value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
-                                            @endforeach
-                                        </select>
+
+                                    <div class="justify-content-center text-center">
+                                        <button type='button' id='modal'
+                                                data-toggle='modal'
+                                                data-target='#selected-modal'
+                                                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                                <span class="svg-icon svg-icon-3"> {{__('global.contents_modal_text')}}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                     viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
+                                                    fill="currentColor"></path>
+                                                <path opacity="0.3"
+                                                      d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
+                                                      fill="currentColor"></path>
+                                                </svg>
+                                                </span>
+                                        </button>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="portfolio_id">{{__('title.portfolio')}}</label>
-                                        <select name="portfolio_id" data-live-search="true" id="portfolio_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($portfolio as $p)
-                                                <option @if($p->id == $contents->portfolio_id) selected="" @endif value="{{$p->id}}">{{$p->title}}({{$p->id}})</option>
-                                            @endforeach
-                                        </select>
+                                    <div id='selected-modal' class="modal fade"
+                                         tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">{{__('global.modal_title')}}</h4>
+                                                </div>
+                                                <div class="modal-body row">
+                                                    <div class="form-group col-6">
+                                                        <label for="main_page">{{__('contents.main_page')}}</label>
+                                                        <select name="main_page" id="main_page"  data-live-search="true" title="{{__('global.please_select')}}" style="height: 46px !important; background-color: #fcfcfc !important; overflow-y: auto"
+                                                                class="form-control">
+                                                            <option selected="" value="0">{{__('global.main_page')}}</option>
+                                                            @foreach($main_pages as $m)
+                                                                <option @if($m->id == $contents->main_page) selected=""
+                                                                        @endif value="{{$m->id}}">@if($m->main_page != 0)
+                                                                        --
+                                                                    @endif {{$m->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="slider_id">{{__('global.slider')}}</label>
+                                                        <select name="slider_id" id="slider_id" data-provide="selectpicker" data-live-search="true" title="{{__('global.please_select')}}"
+                                                                class="auto-search form-control">
+                                                            @foreach($slider as $s)
+                                                                <option @if($s->id == $contents->slider_id) selected=""
+                                                                        @endif value="{{$s->id}}">{{$s->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="gallery_id">{{__('global.gallery')}}</label>
+                                                        <select name="gallery_id" data-live-search="true"
+                                                                id="gallery_id"
+                                                                class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($gallery as $g)
+                                                                <option @if($g->id == $contents->gallery_id) selected=""
+                                                                        @endif   value="{{$g->id}}">{{$g->name}}
+                                                                    ({{$g->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label
+                                                            for="services_id">{{__('services.services_page_title')}}</label>
+                                                        <select name="services_id" data-live-search="true"
+                                                                id="services_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($services as $s)
+                                                                <option
+                                                                    @if($s->id == $contents->services_id) selected=""
+                                                                    @endif value="{{$s->id}}">{{$s->name}}({{$s->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="portfolio_id">{{__('title.portfolio')}}</label>
+                                                        <select name="portfolio_id" data-live-search="true"
+                                                                id="portfolio_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($portfolio as $p)
+                                                                <option
+                                                                    @if($p->id == $contents->portfolio_id) selected=""
+                                                                    @endif value="{{$p->id}}">{{$p->title}}({{$p->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="comments_id">{{__('title.comments')}}</label>
+                                                        <select name="comments_id" data-live-search="true"
+                                                                id="comments_id" class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($comments as $c)
+                                                                <option
+                                                                    @if($c->id == $contents->comments_id) selected=""
+                                                                    @endif value="{{$c->id}}">{{$c->name}}({{$c->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="staff_id">{{__('title.staff')}}</label>
+                                                        <select name="staff_id" data-live-search="true" id="staff_id"
+                                                                class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($staff as $s)
+                                                                <option @if($contents->staff_id == $s->id) selected=""
+                                                                        @endif value="{{$s->id}}">{{$s->name}}
+                                                                    ({{$s->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="form_id">{{__('global.form')}}</label>
+                                                        <select name="form_id" data-live-search="true" id="form_id"
+                                                                class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($form as $f)
+                                                                <option @if($f->id == $contents->form_id) selected=""
+                                                                        @endif   value="{{$f->id}}">{{$f->name}}
+                                                                    ({{$f->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="faq_id">{{__('global.faq')}}</label>
+                                                        <select name="faq_id" data-live-search="true" id="faq_id"
+                                                                class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($faq as $f)
+                                                                <option @if($f->id == $contents->faq_id) selected=""
+                                                                        @endif value="{{$f->id}}">{{$f->name}}
+                                                                    (Id:{{$f->id}})
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="category_id">{{__('global.category')}}</label>
+                                                        <select name="category_id" data-live-search="true" id="faq_id"
+                                                                class="auto-search form-control">
+                                                            <option value="">{{__('global.please_select')}}</option>
+                                                            @foreach($category as $c)
+                                                                <option
+                                                                    @if($c->id == $contents->category_id) selected=""
+                                                                    @endif value="{{$c->id}}">{{$c->name}}(Id:{{$c->id}}
+                                                                    )
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="comments_id">{{__('title.comments')}}</label>
-                                        <select name="comments_id" data-live-search="true" id="comments_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($comments as $c)
-                                                <option @if($c->id == $contents->comments_id) selected="" @endif value="{{$c->id}}">{{$c->name}}({{$c->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="staff_id">{{__('title.staff')}}</label>
-                                        <select name="staff_id" data-live-search="true" id="staff_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($staff as $s)
-                                                <option @if($contents->staff_id == $s->id) selected="" @endif value="{{$s->id}}">{{$s->name}}({{$s->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="form_id">{{__('global.form')}}</label>
-                                        <select name="form_id" data-live-search="true" id="form_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($form as $f)
-                                                <option @if($f->id == $contents->form_id) selected="" @endif   value="{{$f->id}}">{{$f->name}}({{$f->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="faq_id">{{__('global.faq')}}</label>
-                                        <select name="faq_id" data-live-search="true" id="faq_id" class="auto-search form-control">
-                                            <option value="">{{__('global.please_select')}}</option>
-                                            @foreach($faq as $f)
-                                                <option @if($f->id == $contents->faq_id) selected="" @endif value="{{$f->id}}">{{$f->name}}(Id:{{$f->id}})</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+
+
                                     <div class="form-group">
                                         <label class="require">{{__('global.short_desc')}}</label>
                                         <textarea name="short_desc"
                                                   class="form-control">{{$contents->short_desc}}</textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label class="">{{__('global.content_page')}}</label>
                                         <textarea class="ckeditor form-control description"
-                                                  name="description" id="description">{{$contents->description}}</textarea>
+                                                  name="description"
+                                                  id="description">{{$contents->description}}</textarea>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade " id="contents-seo">
                                     <div class="form-group">
                                         <label class="require">{{__('contents.seo_title')}}</label>
-                                        <input class="form-control " name="seo_title"  type="text"
+                                        <input class="form-control " name="seo_title" type="text"
                                                value="{{$contents->seo_title}}">
 
                                     </div>
                                     <div class="form-group">
                                         <label class="require">{{__('contents.keywords')}}</label>
-                                        <input class="form-control " name="keywords"  type="text"
+                                        <input class="form-control " name="keywords" type="text"
                                                value="{{$contents->keywords}}">
                                     </div>
                                     <div class="form-group">
@@ -214,16 +299,63 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="require">{{__('contents.focus_keywords')}}</label>
-                                        <input class="form-control " name="focus_keywords"  type="text"
+                                        <input class="form-control " name="focus_keywords" type="text"
                                                value="{{$contents->focus_keywords}}">
                                     </div>
 
                                     <div class="form-group">
+                                        <label class="require">{{__('global.link_q')}}</label>
+                                        <select name="seo_q1" class="form-control" tabindex="-98">
+                                            <option value="">{{__('global.please_select')}}</option>
+                                            <option @if($contents->seo_q1 == 1) selected=""
+                                                    @endif value="1">{{__('global.yes')}}</option>
+                                            <option @if($contents->seo_q1 == 2) selected=""
+                                                    @endif value="2">{{__('global.no')}}</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label class="require">{{__('global.slug')}}</label>
-                                        <input class="form-control " name="seo_url"  type="text"
+                                        <input class="form-control " name="seo_url" type="text"
                                                value="{{$contents->seo_url}}">
                                     </div>
 
+                                    <label class="">{{__('global.feature')}}</label>
+                                    <div
+                                        class='col-lg-12 text-center feature_image_deletes'>
+                                        <div id='content_feature_holders'
+                                             class='image-content'>
+                                            @if(!empty($contents->feature_url))
+                                            <img
+                                                id="feature_image"
+                                                src='{{asset($contents->feature_url)}}' style="height: 5rem;">
+                                                @endif
+                                        </div>
+                                    </div>
+
+                                    <div class='input-group mt-3'>
+
+                                        <span class='input-group-btn'>
+                                            <a id='feature_adds'
+                                               data-input='feature_add_inputs'
+                                               data-preview='content_feature_holders'
+                                               class='btn btn-primary gallery_adds'>
+                                                <i class='fa fa-picture-o'></i> {{__('contents.gallery_select')}}
+                                            </a>
+                                        </span>
+                                        <input id='feature_add_inputs'
+                                               class='form-control'
+                                               type='text'
+                                               name='feature_url'
+                                               readonly
+                                               value='{{$contents->feature_url}}'>
+                                        <button type='button'
+                                                class='btn btn-danger btn-sm deleteButtonFeature'
+                                                data-id="{{$contents->id}}"
+                                                data-action="{{route('contents.update',['feature_delete'])}}"
+                                                style=''><i class='fa fa-trash'></i>
+                                        </button>
+                                    </div>
 
                                 </div>
 
@@ -252,11 +384,13 @@
                                             @foreach($contents->content_gallery as $gallery)
                                                 <tr>
                                                     <td>
-                                                        <div class='col-lg-12 text-center gallery_image_deletes{{$gallery->id}}'>
+                                                        <div
+                                                            class='col-lg-12 text-center gallery_image_deletes{{$gallery->id}}'>
                                                             <div id='content_gallery_holders{{$gallery->id}}'
                                                                  class='image-content'>
                                                                 <img
-                                                                    src='{{asset($gallery->image_url)}}' width='32px' height='32px'>
+                                                                    src='{{asset($gallery->image_url)}}' width='32px'
+                                                                    height='32px'>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -283,11 +417,20 @@
                                                     </td>
                                                     <td>
                                                         <div class='form-group'>
-                                                            <input class='form-control ' name='image_orders{{$gallery->id}}' value="{{$gallery->image_order}}" placeholder='{{__('contents.order')}}'  type='text'>
+                                                            <input class='form-control '
+                                                                   name='image_orders{{$gallery->id}}'
+                                                                   value="{{$gallery->image_order}}"
+                                                                   placeholder='{{__('contents.order')}}' type='text'>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button type='button' class='btn btn-danger btn-sm deleteButtonGallery' data-id="{{$gallery->id}}" data-action = "{{route('contents.update',['gallery_image_delete'])}}" data-table="#content_gallery_add_table"   style='margin-top: 5px;'><i class='fa fa-trash'></i></button>
+                                                        <button type='button'
+                                                                class='btn btn-danger btn-sm deleteButtonGallery'
+                                                                data-id="{{$gallery->id}}"
+                                                                data-action="{{route('contents.update',['gallery_image_delete'])}}"
+                                                                data-table="#content_gallery_add_table"
+                                                                style='margin-top: 5px;'><i class='fa fa-trash'></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -386,12 +529,15 @@
                                                                                 data-html=""
                                                                                 data-colorattr="">
                                                                                 @if($bf->type == 2)
-                                                                                    <button type="button" data-id="{{$bf->id}}"
+                                                                                    <button type="button"
+                                                                                            data-id="{{$bf->id}}"
                                                                                             class="btn btn-outline-primary btn-sm html_blok_edit">
                                                                                         <i class="fa fa-gears"></i>
                                                                                     </button>
                                                                                 @elseif($bf->type == 1)
-                                                                                    <button type="button" data-id="{{$bf->id}}" class="btn btn-outline-primary btn-sm blok_edit">
+                                                                                    <button type="button"
+                                                                                            data-id="{{$bf->id}}"
+                                                                                            class="btn btn-outline-primary btn-sm blok_edit">
                                                                                         <i class="fa fa-gears"></i>
                                                                                     </button>
                                                                                 @endif
@@ -440,16 +586,19 @@
                                                                                     data-idattr="{{$tp->id_attr}}"
                                                                                     data-classattr="{{$tp->class_attr}}"
                                                                                     data-colorattr="{{$tp->color_attr}}">
-                                                                                        @if($tp->file_name->type == 2)
-                                                                                            <button type="button" data-id="{{$tp->id}}"
-                                                                                                    class="btn btn-outline-primary btn-sm html_blok_edits">
-                                                                                                <i class="fa fa-gears"></i>
-                                                                                            </button>
-                                                                                        @elseif($tp->file_name->type == 1)
-                                                                                            <button type="button" data-id="{{$tp->id}}" class="btn btn-outline-primary btn-sm blok_edits">
-                                                                                                <i class="fa fa-gears"></i>
-                                                                                            </button>
-                                                                                        @endif
+                                                                                    @if($tp->file_name->type == 2)
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm html_blok_edits">
+                                                                                            <i class="fa fa-gears"></i>
+                                                                                        </button>
+                                                                                    @elseif($tp->file_name->type == 1)
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm blok_edits">
+                                                                                            <i class="fa fa-gears"></i>
+                                                                                        </button>
+                                                                                    @endif
                                                                                     <div
                                                                                         class="dd-handle">{{__('contents.'.$tp->file_name->name)}}
                                                                                     </div>
@@ -492,12 +641,15 @@
                                                                                     data-classattr="{{$tp->class_attr}}"
                                                                                     data-colorattr="{{$tp->color_attr}}">
                                                                                     @if($tp->file_name->type == 2)
-                                                                                        <button type="button" data-id="{{$tp->id}}"
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
                                                                                                 class="btn btn-outline-primary btn-sm html_blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @elseif($tp->file_name->type == 1)
-                                                                                        <button type="button" data-id="{{$tp->id}}" class="btn btn-outline-primary btn-sm blok_edits">
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @endif
@@ -542,12 +694,15 @@
                                                                                     data-classattr="{{$tp->class_attr}}"
                                                                                     data-colorattr="{{$tp->color_attr}}">
                                                                                     @if($tp->file_name->type == 2)
-                                                                                        <button type="button" data-id="{{$tp->id}}"
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
                                                                                                 class="btn btn-outline-primary btn-sm html_blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @elseif($tp->file_name->type == 1)
-                                                                                        <button type="button" data-id="{{$tp->id}}" class="btn btn-outline-primary btn-sm blok_edits">
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @endif
@@ -594,12 +749,15 @@
                                                                                     data-classattr="{{$tp->class_attr}}"
                                                                                     data-colorattr="{{$tp->color_attr}}">
                                                                                     @if($tp->file_name->type == 2)
-                                                                                        <button type="button" data-id="{{$tp->id}}"
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
                                                                                                 class="btn btn-outline-primary btn-sm html_blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @elseif($tp->file_name->type == 1)
-                                                                                        <button type="button" data-id="{{$tp->id}}" class="btn btn-outline-primary btn-sm blok_edits">
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @endif
@@ -644,12 +802,15 @@
                                                                                     data-classattr="{{$tp->class_attr}}"
                                                                                     data-colorattr="{{$tp->color_attr}}">
                                                                                     @if($tp->file_name->type == 2)
-                                                                                        <button type="button" data-id="{{$tp->id}}"
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
                                                                                                 class="btn btn-outline-primary btn-sm html_blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @elseif($tp->file_name->type == 1)
-                                                                                        <button type="button" data-id="{{$tp->id}}" class="btn btn-outline-primary btn-sm blok_edits">
+                                                                                        <button type="button"
+                                                                                                data-id="{{$tp->id}}"
+                                                                                                class="btn btn-outline-primary btn-sm blok_edits">
                                                                                             <i class="fa fa-gears"></i>
                                                                                         </button>
                                                                                     @endif
@@ -706,13 +867,17 @@
                     <div class="card-body">
                         <input type="hidden" name="typeHtml" value="">
                         <div class="form-group">
-                            <input type="text" class="idattr form-control" name="idattr" placeholder="{{__('blokmanagement.blok_idattr')}}">
+                            <input type="text" class="idattr form-control" name="idattr"
+                                   placeholder="{{__('blokmanagement.blok_idattr')}}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="classattr form-control" name="classattr" placeholder="{{__('blokmanagement.blok_classattr')}}">
+                            <input type="text" class="classattr form-control" name="classattr"
+                                   placeholder="{{__('blokmanagement.blok_classattr')}}">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="colorattr form-control" data-control="wheel" data-provide="colorpicker" name="colorattr" placeholder="{{__('blokmanagement.colorattr')}}">
+                            <input type="text" class="colorattr form-control" data-control="wheel"
+                                   data-provide="colorpicker" name="colorattr"
+                                   placeholder="{{__('blokmanagement.colorattr')}}">
                         </div>
                         <textarea name="html_blok_edit" id="html_blok_edit"></textarea>
                     </div>
@@ -721,7 +886,8 @@
                     <button type="button" class="btn btn-bold btn-pure btn-secondary"
                             data-dismiss="modal">{{__('global.close')}}
                     </button>
-                    <button type="button" class="btn btn-bold btn-pure btn-primary html_blok_save">{{__('global.save')}}</button>
+                    <button type="button"
+                            class="btn btn-bold btn-pure btn-primary html_blok_save">{{__('global.save')}}</button>
                 </div>
             </div>
         </div>
@@ -741,13 +907,17 @@
 
                     <input type="hidden" name="typeHtml" value="">
                     <div class="form-group">
-                        <input type="text" class="idattr2 form-control" name="idattr" placeholder="{{__('blokmanagement.blok_idattr')}}">
+                        <input type="text" class="idattr2 form-control" name="idattr"
+                               placeholder="{{__('blokmanagement.blok_idattr')}}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="classattr2 form-control" name="classattr" placeholder="{{__('blokmanagement.blok_classattr')}}">
+                        <input type="text" class="classattr2 form-control" name="classattr"
+                               placeholder="{{__('blokmanagement.blok_classattr')}}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="colorattr2 form-control" data-control="wheel" data-provide="colorpicker" name="colorattr" placeholder="{{__('blokmanagement.colorattr')}}">
+                        <input type="text" class="colorattr2 form-control" data-control="wheel"
+                               data-provide="colorpicker" name="colorattr"
+                               placeholder="{{__('blokmanagement.colorattr')}}">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -816,8 +986,9 @@
                 maxDepth: '1',
             });
         }
-        function html_blok_js(){
-            $('.html_blok_edit').click(function(){
+
+        function html_blok_js() {
+            $('.html_blok_edit').click(function () {
                 Loader_toggle('show');
                 $('#html-blok-modal').modal('show');
                 var id = $(this).attr('data-id');
@@ -827,14 +998,14 @@
                 $('.idattr').val(idattr);
                 $('.classattr').val(classattr);
                 $('.colorattr').val(colorattr);
-                var html = $('.html_blok'+id).attr('data-html');
+                var html = $('.html_blok' + id).attr('data-html');
                 CKEDITOR.instances['html_blok_edit'].setData(html)
-                $('.html_blok_save').attr('data-id',id);
+                $('.html_blok_save').attr('data-id', id);
                 $('input[name=typeHtml]').val('1');
                 Loader_toggle('hide');
             });
 
-            $('.html_blok_save').click(function(){
+            $('.html_blok_save').click(function () {
 
                 Loader_toggle('show');
                 var id = $(this).attr('data-id');
@@ -843,26 +1014,26 @@
                 var idattr = $('.idattr').val();
                 var classattr = $('.classattr').val();
                 var colorattr = $('.colorattr').val();
-                if(typeHtml == 1){
-                    $('.html_blok'+id).attr('data-html',textareaValue);
-                    $('.html_blok'+id).attr('data-idattr',idattr);
-                    $('.html_blok'+id).attr('data-classattr',classattr);
-                    $('.html_blok'+id).attr('data-colorattr',colorattr);
-                }else{
-                    $('.html_bloks'+id).attr('data-html',textareaValue);
-                    $('.html_bloks'+id).attr('data-idattr',idattr);
-                    $('.html_bloks'+id).attr('data-classattr',classattr);
-                    $('.html_bloks'+id).attr('data-colorattr',colorattr);
+                if (typeHtml == 1) {
+                    $('.html_blok' + id).attr('data-html', textareaValue);
+                    $('.html_blok' + id).attr('data-idattr', idattr);
+                    $('.html_blok' + id).attr('data-classattr', classattr);
+                    $('.html_blok' + id).attr('data-colorattr', colorattr);
+                } else {
+                    $('.html_bloks' + id).attr('data-html', textareaValue);
+                    $('.html_bloks' + id).attr('data-idattr', idattr);
+                    $('.html_bloks' + id).attr('data-classattr', classattr);
+                    $('.html_bloks' + id).attr('data-colorattr', colorattr);
                 }
                 $('#html-blok-modal').modal('hide');
                 Loader_toggle('hide');
             })
 
-            $('.html_blok_edits').click(function(){
+            $('.html_blok_edits').click(function () {
                 Loader_toggle('show');
                 $('#html-blok-modal').modal('show');
                 var id = $(this).attr('data-id');
-                var html = $('.html_bloks'+id).attr('data-html');
+                var html = $('.html_bloks' + id).attr('data-html');
                 var idattr = $('.html_bloks' + id).attr('data-idattr');
                 var classattr = $('.html_bloks' + id).attr('data-classattr');
                 var colorattr = $('.html_bloks' + id).attr('data-colorattr');
@@ -871,7 +1042,7 @@
                 $('.colorattr').val(colorattr);
                 console.log(html);
                 CKEDITOR.instances['html_blok_edit'].setData(html)
-                $('.html_blok_save').attr('data-id',id);
+                $('.html_blok_save').attr('data-id', id);
                 $('input[name=typeHtml]').val('2')
 
                 Loader_toggle('hide');
@@ -916,20 +1087,21 @@
                 var classattr = $('.classattr2').val();
                 var colorattr = $('.colorattr2').val();
                 var typeHtml = $('input[name=typeHtml]').val();
-                if(typeHtml == 1){
-                    $('.html_blok'+id).attr('data-idattr',idattr);
-                    $('.html_blok'+id).attr('data-classattr',classattr);
-                    $('.html_blok'+id).attr('data-colorattr',colorattr);
-                }else{
-                    $('.html_bloks'+id).attr('data-idattr',idattr);
-                    $('.html_bloks'+id).attr('data-classattr',classattr);
-                    $('.html_bloks'+id).attr('data-colorattr',colorattr);
+                if (typeHtml == 1) {
+                    $('.html_blok' + id).attr('data-idattr', idattr);
+                    $('.html_blok' + id).attr('data-classattr', classattr);
+                    $('.html_blok' + id).attr('data-colorattr', colorattr);
+                } else {
+                    $('.html_bloks' + id).attr('data-idattr', idattr);
+                    $('.html_bloks' + id).attr('data-classattr', classattr);
+                    $('.html_bloks' + id).attr('data-colorattr', colorattr);
                 }
                 $('#blok-modal').modal('hide');
                 Loader_toggle('hide');
             })
         }
-        $(document).ready(function(){
+
+        $(document).ready(function () {
             html_blok_js()
         })
     </script>
